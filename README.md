@@ -140,21 +140,31 @@ npm run test
 ### Backend (.env)
 
 ```env
+# 서버 설정
 PORT=3001
 NODE_ENV=development
-DB_TYPE=sqlite
-DB_DATABASE=lawcast.db
+
+# 데이터베이스 설정
+DATABASE_PATH=lawcast.db
+
+# reCAPTCHA 설정 (선택사항)
 RECAPTCHA_SECRET_KEY=your_secret_key_here
+
+# 크론 작업 시간대
 CRON_TIMEZONE=Asia/Seoul
+
+# CORS 허용 도메인 (쉼표로 구분)
 FRONTEND_URL=http://localhost:5173,http://localhost:3000
 ```
 
 ### 환경 변수 설명
 
-- `FRONTEND_URL`: CORS 허용 도메인 (쉼표로 구분된 여러 도메인 지원)
-- `RECAPTCHA_SECRET_KEY`: Google reCAPTCHA v2 시크릿 키
 - `PORT`: 백엔드 서버 포트 (기본값: 3001)
-- `CRON_TIMEZONE`: 크론 작업 시간대 설정
+- `NODE_ENV`: 실행 환경 (development, production)
+- `DATABASE_PATH`: SQLite 데이터베이스 파일 경로 (기본값: lawcast.db)
+- `RECAPTCHA_SECRET_KEY`: Google reCAPTCHA v2 시크릿 키 (선택사항)
+- `CRON_TIMEZONE`: 크론 작업 시간대 설정 (기본값: Asia/Seoul)
+- `FRONTEND_URL`: CORS 허용 도메인 (쉼표로 구분된 여러 도메인 지원)
 
 ## 사용법
 
