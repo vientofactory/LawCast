@@ -13,6 +13,8 @@ LawCast는 국회 입법예고 사이트(pal.assembly.go.kr)의 새로운 입법
 - **간편 등록**: 로그인 없이 웹훅 URL만으로 간단 등록
 - **최소 보안**: Google reCAPTCHA를 통한 기본 스팸 방지
 - **반응형 UI**: 모바일과 데스크톱 모두 지원
+- **병렬 처리**: 여러 웹훅에 대한 효율적인 병렬 알림 전송
+- **자동 정리**: 실패한 웹훅 자동 비활성화 및 메모리 캐시 관리
 
 ## 프로젝트 구조
 
@@ -30,6 +32,9 @@ lawcast/
 ```bash
 cd backend
 npm install
+# 환경 변수 설정 (선택사항)
+echo "RECAPTCHA_SECRET_KEY=your_key_here" > .env
+echo "FRONTEND_URL=http://localhost:5173" >> .env
 npm run start:dev
 ```
 
@@ -45,15 +50,34 @@ npm run dev
 
 프론트엔드는 `http://localhost:5173`에서 실행됩니다.
 
+### 3. 테스트 실행
+
+```bash
+# 백엔드 유닛 테스트
+cd backend
+npm test
+
+# 특정 테스트 그룹 실행
+npm test -- --testPathPattern="utils|services"
+
+# 프론트엔드 테스트
+cd frontend
+npm run test
+```
+
 ## 기술 스택
 
 ### Backend (NestJS)
 
-- **Framework**: NestJS
+- **Framework**: NestJS with TypeScript
 - **Database**: SQLite (TypeORM)
 - **Scheduling**: @nestjs/schedule (Cron Jobs)
 - **Crawler**: pal-crawl
 - **Notifications**: discord-webhook-node
+- **Caching**: 메모리 기반 캐시 시스템
+- **Validation**: class-validator with comprehensive input validation
+- **Testing**: Jest 기반 유닛 테스트 (68개 테스트 케이스)
+- **Security**: Google reCAPTCHA v2 통합
 
 ### Frontend (SvelteKit)
 
@@ -66,19 +90,30 @@ npm run dev
 
 ### 웹훅 관리
 
-- `POST /api/webhooks` - 새 웹훅 등록
+- `POST /api/webhooks` - 새 웹훅 등록 (reCAPTCHA 검증 포함)
+  - Request Body: `{ "url": "discord_webhook_url", "recaptchaToken": "token" }`
+  - 응답: 웹훅 등록 성공/실패 및 테스트 결과
 
 ### 입법예고 관리
 
-- `GET /api/notices/recent` - 최근 입법예고 목록 조회
+- `GET /api/notices/recent` - 최근 입법예고 목록 조회 (기본 10개)
 - `GET /api/health` - 서비스 상태 확인
+
+### 보안 기능
+
+- Discord 웹훅 URL 형식 검증
+- IP 추출 및 로깅
+- reCAPTCHA v2 토큰 검증
+- 웹훅 중복 등록 방지 (URL 정규화)
 
 ## 자동화 프로세스
 
 1. **크롤링**: 정해진 시간마다 국회 입법예고 사이트 확인
-2. **비교**: 기존 데이터와 비교하여 새로운 입법예고 감지
-3. **저장**: 새로운 입법예고를 SQLite 데이터베이스에 저장
-4. **알림**: 등록된 모든 Discord 웹훅으로 알림 전송
+2. **비교**: 메모리 캐시와 비교하여 새로운 입법예고 감지
+3. **병렬 처리**: 여러 웹훅에 동시 알림 전송으로 성능 최적화
+4. **자동 정리**: 실패한 웹훅(404, 401, 403 오류) 자동 비활성화
+5. **캐시 관리**: 50개 항목 제한으로 메모리 효율성 보장
+6. **오류 처리**: 네트워크 오류와 웹훅 오류 구분하여 처리
 
 ## 환경 설정
 
@@ -91,7 +126,15 @@ DB_TYPE=sqlite
 DB_DATABASE=lawcast.db
 RECAPTCHA_SECRET_KEY=your_secret_key_here
 CRON_TIMEZONE=Asia/Seoul
+FRONTEND_URL=http://localhost:5173,http://localhost:3000
 ```
+
+### 환경 변수 설명
+
+- `FRONTEND_URL`: CORS 허용 도메인 (쉼표로 구분된 여러 도메인 지원)
+- `RECAPTCHA_SECRET_KEY`: Google reCAPTCHA v2 시크릿 키
+- `PORT`: 백엔드 서버 포트 (기본값: 3001)
+- `CRON_TIMEZONE`: 크론 작업 시간대 설정
 
 ## 사용법
 
