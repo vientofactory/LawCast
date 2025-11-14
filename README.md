@@ -1,4 +1,4 @@
-# LawCast 🏛️
+# LawCast
 
 국회 입법예고 변동사항을 Discord 웹훅으로 실시간 알림을 받을 수 있는 플랫폼입니다.
 
@@ -23,7 +23,7 @@ lawcast/
 └── README.md         # 프로젝트 메인 문서
 ```
 
-## 🚀 빠른 시작
+## 빠른 시작
 
 ### 1. 백엔드 실행
 
@@ -67,12 +67,9 @@ npm run dev
 ### 웹훅 관리
 
 - `POST /api/webhooks` - 새 웹훅 등록
-- `GET /api/webhooks` - 등록된 웹훅 목록 조회
-- `DELETE /api/webhooks/:id` - 웹훅 삭제
 
 ### 입법예고 관리
 
-- `POST /api/check` - 수동 입법예고 확인
 - `GET /api/notices/recent` - 최근 입법예고 목록 조회
 - `GET /api/health` - 서비스 상태 확인
 
@@ -83,7 +80,7 @@ npm run dev
 3. **저장**: 새로운 입법예고를 SQLite 데이터베이스에 저장
 4. **알림**: 등록된 모든 Discord 웹훅으로 알림 전송
 
-## 🛠️ 환경 설정
+## 환경 설정
 
 ### Backend (.env)
 
