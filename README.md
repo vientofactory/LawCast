@@ -204,7 +204,3 @@ PUBLIC_RECAPTCHA_SITE_KEY=your_site_key_here
 
 - [pal-crawl](https://github.com/vientorepublic/pal-crawl): 국회 입법예고 크롤러 라이브러리
 - [pal-webhook](https://github.com/vientorepublic/pal-webhook): 디스코드 웹훅 알리미 참조 구현
-
-## 라이선스
-
-MIT
