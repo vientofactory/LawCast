@@ -12,11 +12,17 @@ services:
     environment:
       - NODE_ENV=production
       - DATABASE_PATH=/app/data/lawcast.db
+      - OLLAMA_API_URL=http://ollama:11434
     volumes:
       # Mount SQLite database to persist data
       - lawcast_db:/app/data
       # Optional: Mount logs directory
       - lawcast_logs:/app/logs
+    depends_on:
+      redis:
+        condition: service_healthy
+      ollama:
+        condition: service_started
     networks:
       - lawcast-network
     healthcheck:
@@ -69,6 +75,23 @@ services:
       retries: 3
       start_period: 30s
 
+  ollama:
+    image: ollama/ollama:latest
+    container_name: lawcast-ollama
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:11434:11434"
+    volumes:
+      - lawcast_ollama:/root/.ollama
+    networks:
+      - lawcast-network
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
 networks:
   lawcast-network:
     driver: bridge
@@ -77,4 +100,6 @@ volumes:
   lawcast_db:
     driver: local
   lawcast_logs:
+    driver: local
+  lawcast_ollama:
     driver: local
