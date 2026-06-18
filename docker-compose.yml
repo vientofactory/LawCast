@@ -13,6 +13,7 @@ services:
       - NODE_ENV=production
       - DATABASE_PATH=/app/data/lawcast.db
       - OLLAMA_API_URL=http://ollama:11434
+      - REDIS_URL=redis://redis:6379
     volumes:
       # Mount SQLite database to persist data
       - lawcast_db:/app/data
@@ -45,6 +46,7 @@ services:
       - ./frontend/.env
     environment:
       - NODE_ENV=production
+      - API_BASE_URL=http://backend:3001/api
       # SvelteKit adapter-node configuration
       - HOST=0.0.0.0
       - PORT=3002
