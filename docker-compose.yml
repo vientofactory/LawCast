@@ -62,7 +62,7 @@ services:
       retries: 3
       start_period: 40s
   redis:
-    image: redis:8.6.3
+    image: redis:8.8.0
     restart: unless-stopped
     environment:
       TZ: Asia/Seoul
@@ -78,7 +78,7 @@ services:
       start_period: 30s
 
   ollama:
-    image: ollama/ollama:latest
+    image: ollama/ollama:0.31.1
     container_name: lawcast-ollama
     restart: unless-stopped
     ports:
