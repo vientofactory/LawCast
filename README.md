@@ -74,6 +74,16 @@ npm run dev
 - 기본 접속 주소: 프론트엔드 http://localhost:5173
 - API 기본 주소(개발): 백엔드 http://localhost:3001
 
+### 외부 프록시(ngrok 등) 사용 시
+
+ngrok 등 외부 프록시를 통해 개발 서버를 공유하는 경우, Vite HMR WebSocket이 정상 동작하도록 `REMOTE_DEV` 환경 변수를 설정해야 합니다.
+
+```bash
+REMOTE_DEV=1 npm run dev
+```
+
+이 설정은 HMR 프로토콜을 `ws` → `wss`, 클라이언트 포트를 `undefined` → `443`으로 변경하여 외부 프록시 환경에서 WebSocket 연결이 차단되는 문제를 방지합니다.
+
 환경 변수 상세는 아래 문서를 참고하세요.
 
 - [backend/README.md](backend/README.md)
