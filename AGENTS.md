@@ -11,10 +11,10 @@ LawCast is a self-hosted platform that collects Korean National Assembly legisla
 
 ### Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
-| Backend | NestJS 11.x, TypeORM 0.3.x, SQLite 3, Redis (Keyv), Jest |
-| Frontend | SvelteKit 2.x, Svelte 5.x, Tailwind CSS v4, FontAwesome v7 |
+| Layer          | Technology                                                   |
+| -------------- | ------------------------------------------------------------ |
+| Backend        | NestJS 11.x, TypeORM 0.3.x, SQLite 3, Redis (Keyv), Jest     |
+| Frontend       | SvelteKit 2.x, Svelte 5.x, Tailwind CSS v4, FontAwesome v7   |
 | Infrastructure | Docker Compose, Cloudflare (frontend), Ollama (AI summaries) |
 
 ### Repository Structure
@@ -51,15 +51,16 @@ These notes contain **critical findings** from prior agent sessions including pr
 
 Create a new agent memory file when **any** of the following is true:
 
-| Situation | Where | Example |
-|-----------|-------|----------|
-| Found a production bug or root cause | `XX-security-bugs-and-pagination/` or new session folder | `bug-investigation-findings.md` |
-| Completed a security or performance audit | `XX-security-bugs-and-pagination/` or new session folder | `security-audit-unbounded-requests.md` |
-| Designed an implementation plan for a new feature | New session folder | `plan.md` | 
-| Explored project architecture and gathered context | New session folder | `lawcast-backend-exploration.md` |
-| Discovered a cross-cutting pitfall all agents should know | `repo/` | `backend-testing-notes.md` |
+| Situation                                                 | Where                                                    | Example                                |
+| --------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------- |
+| Found a production bug or root cause                      | `XX-security-bugs-and-pagination/` or new session folder | `bug-investigation-findings.md`        |
+| Completed a security or performance audit                 | `XX-security-bugs-and-pagination/` or new session folder | `security-audit-unbounded-requests.md` |
+| Designed an implementation plan for a new feature         | New session folder                                       | `plan.md`                              |
+| Explored project architecture and gathered context        | New session folder                                       | `lawcast-backend-exploration.md`       |
+| Discovered a cross-cutting pitfall all agents should know | `repo/`                                                  | `backend-testing-notes.md`             |
 
 **Do NOT create a memory when:**
+
 - A code comment or TODO in the source file is sufficient
 - The finding is a trivial typo or formatting fix
 - The information is already covered by an existing memory file (update it instead)
@@ -77,7 +78,7 @@ Session folders follow this pattern:
 - Max ~5 words; be specific but concise
 
 **Examples:**
-| Good ✅ | Bad ❌ |
+| Good | Bad |
 |---------|--------|
 | `01-project-exploration-and-discussion-plan/` | `notes/` |
 | `02-security-bugs-and-pagination/` | `temp/` |
@@ -87,13 +88,15 @@ Session folders follow this pattern:
 **`repo/` folder**: Reserved for cross-cutting notes that apply to ALL agents regardless of session. Never create numbered subfolders inside `repo/`.
 
 ### File Naming
+
 - Format: `kebab-case-english.md` (e.g., `pagination-implementation-plan.md`)
 - One topic per file; split if a file exceeds ~500 lines
 - Place session-specific notes in the appropriate session folder under `agent_memories/`
 - Place cross-cutting notes in `agent_memories/repo/`
 
 ### Document Structure
-```markdown
+
+````markdown
 # Title (H1 — single topic)
 
 ## Section (H2 — major divisions)
@@ -108,10 +111,12 @@ Session folders follow this pattern:
 ```typescript
 // Code blocks for examples
 ```
+````
 
 | Table | For structured data |
-|-------|-------------------|
-```
+| ----- | ------------------- |
+
+````
 
 ### Key Rules
 - **H1 title**: One per file, describing the single topic
@@ -155,9 +160,10 @@ async myMethod(): Promise<Result> {
   // Inline comments explain WHY, not WHAT
   // Use TODO: prefix for known issues
 }
-```
+````
 
 ### Naming Conventions
+
 - **Classes**: PascalCase (`DiscussionsService`, `IpMaskingUtil`)
 - **Methods**: camelCase (`getThreadDetail`, `createThread`, `addComment`)
 - **Variables**: camelCase (`savedComment`, `nextSequence`)
@@ -167,6 +173,7 @@ async myMethod(): Promise<Result> {
 - **Unused params**: Prefix with `_` (eslint enforced)
 
 ### Testing
+
 - Framework: Jest (run with `cd backend && npm test`)
 - Mock pattern: `jest.fn()` with explicit method names matching the real service
 - Run specific tests: `npm test -- --testPathPattern=discussions`
@@ -178,6 +185,7 @@ async myMethod(): Promise<Result> {
 ## 5. Frontend Coding Conventions (`frontend/`)
 
 ### File & Folder Naming
+
 - **Routes**: `frontend/src/routes/{path}/+page.svelte` and `+page.server.ts`
 - **Components**: `frontend/src/lib/components/{FeatureName}.svelte` (PascalCase)
 - **Feature components**: `frontend/src/lib/components/{feature}/` subfolder
@@ -186,6 +194,7 @@ async myMethod(): Promise<Result> {
 - **Tests**: `frontend/e2e/{feature}.spec.ts` (Playwright)
 
 ### Code Style
+
 - **Module system**: ES modules (`import`/`export`)
 - **Prettier**: `useTabs: true`, `singleQuote: true`, `trailingComma: "none"`, `printWidth: 100`
 - **Indentation**: Tabs (NOT spaces)
@@ -193,14 +202,15 @@ async myMethod(): Promise<Result> {
 - **Svelte**: Svelte 5 with runes mode (`$state`, `$derived`, `$effect`)
 
 ### Svelte Component Patterns
+
 ```svelte
 <script lang="ts">
   // Props with $state rune
   let { isOpen, onClose }: { isOpen: boolean; onClose: () => void } = $props();
-  
+
   // Derived state with $derived
   let isReady = $derived(someCondition && anotherCondition);
-  
+
   // Side effects with $effect
   $effect(() => {
     // react to state changes
@@ -213,6 +223,7 @@ async myMethod(): Promise<Result> {
 ```
 
 ### Styling Conventions
+
 - **Utility-first**: Tailwind CSS classes
 - **Custom prefix**: `lc-` prefix for custom component classes (e.g., `lc-button-primary`, `lc-text-primary`)
 - **CSS variables**: `--lc-*` namespace (e.g., `--lc-text-primary`, `--lc-surface-primary`)
@@ -222,6 +233,7 @@ async myMethod(): Promise<Result> {
 - **Responsive**: `sm:`, `lg:` breakpoints frequently used
 
 ### Comment Format (English Only)
+
 ```svelte
 <script lang="ts">
   // Brief inline comments for non-obvious logic
@@ -235,6 +247,7 @@ async myMethod(): Promise<Result> {
 ```
 
 ### Testing
+
 - **Type check**: `cd frontend && npm run check`
 - **E2E**: `cd frontend && npx playwright test`
 - **With mock data**: `DIFFCHAIN_UI_MOCK=1 npx playwright test`
@@ -245,20 +258,24 @@ async myMethod(): Promise<Result> {
 ## 6. General Project Rules
 
 ### Language Policy
+
 - **Code**: All code comments, variable names, and API responses in **English**
 - **User-facing text**: Korean for UI strings, error messages, and documentation
 - **Agent notes**: Technical docs in English; exploration notes may mix Korean
 
 ### Git & CI
+
 - CI runs on push/PR to `main`: backend lint/typecheck/build/test, frontend typecheck/build
 - Always verify locally: `cd backend && npm run lint && npx tsc --noEmit && npm run build && npm test`
 - Always verify frontend: `cd frontend && npm run check`
 
 ### Docker
+
 - Build: `docker compose up -d --build`
 - Default ports: Frontend 3002, Backend 3001, Redis 6399, Ollama 11434
 
 ### Important Patterns to Preserve
+
 1. **Immutable archive snapshots**: `notice_archives` has immutability triggers; never mutate archived rows directly
 2. **Diffchain integrity**: Event hashes must be computed consistently; see `backend-testing-notes.md`
 3. **Lifecycle status**: Use `NOTICE_LIFECYCLE_STATUS` const, not raw strings
@@ -267,6 +284,7 @@ async myMethod(): Promise<Result> {
 6. **NSM deletion detection**: Always double-confirm with HTTP probe before marking `source_deleted`
 
 ### Common Pitfalls (from `agent_memories/repo/`)
+
 - CacheService mock must include ALL methods used by the code under test
 - `proposalReason` must preserve `\n` line breaks — do not use `/\s+/g` collapse
 - `source_deleted` detection requires two independent confirmations
