@@ -47,11 +47,49 @@ These notes contain **critical findings** from prior agent sessions including pr
 
 ## 3. Agent Memory Writing Structure
 
-When recording findings, plans, or exploration results, follow this structure:
+### When to Create a New Memory
+
+Create a new agent memory file when **any** of the following is true:
+
+| Situation | Where | Example |
+|-----------|-------|----------|
+| Found a production bug or root cause | `XX-security-bugs-and-pagination/` or new session folder | `bug-investigation-findings.md` |
+| Completed a security or performance audit | `XX-security-bugs-and-pagination/` or new session folder | `security-audit-unbounded-requests.md` |
+| Designed an implementation plan for a new feature | New session folder | `plan.md` | 
+| Explored project architecture and gathered context | New session folder | `lawcast-backend-exploration.md` |
+| Discovered a cross-cutting pitfall all agents should know | `repo/` | `backend-testing-notes.md` |
+
+**Do NOT create a memory when:**
+- A code comment or TODO in the source file is sufficient
+- The finding is a trivial typo or formatting fix
+- The information is already covered by an existing memory file (update it instead)
+
+### Folder Naming Rules
+
+Session folders follow this pattern:
+
+```
+{NN}-{descriptive-english-name}/
+```
+
+- **`NN`**: Two-digit zero-padded sequence number (e.g., `01`, `02`, `03`)
+- **`descriptive-english-name`**: Lowercase kebab-case describing the session topic
+- Max ~5 words; be specific but concise
+
+**Examples:**
+| Good ✅ | Bad ❌ |
+|---------|--------|
+| `01-project-exploration-and-discussion-plan/` | `notes/` |
+| `02-security-bugs-and-pagination/` | `temp/` |
+| `03-quote-notification-plan/` | `copilot-session-2026-09-14/` |
+| `04-api-rate-limiting/` | `backend/` (conflicts with real backend dir) |
+
+**`repo/` folder**: Reserved for cross-cutting notes that apply to ALL agents regardless of session. Never create numbered subfolders inside `repo/`.
 
 ### File Naming
 - Format: `kebab-case-english.md` (e.g., `pagination-implementation-plan.md`)
-- Place session-specific notes in a UUID or descriptive subfolder under `agent_memories/`
+- One topic per file; split if a file exceeds ~500 lines
+- Place session-specific notes in the appropriate session folder under `agent_memories/`
 - Place cross-cutting notes in `agent_memories/repo/`
 
 ### Document Structure

@@ -56,6 +56,45 @@ agent_memories/
 
 ## 새로 메모리를 추가할 때
 
-1. `repo/` 폴더: 프로젝트 전반에 걸쳐 모든 에이전트가 참고할 주의사항을 기록
-2. 세션 폴더 (`XX-영문-설명/`): 특정 작업 세션의 탐색/조사/계획 결과를 기록
-3. **반드시 이 README.md의 목차를 업데이트하세요**
+### 언제 메모리를 만드는가
+
+| 상황 | 저장 위치 | 예시 |
+|------|-----------|------|
+| 프로덕션 버그 또는 원인 분석 완료 | 보안/버그 폴더 또는 새 세션 폴더 | `bug-investigation-findings.md` |
+| 보안/성능 감사 완료 | 보안/버그 폴더 또는 새 세션 폴더 | `security-audit-unbounded-requests.md` |
+| 새 기능 구현 계획 수립 완료 | 새 세션 폴더 | `plan.md` |
+| 프로젝트 아키텍처 탐색 완료 | 새 세션 폴더 | `lawcast-backend-exploration.md` |
+| 모든 에이전트가 알아야 할 전범위 주의사항 발견 | `repo/` | `backend-testing-notes.md` |
+
+**메모리를 만들지 않는 경우:**
+- 소스 파일 내 주석이나 TODO로 충분할 때
+- 단순 오타나 포맷 수정일 때
+- 기존 메모리에 이미 동일 내용이 있을 때 (기존 파일 업데이트)
+
+### 폴더 네이밍 규칙
+
+세션 폴더 형식: `{NN}-{descriptive-english-name}/`
+
+- **`NN`**: 두 자리 영문 숫자 (예: `01`, `02`, `03`)
+- **`descriptive-english-name`**: 소문자 하이픈 구분 주제명
+- 최대 ~5단어; 구체적이고 간결하게
+
+**예시:**
+| 올바름 ✅ | 잘못됨 ❌ |
+|-----------|------------|
+| `01-project-exploration-and-discussion-plan/` | `notes/` |
+| `02-security-bugs-and-pagination/` | `temp/` |
+| `03-quote-notification-plan/` | `copilot-session-2026-09-14/` |
+| `04-api-rate-limiting/` | `backend/` (실제 백엔드 디렉토리와 혼동) |
+
+**`repo/` 폴더**: 모든 에이전트가 참고할 전범위 노트 전용. 번호 매긴 하위 폴더를 만들지 않음.
+
+### 파일 네이밍
+- 형식: `영문-하이픈-이름.md` (예: `pagination-implementation-plan.md`)
+- 파일당 하나의 주제; 500줄 이상이면 분리
+- 세션 폴더에 저장 (번호-영문-설명/)
+- 전범위 노트는 `repo/` 에 저장
+
+### 필수 업데이트
+
+**반드시 이 README.md의 목차를 업데이트하세요.** 새 폴더를 만들었으면 해당 폴더 설명도 추가합니다.
