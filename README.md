@@ -1,5 +1,7 @@
 # LawCast
 
+[![CI](https://github.com/vientofactory/LawCast/actions/workflows/ci.yml/badge.svg)](https://github.com/vientofactory/LawCast/actions/workflows/ci.yml)
+
 LawCast는 국회 입법예고 변동을 수집해 Discord 웹훅 알림과 웹 UI로 보여주는 셀프호스트형 플랫폼입니다.
 
 이 저장소는 백엔드/프론트엔드 서브모듈을 묶는 루트 오케스트레이션 레이어이며, 역할은 다음과 같습니다.
@@ -141,6 +143,8 @@ docker compose down
 
 - 백엔드 상세: [backend/README.md](backend/README.md)
 - 프론트엔드 상세: [frontend/README.md](frontend/README.md)
+- 코딩 에이전트 가이드라인: [AGENTS.md](AGENTS.md) — 모든 코딩 에이전트가 반드시 읽어야 하는 프로젝트 규칙 및 컨벤션
+- 에이전트 메모리: [agent_memories/README.md](agent_memories/README.md) — 탐색 기록, 버그 조사, 구현 계획 인덱스
 
 ## 라이선스
 
