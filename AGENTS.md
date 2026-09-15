@@ -269,6 +269,14 @@ async myMethod(): Promise<Result> {
 - Always verify locally: `cd backend && npm run lint && npx tsc --noEmit && npm run build && npm test`
 - Always verify frontend: `cd frontend && npm run check`
 
+### Branching & Merging
+
+- **`dev` is the persistent development workspace** — NEVER delete it
+- PRs target `main` via squash merge from feature branches
+- When merging PRs, **never use `--delete-branch`** on `dev` or any shared branch
+- Only delete short-lived feature branches (e.g. `feat/xxx`) that are not targets for other PRs
+- **Why**: Deleting a branch that serves as a PR base (like `dev`) causes GitHub to auto-close all PRs targeting it (e.g. Renovate dependency updates)
+
 ### Docker
 
 - Build: `docker compose up -d --build`
