@@ -272,10 +272,19 @@ async myMethod(): Promise<Result> {
 ### Branching & Merging
 
 - **`dev` is the persistent development workspace** — NEVER delete it
+- **NEVER commit directly to `main` or `dev`** — always use feature branches
 - PRs target `main` via squash merge from feature branches
 - When merging PRs, **never use `--delete-branch`** on `dev` or any shared branch
 - Only delete short-lived feature branches (e.g. `feat/xxx`) that are not targets for other PRs
 - **Why**: Deleting a branch that serves as a PR base (like `dev`) causes GitHub to auto-close all PRs targeting it (e.g. Renovate dependency updates)
+
+### Commit Rules
+
+- **Always create a feature branch** before making changes (e.g. `feat/color-scheme-fix`, `fix/theme-conflict`)
+- **Never commit directly to `main` or `dev`** — this prevents unreviewed code from reaching production
+- **Commit message format**: Use conventional commits (`feat:`, `fix:`, `chore:`, etc.)
+- **After committing**: Create a PR targeting `main`, do not push directly to shared branches
+- **Exception**: Only maintainers may push hotfixes directly to `main` with explicit approval
 
 ### Docker
 
