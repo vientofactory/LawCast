@@ -298,6 +298,66 @@ async myMethod(): Promise<Result> {
 - **No version conflicts**: Before bumping, check the existing version tags (`git tag -l`) to ensure no collision with already-released versions
 - **Release creation**: After merge to `main`, create a GitHub Release via `gh release create` with the submodule tag and auto-generated release notes
 
+### **MANDATORY: Deployment & Release Workflow**
+
+When releasing changes across submodules, agents MUST follow these steps **in exact order**. Skipping steps causes broken deployments.
+
+**Step 1 — Version bump**
+- Bump `package.json` version in the affected submodule(s)
+- Check existing tags first (`git tag -l`) to avoid collisions
+
+**Step 2 — Commit on feature branch, push, open PR**
+```bash
+git checkout -b fix/your-branch
+git add <files> && git commit -m "fix: description"
+git push -u origin fix/your-branch
+gh pr create --base main --head fix/your-branch --title "..." --body "..."
+```
+
+**Step 3 — Merge PR, delete feature branch**
+```bash
+gh pr merge <PR#> --squash --delete-branch
+```
+
+**Step 4 — Create GitHub Release**
+```bash
+gh release create <tag> --title "<tag>" --notes "## Changes\n- ..."
+```
+
+**Step 5 — Sync local `dev` branch in BOTH submodules**
+```bash
+# In each submodule directory:
+cd backend && git checkout dev && git pull origin dev
+cd ../frontend && git checkout dev && git pull origin dev
+```
+**Why**: After merge, submodules may be in detached HEAD on `main`. Always return to `dev`.
+
+**Step 6 — Update root repo submodule reference to `dev`**
+```bash
+# From root repo — record the dev branch commit for each submodule
+git add backend frontend   # only changed submodules
+git commit -m "chore: update submodules to vX.Y.Z"
+git push
+```
+**Critical**: The root repo records the exact commit each submodule points to. After step 5, `git add backend frontend` captures the `dev` branch HEAD commits. Verify with `git ls-tree HEAD backend frontend` that the recorded commits match `origin/dev`.
+
+**Step 7 — Verify final state**
+```bash
+# Submodule refs should show dev branch commits (no +/- prefix)
+git submodule status
+
+# Each submodule should be on dev branch, up to date
+cd backend && git log --oneline -1 && git branch --show-current
+cd ../frontend && git log --oneline -1 && git branch --show-current
+```
+- `git submodule status` must show **no `+` or `-` prefix** (meaning working tree matches recorded commit)
+- Each submodule's current branch must be `dev`
+- `dev` must be up to date with `origin/dev`
+
+> **NEVER commit directly to `main` in submodules.**
+> **NEVER skip the root repo submodule update — production deploys pull from root `main`.**
+> **NEVER leave submodules in detached HEAD or on `main` after operations complete.**
+
 ### Docker
 
 - Build: `docker compose up -d --build`
