@@ -286,6 +286,18 @@ async myMethod(): Promise<Result> {
 - **After committing**: Create a PR targeting `main`, do not push directly to shared branches
 - **Exception**: Only maintainers may push hotfixes directly to `main` with explicit approval
 
+### PR and Release Rules
+
+- **PR scope**: PRs are opened per submodule (`frontend/` or `backend/`), NOT the root repository
+- **Release scope**: Releases are created per submodule, tagged with the submodule's version (e.g. `frontend-v1.0.3`, `backend-v1.2.0`)
+- **Workflow**: feature branch -> commit -> open PR -> review -> merge -> create GitHub Release with matching tag
+- **Version bump before merge**: Before the final merge, agents MUST verify that `package.json` version has been appropriately bumped:
+  - **Patch** (`x.x.N`): bug fixes, dependency updates, internal refactors
+  - **Minor** (`x.N.0`): new features, non-breaking API changes
+  - **Major** (`N.0.0`): breaking changes, architecture rewrites
+- **No version conflicts**: Before bumping, check the existing version tags (`git tag -l`) to ensure no collision with already-released versions
+- **Release creation**: After merge to `main`, create a GitHub Release via `gh release create` with the submodule tag and auto-generated release notes
+
 ### Docker
 
 - Build: `docker compose up -d --build`
