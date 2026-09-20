@@ -302,6 +302,20 @@ async myMethod(): Promise<Result> {
 
 When releasing changes across submodules, agents MUST follow these steps **in exact order**. Skipping steps causes broken deployments.
 
+**Step 0 — Lint, format, and typecheck (BEFORE any commit)**
+Before creating a commit or bumping versions, agents MUST run all quality checks and fix any issues:
+```bash
+# Frontend
+cd frontend && npm run lint && npm run check
+
+# Backend
+cd backend && npm run lint && npx tsc --noEmit && npm run build && npm test
+```
+- `npm run lint` runs Prettier auto-fix + ESLint fix — all files MUST be `(unchanged)` or auto-fixed
+- `npm run check` (frontend) / `npx tsc --noEmit` (backend) MUST pass with 0 errors
+- **NEVER commit without running these first** — unformatted code will cause CI failures and unnecessary version bumps
+- If lint or check produces changes, include those changes in the same commit as the feature/fix
+
 **Step 1 — Version bump**
 - Bump `package.json` version in the affected submodule(s)
 - Check existing tags first (`git tag -l`) to avoid collisions
