@@ -36,18 +36,20 @@ jobs:
 
     steps:
       - name: Checkout repository (with submodules)
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           submodules: recursive
           fetch-depth: 0
 
       - name: Setup WireGuard
+        env:
+          VULTR_WIREGUARD: ${{ secrets.VULTR_WIREGUARD }}
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -qq wireguard-tools
 
-          # Write WireGuard profile from secret
-          echo "${{ secrets.VULTR_WIREGUARD }}" > /tmp/wg0.conf
+          # Write WireGuard profile from secret (use printenv to avoid shell argument exposure)
+          printenv VULTR_WIREGUARD > /tmp/wg0.conf
           sudo cp /tmp/wg0.conf /etc/wireguard/wg0.conf
           sudo chmod 600 /etc/wireguard/wg0.conf
 
@@ -70,9 +72,11 @@ jobs:
           done
 
       - name: Configure SSH
+        env:
+          VULTR_SSH_SECRET: ${{ secrets.VULTR_SSH_SECRET }}
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.VULTR_SSH_SECRET }}" > ~/.ssh/deploy_key
+          printenv VULTR_SSH_SECRET > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
 
           cat >> ~/.ssh/config <<EOF
