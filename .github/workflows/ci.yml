@@ -104,3 +104,12 @@ jobs:
             exit 1
           fi
           echo "✅ All checks passed."
+
+  deploy-backend:
+    name: Deploy backend
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: [ci-gate]
+    uses: ./.github/workflows/deploy-backend.yml
+    secrets:
+      VULTR_SSH_SECRET: ${{ secrets.VULTR_SSH_SECRET }}
+      VULTR_WIREGUARD: ${{ secrets.VULTR_WIREGUARD }}
