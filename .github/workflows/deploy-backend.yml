@@ -26,7 +26,6 @@ concurrency:
 
 env:
   DEPLOY_HOST: 10.20.0.1
-  DEPLOY_USER: root
   REPO_PATH: /root/lawcast
 
 jobs:
@@ -79,7 +78,7 @@ jobs:
           cat >> ~/.ssh/config <<EOF
           Host deploy-target
               HostName ${{ env.DEPLOY_HOST }}
-              User ${{ env.DEPLOY_USER }}
+              User ${{ vars.VULTR_SSH_USER }}
               IdentityFile ~/.ssh/deploy_key
               StrictHostKeyChecking no
               UserKnownHostsFile /dev/null
