@@ -114,6 +114,10 @@ jobs:
 
             echo "--- Updating main branch ---"
             git checkout main
+            # Discard all staged and unstaged local changes (server-specific overrides)
+            git reset HEAD -- .
+            git checkout -- .
+            git clean -fd
             git reset --hard origin/main
 
             echo "--- Syncing submodules ---"
