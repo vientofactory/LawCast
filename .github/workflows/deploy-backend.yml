@@ -148,7 +148,10 @@ jobs:
               echo "Backend is healthy ✓"
             else
               echo "WARNING: Backend health check failed after 60s"
-              docker compose logs backend --tail=50
+              # Filter out sensitive values from docker logs before output
+              docker compose logs backend --tail=30 --no-color 2>&1 | \
+                grep -viE '(SECRET|TOKEN|PASSWORD|API_KEY|DATABASE_URL|REDIS_URL|PRIVATE_KEY|CREDENTIAL|AUTHORIZATION)' | \
+                head -50
               exit 1
             fi
 
