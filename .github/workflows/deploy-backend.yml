@@ -1,0 +1,156 @@
+name: Deploy Backend
+
+on:
+  workflow_dispatch:
+    inputs:
+      skip_ci:
+        description: "Skip CI checks before deploy"
+        required: false
+        default: false
+        type: boolean
+  workflow_call:
+    inputs:
+      skip_ci:
+        required: false
+        default: "false"
+        type: string
+    secrets:
+      VULTR_SSH_SECRET:
+        required: true
+      VULTR_WIREGUARD:
+        required: true
+
+concurrency:
+  group: deploy-backend
+  cancel-in-progress: false
+
+env:
+  DEPLOY_HOST: 10.20.0.1
+  DEPLOY_USER: root
+  REPO_PATH: /opt/lawcast
+
+jobs:
+  deploy:
+    name: Deploy backend to production
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository (with submodules)
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Setup WireGuard
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq wireguard-tools
+
+          # Write WireGuard profile from secret
+          echo "${{ secrets.VULTR_WIREGUARD }}" > /tmp/wg0.conf
+          sudo cp /tmp/wg0.conf /etc/wireguard/wg0.conf
+          sudo chmod 600 /etc/wireguard/wg0.conf
+
+          # Bring up WireGuard interface
+          sudo wg-quick up wg0
+
+          # Verify tunnel connectivity
+          echo "Waiting for WireGuard tunnel..."
+          for i in $(seq 1 10); do
+            if ping -c 1 -W 2 ${{ env.DEPLOY_HOST }} > /dev/null 2>&1; then
+              echo "Tunnel is up — reachable at ${{ env.DEPLOY_HOST }}"
+              break
+            fi
+            if [ "$i" -eq 10 ]; then
+              echo "ERROR: Cannot reach ${{ env.DEPLOY_HOST }} through WireGuard tunnel"
+              sudo wg show
+              exit 1
+            fi
+            sleep 2
+          done
+
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.VULTR_SSH_SECRET }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+
+          cat >> ~/.ssh/config <<EOF
+          Host deploy-target
+              HostName ${{ env.DEPLOY_HOST }}
+              User ${{ env.DEPLOY_USER }}
+              IdentityFile ~/.ssh/deploy_key
+              StrictHostKeyChecking no
+              UserKnownHostsFile /dev/null
+              LogLevel ERROR
+              ConnectTimeout 10
+          EOF
+
+          # Test SSH connectivity
+          ssh deploy-target "echo 'SSH connection successful'"
+
+      - name: Deploy backend
+        run: |
+          echo "=== Fetching latest code on server ==="
+          ssh deploy-target bash -s <<'REMOTE_SCRIPT'
+            set -euo pipefail
+
+            cd ${{ env.REPO_PATH }}
+
+            echo "--- Current HEAD ---"
+            git log --oneline -1
+
+            echo "--- Fetching latest from origin ---"
+            git fetch origin main
+
+            LOCAL=$(git rev-parse HEAD)
+            REMOTE=$(git rev-parse origin/main)
+
+            if [ "$LOCAL" = "$REMOTE" ]; then
+              echo "Already up to date ($LOCAL). Skipping deploy."
+              exit 0
+            fi
+
+            echo "--- Updating main branch ---"
+            git checkout main
+            git pull origin main
+
+            echo "--- Syncing submodules ---"
+            git submodule update --init --recursive --remote
+
+            echo "--- New HEAD ---"
+            git log --oneline -1
+
+            echo "--- Building and restarting backend ---"
+            cd ${{ env.REPO_PATH }}
+            ./deploy.sh backend
+
+            echo "--- Waiting for health check ---"
+            HEALTHY=false
+            for i in $(seq 1 30); do
+              if curl -sf http://127.0.0.1:3001/api/health > /dev/null 2>&1; then
+                HEALTHY=true
+                break
+              fi
+              sleep 2
+            done
+
+            if [ "$HEALTHY" = "true" ]; then
+              echo "Backend is healthy ✓"
+            else
+              echo "WARNING: Backend health check failed after 60s"
+              docker compose logs backend --tail=50
+              exit 1
+            fi
+
+            echo "=== Deploy complete ==="
+          REMOTE_SCRIPT
+
+      - name: Cleanup SSH key
+        if: always()
+        run: rm -rf ~/.ssh/deploy_key
+
+      - name: Tear down WireGuard
+        if: always()
+        run: sudo wg-quick down wg0 || true
