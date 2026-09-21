@@ -130,6 +130,8 @@ jobs:
 
             echo "--- Building and restarting backend ---"
             cd ${{ env.REPO_PATH }}
+            export APP_VERSION=$(grep '"version"' backend/package.json | head -1 | sed 's/.*"\([^"]*\)".*/\1/')
+            echo "APP_VERSION=$APP_VERSION"
             ./deploy.sh backend
 
             echo "--- Waiting for health check ---"
