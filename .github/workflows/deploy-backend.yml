@@ -27,7 +27,7 @@ concurrency:
 env:
   DEPLOY_HOST: 10.20.0.1
   DEPLOY_USER: root
-  REPO_PATH: /opt/lawcast
+  REPO_PATH: /root/lawcast
 
 jobs:
   deploy:
