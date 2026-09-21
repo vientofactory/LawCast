@@ -114,7 +114,7 @@ jobs:
 
             echo "--- Updating main branch ---"
             git checkout main
-            git pull origin main
+            git reset --hard origin/main
 
             echo "--- Syncing submodules ---"
             git submodule update --init --recursive --remote
