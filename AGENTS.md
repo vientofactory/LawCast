@@ -302,7 +302,7 @@ async myMethod(): Promise<Result> {
 
 When releasing changes across submodules, agents MUST follow these steps **in exact order**. Skipping steps causes broken deployments.
 
-**Step 0 — Lint, format, and typecheck (BEFORE any commit)**
+**Step 0 — Lint, format, typecheck, and lockfile sync (BEFORE any commit)**
 Before creating a commit or bumping versions, agents MUST run all quality checks and fix any issues:
 ```bash
 # Frontend
@@ -315,6 +315,16 @@ cd backend && npm run lint && npx tsc --noEmit && npm run build && npm test
 - `npm run check` (frontend) / `npx tsc --noEmit` (backend) MUST pass with 0 errors
 - **NEVER commit without running these first** — unformatted code will cause CI failures and unnecessary version bumps
 - If lint or check produces changes, include those changes in the same commit as the feature/fix
+
+**⚠️ CRITICAL: Lockfile sync after any package change**
+If ANY package-related file was modified (`package.json`, overrides, resolutions, dependency additions/removals), agents MUST run `npm install` in the affected submodule and verify no `package-lock.json` diff remains **before committing**:
+```bash
+cd <backend|frontend> && npm install
+git diff --stat package-lock.json  # must be empty or included in commit
+```
+- `npm install --package-lock-only` is NOT sufficient — it only updates the top-level version field, not the resolved dependency tree. Always use `npm install`.
+- If `package-lock.json` has changes after `npm install`, those changes MUST be included in the same commit as the `package.json` change.
+- **Why**: CI runs `npm ci` which installs from the lockfile exactly. A mismatched lockfile causes silent dependency resolution differences between local and CI, leading to test failures like `Cannot find module` errors.
 
 **Step 1 — Version bump**
 - Bump `package.json` version in the affected submodule(s)
@@ -345,6 +355,16 @@ cd backend && git checkout dev && git pull origin dev
 cd ../frontend && git checkout dev && git pull origin dev
 ```
 **Why**: After merge, submodules may be in detached HEAD on `main`. Always return to `dev`.
+
+**⚠️ CRITICAL: Reinstall after merging main into dev**
+After merging `main` into `dev` (or after `git pull origin dev` brings in new commits from main), agents MUST run `npm install` to regenerate the lockfile with correct dependency resolution:
+```bash
+cd <backend|frontend> && git merge main --no-edit && npm install
+git diff --stat package-lock.json  # if changed, commit and push
+```
+- Simply fast-forward merging `package.json`/`package-lock.json` from `main` is NOT enough — the lockfile may reference dependency versions that were resolved in a different context.
+- Always run `npm install` to re-resolve the full dependency tree on the current branch.
+- If `package-lock.json` changes, commit and push to `dev`.
 
 **Step 6 — Update root repo submodule reference to `dev`**
 ```bash
