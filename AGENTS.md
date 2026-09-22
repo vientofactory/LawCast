@@ -262,6 +262,7 @@ async myMethod(): Promise<Result> {
 - **Code**: All code comments, variable names, and API responses in **English**
 - **User-facing text**: Korean for UI strings, error messages, and documentation
 - **Agent notes**: Technical docs in English; exploration notes may mix Korean
+- **No emojis**: Never use emojis in code, commit messages, documentation, or PR descriptions
 
 ### Git & CI
 
@@ -316,7 +317,7 @@ cd backend && npm run lint && npx tsc --noEmit && npm run build && npm test
 - **NEVER commit without running these first** — unformatted code will cause CI failures and unnecessary version bumps
 - If lint or check produces changes, include those changes in the same commit as the feature/fix
 
-**⚠️ CRITICAL: Lockfile sync after any package change**
+**CRITICAL: Lockfile sync after any package change**
 If ANY package-related file was modified (`package.json`, overrides, resolutions, dependency additions/removals), agents MUST run `npm install` in the affected submodule and verify no `package-lock.json` diff remains **before committing**:
 ```bash
 cd <backend|frontend> && npm install
@@ -356,7 +357,7 @@ cd ../frontend && git checkout dev && git pull origin dev
 ```
 **Why**: After merge, submodules may be in detached HEAD on `main`. Always return to `dev`.
 
-**⚠️ CRITICAL: Reinstall after merging main into dev**
+**CRITICAL: Reinstall after merging main into dev**
 After merging `main` into `dev` (or after `git pull origin dev` brings in new commits from main), agents MUST run `npm install` to regenerate the lockfile with correct dependency resolution:
 ```bash
 cd <backend|frontend> && git merge main --no-edit && npm install
