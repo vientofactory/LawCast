@@ -19,8 +19,10 @@ agent_memories/
 │   ├── security-audit-unbounded-requests.md       ← 보안 감사 (요청 경계 검증)
 │   ├── pagination-audit-findings.md               ← 페이지네이션 현황 감사
 │   └── pagination-implementation-plan.md          ← 커서 기반 페이지네이션 구현 계획
-└── 03-quote-notification-plan/                    ← 스레드 인용 알림 구현
-    └── plan.md                                    ← 인용 알림(웹푸시 바인딩) 구현 계획
+├── 03-quote-notification-plan/                    ← 스레드 인용 알림 구현
+│   └── plan.md                                    ← 인용 알림(웹푸시 바인딩) 구현 계획
+└── 04-snippet-state-shadowing-bug/                ← 스니펫/상태 변수명 충돌 버그
+    └── bug-investigation-findings.md              ← NewThreadModal 토론 주제 입력 검증 버그 원인 분석
 ```
 
 ## 폴더별 상세 내용
@@ -48,6 +50,10 @@ agent_memories/
 ### `03-quote-notification-plan/` — 스레드 인용 알림
 
 - **plan.md**: 토론 인용 알림 시스템 구현 계약. 웹푸시 바인딩 매핑 테이블, 인용 해석 유틸, 알림 발송 흐름, 프론트 동의 모달 구현 계획.
+
+### `04-snippet-state-shadowing-bug/` — 스니펫/상태 변수명 충돌 버그
+
+- **bug-investigation-findings.md**: `NewThreadModal`에서 `{#snippet title()}`와 `let title = $state('')` 이름 충돌로 `bind:value`가 스니펫 함수를 참조하여 토론 주제 입력 검증이 항상 실패하던 버그의 원인 분석 및 수정 기록. **Svelte 스니펫 이름과 상태 변수 이름은 절대 겹치지 않아야 함.**
 
 ## 에이전트 메모리 기록 규칙
 
