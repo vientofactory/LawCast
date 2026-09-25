@@ -357,15 +357,21 @@ cd ../frontend && git checkout dev && git pull origin dev
 ```
 **Why**: After merge, submodules may be in detached HEAD on `main`. Always return to `dev`.
 
-**CRITICAL: Reinstall after merging main into dev**
-After merging `main` into `dev` (or after `git pull origin dev` brings in new commits from main), agents MUST run `npm install` to regenerate the lockfile with correct dependency resolution:
+**CRITICAL: Sync main into dev with --ff-only ONLY**
+`dev` must never accumulate merge commits from `main`. Sync with a fast-forward only:
 ```bash
-cd <backend|frontend> && git merge main --no-edit && npm install
+cd <backend|frontend> && git merge --ff-only origin/main && npm install
 git diff --stat package-lock.json  # if changed, commit and push
 ```
-- Simply fast-forward merging `package.json`/`package-lock.json` from `main` is NOT enough — the lockfile may reference dependency versions that were resolved in a different context.
-- Always run `npm install` to re-resolve the full dependency tree on the current branch.
-- If `package-lock.json` changes, commit and push to `dev`.
+- **NEVER use `git merge main --no-edit` (or any non-ff merge) on `dev`.** Regular merges create commits whose net diff against `main` is zero, so `main...dev` comparisons show meaningless commits with 0 changed files.
+- If `--ff-only` fails, `dev` has diverged. Check first:
+  ```bash
+  git diff --stat origin/main origin/dev   # must be empty
+  ```
+  - Empty → `dev` holds no unique work; reset it: `git reset --hard origin/main` then `git push --force-with-lease origin dev`
+  - Non-empty → `dev` has real unique work; do NOT reset. Rebase or open a PR from `dev` instead.
+- After the sync, run `npm install` to re-resolve the dependency tree (`git diff --stat package-lock.json`; if changed, commit and push to `dev`).
+- Fast-forwarding `package.json`/`package-lock.json` alone is NOT enough — the lockfile may reference dependency versions resolved in a different context.
 
 **Step 6 — Update root repo submodule reference to `dev`**
 ```bash
@@ -375,6 +381,8 @@ git commit -m "chore: update submodules to vX.Y.Z"
 git push
 ```
 **Critical**: The root repo records the exact commit each submodule points to. After step 5, `git add backend frontend` captures the `dev` branch HEAD commits. Verify with `git ls-tree HEAD backend frontend` that the recorded commits match `origin/dev`.
+- The recorded commit MUST be reachable from `origin/dev` (or `main`) and match the release tag. Never record a commit that exists only on a branch you are about to rewrite or delete — a fresh clone would then fail to check out the submodule.
+- If `origin/dev` was reset, re-run `git add backend frontend` so the pointer captures the new HEAD.
 
 **Step 7 — Verify final state**
 ```bash
