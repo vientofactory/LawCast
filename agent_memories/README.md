@@ -21,8 +21,10 @@ agent_memories/
 │   └── pagination-implementation-plan.md          ← 커서 기반 페이지네이션 구현 계획
 ├── 03-quote-notification-plan/                    ← 스레드 인용 알림 구현
 │   └── plan.md                                    ← 인용 알림(웹푸시 바인딩) 구현 계획
-└── 04-snippet-state-shadowing-bug/                ← 스니펫/상태 변수명 충돌 버그
-    └── bug-investigation-findings.md              ← NewThreadModal 토론 주제 입력 검증 버그 원인 분석
+├── 04-snippet-state-shadowing-bug/                ← 스니펫/상태 변수명 충돌 버그
+│   └── bug-investigation-findings.md              ← NewThreadModal 토론 주제 입력 검증 버그 원인 분석
+└── 05-webpush-failure-cleanup-audit/              ← 웹푸시 실패 처리/정리 크론 감사
+    └── bug-investigation-findings.md              ← 일시 오류 구독 삭제 + 웹훅 정리 게이트 버그
 ```
 
 ## 폴더별 상세 내용
@@ -54,6 +56,10 @@ agent_memories/
 ### `04-snippet-state-shadowing-bug/` — 스니펫/상태 변수명 충돌 버그
 
 - **bug-investigation-findings.md**: `NewThreadModal`에서 `{#snippet title()}`와 `let title = $state('')` 이름 충돌로 `bind:value`가 스니펫 함수를 참조하여 토론 주제 입력 검증이 항상 실패하던 버그의 원인 분석 및 수정 기록. **Svelte 스니펫 이름과 상태 변수 이름은 절대 겹치지 않아야 함.**
+
+### `05-webpush-failure-cleanup-audit/` — 웹푸시 실패 처리/정리 크론 감사
+
+- **bug-investigation-findings.md**: 웹푸시 전송 실패 예외 처리와 삭제 마킹→정리 크론 데이터 흐름 감사. (1) 일시 오류(429/5xx/네트워크) 누적만으로 구독을 무효화·즉시 삭제하던 명세 위반 수정 — 404/410에서만 무효화(RFC 8030/FCM/autopush 기준). (2) 웹훅 정리 크론의 게이트 조건(30일 카운터)과 삭제 조건(14일) 불일치로 삭제 마킹된 웹훅이 2배 늦게 정리되던 버그 수정. 실제 sqlite 데이터 플로우 회귀 테스트 추가 및 사전 패치 코드에서 실패함을 확인.
 
 ## 에이전트 메모리 기록 규칙
 
