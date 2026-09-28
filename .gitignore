@@ -61,6 +61,10 @@ data/
 tmp/
 temp/
 
+# Agent tooling (Freebuff/Codebuff session files — never track)
+.freebuff/
+_workspace/
+
 # Package manager files
 package-lock.json
 yarn.lock
