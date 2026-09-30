@@ -23,8 +23,12 @@ agent_memories/
 │   └── plan.md                                    ← 인용 알림(웹푸시 바인딩) 구현 계획
 ├── 04-snippet-state-shadowing-bug/                ← 스니펫/상태 변수명 충돌 버그
 │   └── bug-investigation-findings.md              ← NewThreadModal 토론 주제 입력 검증 버그 원인 분석
-└── 05-webpush-failure-cleanup-audit/              ← 웹푸시 실패 처리/정리 크론 감사
-    └── bug-investigation-findings.md              ← 일시 오류 구독 삭제 + 웹훅 정리 게이트 버그
+├── 05-webpush-failure-cleanup-audit/              ← 웹푸시 실패 처리/정리 크론 감사
+│   └── bug-investigation-findings.md              ← 일시 오류 구독 삭제 + 웹훅 정리 게이트 버그
+├── 06-semantic-search-side-project/               ← 시맨틱 검색 사이드 프로젝트
+│   └── plan.md                                    ← FAISS 의미 검색 파이프라인 설계 및 모델 선정
+└── 07-incremental-indexing/                       ← 시맨틱 인덱스 증분 갱신
+    └── plan.md                                    ← 증분 갱신 설계 결정 및 검증 결과
 ```
 
 ## 폴더별 상세 내용
@@ -60,6 +64,13 @@ agent_memories/
 ### `05-webpush-failure-cleanup-audit/` — 웹푸시 실패 처리/정리 크론 감사
 
 - **bug-investigation-findings.md**: 웹푸시 전송 실패 예외 처리와 삭제 마킹→정리 크론 데이터 흐름 감사. (1) 일시 오류(429/5xx/네트워크) 누적만으로 구독을 무효화·즉시 삭제하던 명세 위반 수정 — 404/410에서만 무효화(RFC 8030/FCM/autopush 기준). (2) 웹훅 정리 크론의 게이트 조건(30일 카운터)과 삭제 조건(14일) 불일치로 삭제 마킹된 웹훅이 2배 늦게 정리되던 버그 수정. 실제 sqlite 데이터 플로우 회귀 테스트 추가 및 사전 패치 코드에서 실패함을 확인.
+### `06-semantic-search-side-project/` — 시맨틱 검색 사이드 프로젝트
+
+- **plan.md**: `semantic-search/` (Python + FAISS) 의미 검색 파이프라인 설계. 법률안 `proposalReason` 전처리·청킹 → `jhgan/ko-sbert-sts` 임베딩 → FAISS 코사인 인덱스 → 질의 유사도 검색 4단계 구조와 모델 선정 근거. **중요**: ko-sbert-sts는 max_seq_length=128 토큰이라 청크 200자 캘리브레이션 필수(한국어 ~1.9자/토큰), stage 2의 truncated_count가 가드레일.
+
+### `07-incremental-indexing/` — 시맨틱 인덱스 증분 갱신
+
+- **plan.md**: 전체 재구축 없이 신규/수정/삭제 공고만 반영하는 증분 갱신 설계(`lawcast_semantic/incremental.py` + `scripts/06_incremental_update.py`). 행별 출처 다이제스트(`chunk_text_digests`)로 재사용·크래시 복구를 보증하고 지문 검증 계약은 불변. **설계 결정·검증 결과의 단일 소유처** — 전체 재구축과의 동등성 대조 기록 포함.
 
 ## 에이전트 메모리 기록 규칙
 
