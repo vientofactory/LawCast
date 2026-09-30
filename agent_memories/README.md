@@ -27,8 +27,12 @@ agent_memories/
 │   └── bug-investigation-findings.md              ← 일시 오류 구독 삭제 + 웹훅 정리 게이트 버그
 ├── 06-semantic-search-side-project/               ← 시맨틱 검색 사이드 프로젝트
 │   └── plan.md                                    ← FAISS 의미 검색 파이프라인 설계 및 모델 선정
-└── 07-incremental-indexing/                       ← 시맨틱 인덱스 증분 갱신
-    └── plan.md                                    ← 증분 갱신 설계 결정 및 검증 결과
+├── 07-incremental-indexing/                       ← 시맨틱 인덱스 증분 갱신
+│   └── plan.md                                    ← 증분 갱신 설계 결정 및 검증 결과
+└── 08-semantic-search-production-deploy/          ← 시맨틱 검색 프로덕션 배포/백엔드 연동
+    ├── plan.md                                    ← 배포 로드맵, API 계약, 남은 작업 목록
+    ├── incremental-update-pipeline-design.md      ← 정기 인덱스 갱신 파이프라인 설계 (설계 소유처)
+    └── production-readiness-status.md             ← 프로덕션 레디니스 3축 현황 + 남은 작업 (측정 기반)
 ```
 
 ## 폴더별 상세 내용
@@ -71,6 +75,12 @@ agent_memories/
 ### `07-incremental-indexing/` — 시맨틱 인덱스 증분 갱신
 
 - **plan.md**: 전체 재구축 없이 신규/수정/삭제 공고만 반영하는 증분 갱신 설계(`lawcast_semantic/incremental.py` + `scripts/06_incremental_update.py`). 행별 출처 다이제스트(`chunk_text_digests`)로 재사용·크래시 복구를 보증하고 지문 검증 계약은 불변. **설계 결정·검증 결과의 단일 소유처** — 전체 재구축과의 동등성 대조 기록 포함.
+
+### `08-semantic-search-production-deploy/` — 시맨틱 검색 프로덕션 배포
+
+- **plan.md**: `semantic-search/` 사이드카의 프로덕션 배포·백엔드 연동 로드맵. 코드베이스 조사 표, 사이드카↔백엔드 API 계약, 완료된 Docker/설정 작업과 남은 작업 우선순위(§3.B 항목은 2026-10-01 기준으로 갱신됨 — 핫 리로드·스케줄링은 구현 완료). **배포 관련 남은 작업의 단일 로드맵.**
+- **incremental-update-pipeline-design.md**: 정기 인덱스 갱신 파이프라인 설계 **및 구현의 단일 소유처** — 공유 `lawcast_db` 볼륨(WAL/-shm/uid 처리), 사이드카 내부 스레드 스케줄(기본 60분), load–validate–swap 핫 리로드(`POST /reload`), 부트 리페어·삭제 가드·지문 자가치유 매트릭스. §7 항목 전부 구현됨(2026-10-01).
+- **production-readiness-status.md**: 프로덕션 레디니스 **측정 기반 현황 분석**(2026-10-01). ① 엔진 구현 상태 ② 도커 환경(uid 1001 볼륨 마운트·lawcast_db 배선·세 게이트·`POST /reload` 라이브 실측) ③ 백엔드/프론트엔드 대응 상태 3축 정리 + production-ready까지 남은 작업의 '남은 이유·완료 기준' 목록. 최신 실측 기준선.
 
 ## 에이전트 메모리 기록 규칙
 

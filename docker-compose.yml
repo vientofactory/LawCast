@@ -18,6 +18,11 @@ services:
       - DATABASE_PATH=/app/data/lawcast.db
       - OLLAMA_API_URL=http://ollama:11434
       - REDIS_URL=redis://redis:6379
+      # Container-side override: backend/.env points at 127.0.0.1:8300 for
+      # host-local dev, which is unreachable from inside this container.
+      # No depends_on on purpose: the API degrades to keyword search when the
+      # sidecar is down (see semantic-search module contract).
+      - SEMANTIC_SEARCH_API_URL=http://semantic-search:8300
     volumes:
       # Mount SQLite database to persist data
       - lawcast_db:/app/data
@@ -83,6 +88,59 @@ services:
       retries: 3
       start_period: 30s
 
+  semantic-search:
+    build:
+      context: ./semantic-search
+      dockerfile: Dockerfile
+    container_name: lawcast-semantic-search
+    restart: unless-stopped
+    ports:
+      # Published on loopback only (internal service, no auth) for host-side
+      # debugging: curl http://127.0.0.1:8300/health
+      - "127.0.0.1:8300:8300"
+    environment:
+      - TZ=Asia/Seoul
+      - HF_HOME=/cache/huggingface
+      - LAWCAST_SEMANTIC_ARTIFACTS_DIR=/app/artifacts
+      # Scheduled refresh gates (design §4.2): shared-lawcast_db volume is the
+      # corpus source; empty DB_PATH or interval 0 turns scheduling and boot
+      # repair off entirely. ALLOW_LARGE_DELETE is the §6 shrink-guard
+      # override (keep false unless an operator has checked the DB).
+      - LAWCAST_SEMANTIC_DB_PATH=/data/lawcast.db
+      - LAWCAST_SEMANTIC_UPDATE_INTERVAL_MINUTES=60
+      - LAWCAST_SEMANTIC_ALLOW_LARGE_DELETE=false
+    volumes:
+      # Index artifacts are built on the host pipeline (or updated in place by
+      # scripts/06_incremental_update.py) and shared rw with the container.
+      - ./semantic-search/artifacts:/app/artifacts
+      # Backend DB (design §3 M1): shared named volume, mounted rw even though
+      # the reader opens it mode=ro — SQLite WAL needs -shm write access for a
+      # read, and the backend keeps writing. Same-host only; not NFS-safe.
+      - lawcast_db:/data
+      # KURE-v1 weights (~2.2GB) download once here, not per rebuild.
+      - lawcast_semantic_hf_cache:/cache
+    # §3.2 uid alignment: backend data-file uid (1001) so the shared WAL -shm
+    # is writable for both producers (measured 2026-10-01; details in
+    # agent_memories/08-.../production-readiness-status.md). HF cache stays
+    # 100-owned -> read-only: re-download via a one-off `docker run --user 100`.
+    user: "1001:1001"
+    networks:
+      - lawcast-network
+    healthcheck:
+      # Healthy while loading (first boot downloads model weights in the
+      # background); unhealthy only when the engine load has failed.
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import json,urllib.request; s=json.load(urllib.request.urlopen('http://127.0.0.1:8300/health', timeout=5))['status']; raise SystemExit(1 if s=='failed' else 0)",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
   ollama:
     image: ollama/ollama:0.31.1
     container_name: lawcast-ollama
@@ -104,4 +162,6 @@ volumes:
   lawcast_logs:
     driver: local
   lawcast_ollama:
+    driver: local
+  lawcast_semantic_hf_cache:
     driver: local

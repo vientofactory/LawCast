@@ -35,6 +35,7 @@ flowchart LR
 
 - [backend](backend): NestJS API 서버 서브모듈
 - [frontend](frontend): SvelteKit 웹 앱 서브모듈
+- [semantic-search](semantic-search): 의미 검색 사이드카 (Python + FAISS) 서브모듈
 - [docker-compose.yml](docker-compose.yml): 통합 컨테이너 오케스트레이션
 - [deploy.sh](deploy.sh): 서비스별/전체 롤링 업데이트 스크립트
 - [submodule_util.sh](submodule_util.sh): 서브모듈 동기화/업데이트 유틸리티
@@ -103,6 +104,12 @@ docker compose up -d --build
 - Backend: 127.0.0.1:3001
 - Redis: 127.0.0.1:6399
 - Ollama: 127.0.0.1:11434
+- Semantic Search: 127.0.0.1:8300 (내부 서비스, 디버깅용 loopback 노출)
+
+시맨틱 검색 사이드카는 `semantic-search/artifacts/`(인덱스 산출물, gitignore)를
+호스트에서 바인드 마운트하고 모델 가중치(~2.2GB)는 `lawcast_semantic_hf_cache`
+볼륨에 1회 다운로드합니다. 최초 기동 전 인덱스 준비 방법은
+[semantic-search/README.md](semantic-search/README.md)의 프로덕션 배포 절을 참고하세요.
 
 중지
 
