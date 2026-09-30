@@ -4,3 +4,6 @@
 [submodule "frontend"]
 	path = frontend
 	url = https://github.com/vientofactory/lawcast-frontend.git
+[submodule "semantic-search"]
+	path = semantic-search
+	url = https://github.com/vientofactory/semantic-search.git
