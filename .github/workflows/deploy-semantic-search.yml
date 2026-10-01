@@ -137,7 +137,11 @@ jobs:
             # cannot write its weights (PermissionError on /cache/huggingface/hub).
             # Align ownership as root, then restart so the engine reloads.
             # Idempotent: fresh volumes are already 1001-owned.
-            docker compose run --rm --user 0:0 --no-deps --entrypoint chown semantic-search -R 1001:1001 /cache
+            # </dev/null is required: this script arrives on stdin (bash -s via
+            # ssh heredoc), and compose run attaches stdin, silently draining the
+            # rest of the script after this line (run 36860595171 step 5 ended
+            # right here with a false success).
+            docker compose run --rm --user 0:0 --no-deps --entrypoint chown semantic-search -R 1001:1001 /cache </dev/null
             docker compose restart semantic-search
 
             echo "--- Waiting for engine to become ready ---"
