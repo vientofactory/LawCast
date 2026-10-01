@@ -148,3 +148,14 @@ jobs:
     secrets:
       VULTR_SSH_SECRET: ${{ secrets.VULTR_SSH_SECRET }}
       VULTR_WIREGUARD: ${{ secrets.VULTR_WIREGUARD }}
+
+  deploy-semantic-search:
+    name: Deploy semantic search
+    # ci-gate requires the sidecar lint/test job, so a broken sidecar can
+    # never reach this deploy.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: [ci-gate]
+    uses: ./.github/workflows/deploy-semantic-search.yml
+    secrets:
+      VULTR_SSH_SECRET: ${{ secrets.VULTR_SSH_SECRET }}
+      VULTR_WIREGUARD: ${{ secrets.VULTR_WIREGUARD }}

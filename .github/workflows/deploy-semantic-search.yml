@@ -1,0 +1,173 @@
+name: Deploy Semantic Search
+
+on:
+  workflow_dispatch:
+    inputs:
+      skip_ci:
+        description: "Skip CI checks before deploy"
+        required: false
+        default: false
+        type: boolean
+  workflow_call:
+    inputs:
+      skip_ci:
+        required: false
+        default: "false"
+        type: string
+    secrets:
+      VULTR_SSH_SECRET:
+        required: true
+      VULTR_WIREGUARD:
+        required: true
+
+# Shares the deploy-backend group on purpose: both deploys reset and build in
+# the same server working tree (/root/lawcast), so they must run serially.
+concurrency:
+  group: deploy-backend
+  cancel-in-progress: false
+
+env:
+  DEPLOY_HOST: 10.20.0.1
+  REPO_PATH: /root/lawcast
+
+jobs:
+  deploy:
+    name: Deploy semantic search to production
+    runs-on: ubuntu-latest
+    # Image rebuild plus a cold KURE-v1 download (~2.2GB) into a fresh cache
+    # volume on first production boot.
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository (with submodules)
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Setup WireGuard
+        env:
+          VULTR_WIREGUARD: ${{ secrets.VULTR_WIREGUARD }}
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq wireguard-tools
+
+          # Write WireGuard profile from secret (use printenv to avoid shell argument exposure)
+          printenv VULTR_WIREGUARD > /tmp/wg0.conf
+          sudo cp /tmp/wg0.conf /etc/wireguard/wg0.conf
+          sudo chmod 600 /etc/wireguard/wg0.conf
+
+          # Bring up WireGuard interface
+          sudo wg-quick up wg0
+
+          # Verify tunnel connectivity
+          echo "Waiting for tunnel connection..."
+          for i in $(seq 1 10); do
+            if ping -c 1 -W 2 ${{ env.DEPLOY_HOST }} > /dev/null 2>&1; then
+              echo "Tunnel is up — reachable at ${{ env.DEPLOY_HOST }}"
+              break
+            fi
+            if [ "$i" -eq 10 ]; then
+              echo "ERROR: Cannot reach ${{ env.DEPLOY_HOST }} through WireGuard tunnel"
+              sudo wg show
+              exit 1
+            fi
+            sleep 2
+          done
+
+      - name: Configure SSH
+        env:
+          VULTR_SSH_SECRET: ${{ secrets.VULTR_SSH_SECRET }}
+        run: |
+          mkdir -p ~/.ssh
+          printenv VULTR_SSH_SECRET > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+
+          cat >> ~/.ssh/config <<EOF
+          Host deploy-target
+              HostName ${{ env.DEPLOY_HOST }}
+              User ${{ vars.VULTR_SSH_USER }}
+              IdentityFile ~/.ssh/deploy_key
+              StrictHostKeyChecking no
+              UserKnownHostsFile /dev/null
+              LogLevel ERROR
+              ConnectTimeout 10
+          EOF
+
+          # Test SSH connectivity
+          ssh deploy-target "echo 'SSH connection successful'"
+
+      - name: Deploy semantic search
+        run: |
+          echo "=== Fetching latest code on server ==="
+          ssh deploy-target bash -s <<'REMOTE_SCRIPT'
+            set -euo pipefail
+
+            cd ${{ env.REPO_PATH }}
+
+            echo "--- Current HEAD ---"
+            git log --oneline -1
+
+            echo "--- Fetching latest from origin ---"
+            git fetch origin main
+
+            LOCAL=$(git rev-parse HEAD)
+            REMOTE=$(git rev-parse origin/main)
+
+            if [ "$LOCAL" = "$REMOTE" ]; then
+              echo "Already up to date ($LOCAL). Skipping deploy."
+              exit 0
+            fi
+
+            echo "--- Updating main branch ---"
+            git checkout main
+            # Hard reset — clear index and working tree completely
+            git read-tree HEAD
+            git reset
+            git checkout -- .
+            git clean -fd
+            git read-tree origin/main
+            git reset --hard origin/main
+
+            echo "--- Syncing submodules ---"
+            git submodule update --init --recursive --remote
+
+            echo "--- New HEAD ---"
+            git log --oneline -1
+
+            echo "--- Building and restarting semantic search ---"
+            cd ${{ env.REPO_PATH }}
+            ./deploy.sh semantic-search
+
+            echo "--- Waiting for engine to become ready ---"
+            # /health answers 200 for every status (loading/ready/failed), so
+            # the body must say "ready" — a failed engine would otherwise pass.
+            READY=false
+            for i in $(seq 1 90); do
+              BODY=$(curl -sf http://127.0.0.1:8300/health 2>/dev/null || true)
+              if echo "$BODY" | grep -q '"status"[ ]*:[ ]*"ready"'; then
+                READY=true
+                break
+              fi
+              sleep 5
+            done
+
+            if [ "$READY" = "true" ]; then
+              echo "Semantic search is ready"
+              echo "$BODY"
+            else
+              echo "WARNING: semantic search not ready after 450s"
+              docker compose logs semantic-search --tail=40 --no-color 2>&1 | head -60
+              exit 1
+            fi
+
+            echo "=== Deploy complete ==="
+          REMOTE_SCRIPT
+
+      - name: Cleanup SSH key
+        if: always()
+        run: rm -rf ~/.ssh/deploy_key
+
+      - name: Tear down WireGuard
+        if: always()
+        run: sudo wg-quick down wg0 || true
