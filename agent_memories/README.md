@@ -68,6 +68,7 @@ agent_memories/
 ### `05-webpush-failure-cleanup-audit/` — 웹푸시 실패 처리/정리 크론 감사
 
 - **bug-investigation-findings.md**: 웹푸시 전송 실패 예외 처리와 삭제 마킹→정리 크론 데이터 흐름 감사. (1) 일시 오류(429/5xx/네트워크) 누적만으로 구독을 무효화·즉시 삭제하던 명세 위반 수정 — 404/410에서만 무효화(RFC 8030/FCM/autopush 기준). (2) 웹훅 정리 크론의 게이트 조건(30일 카운터)과 삭제 조건(14일) 불일치로 삭제 마킹된 웹훅이 2배 늦게 정리되던 버그 수정. 실제 sqlite 데이터 플로우 회귀 테스트 추가 및 사전 패치 코드에서 실패함을 확인.
+
 ### `06-semantic-search-side-project/` — 시맨틱 검색 사이드 프로젝트
 
 - **plan.md**: `semantic-search/` (Python + FAISS) 의미 검색 파이프라인 설계. 법률안 `proposalReason` 전처리·청킹 → `jhgan/ko-sbert-sts` 임베딩 → FAISS 코사인 인덱스 → 질의 유사도 검색 4단계 구조와 모델 선정 근거. **중요**: ko-sbert-sts는 max_seq_length=128 토큰이라 청크 200자 캘리브레이션 필수(한국어 ~1.9자/토큰), stage 2의 truncated_count가 가드레일.
@@ -79,7 +80,7 @@ agent_memories/
 ### `08-semantic-search-production-deploy/` — 시맨틱 검색 프로덕션 배포
 
 - **plan.md**: `semantic-search/` 사이드카의 프로덕션 배포·백엔드 연동 로드맵. 코드베이스 조사 표, 사이드카↔백엔드 API 계약, 완료된 Docker/설정 작업과 남은 작업 우선순위(§3.B 항목은 2026-10-01 기준으로 갱신됨 — 핫 리로드·스케줄링은 구현 완료). **배포 관련 남은 작업의 단일 로드맵.**
-- **incremental-update-pipeline-design.md**: 정기 인덱스 갱신 파이프라인 설계 **및 구현의 단일 소유처** — 공유 `lawcast_db` 볼륨(WAL/-shm/uid 처리), 사이드카 내부 스레드 스케줄(기본 60분), load–validate–swap 핫 리로드(`POST /reload`), 부트 리페어·삭제 가드·지문 자가치유 매트릭스. §7 항목 전부 구현됨(2026-10-01).
+- **incremental-update-pipeline-design.md**: 정기 인덱스 갱신 파이프라인 설계 **및 구현의 단일 소유처** — 공유 `lawcast_db` 볼륨(WAL/-shm/uid 처리), 사이드카 내부 스레드 스케줄(기본 60분), load-validate-swap 핫 리로드(`POST /reload`), 부트 리페어·삭제 가드·지문 자가치유 매트릭스. §7 항목 전부 구현됨(2026-10-01).
 - **production-readiness-status.md**: 프로덕션 레디니스 **측정 기반 현황 분석**(2026-10-01). ① 엔진 구현 상태 ② 도커 환경(uid 1001 볼륨 마운트·lawcast_db 배선·세 게이트·`POST /reload` 라이브 실측) ③ 백엔드/프론트엔드 대응 상태 3축 정리 + production-ready까지 남은 작업의 '남은 이유·완료 기준' 목록. 최신 실측 기준선.
 
 ## 에이전트 메모리 기록 규칙

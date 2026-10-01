@@ -1,8 +1,8 @@
 # Scheduled Index Refresh Pipeline (Design)
 
-Design deliverable for the request: *periodically re-read the backend DB and
+Design deliverable for the request: _periodically re-read the backend DB and
 update the semantic index, connecting the two independently deployed Docker
-containers.* **Design only — no implementation in this pass.** The completion
+containers._ **Design only — no implementation in this pass.** The completion
 criterion is that an implementer can start without further questions and
 without contradicting existing code or docs.
 
@@ -29,20 +29,20 @@ refused by the incremental contract), multi-host deployment (would revisit
 
 ### 1.1 Decided (do not redesign)
 
-| Topic | Decision (source) |
-| ----- | ----------------- |
-| Corpus source | `notice_archives.proposalReason` via `datasource.load_notices_from_db` — `sqlite3` `mode=ro` URI, one connection per read (07, `datasource.py`) |
-| Change detection | Content digests: full re-chunk (~4 s) + `plan_update` diff against committed `chunks.jsonl`. No timestamps, no state file (07 §2.2) |
-| Update algorithm | `plan_update` / `apply_update` library functions (the `06` script is a thin CLI over them). No-change run = seconds, embedding model never loaded (07 §3) |
-| On-disk atomicity | Per-file temp + `os.replace`; write order `embeddings.npz → id_map.json → faiss.index → chunks.jsonl` (commit point). Any interleaving = old set or a mix that fails validation (07 §2.2) |
-| Crash recovery | Rerun repairs; after a crash the rerun re-embeds **0** rows (self-describing `chunk_text_digests`) — verified V3/V4 |
-| Equivalence | Incremental output == full rebuild (byte-identical chunks/id_map, max abs diff 0.0 vectors, search parity) — verified V1/V2/V2b |
-| Reload validation | `SemanticSearcher.load` gates: fingerprint, model, dim, `ntotal == len(chunk_ids)` |
-| Serving process | `EngineState` single-writer lock; handlers take a snapshot (strong ref to current searcher) and search **outside** the lock; lifespan background engine-load thread; `/health {status, model, indexedChunks, error}`; healthcheck unhealthy only on `failed` |
-| Compose | artifacts bind mount rw `./semantic-search/artifacts:/app/artifacts`, `LAWCAST_SEMANTIC_ARTIFACTS_DIR=/app/artifacts`, HF cache volume, TZ Asia/Seoul, network `lawcast-network`, backend → `SEMANTIC_SEARCH_API_URL=http://semantic-search:8300` |
-| DB location | named volume `lawcast_db:/app/data`, `DATABASE_PATH=/app/data/lawcast.db`, WAL mode; backend cron infra staggers jobs away from minute-0 (`app.config.ts`) |
-| UID direction | plan.md pitfall already prescribes: *"align uids or run the update as a matching user"* when wiring B3 |
-| Legal producers | README 교체 규칙: two producers — full `01→03` and incremental `06`; no hand-partial replacement |
+| Topic             | Decision (source)                                                                                                                                                                                                                                            |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Corpus source     | `notice_archives.proposalReason` via `datasource.load_notices_from_db` — `sqlite3` `mode=ro` URI, one connection per read (07, `datasource.py`)                                                                                                              |
+| Change detection  | Content digests: full re-chunk (~4 s) + `plan_update` diff against committed `chunks.jsonl`. No timestamps, no state file (07 §2.2)                                                                                                                          |
+| Update algorithm  | `plan_update` / `apply_update` library functions (the `06` script is a thin CLI over them). No-change run = seconds, embedding model never loaded (07 §3)                                                                                                    |
+| On-disk atomicity | Per-file temp + `os.replace`; write order `embeddings.npz → id_map.json → faiss.index → chunks.jsonl` (commit point). Any interleaving = old set or a mix that fails validation (07 §2.2)                                                                    |
+| Crash recovery    | Rerun repairs; after a crash the rerun re-embeds **0** rows (self-describing `chunk_text_digests`) — verified V3/V4                                                                                                                                          |
+| Equivalence       | Incremental output == full rebuild (byte-identical chunks/id_map, max abs diff 0.0 vectors, search parity) — verified V1/V2/V2b                                                                                                                              |
+| Reload validation | `SemanticSearcher.load` gates: fingerprint, model, dim, `ntotal == len(chunk_ids)`                                                                                                                                                                           |
+| Serving process   | `EngineState` single-writer lock; handlers take a snapshot (strong ref to current searcher) and search **outside** the lock; lifespan background engine-load thread; `/health {status, model, indexedChunks, error}`; healthcheck unhealthy only on `failed` |
+| Compose           | artifacts bind mount rw `./semantic-search/artifacts:/app/artifacts`, `LAWCAST_SEMANTIC_ARTIFACTS_DIR=/app/artifacts`, HF cache volume, TZ Asia/Seoul, network `lawcast-network`, backend → `SEMANTIC_SEARCH_API_URL=http://semantic-search:8300`            |
+| DB location       | named volume `lawcast_db:/app/data`, `DATABASE_PATH=/app/data/lawcast.db`, WAL mode; backend cron infra staggers jobs away from minute-0 (`app.config.ts`)                                                                                                   |
+| UID direction     | plan.md pitfall already prescribes: _"align uids or run the update as a matching user"_ when wiring B3                                                                                                                                                       |
+| Legal producers   | README 교체 규칙: two producers — full `01→03` and incremental `06`; no hand-partial replacement                                                                                                                                                             |
 
 ### 1.2 Open (decided in this document)
 
@@ -51,7 +51,7 @@ refused by the incremental contract), multi-host deployment (would revisit
 2. Scheduler executor (§4.1) → **sidecar-internal lifespan thread**.
 3. Interval (§4.2) → **60 min default**, env-tunable, jittered, off unless
    configured.
-4. Hot reload / in-memory swap with readiness maintained (§5) → **load–validate–swap**,
+4. Hot reload / in-memory swap with readiness maintained (§5) → **load-validate-swap**,
    old generation serves until the new one passes validation.
 5. Failure, rollback, retry policy incl. the torn-boot deadlock (§6).
 
@@ -73,7 +73,7 @@ sidecar lifespan
 ```
 
 Properties: queries at every point serve either the complete old generation or
-the complete new one (steps 1–5 do not touch the serving objects; step 6 swaps
+the complete new one (steps 1-5 do not touch the serving objects; step 6 swaps
 atomically). A no-change tick costs one DB read + one re-chunk + artifact read
 and never loads a model or touches files.
 
@@ -81,12 +81,12 @@ and never loads a model or touches files.
 
 ### 3.1 Options
 
-| # | Medium | How | Pros | Cons |
-| - | ------ | --- | ---- | ---- |
-| **M1** | **Shared named volume `lawcast_db` mounted rw into the sidecar** | compose: `- lawcast_db:/data`; `datasource.py` opens `file:/data/lawcast.db?mode=ro` | Zero new code (datasource exists, `06 --db` already verified against a DB clone — 07 V2b); no extra service; WAL gives a consistent snapshot per read while the backend keeps writing; read cost seconds vs 20k rows; `mode=ro` cannot mutate the DB | Couples sidecar to backend storage layout (same host only); SQLite WAL needs `-shm` **write** access even for `mode=ro` (plan.md B3 already states this) → uid alignment required |
-| M1b | DB snapshot file (backend `VACUUM INTO` / `.backup` on a cron) | snapshot has no WAL, sidesteps `-shm` | **Requires backend code** (new cron job — contradicts the no-backend-change scope), ~GB-scale copy per cycle, snapshot lag | rejected as primary; kept as fallback if uid alignment proves impossible (§3.2) |
-| M2 | Backend HTTP export endpoint | sidecar polls a new `GET /api/notices/export` | Decouples storage; uses the HTTP boundary both services already have | **New backend endpoint** (scope + contract + rate-limit/error-envelope handling); full corpus ≈ 20k rows re-shipped as JSON every tick (paginated: dozens of requests); duplicates corpus-selection logic (`NOTICE_SELECT_COLUMNS`, lifecycle filters) that `datasource.py` already owns — drift risk; reverses the established call direction (backend→sidecar only) |
-| M3 | Message queue (Redis pub/sub — Redis is in the stack) | backend publishes "db changed", sidecar reacts | Decoupled, event-driven | Queue carries no data — the sidecar still needs M1 or M2 to read the corpus; publishing requires invasive write-path hooks in the backend (crawl, backfill, is_done sync, manual edits all write the DB); the job is a **state sync** ("make artifacts equal current corpus"), which content-digest diffing already makes idempotent — events add loss/duplication semantics for nothing; a third moving part |
+| #      | Medium                                                           | How                                                                                  | Pros                                                                                                                                                                                                                                                 | Cons                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ------ | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **M1** | **Shared named volume `lawcast_db` mounted rw into the sidecar** | compose: `- lawcast_db:/data`; `datasource.py` opens `file:/data/lawcast.db?mode=ro` | Zero new code (datasource exists, `06 --db` already verified against a DB clone — 07 V2b); no extra service; WAL gives a consistent snapshot per read while the backend keeps writing; read cost seconds vs 20k rows; `mode=ro` cannot mutate the DB | Couples sidecar to backend storage layout (same host only); SQLite WAL needs `-shm` **write** access even for `mode=ro` (plan.md B3 already states this) → uid alignment required                                                                                                                                                                                                                             |
+| M1b    | DB snapshot file (backend `VACUUM INTO` / `.backup` on a cron)   | snapshot has no WAL, sidesteps `-shm`                                                | **Requires backend code** (new cron job — contradicts the no-backend-change scope), ~GB-scale copy per cycle, snapshot lag                                                                                                                           | rejected as primary; kept as fallback if uid alignment proves impossible (§3.2)                                                                                                                                                                                                                                                                                                                               |
+| M2     | Backend HTTP export endpoint                                     | sidecar polls a new `GET /api/notices/export`                                        | Decouples storage; uses the HTTP boundary both services already have                                                                                                                                                                                 | **New backend endpoint** (scope + contract + rate-limit/error-envelope handling); full corpus ≈ 20k rows re-shipped as JSON every tick (paginated: dozens of requests); duplicates corpus-selection logic (`NOTICE_SELECT_COLUMNS`, lifecycle filters) that `datasource.py` already owns — drift risk; reverses the established call direction (backend→sidecar only)                                         |
+| M3     | Message queue (Redis pub/sub — Redis is in the stack)            | backend publishes "db changed", sidecar reacts                                       | Decoupled, event-driven                                                                                                                                                                                                                              | Queue carries no data — the sidecar still needs M1 or M2 to read the corpus; publishing requires invasive write-path hooks in the backend (crawl, backfill, is_done sync, manual edits all write the DB); the job is a **state sync** ("make artifacts equal current corpus"), which content-digest diffing already makes idempotent — events add loss/duplication semantics for nothing; a third moving part |
 
 ### 3.2 Decision: **M1 — shared volume**
 
@@ -126,12 +126,12 @@ compose deployment); if the sidecar ever moves off-host, M2 becomes the choice
 
 ### 4.1 Executor options
 
-| # | Executor | Pros | Cons |
-| - | -------- | ---- | ---- |
-| **E1** | **Sidecar-internal thread started in FastAPI `lifespan`** (alongside the existing engine-load thread) | Read → write → reload in **one process**: reload needs no HTTP hop; reuses the **already-loaded embedder** (a second copy would cost ~2.2 GB RAM); zero new containers/services; matches the existing lifespan-thread pattern; interval failure cannot affect the request path (exceptions caught per tick) | Build and serve share CPU/RAM (embedding burst ≈ 21.5 chunks/s on CPU — see §9); a hard crash (OOM) in the runner restarts the serving process too (mitigated by §6 torn-boot repair) |
-| E2 | Separate indexer container | Crash/OOM isolation | Duplicates the model (~2.2 GB RAM, shares HF cache volume only after first download); needs its own scheduling *and* an IPC trigger for reload; far more moving parts for a job whose heavy step is seconds of embedding |
-| E3 | Backend NestJS cron (`cronjobs.service.ts`) triggering the sidecar over HTTP | Uses the existing cron infra; triggers right after crawl/backfill jobs | Backend code change (out of scope); only *triggers* — the read medium is still M1, so it adds an endpoint + a failure path without removing anything; index freshness couples to backend deploys/config |
-| E4 | Host cron via `docker compose exec` (plan.md B3 option) | No in-container code | Outside compose lifecycle (missed when only containers are managed; host-dependent; `deploy.sh`-style ops drift). Listed in B3, rejected here as the primary — kept as the emergency manual runbook (`flock`-guarded, §6) |
+| #      | Executor                                                                                              | Pros                                                                                                                                                                                                                                                                                                        | Cons                                                                                                                                                                                                                      |
+| ------ | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **E1** | **Sidecar-internal thread started in FastAPI `lifespan`** (alongside the existing engine-load thread) | Read → write → reload in **one process**: reload needs no HTTP hop; reuses the **already-loaded embedder** (a second copy would cost ~2.2 GB RAM); zero new containers/services; matches the existing lifespan-thread pattern; interval failure cannot affect the request path (exceptions caught per tick) | Build and serve share CPU/RAM (embedding burst ≈ 21.5 chunks/s on CPU — see §9); a hard crash (OOM) in the runner restarts the serving process too (mitigated by §6 torn-boot repair)                                     |
+| E2     | Separate indexer container                                                                            | Crash/OOM isolation                                                                                                                                                                                                                                                                                         | Duplicates the model (~2.2 GB RAM, shares HF cache volume only after first download); needs its own scheduling _and_ an IPC trigger for reload; far more moving parts for a job whose heavy step is seconds of embedding  |
+| E3     | Backend NestJS cron (`cronjobs.service.ts`) triggering the sidecar over HTTP                          | Uses the existing cron infra; triggers right after crawl/backfill jobs                                                                                                                                                                                                                                      | Backend code change (out of scope); only _triggers_ — the read medium is still M1, so it adds an endpoint + a failure path without removing anything; index freshness couples to backend deploys/config                   |
+| E4     | Host cron via `docker compose exec` (plan.md B3 option)                                               | No in-container code                                                                                                                                                                                                                                                                                        | Outside compose lifecycle (missed when only containers are managed; host-dependent; `deploy.sh`-style ops drift). Listed in B3, rejected here as the primary — kept as the emergency manual runbook (`flock`-guarded, §6) |
 
 ### 4.2 Decision: **E1**, interval **60 minutes** (default)
 
@@ -154,11 +154,11 @@ compose deployment); if the sidecar ever moves off-host, M2 becomes the choice
 - Configuration (single owner: `lawcast_semantic/config.py`, `LAWCAST_SEMANTIC_*`
   convention):
 
-  | Env var | Default | Meaning |
-  | ------- | ------- | ------- |
-  | `LAWCAST_SEMANTIC_DB_PATH` | *(empty)* | backend DB path; **empty = scheduling disabled** (host dev runs and existing tests stay byte-identical) |
-  | `LAWCAST_SEMANTIC_UPDATE_INTERVAL_MINUTES` | `60` | tick period; `0` also disables |
-  | `LAWCAST_SEMANTIC_ALLOW_LARGE_DELETE` | off | operator override for the §6 shrink guard; parsing rule below |
+  | Env var                                    | Default   | Meaning                                                                                                 |
+  | ------------------------------------------ | --------- | ------------------------------------------------------------------------------------------------------- |
+  | `LAWCAST_SEMANTIC_DB_PATH`                 | _(empty)_ | backend DB path; **empty = scheduling disabled** (host dev runs and existing tests stay byte-identical) |
+  | `LAWCAST_SEMANTIC_UPDATE_INTERVAL_MINUTES` | `60`      | tick period; `0` also disables                                                                          |
+  | `LAWCAST_SEMANTIC_ALLOW_LARGE_DELETE`      | off       | operator override for the §6 shrink guard; parsing rule below                                           |
 
   **Boolean parsing rule (single definition, implemented in `config.py`
   next to the existing `os.environ.get` vars)**:
@@ -185,7 +185,7 @@ rerun repairs it (V3/V4). **No new mechanism** — this level is done. Space
 note: a tick needs ≈1 GB free in the artifacts mount for temp files
 (npz ≈ 400 MB, index ≈ 400 MB, chunks ≈ 54 MB).
 
-### 5.2 In memory — load–validate–swap (`EngineState.reload()`)
+### 5.2 In memory — load-validate-swap (`EngineState.reload()`)
 
 The sidecar loads artifacts once at startup today (plan.md B2). Design:
 
@@ -193,7 +193,7 @@ The sidecar loads artifacts once at startup today (plan.md B2). Design:
    `POST /reload` on the sidecar (internal network, no auth — same stance as
    the rest of the service) for manual/ops runs and for the host-pipeline case
    (`01→03` on the host → one curl instead of a restart).
-2. **Load outside the lock**: build a *new* `SemanticSearcher` via the
+2. **Load outside the lock**: build a _new_ `SemanticSearcher` via the
    existing `SemanticSearcher.load` (all validation gates run here) while the
    old searcher keeps serving. Seconds for 96k chunks; no lock held → zero
    query blocking.
@@ -241,15 +241,15 @@ is a dedicated updater embedder (2.2 GB) — recorded, not planned.
 
 ### 6.1 Failure matrix
 
-| Failure | Detection | Behavior | Recovery |
-| ------- | --------- | -------- | -------- |
-| DB missing / unreadable / locked | `sqlite3.connect` or read raises | tick aborts before any write; log WARN; `lastUpdateResult='failed'` | next tick (no tight retry) |
-| Corpus shrink beyond guard (wrong/empty DB mounted) | plan reports deletions > **20% AND > 100** notices vs current `chunks.jsonl` | **refuse to apply**; log ERROR with counts; serving untouched | operator investigates, re-runs with `LAWCAST_SEMANTIC_ALLOW_LARGE_DELETE=true` (spelling per §4.2) or the manual `06` (manual stays authoritative — this guard is runner-level policy, not an artifact-contract change, so 07's verified delete semantics are untouched) |
-| Embed fails / OOM during embed | exception before `apply_update` writes | disk untouched (plan/apply split); serving untouched | next tick re-embeds only what's missing (idempotent) |
-| **Process killed mid-`apply_update` (torn disk)** | process dies; Docker restarts container | on-disk mix fails `SemanticSearcher.load` → boot would stick at `failed` | **boot repair** (below) |
-| Reload validation fails (corrupt/partial artifact read) | `SemanticSearcher.load` raises in `reload()` | old generation keeps serving; `reloadError` set; `ready` unchanged | fingerprint mismatch (§5.3) re-attempts every tick; persistent → ERROR log each tick, operator action: `docker compose restart semantic-search` |
-| Engine `failed` for model reasons (bad env) | existing path | unchanged: `failed` → healthcheck unhealthy → restart loop cannot heal bad config | existing documented fix-env-and-recreate path |
-| Repeated tick failures | consecutive `failed` counters in logs | serving continues; healthcheck **stays healthy** (stale-but-serving beats keyword-only fallback) | inspect `lastUpdateError` via `/health` |
+| Failure                                                 | Detection                                                                    | Behavior                                                                                         | Recovery                                                                                                                                                                                                                                                                 |
+| ------------------------------------------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| DB missing / unreadable / locked                        | `sqlite3.connect` or read raises                                             | tick aborts before any write; log WARN; `lastUpdateResult='failed'`                              | next tick (no tight retry)                                                                                                                                                                                                                                               |
+| Corpus shrink beyond guard (wrong/empty DB mounted)     | plan reports deletions > **20% AND > 100** notices vs current `chunks.jsonl` | **refuse to apply**; log ERROR with counts; serving untouched                                    | operator investigates, re-runs with `LAWCAST_SEMANTIC_ALLOW_LARGE_DELETE=true` (spelling per §4.2) or the manual `06` (manual stays authoritative — this guard is runner-level policy, not an artifact-contract change, so 07's verified delete semantics are untouched) |
+| Embed fails / OOM during embed                          | exception before `apply_update` writes                                       | disk untouched (plan/apply split); serving untouched                                             | next tick re-embeds only what's missing (idempotent)                                                                                                                                                                                                                     |
+| **Process killed mid-`apply_update` (torn disk)**       | process dies; Docker restarts container                                      | on-disk mix fails `SemanticSearcher.load` → boot would stick at `failed`                         | **boot repair** (below)                                                                                                                                                                                                                                                  |
+| Reload validation fails (corrupt/partial artifact read) | `SemanticSearcher.load` raises in `reload()`                                 | old generation keeps serving; `reloadError` set; `ready` unchanged                               | fingerprint mismatch (§5.3) re-attempts every tick; persistent → ERROR log each tick, operator action: `docker compose restart semantic-search`                                                                                                                          |
+| Engine `failed` for model reasons (bad env)             | existing path                                                                | unchanged: `failed` → healthcheck unhealthy → restart loop cannot heal bad config                | existing documented fix-env-and-recreate path                                                                                                                                                                                                                            |
+| Repeated tick failures                                  | consecutive `failed` counters in logs                                        | serving continues; healthcheck **stays healthy** (stale-but-serving beats keyword-only fallback) | inspect `lastUpdateError` via `/health`                                                                                                                                                                                                                                  |
 
 **Torn-boot deadlock and its closure** — the one non-obvious failure:
 crash mid-write leaves a set that fails boot validation; a naive
@@ -273,8 +273,8 @@ raise `ValueError` too; type or message matching is guesswork). Restructure
    This phase covers both validation gates (`ValueError`) and
    missing/corrupt artifact files (`FileNotFoundError`/`OSError`).
 
-**Repair scope guard** — the hook runs one cycle with the *already-loaded
-phase-1 embedder* (no second model load: at boot it is already in memory),
+**Repair scope guard** — the hook runs one cycle with the _already-loaded
+phase-1 embedder_ (no second model load: at boot it is already in memory),
 then applies **iff `plan.needs_embedding` is False**:
 
 - Torn window (the deadlock case): npz is write #1 and already carries the
@@ -382,7 +382,7 @@ config-gated (default off ⇒ existing tests/behavior unchanged).
 
 ## 9. Risks & constraints (honest list)
 
-- **Memory**: steady ≈ model 2.2 GB + index ~400 MB; a tick adds ~1.2–1.5 GB
+- **Memory**: steady ≈ model 2.2 GB + index ~400 MB; a tick adds ~1.2-1.5 GB
   transient (npz load + merged matrix + new index before swap). compose has no
   memory limits today — keep it that way or set ≥6 GB if a limit is added.
 - **CPU during embed**: ~21.5 chunks/s (measured) — a 100-chunk change is

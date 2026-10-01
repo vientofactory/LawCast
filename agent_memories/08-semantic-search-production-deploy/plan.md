@@ -6,18 +6,18 @@ the single roadmap for later passes; update item statuses as they land.
 
 ## 1. Codebase Survey (2026-09-30)
 
-| Aspect | Finding |
-| ------ | ------- |
-| Engine entry points | `scripts/01..06_*.py` offline pipeline CLIs; `service/app.py` is the only online entry point |
-| Public library API | `lawcast_semantic/__init__.py` (PEP 562 lazy exports): `KoreanEmbedder`, `SemanticSearcher` |
-| Model loading | `KoreanEmbedder` loads `nlpai-lab/KURE-v1` via sentence-transformers on first use (~2.2GB, HF auto-download); `SemanticSearcher.load(embedder)` loads `artifacts/{chunks.jsonl, embeddings.npz, faiss.index, id_map.json}` and rejects mixed/stale artifact sets via fingerprint check |
-| Online API | FastAPI sidecar on port 8300: `GET /health` -> `{status: loading\|ready\|failed, model, indexedChunks, error}` (always HTTP 200), `GET /search?query=&k=` -> chunk ranking (503 while loading/failed, 400 blank query, 422 validation). No auth — internal network only |
-| Engine lifecycle | Loaded once in a background daemon thread at startup; load failures stick until process restart |
-| Config/env | `lawcast_semantic/config.py` single owner: `LAWCAST_SEMANTIC_MODEL/DEVICE/BATCH`; artifact paths were hardcoded to `PROJECT_ROOT/artifacts` (no override) |
-| OMP quirk | `omp_env.use_single_threaded_omp()` (macOS libomp crash workaround) called by dual-engine entry points |
-| Docker artifacts | **None existed**: no `Dockerfile`, no `.dockerignore`, no compose service. Root `docker-compose.yml` had backend/frontend/redis/ollama only |
-| Backend integration | Already implemented: `backend/src/modules/semantic-search/` (controller `GET /api/notices/semantic-search`, axios client with keyword fallback, config `SEMANTIC_SEARCH_ENABLED/API_URL/TIMEOUT`) + specs |
-| Data source | `datasource.py` reads `notice_archives.proposalReason` via SQLite `mode=ro`; backend runs SQLite in **WAL** mode (`sqlite-runtime-tuning.service.ts`) |
+| Aspect              | Finding                                                                                                                                                                                                                                                                                |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Engine entry points | `scripts/01..06_*.py` offline pipeline CLIs; `service/app.py` is the only online entry point                                                                                                                                                                                           |
+| Public library API  | `lawcast_semantic/__init__.py` (PEP 562 lazy exports): `KoreanEmbedder`, `SemanticSearcher`                                                                                                                                                                                            |
+| Model loading       | `KoreanEmbedder` loads `nlpai-lab/KURE-v1` via sentence-transformers on first use (~2.2GB, HF auto-download); `SemanticSearcher.load(embedder)` loads `artifacts/{chunks.jsonl, embeddings.npz, faiss.index, id_map.json}` and rejects mixed/stale artifact sets via fingerprint check |
+| Online API          | FastAPI sidecar on port 8300: `GET /health` -> `{status: loading\|ready\|failed, model, indexedChunks, error}` (always HTTP 200), `GET /search?query=&k=` -> chunk ranking (503 while loading/failed, 400 blank query, 422 validation). No auth — internal network only                |
+| Engine lifecycle    | Loaded once in a background daemon thread at startup; load failures stick until process restart                                                                                                                                                                                        |
+| Config/env          | `lawcast_semantic/config.py` single owner: `LAWCAST_SEMANTIC_MODEL/DEVICE/BATCH`; artifact paths were hardcoded to `PROJECT_ROOT/artifacts` (no override)                                                                                                                              |
+| OMP quirk           | `omp_env.use_single_threaded_omp()` (macOS libomp crash workaround) called by dual-engine entry points                                                                                                                                                                                 |
+| Docker artifacts    | **None existed**: no `Dockerfile`, no `.dockerignore`, no compose service. Root `docker-compose.yml` had backend/frontend/redis/ollama only                                                                                                                                            |
+| Backend integration | Already implemented: `backend/src/modules/semantic-search/` (controller `GET /api/notices/semantic-search`, axios client with keyword fallback, config `SEMANTIC_SEARCH_ENABLED/API_URL/TIMEOUT`) + specs                                                                              |
+| Data source         | `datasource.py` reads `notice_archives.proposalReason` via SQLite `mode=ro`; backend runs SQLite in **WAL** mode (`sqlite-runtime-tuning.service.ts`)                                                                                                                                  |
 
 ## 2. API Contract (sidecar <-> backend, authoritative)
 
@@ -25,10 +25,12 @@ Sidecar `GET /search?query=..&k=..` (query 1..500 chars, k 1..200 default 5).
 **k counts CHUNKS, not notices** (cap `MAX_K=200` in `service/app.py`):
 
 ```json
-{ "query": "...", "k": 5, "model": "nlpai-lab/KURE-v1",
-  "results": [ { "chunkId": "...", "noticeNum": 2221504, "subject": "...",
-                 "committee": "...", "section": "body", "score": 0.76,
-                 "text": "..." } ] }
+{
+  "query": "...",
+  "k": 5,
+  "model": "nlpai-lab/KURE-v1",
+  "results": [{ "chunkId": "...", "noticeNum": 2221504, "subject": "...", "committee": "...", "section": "body", "score": 0.76, "text": "..." }]
+}
 ```
 
 Backend `GET /api/notices/semantic-search?query=..&k=..` collapses chunks to
@@ -102,7 +104,7 @@ which parses both declarations so cross-language drift fails the suite.
    files but the running process keeps serving the old index until restart.
    Add hot reload (e.g. `POST /reload` reusing `EngineState`, or SIGHUP, or
    fingerprint polling) before relying on incremental updates in production.~~
-   **DONE (2026-10-01)**: load–validate–swap (`EngineState.reload`,
+   **DONE (2026-10-01)**: load-validate-swap (`EngineState.reload`,
    generation/`reloadError`/`lastUpdate*` `/health` fields), `POST /reload`
    (409 boundaries pinned by endpoint tests + observed live), fingerprint
    self-heal (§5.3) — implemented per `incremental-update-pipeline-design.md`
@@ -139,19 +141,19 @@ which parses both declarations so cross-language drift fails the suite.
 > re-measured with authoritative in-container probes and service-DNS probes
 > (the backend's real path).
 
-| Scenario (all executed) | Observed result |
-| ----------------------- | --------------- |
-| Compose env precedence | `docker compose run --rm --no-deps --entrypoint printenv backend SEMANTIC_SEARCH_API_URL` -> `http://semantic-search:8300` (override wins); `SEMANTIC_SEARCH_ENABLED=true` still merged from `backend/.env` |
-| Warm recreation (`down` + `up`, volume kept) | volume survives `down`; engine `loading` -> `ready` in **17s**; zero re-download (cache fingerprint identical); service-DNS queries baseline-identical (`0.5627/2213685`, `0.7666/2221504`) |
-| Cold cache (`volume rm` + `up`) | `/health` reports **`loading` for the full 400s download**, flips to `ready` only at cache completion (2,234,944KB) — **no premature ready**; first queries correct (1.08s/0.44s) |
-| Cold download shape | xet chunked, stepwise (0 -> 65MB -> 196MB -> 262MB plateau -> 1.2GB -> 2.2GB); full model lands in `lawcast_semantic_hf_cache` |
-| Failure: bogus model (`LAWCAST_SEMANTIC_MODEL=does-not-exist-xyz`) | `failed` in ~8s (`RepositoryNotFoundError`), `/search` -> 503 |
-| Failure: missing artifacts (`LAWCAST_SEMANTIC_ARTIFACTS_DIR=/nonexistent`) | `failed` in ~16s (`FileNotFoundError: /nonexistent/chunks.jsonl`), `/search` -> 503 |
-| No self-retry on failure | status stays `failed` across a 35s watch (7/7 polls); documented "sticks until restart" behavior confirmed |
-| Recovery: `docker restart` with same bad env | still `failed` (restart alone cannot heal bad config) — correct |
-| Recovery: recreate with fixed env | `ready` in ~16s |
-| Healthcheck on failed engine | exact compose healthcheck command exits 1; Docker verdict flips to `unhealthy` (engine failed t+9s -> unhealthy t+15s with 5s/2-retry probe timings; compose's 30s/3 takes ~60-90s) |
-| Build/quality baseline | `docker compose build` ok (torch `2.14.0+cpu`, 0 nvidia pkgs, 1.94GB image); ruff clean; **72 py tests** green; backend `tsc --noEmit` 0 errors; 14 semantic-search specs pass |
+| Scenario (all executed)                                                    | Observed result                                                                                                                                                                                             |
+| -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Compose env precedence                                                     | `docker compose run --rm --no-deps --entrypoint printenv backend SEMANTIC_SEARCH_API_URL` -> `http://semantic-search:8300` (override wins); `SEMANTIC_SEARCH_ENABLED=true` still merged from `backend/.env` |
+| Warm recreation (`down` + `up`, volume kept)                               | volume survives `down`; engine `loading` -> `ready` in **17s**; zero re-download (cache fingerprint identical); service-DNS queries baseline-identical (`0.5627/2213685`, `0.7666/2221504`)                 |
+| Cold cache (`volume rm` + `up`)                                            | `/health` reports **`loading` for the full 400s download**, flips to `ready` only at cache completion (2,234,944KB) — **no premature ready**; first queries correct (1.08s/0.44s)                           |
+| Cold download shape                                                        | xet chunked, stepwise (0 -> 65MB -> 196MB -> 262MB plateau -> 1.2GB -> 2.2GB); full model lands in `lawcast_semantic_hf_cache`                                                                              |
+| Failure: bogus model (`LAWCAST_SEMANTIC_MODEL=does-not-exist-xyz`)         | `failed` in ~8s (`RepositoryNotFoundError`), `/search` -> 503                                                                                                                                               |
+| Failure: missing artifacts (`LAWCAST_SEMANTIC_ARTIFACTS_DIR=/nonexistent`) | `failed` in ~16s (`FileNotFoundError: /nonexistent/chunks.jsonl`), `/search` -> 503                                                                                                                         |
+| No self-retry on failure                                                   | status stays `failed` across a 35s watch (7/7 polls); documented "sticks until restart" behavior confirmed                                                                                                  |
+| Recovery: `docker restart` with same bad env                               | still `failed` (restart alone cannot heal bad config) — correct                                                                                                                                             |
+| Recovery: recreate with fixed env                                          | `ready` in ~16s                                                                                                                                                                                             |
+| Healthcheck on failed engine                                               | exact compose healthcheck command exits 1; Docker verdict flips to `unhealthy` (engine failed t+9s -> unhealthy t+15s with 5s/2-retry probe timings; compose's 30s/3 takes ~60-90s)                         |
+| Build/quality baseline                                                     | `docker compose build` ok (torch `2.14.0+cpu`, 0 nvidia pkgs, 1.94GB image); ruff clean; **72 py tests** green; backend `tsc --noEmit` 0 errors; 14 semantic-search specs pass                              |
 
 ### Backend -> sidecar end-to-end (exercised 2026-09-30, two levels)
 
@@ -186,6 +188,7 @@ rows) and boot never settles. Sidecar joined the isolated network with alias
 `semantic-search` temporarily. All scaffolding removed after.
 
 **Findings (no contract mismatches, no product defects)**:
+
 - QUIRK [FIXED, see §4 bounded-fixes pass]: `k=3.9` was accepted as k=3
   (`parsePositiveInteger` uses lenient parseInt; shared util also used by
   `page` — tightened in the semantic endpoint scope only).
@@ -258,16 +261,21 @@ k=50 -> 50). 851 backend tests / 72 python tests green.
   weights in the background); only `failed` is unhealthy.
 - On Linux hosts the artifacts bind mount is written as container uid (the
   `semantic` system user); host files owned by another uid block in-place
-  incremental updates. macOS/OrbStack mounts are permission-transparent. Fix
-  when wiring incremental scheduling (item B3): align uids or run the update
-  as a matching user.
+  incremental updates. macOS/OrbStack mounts are permission-transparent.
+  **FIXED (2026-10-02)**: production runs everything as root, so the tick
+  (uid 1001) died on its first write — creating `artifacts/.update.lock` —
+  with `update tick failed: PermissionError: [Errno 13] Permission denied:
+  '/app/artifacts/.update.lock'`. **`deploy.sh` owns the invariant**: before
+  `docker compose up` it chowns `/cache` **and** `/app/artifacts` to
+  `1001:1001` (root, idempotent, `</dev/null`-guarded), so the workflow and
+  manual deploys both align the mounts before the container boots.
 - **Stale-image verification trap**: `docker compose up -d --no-build` after
   a source change re-serves the old image — the raised `MAX_K` was first
   probed as still-50 against the previous build. Rebuild
   (`docker compose build semantic-search`) before contract probes.
 - **Host-listener port shadowing (verification trap)**: if a dev sidecar already
   listens on `127.0.0.1:8300` on the host (e.g. `.venv/bin/python -m uvicorn
-  service.app:app`), OrbStack silently routes host-port traffic to THAT process
+service.app:app`), OrbStack silently routes host-port traffic to THAT process
   instead of the container — host-side curl then measures the wrong engine and
   invalidates verification (it invalidated the first draft of section 4).
   Always probe the container engine via `docker compose exec ... 127.0.0.1:8300`
