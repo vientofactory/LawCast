@@ -1,5 +1,6 @@
 - Frontend lives in frontend/ and validates with `cd frontend && npm run check`.
 - Svelte frontend uses runes mode; use `$derived`/`$effect` instead of legacy `$:` reactive statements in route components.
+- **CRITICAL**: in runes mode a plain `let` is NOT reactive. URL-derived state (`fullText`, `isDoneFilter`, ...) must snapshot the URL as `let currentUrl = $state(page.url)` (see `src/routes/+page.svelte`, `discussions/+page.svelte`). A non-reactive `let currentUrl = page.url` makes `$derived(currentUrl.searchParams...)` compute once and never recompute after `afterNavigate` reassigns it — toggles silently stop reflecting the URL (regression found in `notices/+page.svelte`, fixed 2026-10-01). e2e tests that only assert the URL will not catch this; assert `aria-checked`/UI state too.
 - Stable AI/test navigation benefits from semantic landmarks plus explicit `data-testid` hooks on primary regions and nav links.
 
 - Large multi-hunk apply_patch edits in frontend/src/app.css can misapply; prefer restoring from frontend submodule HEAD and reapplying targeted patches, then run npm run check.
