@@ -110,14 +110,7 @@ jobs:
 
             echo "--- Fetching latest from origin ---"
             git fetch origin main
-
-            LOCAL=$(git rev-parse HEAD)
-            REMOTE=$(git rev-parse origin/main)
-
-            if [ "$LOCAL" = "$REMOTE" ]; then
-              echo "Already up to date ($LOCAL). Skipping deploy."
-              exit 0
-            fi
+            git log --oneline -1
 
             echo "--- Updating main branch ---"
             git checkout main
@@ -139,12 +132,22 @@ jobs:
             cd ${{ env.REPO_PATH }}
             ./deploy.sh semantic-search
 
+            # Volumes created before the uid-1001 image are still owned by the
+            # old system user; copy-on-first-use never re-runs, so the engine
+            # cannot write its weights (PermissionError on /cache/huggingface/hub).
+            # Align ownership as root, then restart so the engine reloads.
+            # Idempotent: fresh volumes are already 1001-owned.
+            docker compose run --rm --user 0:0 --no-deps --entrypoint chown semantic-search -R 1001:1001 /cache
+            docker compose restart semantic-search
+
             echo "--- Waiting for engine to become ready ---"
             # /health answers 200 for every status (loading/ready/failed), so
             # the body must say "ready" — a failed engine would otherwise pass.
+            # --max-time keeps a stalled socket from hanging the loop past its
+            # 450s budget (observed on run 36857614708 attempt 1).
             READY=false
             for i in $(seq 1 90); do
-              BODY=$(curl -sf http://127.0.0.1:8300/health 2>/dev/null || true)
+              BODY=$(curl -sf --max-time 10 http://127.0.0.1:8300/health 2>/dev/null || true)
               if echo "$BODY" | grep -q '"status"[ ]*:[ ]*"ready"'; then
                 READY=true
                 break
