@@ -109,14 +109,6 @@ jobs:
             echo "--- Fetching latest from origin ---"
             git fetch origin main
 
-            LOCAL=$(git rev-parse HEAD)
-            REMOTE=$(git rev-parse origin/main)
-
-            if [ "$LOCAL" = "$REMOTE" ]; then
-              echo "Already up to date ($LOCAL). Skipping deploy."
-              exit 0
-            fi
-
             echo "--- Updating main branch ---"
             git checkout main
             # Hard reset — clear index and working tree completely
@@ -132,6 +124,15 @@ jobs:
 
             echo "--- New HEAD ---"
             git log --oneline -1
+
+            # Early exit before docker build when this push carries no actual
+            # backend changes (per-service last-deploy record; replaces the old
+            # LOCAL==REMOTE check, which skipped whichever deploy ran second on
+            # the shared checkout regardless of its own changes).
+            if .github/scripts/deploy-change-guard.sh check backend; then
+              echo "=== No backend changes since last deploy; early exit ==="
+              exit 0
+            fi
 
             echo "--- Building and restarting backend ---"
             cd ${{ env.REPO_PATH }}
@@ -151,6 +152,9 @@ jobs:
 
             if [ "$HEALTHY" = "true" ]; then
               echo "Backend is healthy ✓"
+              # Record only after the health check passed, so a failed deploy
+              # is retried on the next run.
+              .github/scripts/deploy-change-guard.sh record backend
             else
               echo "WARNING: Backend health check failed after 60s"
               # Filter out sensitive values from docker logs before output
