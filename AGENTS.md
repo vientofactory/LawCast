@@ -284,6 +284,7 @@ async myMethod(): Promise<Result> {
 - **Always create a feature branch** before making changes (e.g. `feat/color-scheme-fix`, `fix/theme-conflict`)
 - **Never commit directly to `main` or `dev`** — this prevents unreviewed code from reaching production
 - **Commit message format**: Use conventional commits (`feat:`, `fix:`, `chore:`, etc.)
+- **Signed commits are mandatory**: every commit MUST be GPG-signed with the maintainer's PGP key. Always pass the signing flag explicitly: `git commit -S ...` (equivalently `--gpg-sign`). The key is configured via `user.signingkey` with `commit.gpgsign=true`; never bypass signing (`--no-gpg-sign`) or push unsigned commits.
 - **After committing**: Create a PR targeting `main`, do not push directly to shared branches
 - **Exception**: Only maintainers may push hotfixes directly to `main` with explicit approval
 
