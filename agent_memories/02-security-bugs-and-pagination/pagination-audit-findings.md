@@ -1,12 +1,14 @@
-# Backend Pagination Audit – Findings Log
+# Backend Pagination Audit - Findings Log
 
 ## Scope
+
 Backend NestJS/TypeORM application with SQLite database (assumed, SQLite-specific syntax detected).
 Migration 202609080001 creates two composite indexes for discussion_threads (not related to notice pagination).
 
 ## PUBLIC API ENDPOINTS & SERVICES
 
 ### 1. NoticeSearchService.searchNotices
+
 **Endpoint:** `GET /api/notices/search?q=...&page=...&limit=...`
 **Service:** `NoticeSearchService.searchNotices(SearchNoticesQuery)`
 **Query params:** `page`, `limit`, `includeDone`, `fullText`
@@ -16,12 +18,14 @@ Migration 202609080001 creates two composite indexes for discussion_threads (not
 **Pagination type:** **Page-based (offset) via page/limit**
 
 Key details:
+
 - Calls `NoticeArchiveService.getArchiveNotices()` with page/limit internally
 - Merges results with crawler data
 - Frontend supports page size options: [10, 20, 30, ..., 100]
 - Default limit: 10, Max limit: 100
 
 ### 2. NoticeArchiveService.getArchiveNotices
+
 **Controller path:** Via `NoticesQueryService.getArchivedNotices()`
 **Endpoint:** `GET /api/notices/archive?page=...&limit=...&search=...&isDone=...`
 **Service method:** `NoticeArchiveService.getArchiveNotices(ArchiveListQuery)`
@@ -32,6 +36,7 @@ Key details:
 **Pagination type:** **Page-based (offset) via page/limit**
 
 ### 3. NoticeArchiveService.getArchiveNoticesByOffset (INTERNAL USE)
+
 **Service method:** `NoticeArchiveService.getArchiveNoticesByOffset(ArchiveOffsetQuery)`
 **Query params:** `skip`, `take`, `search`, `startDate`, `endDate`, `sortOrder`, `isDone`, `knownTotal`, `fullText`
 **Return type:** `{items: ArchiveNoticeItem[], total, search}`
@@ -40,6 +45,7 @@ Key details:
 **Current status:** Already uses offset-based internally; NOT cursor-based
 
 ### 4. ChangeTrackingService.getRecentChanges
+
 **Endpoint:** `GET /api/notices/changes?page=...&limit=...&search=...&eventType=...`
 **Service method:** `ChangeTrackingService.getRecentChanges(RecentChangesQuery)`
 **Query params:** `page`, `limit`, `search`, `noticeNum`, `eventType`, `sortOrder`, `fromEventId`, `toEventId`, `fromDetectedAt`, `toDetectedAt`, `anchorEventId`, `excludeLegacyGenesisSource`, `excludeIsDoneEvents`, `comparableOnly`
@@ -49,12 +55,12 @@ Key details:
 **Pagination type:** **Page-based (offset) via page/limit**
 
 ## Current Index Structure (Post-Migration)
+
 - **notice_archives table:**
   - `idx_notice_archives_archive_started_at` (archive_started_at)
   - `idx_notice_archives_is_done` (is_done)
   - `idx_notice_archives_notice_num` (noticeNum) - unique
   - Several lifecycle/metadata indexes
-  
 - **notice_change_events table:**
   - `idx_notice_change_events_detected_at_id` (detected_at DESC, id DESC) - **covers pagination ordering**
   - `idx_notice_change_events_event_type_detected_at_id` (event_type, detected_at DESC, id DESC)
@@ -68,12 +74,14 @@ Key details:
 ## Cursor Readiness Assessment
 
 ### NoticeSearchService.searchNotices
+
 - **Current:** Page-based (page/limit)
 - **Cursor readiness:** LOW - would require schema change (add cursor-encoded column)
 - **Safe to extend:** YES, can add optional `cursor` param alongside `page` for backward compatibility
 - **Recommended:** Add cursor support for large result sets (>100K records)
 
 ### NoticeArchiveService.getArchiveNotices / getArchiveNoticesByOffset
+
 - **Current:** getArchiveNotices uses page/limit; getArchiveNoticesByOffset uses skip/take internally
 - **Cursor readiness:** MEDIUM - noticeNum ordering is indexed but requires direction consistency
 - **Safe to extend:** YES, can add optional cursor params; skip/take already offset-optimized
@@ -82,6 +90,7 @@ Key details:
 - **Recommended:** Add cursor variant for better large-offset perf
 
 ### ChangeTrackingService.getRecentChanges
+
 - **Current:** Page-based (page/limit)
 - **Cursor readiness:** HIGH - already has `detected_at, id` ordering with composite index
 - **Safe to extend:** YES, can add optional `cursor` param; existing indexes support this
@@ -91,9 +100,10 @@ Key details:
 ## Frontend Response Field Expectations
 
 ### SearchNoticesResult (frontend/src/lib/types/api.ts)
+
 ```ts
-items: SearchNoticesItem[] (num, subject, proposerCategory, committee, link, contentId, isDone, 
-                             isArchived, aiSummary, aiSummaryStatus, lifecycleStatus, 
+items: SearchNoticesItem[] (num, subject, proposerCategory, committee, link, contentId, isDone,
+                             isArchived, aiSummary, aiSummaryStatus, lifecycleStatus,
                              sourceDeletedAt, attachments, archiveStartedAt, lastUpdatedAt)
 total: number
 page: number
@@ -104,9 +114,10 @@ source: 'archive' | 'crawler' | 'mixed'
 ```
 
 ### ArchiveNoticeListResponse (frontend/src/lib/types/api.ts)
+
 ```ts
-items: Notice[]  (num, subject, proposerCategory, committee, link, isDone, archiveStartedAt, 
-                  lastUpdatedAt, aiSummary, aiSummaryStatus, lifecycleStatus, sourceDeletedAt, 
+items: Notice[]  (num, subject, proposerCategory, committee, link, isDone, archiveStartedAt,
+                  lastUpdatedAt, aiSummary, aiSummaryStatus, lifecycleStatus, sourceDeletedAt,
                   contentId, changeEventCount, attachments)
 page: number
 limit: number
@@ -121,8 +132,9 @@ stats: { cacheCount, matchedCacheCount, archiveCount, totalArchiveCount, mergedC
 ```
 
 ### RecentNoticeChangesResponse (frontend/src/lib/types/api.ts)
+
 ```ts
-items: RecentNoticeChangeItem[] (id, noticeNum, subject, detectedAt, eventType, source, 
+items: RecentNoticeChangeItem[] (id, noticeNum, subject, detectedAt, eventType, source,
                                  eventHeight, eventHash, changedFieldCount, diffSummary)
 page: number
 limit: number
@@ -132,6 +144,7 @@ anchorPage?: number | null
 ```
 
 ## Performance Bottlenecks Identified
+
 1. **isDone filtering:** Uses EXISTS subquery on summary_state; noticeNum ORDER BY not in composite index
 2. **Archive listing with search:** Full table scan on subjects/committees when search+isDone
 3. **FTS search:** Custom query parsing (buildFtsMatchQuery) adds CPU overhead
@@ -140,6 +153,7 @@ anchorPage?: number | null
 6. **Merged pagination:** NoticesQueryService merges cache + archive; complex offset calculation
 
 ## Discussion Migration (202609080001)
+
 - Adds indexes for discussion_threads listing (unrelated to notice pagination)
 - Uses `updated_at DESC, id DESC` pattern consistent with change_tracking indexes
 - Pattern suggests stable composite ordering best practice for pagination
