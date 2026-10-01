@@ -290,10 +290,11 @@ async myMethod(): Promise<Result> {
 
 ### PR and Release Rules
 
-- **PR scope**: PRs are opened per submodule (`frontend/` or `backend/`), NOT the root repository
-- **Release scope**: Releases are created per submodule, tagged with the submodule's version (e.g. `frontend-v1.0.3`, `backend-v1.2.0`)
+- **PR scope**: PRs are opened per submodule (`frontend/`, `backend/`, `semantic-search/`), NOT the root repository
+- **Release scope**: Releases are created per submodule, tagged with the submodule's version (e.g. `frontend-v1.0.3`, `backend-v1.2.0`, `semantic-search-v1.0.0`)
 - **Workflow**: feature branch -> commit -> open PR -> review -> merge -> create GitHub Release with matching tag
-- **Version bump before merge**: Before the final merge, agents MUST verify that `package.json` version has been appropriately bumped:
+- **Version bump before merge**: Before the final merge, agents MUST verify that the submodule's version has been appropriately bumped:
+  - **Where the version lives**: `frontend/package.json` and `backend/package.json` (`version` field). `semantic-search` has no `package.json` — its version is `semantic-search/pyproject.toml` `[project].version`, a metadata-only manifest (dependencies stay owned by `requirements.txt` / `requirements.lock`, lint settings by `ruff.toml`)
   - **Patch** (`x.x.N`): bug fixes, dependency updates, internal refactors
   - **Minor** (`x.N.0`): new features, non-breaking API changes
   - **Major** (`N.0.0`): breaking changes, architecture rewrites
@@ -312,9 +313,14 @@ cd frontend && npm run lint && npm run check
 
 # Backend
 cd backend && npm run lint && npx tsc --noEmit && npm run build && npm test
+
+# Semantic search (Python sidecar)
+cd semantic-search && .venv/bin/ruff check . && .venv/bin/ruff format --check .
+cd semantic-search && .venv/bin/python -m pytest tests/ -q
 ```
 - `npm run lint` runs Prettier auto-fix + ESLint fix — all files MUST be `(unchanged)` or auto-fixed
 - `npm run check` (frontend) / `npx tsc --noEmit` (backend) MUST pass with 0 errors
+- `semantic-search` MUST pass ruff (check + format) and pytest; the version manifest guard is `tests/test_version.py`
 - **NEVER commit without running these first** — unformatted code will cause CI failures and unnecessary version bumps
 - If lint or check produces changes, include those changes in the same commit as the feature/fix
 
@@ -329,7 +335,7 @@ git diff --stat package-lock.json  # must be empty or included in commit
 - **Why**: CI runs `npm ci` which installs from the lockfile exactly. A mismatched lockfile causes silent dependency resolution differences between local and CI, leading to test failures like `Cannot find module` errors.
 
 **Step 1 — Version bump**
-- Bump `package.json` version in the affected submodule(s)
+- Bump the affected submodule's version: `package.json` for `frontend`/`backend`, `pyproject.toml` `[project].version` for `semantic-search`
 - Check existing tags first (`git tag -l`) to avoid collisions
 
 **Step 2 — Commit on feature branch, push, open PR**
@@ -347,8 +353,10 @@ gh pr merge <PR#> --squash --delete-branch
 
 **Step 4 — Create GitHub Release**
 ```bash
-gh release create <tag> --title "<tag>" --notes "## Changes\n- ..."
+# Tag format: <submodule>-vX.Y.Z — frontend-v1.0.3 / backend-v1.2.0 / semantic-search-v1.0.0
+gh release create <tag> --target main --title "<tag>" --notes "## Changes\n- ..."
 ```
+- The tag MUST equal the bumped version. For `semantic-search` that means `semantic-search-v$(python3 -c "import tomllib;print(tomllib.load(open('pyproject.toml','rb'))['project']['version'])")` — `tests/test_version.py` guards the file format but cannot see the tag, so check the match explicitly before releasing.
 
 **Step 5 — Sync local `dev` branch in BOTH submodules**
 ```bash
@@ -357,6 +365,7 @@ cd backend && git checkout dev && git pull origin dev
 cd ../frontend && git checkout dev && git pull origin dev
 ```
 **Why**: After merge, submodules may be in detached HEAD on `main`. Always return to `dev`.
+**Exception**: `semantic-search` has **no `dev` branch** — it tracks `main` directly. After its merge, leave it on `main` and run `git pull origin main`.
 
 **CRITICAL: Sync main into dev with --ff-only ONLY**
 `dev` must never accumulate merge commits from `main`. Sync with a fast-forward only:
@@ -390,12 +399,13 @@ git push
 # Submodule refs should show dev branch commits (no +/- prefix)
 git submodule status
 
-# Each submodule should be on dev branch, up to date
+# Each submodule should be on dev branch, up to date (semantic-search: on main)
 cd backend && git log --oneline -1 && git branch --show-current
 cd ../frontend && git log --oneline -1 && git branch --show-current
+cd ../semantic-search && git log --oneline -1 && git branch --show-current
 ```
 - `git submodule status` must show **no `+` or `-` prefix** (meaning working tree matches recorded commit)
-- Each submodule's current branch must be `dev`
+- Each submodule's current branch must be `dev` — except `semantic-search`, which has no `dev` and must sit on `main`, up to date with `origin/main`
 - `dev` must be up to date with `origin/dev`
 
 > **NEVER commit directly to `main` in submodules.**
@@ -445,6 +455,12 @@ cd frontend && npm run check             # Type check
 cd frontend && npm run build             # Build
 cd frontend && npx playwright test       # E2E tests
 
+# Semantic search (Python sidecar)
+cd semantic-search && .venv/bin/ruff check . && .venv/bin/ruff format --check .   # Lint
+cd semantic-search && .venv/bin/python -m pytest tests/ -q                       # Unit tests
+cd semantic-search && python3 -c "import tomllib;print(tomllib.load(open('pyproject.toml','rb'))['project']['version'])"   # Version
+cd semantic-search && git tag -l 'semantic-search-v*'                           # Released versions
+
 # Docker
 docker compose up -d --build             # Start all services
 docker compose down                      # Stop all services
@@ -453,4 +469,5 @@ docker compose down                      # Stop all services
 ./deploy.sh                              # Rolling update all
 ./deploy.sh backend                      # Update backend only
 ./deploy.sh frontend                     # Update frontend only
+./deploy.sh semantic-search              # Update semantic search only (aligns artifacts ownership first)
 ```
