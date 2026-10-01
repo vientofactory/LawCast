@@ -43,35 +43,6 @@ services:
       retries: 3
       start_period: 40s
 
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-      args:
-        - APP_VERSION=${APP_VERSION:-0.0.1}
-    container_name: lawcast-frontend
-    restart: unless-stopped
-    ports:
-      - "127.0.0.1:3002:3002"
-    env_file:
-      - ./frontend/.env
-    environment:
-      - NODE_ENV=production
-      - TZ=Asia/Seoul
-      - APP_VERSION=${APP_VERSION:-0.0.1}
-      - BACKEND_VERSION=${APP_VERSION:-0.0.1}
-      - API_BASE_URL=http://backend:3001/api
-      # SvelteKit adapter-node configuration
-      - HOST=0.0.0.0
-      - PORT=3002
-    networks:
-      - lawcast-network
-    healthcheck:
-      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3002', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) })"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
   redis:
     image: redis:8.8.0
     restart: unless-stopped
