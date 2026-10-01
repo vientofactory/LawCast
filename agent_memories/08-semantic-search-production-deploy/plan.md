@@ -266,9 +266,12 @@ k=50 -> 50). 851 backend tests / 72 python tests green.
   (uid 1001) died on its first write — creating `artifacts/.update.lock` —
   with `update tick failed: PermissionError: [Errno 13] Permission denied:
   '/app/artifacts/.update.lock'`. **`deploy.sh` owns the invariant**: before
-  `docker compose up` it chowns `/cache` **and** `/app/artifacts` to
-  `1001:1001` (root, idempotent, `</dev/null`-guarded), so the workflow and
-  manual deploys both align the mounts before the container boots.
+  `docker compose up` it aligns the artifacts bind mount on the HOST (chown
+  `1001:1001` best-effort + `chmod 0777`, existing lock `0666` — a
+  container-side chown is EPERM-denied on that bind mount while `/cache`
+  succeeds in the same process, CI run 36892165553) and keeps the `/cache`
+  volume chown container-side, so the workflow and manual deploys both align
+  before the container boots.
 - **Stale-image verification trap**: `docker compose up -d --no-build` after
   a source change re-serves the old image — the raised `MAX_K` was first
   probed as still-50 against the previous build. Rebuild
