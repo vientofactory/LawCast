@@ -91,15 +91,50 @@ jobs:
       - name: Build
         run: npm run build
 
+  sidecar:
+    name: Sidecar — lint & test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: semantic-search
+
+    steps:
+      - name: Checkout repository (with submodules)
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          submodules: recursive
+
+      # Python version matches semantic-search/Dockerfile (python:3.13-slim).
+      - name: Setup Python 3.13
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: semantic-search/requirements.lock
+
+      - name: Install dependencies
+        run: |
+          # CPU-only torch first, mirroring the Dockerfile: the default PyPI
+          # linux wheel pulls multi-GB CUDA dependencies. torch version is read
+          # from requirements.lock so the lock stays the single source of truth.
+          pip install "torch==$(sed -n 's/^torch==//p' requirements.lock)" --index-url https://download.pytorch.org/whl/cpu
+          pip install -r requirements.lock
+
+      - name: Lint
+        run: ruff check . && ruff format --check .
+
+      - name: Unit tests
+        run: python -m pytest tests/ -q
+
   ci-gate:
     name: CI gate
     if: always()
-    needs: [backend, frontend]
+    needs: [backend, frontend, sidecar]
     runs-on: ubuntu-latest
     steps:
       - name: Check all jobs passed
         run: |
-          if [ "${{ needs.backend.result }}" != "success" ] || [ "${{ needs.frontend.result }}" != "success" ]; then
+          if [ "${{ needs.backend.result }}" != "success" ] || [ "${{ needs.frontend.result }}" != "success" ] || [ "${{ needs.sidecar.result }}" != "success" ]; then
             echo "❌ One or more jobs failed."
             exit 1
           fi
