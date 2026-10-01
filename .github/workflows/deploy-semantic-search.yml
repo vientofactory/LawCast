@@ -128,6 +128,13 @@ jobs:
             echo "--- New HEAD ---"
             git log --oneline -1
 
+            # Early exit before docker build when this push carries no
+            # actual semantic-search changes (per-service last-deploy record).
+            if .github/scripts/deploy-change-guard.sh check semantic-search; then
+              echo "=== No semantic-search changes since last deploy; early exit ==="
+              exit 0
+            fi
+
             echo "--- Building and restarting semantic search ---"
             cd ${{ env.REPO_PATH }}
             # /cache and /app/artifacts ownership is aligned to uid 1001
@@ -157,6 +164,10 @@ jobs:
               docker compose logs semantic-search --tail=40 --no-color 2>&1 | head -60
               exit 1
             fi
+
+            # Record only after the engine is verified ready, so a failed
+            # deploy is retried on the next run.
+            .github/scripts/deploy-change-guard.sh record semantic-search
 
             echo "=== Deploy complete ==="
           REMOTE_SCRIPT
