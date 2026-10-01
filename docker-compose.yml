@@ -92,8 +92,11 @@ services:
       - lawcast_semantic_hf_cache:/cache
     # §3.2 uid alignment: backend data-file uid (1001) so the shared WAL -shm
     # is writable for both producers (measured 2026-10-01; details in
-    # agent_memories/08-.../production-readiness-status.md). HF cache stays
-    # 100-owned -> read-only: re-download via a one-off `docker run --user 100`.
+    # agent_memories/08-.../production-readiness-status.md). The image user
+    # (semantic-search/Dockerfile) is also 1001, so a fresh HF cache volume
+    # inherits 1001 ownership on first use and the engine downloads/refreshes
+    # its weights as the serving process — no manual chown or one-off
+    # `docker run --user 100` maintenance container anymore.
     user: "1001:1001"
     networks:
       - lawcast-network
