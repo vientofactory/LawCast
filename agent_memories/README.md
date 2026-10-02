@@ -29,10 +29,14 @@ agent_memories/
 │   └── plan.md                                    ← FAISS 의미 검색 파이프라인 설계 및 모델 선정
 ├── 07-incremental-indexing/                       ← 시맨틱 인덱스 증분 갱신
 │   └── plan.md                                    ← 증분 갱신 설계 결정 및 검증 결과
-└── 08-semantic-search-production-deploy/          ← 시맨틱 검색 프로덕션 배포/백엔드 연동
-    ├── plan.md                                    ← 배포 로드맵, API 계약, 남은 작업 목록
-    ├── incremental-update-pipeline-design.md      ← 정기 인덱스 갱신 파이프라인 설계 (설계 소유처)
-    └── production-readiness-status.md             ← 프로덕션 레디니스 3축 현황 + 남은 작업 (측정 기반)
+├── 08-semantic-search-production-deploy/          ← 시맨틱 검색 프로덕션 배포/백엔드 연동
+│   ├── plan.md                                    ← 배포 로드맵, API 계약, 남은 작업 목록
+│   ├── incremental-update-pipeline-design.md      ← 정기 인덱스 갱신 파이프라인 설계 (설계 소유처)
+│   └── production-readiness-status.md             ← 프로덕션 레디니스 3축 현황 + 남은 작업 (측정 기반)
+├── 09-embedding-map-web-ui/                       ← 임베딩 맵 웹 UI (시맨틱 검색 시각화 도구)
+│   └── plan.md                                    ← 설계 결정, 줌 플리커 패치(2회), 전체 데이터 모드
+└── 10-index-last-update-tracking/                 ← 시맨틱 인덱스 마지막 업데이트 시각 표시
+    └── plan.md                                    ← 갱신 경로 분석, 단일 소유자 시각 스탬프 설계·검증
 ```
 
 ## 폴더별 상세 내용
@@ -76,6 +80,14 @@ agent_memories/
 ### `07-incremental-indexing/` — 시맨틱 인덱스 증분 갱신
 
 - **plan.md**: 전체 재구축 없이 신규/수정/삭제 공고만 반영하는 증분 갱신 설계(`lawcast_semantic/incremental.py` + `scripts/06_incremental_update.py`). 행별 출처 다이제스트(`chunk_text_digests`)로 재사용·크래시 복구를 보증하고 지문 검증 계약은 불변. **설계 결정·검증 결과의 단일 소유처** — 전체 재구축과의 동등성 대조 기록 포함.
+
+### `09-embedding-map-web-ui/` — 임베딩 맵 웹 UI
+
+- **plan.md**: `embedding-map/` 도구의 설계 결정·검증 기록 단일 소유처. 시맨틱 검색 엔진(KURE-v1 + FAISS 93,031 청크)의 학습 데이터 2D 맵 + 검색 쿼리 4단계(임베딩→ANN 후보→스코어링→결과) 추적 UI. 줌 플리커 패치 2라운드(컴포지터 레이어 제거·전역 pinch 가드·반경 버킷링), **`run.py --full` 전체 데이터 모드**(93k 포인트 canvas 렌더링, `/api/chunk/{id}` 레지 툴팁, 18.9MB→1.57MB gzip 페이로드)와 라이브 검증 수치 포함.
+
+### `10-index-last-update-tracking/` — 시맨틱 인덱스 마지막 업데이트 시각
+
+- **plan.md**: 인덱스 갱신 경로 분석(호스트 03/06, 사이드카 틱·부트 리페어가 `VectorIndex.save`로 수렴)과 시각 기록의 단일 소유처. `id_map.json`의 `updated_at` 스탬프(재시작 후 유지) -> `SemanticSearcher.index_updated_at` -> `EngineState.mark_ready/reload` 채택 -> 사이드카 `/search` -> 백엔드 API -> 프론트 "마지막 업데이트" 표시까지 **미션 3단계 전부 구현·검증한 기록**. 틱 결과와 시각의 소유권 분리, 크로스 언어 계약 이중 소유 주의, 레거시 `null`->"기록 없음" 계약 포함.
 
 ### `08-semantic-search-production-deploy/` — 시맨틱 검색 프로덕션 배포
 
