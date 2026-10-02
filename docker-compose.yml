@@ -74,11 +74,11 @@ services:
       - HF_HOME=/cache/huggingface
       - LAWCAST_SEMANTIC_ARTIFACTS_DIR=/app/artifacts
       # Scheduled refresh gates (design §4.2): shared-lawcast_db volume is the
-      # corpus source; empty DB_PATH or interval 0 turns scheduling and boot
-      # repair off entirely. ALLOW_LARGE_DELETE is the §6 shrink-guard
-      # override (keep false unless an operator has checked the DB).
+      # corpus source; empty DB_PATH or an empty cron expression turns
+      # scheduling and boot repair off entirely. ALLOW_LARGE_DELETE is the §6
+      # shrink-guard override (keep false unless an operator has checked the DB).
       - LAWCAST_SEMANTIC_DB_PATH=/data/lawcast.db
-      - LAWCAST_SEMANTIC_UPDATE_INTERVAL_MINUTES=60
+      - "LAWCAST_SEMANTIC_UPDATE_CRON=0 * * * *"
       - LAWCAST_SEMANTIC_ALLOW_LARGE_DELETE=false
     volumes:
       # Index artifacts are built on the host pipeline (or updated in place by

@@ -17,7 +17,7 @@ Related single-owner docs:
 ## 0. Scope
 
 **In scope**: refresh flow, container connection medium (decision), scheduler
-executor + interval (decision), atomic artifact swap with readiness maintained,
+executor + cron schedule (decision), atomic artifact swap with readiness maintained,
 failure/rollback/retry policy, file-level change list, verification plan.
 
 **Non-goals**: frontend, full-corpus eval relabeling, scheduled model swaps or
@@ -49,8 +49,8 @@ refused by the incremental contract), multi-host deployment (would revisit
 1. Connection medium between the two containers (§3) → **shared `lawcast_db`
    volume mounted rw into the sidecar**.
 2. Scheduler executor (§4.1) → **sidecar-internal lifespan thread**.
-3. Interval (§4.2) → **60 min default**, env-tunable, jittered, off unless
-   configured.
+3. Schedule (§4.2) → **`LAWCAST_SEMANTIC_UPDATE_CRON`**, `0 * * * *` default
+   (hourly), env-tunable, empty = off.
 4. Hot reload / in-memory swap with readiness maintained (§5) → **load-validate-swap**,
    old generation serves until the new one passes validation.
 5. Failure, rollback, retry policy incl. the torn-boot deadlock (§6).
@@ -59,7 +59,7 @@ refused by the incremental contract), multi-host deployment (would revisit
 
 ```
 sidecar lifespan
- └─ update-scheduler thread (sleep interval ± jitter)
+ └─ update-scheduler thread (sleep until next cron occurrence)
      ├─ gate: DB_PATH configured, EngineState.status == 'ready', not already running (single-flight)
      ├─ 0. acquire artifacts flock (artifacts/.update.lock)
      ├─ 1. read full corpus: load_notices_from_db(DB_PATH)      # WAL snapshot, seconds
@@ -133,11 +133,14 @@ compose deployment); if the sidecar ever moves off-host, M2 becomes the choice
 | E3     | Backend NestJS cron (`cronjobs.service.ts`) triggering the sidecar over HTTP                          | Uses the existing cron infra; triggers right after crawl/backfill jobs                                                                                                                                                                                                                                      | Backend code change (out of scope); only _triggers_ — the read medium is still M1, so it adds an endpoint + a failure path without removing anything; index freshness couples to backend deploys/config                   |
 | E4     | Host cron via `docker compose exec` (plan.md B3 option)                                               | No in-container code                                                                                                                                                                                                                                                                                        | Outside compose lifecycle (missed when only containers are managed; host-dependent; `deploy.sh`-style ops drift). Listed in B3, rejected here as the primary — kept as the emergency manual runbook (`flock`-guarded, §6) |
 
-### 4.2 Decision: **E1**, interval **60 minutes** (default)
+### 4.2 Decision: **E1**, cron **`0 * * * *`** (hourly, default)
 
-- Thread: `update-scheduler` daemon thread in `lifespan`, same pattern as
-  `semantic-engine-load`; sleeps `interval ± 10% jitter` (jitter avoids the
-  repo's minute-0 contention convention since the tick is start-time-relative).
+- Thread: `update-scheduler` daemon thread in `lifespan` (started only when
+  `DB_PATH` and a non-empty cron expression are set), same pattern as
+  `semantic-engine-load`; sleeps until croniter's next occurrence of the
+  expression (local time — no jitter: the expression pins the exact minute,
+  and the default `0 * * * *` lands in the minute-0 slot the backend cron
+  avoids). An empty expression turns scheduling off entirely.
 - Only ticks when `EngineState.status == 'ready'` (embedder available);
   `loading` → wait; `failed` → no ticks (boot repair in §6 covers the
   artifact-failure case).
@@ -157,7 +160,7 @@ compose deployment); if the sidecar ever moves off-host, M2 becomes the choice
   | Env var                                    | Default   | Meaning                                                                                                 |
   | ------------------------------------------ | --------- | ------------------------------------------------------------------------------------------------------- |
   | `LAWCAST_SEMANTIC_DB_PATH`                 | _(empty)_ | backend DB path; **empty = scheduling disabled** (host dev runs and existing tests stay byte-identical) |
-  | `LAWCAST_SEMANTIC_UPDATE_INTERVAL_MINUTES` | `60`      | tick period; `0` also disables                                                                          |
+  | `LAWCAST_SEMANTIC_UPDATE_CRON`             | `0 * * * *` | 5-field cron expression (local time) driving the tick; **empty = scheduling disabled**               |
   | `LAWCAST_SEMANTIC_ALLOW_LARGE_DELETE`      | off       | operator override for the §6 shrink guard; parsing rule below                                           |
 
   **Boolean parsing rule (single definition, implemented in `config.py`
@@ -330,7 +333,7 @@ No backend (NestJS) changes. All semantic-search changes are additive and
 config-gated (default off ⇒ existing tests/behavior unchanged).
 
 1. `docker-compose.yml` — `semantic-search`: add `- lawcast_db:/data`,
-   `LAWCAST_SEMANTIC_DB_PATH=/data/lawcast.db`, `LAWCAST_SEMANTIC_UPDATE_INTERVAL_MINUTES=60`,
+   `LAWCAST_SEMANTIC_DB_PATH=/data/lawcast.db`, `LAWCAST_SEMANTIC_UPDATE_CRON="0 * * * *"`,
    and (after the §3.2 measurement) `user:` alignment if required.
 2. `semantic-search/lawcast_semantic/config.py` — the three env vars of §4.2
    (single-owner convention; empty `DB_PATH` ⇒ disabled).
@@ -365,7 +368,7 @@ config-gated (default off ⇒ existing tests/behavior unchanged).
 2. Mount check: §3.2 uid measurement on a live compose stack; in-container
    `load_notices_from_db` returns 20,919+ rows; `--plan-only` JSON sane
    (plan.md's live baseline: 96,757 chunks).
-3. Freshness end-to-end: dev stack with `UPDATE_INTERVAL_MINUTES=2`; insert a
+3. Freshness end-to-end: dev stack with `LAWCAST_SEMANTIC_UPDATE_CRON='*/2 * * * *'`; insert a
    synthetic notice into a **DB clone** (guard triggers respected — clone-only,
    as in 07 V2b); assert: tick reports `changed`, `generation` increments,
    `/health.status` observed `ready` **at every poll during the swap**, marker
