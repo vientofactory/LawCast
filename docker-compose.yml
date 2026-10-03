@@ -4,7 +4,10 @@ services:
       context: ./backend
       dockerfile: Dockerfile
       args:
-        - APP_VERSION=${APP_VERSION:-0.0.1}
+        # No hardcoded default: an unset APP_VERSION must stay unset/empty so
+        # the backend falls back to its package.json version instead of a fake
+        # stamp (0.0.1 here was reported by production /api/version).
+        - APP_VERSION=${APP_VERSION:-}
     container_name: lawcast-backend
     restart: unless-stopped
     ports:
@@ -14,7 +17,7 @@ services:
     environment:
       - NODE_ENV=production
       - TZ=Asia/Seoul
-      - APP_VERSION=${APP_VERSION:-0.0.1}
+      - APP_VERSION=${APP_VERSION:-}
       - DATABASE_PATH=/app/data/lawcast.db
       - OLLAMA_API_URL=http://ollama:11434
       - REDIS_URL=redis://redis:6379
