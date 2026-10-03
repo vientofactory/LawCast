@@ -65,6 +65,8 @@ services:
       dockerfile: Dockerfile
     container_name: lawcast-semantic-search
     restart: unless-stopped
+    env_file:
+      - path: ./semantic-search/.env
     ports:
       # Published on loopback only (internal service, no auth) for host-side
       # debugging: curl http://127.0.0.1:8300/health
