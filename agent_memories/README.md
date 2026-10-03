@@ -35,8 +35,10 @@ agent_memories/
 │   └── production-readiness-status.md             ← 프로덕션 레디니스 3축 현황 + 남은 작업 (측정 기반)
 ├── 09-embedding-map-web-ui/                       ← 임베딩 맵 웹 UI (시맨틱 검색 시각화 도구)
 │   └── plan.md                                    ← 설계 결정, 줌 플리커 패치(2회), 전체 데이터 모드
-└── 10-index-last-update-tracking/                 ← 시맨틱 인덱스 마지막 업데이트 시각 표시
-    └── plan.md                                    ← 갱신 경로 분석, 단일 소유자 시각 스탬프 설계·검증
+├── 10-index-last-update-tracking/                 ← 시맨틱 인덱스 마지막 업데이트 시각 표시
+│   └── plan.md                                    ← 갱신 경로 분석, 단일 소유자 시각 스탬프 설계·검증
+└── 11-api-version-fallback-stamp/                 ← /api/version 0.0.1 프로덕션 버그 원인 분석
+    └── bug-investigation-findings.md              ← compose 하드코딩 기본값(0.0.1)이 버전을 덮어쓰던 버그와 패치
 ```
 
 ## 폴더별 상세 내용
@@ -84,6 +86,10 @@ agent_memories/
 ### `09-embedding-map-web-ui/` — 임베딩 맵 웹 UI
 
 - **plan.md**: `embedding-map/` 도구의 설계 결정·검증 기록 단일 소유처. 시맨틱 검색 엔진(KURE-v1 + FAISS 93,031 청크)의 학습 데이터 2D 맵 + 검색 쿼리 4단계(임베딩→ANN 후보→스코어링→결과) 추적 UI. 줌 플리커 패치 2라운드(컴포지터 레이어 제거·전역 pinch 가드·반경 버킷링), **`run.py --full` 전체 데이터 모드**(93k 포인트 canvas 렌더링, `/api/chunk/{id}` 레지 툴팁, 18.9MB→1.57MB gzip 페이로드)와 라이브 검증 수치 포함.
+
+### `11-api-version-fallback-stamp/` — `/api/version` 0.0.1 원인 분석
+
+- **bug-investigation-findings.md**: 프로덕션 `/api/version`이 항상 `0.0.1`(`buildEnv: env`)을 반환하던 버그의 원인 분석. `docker-compose.yml`의 `${APP_VERSION:-0.0.1}` 하드코딩 기본값이 CI 밖에서 실행된 `docker compose up`/`./deploy.sh` 컨테이너 재생성 시 실제 버전을 가짜 값으로 도장 찍고, 백엔드 폴백 체인 1순위(env)가 `package.json`보다 우선하던 문제. CI export 검증 로그·부트 파이프라인 타임스탬프 기반 시각선, `${APP_VERSION:-}` 패치와 검증 방법 포함.
 
 ### `10-index-last-update-tracking/` — 시맨틱 인덱스 마지막 업데이트 시각
 
