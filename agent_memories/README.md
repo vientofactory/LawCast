@@ -37,8 +37,10 @@ agent_memories/
 │   └── plan.md                                    ← 설계 결정, 줌 플리커 패치(2회), 전체 데이터 모드
 ├── 10-index-last-update-tracking/                 ← 시맨틱 인덱스 마지막 업데이트 시각 표시
 │   └── plan.md                                    ← 갱신 경로 분석, 단일 소유자 시각 스탬프 설계·검증
-└── 11-api-version-fallback-stamp/                 ← /api/version 0.0.1 프로덕션 버그 원인 분석
-    └── bug-investigation-findings.md              ← compose 하드코딩 기본값(0.0.1)이 버전을 덮어쓰던 버그와 패치
+├── 11-api-version-fallback-stamp/                 ← /api/version 0.0.1 프로덕션 버그 원인 분석
+│   └── bug-investigation-findings.md              ← compose 하드코딩 기본값(0.0.1)이 버전을 덮어쓰던 버그와 패치
+└── 12-cron-env-compose-override/                  ← 크론 환경변수 미주입 프로덕션 버그
+    └── bug-investigation-findings.md              ← compose `environment`가 `env_file`을 덮어쓰던 버그와 패치
 ```
 
 ## 폴더별 상세 내용

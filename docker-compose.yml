@@ -69,7 +69,11 @@ services:
     container_name: lawcast-semantic-search
     restart: unless-stopped
     env_file:
+      # Optional on purpose (documented in semantic-search/.env.example): a
+      # missing file must not break `docker compose up` — the engine then runs
+      # on its code defaults, which leave scheduling off (empty DB_PATH).
       - path: ./semantic-search/.env
+        required: false
     ports:
       # Published on loopback only (internal service, no auth) for host-side
       # debugging: curl http://127.0.0.1:8300/health
@@ -83,8 +87,13 @@ services:
       # scheduling and boot repair off entirely. ALLOW_LARGE_DELETE is the §6
       # shrink-guard override (keep false unless an operator has checked the DB).
       - LAWCAST_SEMANTIC_DB_PATH=/data/lawcast.db
-      - "LAWCAST_SEMANTIC_UPDATE_CRON=0 * * * *"
       - LAWCAST_SEMANTIC_ALLOW_LARGE_DELETE=false
+      # LAWCAST_SEMANTIC_UPDATE_CRON is intentionally NOT set here. Compose
+      # `environment` outranks `env_file`, so a hardcoded expression silently
+      # swallowed semantic-search/.env: production ticked hourly (`0 * * * *`)
+      # while the file said `0 0 * * *`, and the documented empty-cron kill
+      # switch (design 4.2) was unreachable. The file owns the expression; if
+      # it is absent the code default in lawcast_semantic/config.py applies.
     volumes:
       # Index artifacts are built on the host pipeline (or updated in place by
       # scripts/06_incremental_update.py) and shared rw with the container.
