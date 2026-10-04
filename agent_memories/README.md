@@ -39,8 +39,10 @@ agent_memories/
 │   └── plan.md                                    ← 갱신 경로 분석, 단일 소유자 시각 스탬프 설계·검증
 ├── 11-api-version-fallback-stamp/                 ← /api/version 0.0.1 프로덕션 버그 원인 분석
 │   └── bug-investigation-findings.md              ← compose 하드코딩 기본값(0.0.1)이 버전을 덮어쓰던 버그와 패치
-└── 12-cron-env-compose-override/                  ← 크론 환경변수 미주입 프로덕션 버그
-    └── bug-investigation-findings.md              ← compose `environment`가 `env_file`을 덮어쓰던 버그와 패치
+├── 12-cron-env-compose-override/                  ← 크론 환경변수 미주입 프로덕션 버그
+│   └── bug-investigation-findings.md              ← compose `environment`가 `env_file`을 덮어쓰던 버그와 패치
+└── 13-sidecar-concurrency-audit/                  ← 시맨틱 검색 사이드카 동시성 감사
+    └── sidecar-concurrency-analysis-and-tests.md  ← 사이드카 구조 분석·블로킹 구간 감사·동시성 테스트 실측
 ```
 
 ## 폴더별 상세 내용
@@ -102,6 +104,10 @@ agent_memories/
 - **plan.md**: `semantic-search/` 사이드카의 프로덕션 배포·백엔드 연동 로드맵. 코드베이스 조사 표, 사이드카↔백엔드 API 계약, 완료된 Docker/설정 작업과 남은 작업 우선순위(§3.B 항목은 2026-10-01 기준으로 갱신됨 — 핫 리로드·스케줄링은 구현 완료). **배포 관련 남은 작업의 단일 로드맵.**
 - **incremental-update-pipeline-design.md**: 정기 인덱스 갱신 파이프라인 설계 **및 구현의 단일 소유처** — 공유 `lawcast_db` 볼륨(WAL/-shm/uid 처리), 사이드카 내부 스레드 스케줄(기본 60분), load-validate-swap 핫 리로드(`POST /reload`), 부트 리페어·삭제 가드·지문 자가치유 매트릭스. §7 항목 전부 구현됨(2026-10-01).
 - **production-readiness-status.md**: 프로덕션 레디니스 **측정 기반 현황 분석**(2026-10-01). ① 엔진 구현 상태 ② 도커 환경(uid 1001 볼륨 마운트·lawcast_db 배선·세 게이트·`POST /reload` 라이브 실측) ③ 백엔드/프론트엔드 대응 상태 3축 정리 + production-ready까지 남은 작업의 '남은 이유·완료 기준' 목록. 최신 실측 기준선.
+
+### `13-sidecar-concurrency-audit/` — 시맨틱 검색 사이드카 동시성 감사
+
+- **sidecar-concurrency-analysis-and-tests.md**: `semantic-search/service/app.py` HTTP 사이드카 구조 분석 + 블로킹 구간 코드 감사(스냅샷 락·백그라운드 로드·비차단 flock 확인)와 `tests/test_concurrency.py` 5개 동시성 테스트 실측치. **측정 함정 4건 기록**: 클라이언트 SSL 컨텍스트의 GIL 경합(~0.42s 측정 오염 → 사전 클라이언트 생성으로 해결), 서브프로세스 `stdout=PIPE` 미소비 데드락, 콜드스타트 기준선 왜곡(2.56s vs 0.11s → 3회 워밍업 + 3라운드 중앙값 필요), HuggingFace Hub 재검증으로 인한 엔진 로드 네트워크 의존성(정상 10s vs 허브 불가 143s → `HF_HUB_OFFLINE=1`로 아웃라이어 제거). **overlap_ratio 분산 계측 귀인(단발 0.56–0.79)**: (a) 콜드 기준선 전체 상승 → ratio 과소(중복 주장 부정확), (b) 동시 배치 wall 편차 → ratio 과대(0.85 임계 플리커), 클라이언트 오버헤드는 `client_delta=0.000s`로 배제 → 3라운드 중앙값(0.65–0.69, 스프레드 0.04) 재보정 + 0.85 마진 근거를 테스트에 문서화. GIL-vs-락 분리: 지연 3.4–4.1x 상승이면서 `max/sum`=0.65–0.69(락이면 ~1.0) → GIL/CPU 포화 증거.
 
 ## 에이전트 메모리 기록 규칙
 
