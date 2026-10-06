@@ -12,7 +12,7 @@
 
 - Diffchain audit/event hash parity requires tracked-field type coercion when reconstructing from details: `num` must be number and `isDone` must be boolean (not string), both in chain-audit reconstruction and notice baseline-from-timeline merge.
 
-- NSM source_deleted detection currently runs through proposalReason retry path only for rows with `contentId IS NULL`, `lifecycle_status='active'`, and snapshot `is_done=0`; if `is_done=1` first, deleted NSM detail pages can stay `active` unless another path appends `source_deleted`.
+- ProposalReason retry candidates (`backend/src/modules/notice/utils/notice-archive-maintenance-support.ts`, `getNsmProposalReasonRetryCandidates`) include both open and ended notice periods: `isDone=true` is independent of `lifecycleStatus=active`. The current query has no `is_done=0` filter. Preserve `isDone` from `notice_archive_snapshot_states` when mapping candidates into CachedNotice; otherwise ended notices lose their completion state in queue/cache/notification payloads. Keep lifecycle and already-resolved diffchain exclusion guards. Regression coverage: actual in-memory SQLite selection in `notice-archive.service.spec.ts` and ended-notice drain in `crawling-scheduler-proposal-retry.spec.ts`.
 - Large apply_patch edits in `notice-archive.service.ts` can auto-correct into malformed control flow; after each sizable patch, immediately verify with focused diff + `get_errors` before continuing cross-file refactors.
 
 - ProposalReason backfill must treat NSM detail-page HTTP 404 as `source_deleted` (invalidated) immediately, not only alert-message probes/timeouts; keep coverage in `archive-orchestrator.service.spec.ts`.
