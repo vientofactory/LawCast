@@ -145,6 +145,43 @@ on three levels:- **Single-flight**: concurrent cache misses and background reva
   3 follow-up requests during the pause → **0** stub calls, log line `pausing Notion requests for
   2000ms`, refetch resumed after the window (sequence `1,2,1,2,429,1,2`).
 
+## Block body → Markdown pass (2026-10-07)
+
+- **Problem**: notice bodies that live in the Notion **page block tree** (not the `내용` rich_text
+  property) displayed as "등록된 본문이 없습니다" — `mapPage` only read `properties['내용'].rich_text`,
+  so a page whose property is empty but whose body has 8 blocks (heading/list/bold/table — the
+  `공지 본문 표시 테스트` row) rendered empty. Confirmed against the live Notion API before coding.
+- **Backend**: `AdminNoticesService` now converts each published page's block children to Markdown
+  with **notion-to-md** (v3.1.9) and serves it as a new `AdminNotice.body` field (`content` stays
+  the property-based preview/fallback). notion-to-md only calls `blocks.children.list`, so it is
+  wired to a 15-line adapter over the shared axios instance — block requests reuse auth, timeout,
+  the 340ms pacing slot and the 429 backoff. Failure degrades per notice: **429 rethrows** (shared
+  backoff pauses all Notion traffic), any other error logs a warning and leaves `body` empty.
+  Bounds: `NOTION_BODY_MAX_BLOCK_PAGES = 2` (200 blocks/page) and
+  `NOTION_BODY_FETCH_MAX_NOTICES = 50` per refresh (both documented in the constants file).
+  `parseChildPages: false` + `convertImagesToBase64: false` (no extra fetches, no node-fetch).
+  `@notionhq/client` is NOT installed — its type import inside notion-to-md's d.ts is skipped by
+  `skipLibCheck: true`; the adapter object is passed directly.
+- **Frontend**: detail page (`/announcements/[id]`) lexes `notice.body` server-side with **marked**
+  v18 (`[...marked.lexer(md)]` — the spread strips TokensList's extra `links` property for devalue)
+  and renders tokens through `src/lib/components/MarkdownBody.svelte` — a recursive token renderer
+  with **zero `{@html}`**: Svelte escapes every text node, `javascript:`/`data:` hrefs render as
+  plain text, raw HTML tokens show as literal text. It has **no root wrapper** (a `<div>` inside
+  `<p>` recursion is invalid SSR nesting — host provides `.lc-md`); Tailwind preflight strips list
+  markers, so `list-style: disc/decimal` must be restored (found only by screenshotting the page).
+  Headings shift +1 (`#`→`h2`) because the notice title owns `h1`.
+- **Fallback chain** on the detail page: markdown body → property `content` (whitespace-pre-line,
+  testid `admin-notice-content` unchanged) → "등록된 본문이 없습니다." List preview keeps using
+  `content` only (never raw markdown).
+- **Verification**: backend **882/882** (+3 specs: block→md conversion, non-429 failure fallback,
+  429 backoff from block fetch; existing specs gained `mockGet` + `body: ''`), lint/tsc/build green;
+  live integration against real Notion returned `body: "# 마크다운 테스트\n\n- asdf…"` for the test
+  row and `body: ""` + property content for the other published row. Frontend lint/check (0/0),
+  build green; **254 passed / 0 failed** full mock e2e (+1 new: h3/strong/ul/table/blockquote, no
+  `##`/`| --- |` leaks); screenshots of `/announcements/mock-announcement-2` verified light + dark.
+  New deps: backend `notion-to-md`, frontend `marked` (lockfiles updated — include in the release
+  commit).
+
 ## Release Notes (when this ships)
 
 - Submodule versions (`backend/package.json`, `frontend/package.json`) must be bumped per AGENTS.md
