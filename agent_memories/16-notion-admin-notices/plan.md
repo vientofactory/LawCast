@@ -267,6 +267,33 @@ Retry-After backoff, SWR cache, block→markdown bodies) and all 882 specs + lin
   would allow typed SDK endpoint methods but changes response shapes and needs the data_source_id
   — a separate, contract-changing pass.
 
+## Notice creation date pass (2026-10-07)
+
+Goal: display a notice date using **only data Notion already returns**.
+
+- **Feasibility finding (live-verified)**: every database query response carries top-level
+  `created_time` / `last_edited_time` on each page object (Notion has no field selection), and
+  the configured database has **no date-typed property** — so `created_time` is the only
+  zero-setup date source. `last_edited_time` is rejected as a "notice date": it moves on every
+  edit. `created_time` is immutable but equals **row creation**, not the publication click.
+- **Implementation**: `AdminNotice.createdAt: string | null` (backend + frontend), mapped in
+  `mapPage` from `page.created_time`; missing/invalid field -> `null` -> the UI renders no date
+  (never a guessed one). No extra Notion request; pacing/cache contract unchanged.
+- **UI**: announcements list row and detail page render KST `YYYY-MM-DD` via
+  `formatDateOnlyKST`, with the raw ISO instant preserved on `<time datetime>`.
+  Testids: `admin-notices-list-date-{id}`, `admin-notice-date`.
+- **PITFALL**: `npx playwright test` from `frontend/` **must** pass
+  `--config playwright-configs/playwright.config.ts` — without it Playwright finds no config,
+  `baseURL` is undefined and every `page.goto('/...')` fails with
+  `Cannot navigate to invalid URL` (looks like a product bug, is not).
+- **Verification**: backend lint/tsc/build green, **882/882 specs**; frontend lint +
+  `svelte-check` 0/0; announcements e2e 5/5 (new date assertions on text + `datetime` attr),
+  full mock e2e **254 passed / 0 failed**; live service run returned parseable `createdAt`
+  for both published notices; SSR HTML inspected for the `<time>` markup.
+- Shipped as **backend 1.8.0** / **frontend 1.13.0** (see deployment steps below).
+- Follow-up candidate (not done): adding a Notion `게시일` date property and serving
+  `게시일 ?? created_time` would make the date mean "published on" instead of "row created".
+
 ## Release Notes (when this ships)
 
 - Submodule versions (`backend/package.json`, `frontend/package.json`) must be bumped per AGENTS.md
