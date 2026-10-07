@@ -160,8 +160,9 @@ on three levels:- **Single-flight**: concurrent cache misses and background reva
   Bounds: `NOTION_BODY_MAX_BLOCK_PAGES = 2` (200 blocks/page) and
   `NOTION_BODY_FETCH_MAX_NOTICES = 50` per refresh (both documented in the constants file).
   `parseChildPages: false` + `convertImagesToBase64: false` (no extra fetches, no node-fetch).
-  `@notionhq/client` is NOT installed — its type import inside notion-to-md's d.ts is skipped by
-  `skipLibCheck: true`; the adapter object is passed directly.
+  At the time of this pass `@notionhq/client` was NOT installed — its type import inside
+  notion-to-md's d.ts was skipped by `skipLibCheck: true` and the adapter object was passed
+  directly. **Superseded by the official SDK adoption below** (adapter removed).
 - **Frontend**: detail page (`/announcements/[id]`) lexes `notice.body` server-side with **marked**
   v18 (`[...marked.lexer(md)]` — the spread strips TokensList's extra `links` property for devalue)
   and renders tokens through `src/lib/components/MarkdownBody.svelte` — a recursive token renderer
@@ -181,6 +182,90 @@ on three levels:- **Single-flight**: concurrent cache misses and background reva
   `##`/`| --- |` leaks); screenshots of `/announcements/mock-announcement-2` verified light + dark.
   New deps: backend `notion-to-md`, frontend `marked` (lockfiles updated — include in the release
   commit).
+
+## Official Notion SDK adoption pass (2026-10-07)
+
+Mission: replace the hand-rolled axios calls in `admin-notices.service.ts` with Notion's official
+server library if one fits, keeping the exact contract (340ms pacing, single-flight, 429
+Retry-After backoff, SWR cache, block→markdown bodies) and all 882 specs + lint/tsc/build green.
+
+### Research verdict — official library exists and fits
+
+- **The official JS/TS SDK is `@notionhq/client`** (repo `makenotion/notion-sdk-js`, npm latest
+  **5.27.0**, published 2026-09-29, zero runtime deps, Node >= 18).
+  `@notionhq/notion-sdk` from the mission example **does not exist** (npm registry 404).
+  Sources: https://github.com/makenotion/notion-sdk-js ·
+  https://www.npmjs.com/package/@notionhq/client ·
+  https://developers.notion.com/docs/getting-started · https://developers.notion.com/reference
+- **`ClientOptions` covers every hook the contract needs**: `auth`, `baseUrl`, `notionVersion`,
+  `timeoutMs`, `retry: false`, `logLevel`, and **custom `fetch`** — the pacing choke point.
+- **CRITICAL — pin the API version**: the SDK's default is `notionVersion: "2025-09-03"`; we pass
+  `NOTION_API_VERSION` (`2022-06-28`) so response shapes (`mapPage`) and the classic
+  `/v1/databases/{id}/query` endpoint stay byte-identical to the axios behavior.
+- **CRITICAL — `retry: false` is mandatory**: v5 retries 429/529 twice by default (1s→jitter,
+  Retry-After aware). Retries would issue requests outside the pacing timeline and swallow the
+  first 429 so `applyRateLimitBackoff` never sees it. With retries off, the first 429 surfaces as
+  `APIResponseError` (status + headers) — the service owns the pause, same as before.
+- **v5 has no typed `databases.query`** (removed in favor of `dataSources.query`, which needs a
+  data_source_id and the 2025-09-03 API). The classic query therefore goes through the SDK's
+  public generic `client.request({ path: 'databases/${id}/query', method: 'post', body })` — the
+  SDK prefixes `${baseUrl}/v1/` itself, so the path must NOT carry `/v1`.
+- Error guards from the SDK: `isHTTPResponseError` (index export) for status/headers, and
+  `getResponseHeader` via subpath `@notionhq/client/build/src/errors` (exported from that module
+  but not re-exported by the package index; no `exports` map, so the subpath resolves — notion-to-md
+  already imports `@notionhq/client/build/src/api-endpoints` the same way).
+- `logLevel: LogLevel.ERROR`: the SDK logs `request fail` at WARN on every failed request; the
+  service already logs one warn per fetch flight, so the default level would double-log.
+
+### Refactor shape (backend/src/modules/admin-notices/)
+
+- axios removed from the service; one `Client` instance is shared by the database query **and**
+  notion-to-md (`new NotionToMarkdown({ notionClient: this.notion })`). The old 15-line adapter is
+  deleted — the real `Client` now satisfies notion-to-md's typed `NotionToMarkdownOptions` (the
+  previous adapter only compiled because the unresolved import degraded `Client` to `any`).
+- **Pacing moved into a single fetch hook**:
+  `fetch: async (url, init) => { await this.waitForRequestSlot(); return globalThis.fetch(url, init); }`.
+  Every request the SDK sends — query pagination, every block-children fetch notion-to-md triggers
+  (including table/callout children) — reserves one slot on the shared timeline. The explicit
+  `waitForRequestSlot()` calls in `fetchPublishedNotices` and the adapter were removed.
+- 429 detection/Retry-After/describeError now use `isHTTPResponseError` / `APIResponseError`
+  instead of `axios.isAxiosError`. SWR, single-flight, sort, mapping, bounds unchanged.
+- New dep: `@notionhq/client@^5.27.0` (package.json + package-lock.json).
+
+### Spec seam change (admin-notices.service.spec.ts, still 20 tests, 1:1)
+
+- `jest.mock('@notionhq/client')` factory wraps the **real** class (`class ClientSpy extends
+  actual.Client`) and records constructor options — test 1 asserts auth/baseUrl/notionVersion/
+  timeoutMs/`retry: false` directly (1:1 with the old `axios.create` config test).
+- Transport faked at **`globalThis.fetch`** (descriptor saved/restored per test): routes
+  `/databases/` → `mockQuery`, `/v1/blocks/` → `mockBlocks`, which resolve real `Response`
+  objects, so the SDK's own URL/header assembly, 429 conversion and Retry-After parsing are the
+  code under test. Wire assertions moved into existing tests (exact URL, `authorization`,
+  `Notion-Version`, `content-type`, JSON body).
+- **PITFALL (fixed): a `Response` body can only be read once** — `mockResolvedValue(response)`
+  reuses one instance, so the second routed call died with `Body is unusable: Body has already
+  been read` and silently degraded bodies to `''`. Defaults/overrides that serve multiple calls
+  must be `mockImplementation(() => freshResponse(...))`; `.mockResolvedValueOnce` queues are safe.
+- 429s are now injected as a real 429 `Response` (rate_limited JSON + optional `retry-after`
+  header) — the SDK converts it, and **one 429 produces exactly one fetch call**, which
+  behaviorally proves `retry: false`.
+- Pagination note: `start_cursor` travels in the request **body** for the database query (Notion
+  POST contract), not the query string — the second wire call keeps the same URL.
+
+### Verification (2026-10-07)
+
+- `npm run lint` / `npx tsc --noEmit` / `npm run build` green; prettier --check clean on both
+  changed files; **882/882 specs, 68 suites** (`npm test`), 23 admin-notices specs (20 service +
+  3 controller) 1:1 with the pre-refactor count.
+- **Live integration (real Notion API through the official SDK)**: query
+  `POST https://api.notion.com/v1/databases/{id}/query` → 200 with pinned `Notion-Version`,
+  measured wire gaps **342 / 340 / 339ms** (>= 340ms pacing contract), 5 requests / 2455ms,
+  2 published notices with markdown bodies (287 / 158 chars) — e.g. "업데이트, 점검 안내를 위해…"
+  with release links rendered from block content.
+- Changes left uncommitted (no release/commit was requested for this pass).
+- Follow-up candidate (not done): migrating to `dataSources.query` + a newer `Notion-Version`
+  would allow typed SDK endpoint methods but changes response shapes and needs the data_source_id
+  — a separate, contract-changing pass.
 
 ## Release Notes (when this ships)
 
