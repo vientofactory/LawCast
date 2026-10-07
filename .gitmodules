@@ -7,3 +7,6 @@
 [submodule "semantic-search"]
 	path = semantic-search
 	url = https://github.com/vientofactory/semantic-search.git
+[submodule "embedding-map"]
+	path = embedding-map
+	url = https://github.com/vientofactory/embedding-map.git

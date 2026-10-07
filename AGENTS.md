@@ -305,6 +305,11 @@ async myMethod(): Promise<Result> {
 
 When releasing changes across submodules, agents MUST follow these steps **in exact order**. Skipping steps causes broken deployments.
 
+**Deployment triggers — what actually ships each piece**
+- **Frontend: automatic via Cloudflare Pages on `main` push.** A push event to the frontend repository's `main` branch (the Step 3 squash-merge of the release PR) automatically triggers a **Cloudflare Pages** build and deploy. There is no manual frontend deploy step — no deploy workflow and no Docker Compose service for the frontend — so finishing Steps 0–5 *is* the frontend deployment: the merge to `main` itself is the deploy trigger.
+- **Backend / semantic-search: root repository CI.** The Step 6 submodule-pointer push to the root `main` runs the `deploy-backend` / `deploy-semantic-search` workflow jobs, which rebuild the production containers.
+- **Ordering warning**: because the frontend deploys the moment its `main` is pushed, any backend change a frontend release depends on must already be live in production (backend released, root pointer pushed, deploy job green) *before* merging the frontend PR.
+
 **Step 0 — Lint, format, typecheck, and lockfile sync (BEFORE any commit)**
 Before creating a commit or bumping versions, agents MUST run all quality checks and fix any issues:
 ```bash
@@ -415,7 +420,7 @@ cd ../semantic-search && git log --oneline -1 && git branch --show-current
 ### Docker
 
 - Build: `docker compose up -d --build`
-- Default ports: Frontend 3002, Backend 3001, Redis 6399, Ollama 11434
+- Default ports: Backend 3001, Redis 6399, Ollama 11434 (the frontend has no Compose service — it deploys via Cloudflare Pages on `main` push, see **Deployment triggers** above)
 
 ### Important Patterns to Preserve
 

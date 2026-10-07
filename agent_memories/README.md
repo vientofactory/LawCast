@@ -9,7 +9,8 @@ agent_memories/
 ├── README.md                                      ← 이 파일 (인덱스)
 ├── repo/                                          ← 프로젝트 전반 공유 노트 (에이전트 무관)
 │   ├── backend-testing-notes.md                   ← 백엔드 테스트 주의사항 및 버그 패턴
-│   └── frontend-notes.md                          ← 프론트엔드 개발/테스트 주의사항
+│   ├── frontend-notes.md                          ← 프론트엔드 개발/테스트 주의사항
+│   └── code-comment-convention-notes.md           ← 코드/주석 컨벤션 적합성 심사 기준 및 판단 기록
 ├── 01-project-exploration-and-discussion-plan/    ← 탐색 및 토론 시스템 계획
 │   ├── lawcast-backend-exploration.md             ← 백엔드 아키텍처 탐색 결과
 │   ├── lawcast-frontend-exploration.md            ← 프론트엔드 아키텍처 탐색 결과
@@ -42,8 +43,12 @@ agent_memories/
 ├── 12-cron-env-compose-override/                  ← 크론 환경변수 미주입 프로덕션 버그
 │   └── bug-investigation-findings.md              ← compose `environment`가 `env_file`을 덮어쓰던 버그와 패치└── 13-sidecar-concurrency-audit/              ← 시맨틱 검색 사이드카 동시성 감사
     └── sidecar-concurrency-analysis-and-tests.md  ← 사이드카 구조 분석·블로킹 구간 감사·동시성 테스트 실측
-└── 14-relevance-tier-search/                  ← 시맨틱 검색 관련도 계층화
-    └── plan.md                                    ← 2임계값 3계층 설계, 키워드 폴백 제거 계약, $state.raw 함정
+├── 14-relevance-tier-search/                  ← 시맨틱 검색 관련도 계층화
+│   └── plan.md                                    ← 2임계값 3계층 설계, 키워드 폴백 제거 계약, $state.raw 함정
+├── 15-citizen-ux-feedback/                      ← 시민 접근성 UI/UX 피드백
+│   └── citizen-ux-feedback.md                     ← "일반 시민의 쉬운 법률안 접근" 목표 대비 UI/UX 전수 분석
+└── 16-notion-admin-notices/                     ← Notion 기반 관리자 공지 게시판
+    └── plan.md                                   ← Notion 필드/공개 필터·정렬·캐시·오류 계약, 검증 증거
 ```
 
 ## 폴더별 상세 내용
@@ -54,6 +59,7 @@ agent_memories/
 
 - **backend-testing-notes.md**: 백엔드 테스트 작성/실행 시 주의사항. CacheService mock 패턴, Redis 키 관리, diffchain 해시 규칙, immutable snapshot 계약, NSM/PAL 라우팅, 프로덕션 버그 패턴(7건 이상의 발견/수정 기록 포함).
 - **frontend-notes.md**: 프론트엔드 개발 주의사항. Svelte runes 사용법, Playwright e2e 테스트 패턴, 모의 데이터 처리, data-testid 사용법.
+- **code-comment-convention-notes.md**: 코드/주석 컨벤션 적합성 심사(2026-10-07) 기록. 영문 주석 전환 범위, 한국어 식별자/데이터 인용은 허용이라는 판단 기준, 이모지 규칙의 제품 문자열 예외, `lc-` 접두사 개명 내역, `.util.ts` vs `.utils.ts` 네이밍 충돌(미해결), 컨벤션 리팩터 검증 게이트.
 
 ### `01-project-exploration-and-discussion-plan/` — 초기 탐색 및 토론 시스템 계획
 
@@ -113,6 +119,14 @@ agent_memories/
 ### `14-relevance-tier-search/` — 시맨틱 검색 관련도 계층화
 
 - **plan.md**: 검색 결과를 코사인 유사도 2임계값(`LAWCAST_SEMANTIC_MIN_SIMILARITY` 0.25 / `LAWCAST_SEMANTIC_CLEAR_SIMILARITY` 0.45)으로 명확/약한/무관 3계층으로 분리한 크로스 스택 설계 — 엔진 `search_tiered` → 사이드카 `weakResults` → 백엔드 통과 → 프런트 빈 결과 화면의 reveal 버튼. **CRITICAL**: 무결과 키워드 폴백 제거(무관 쿼리는 반드시 빈 결과), 크로스 언어 계약(`semantic-search.contract.spec.ts`) 양쪽 동시 수정 규칙, Svelte 5 `$state` 프록시 identity 함정(`$state.raw` 필요), 로더 단순화(f4b2ee2) 이후 깨진 로딩 e2e 3건(사전 존재) 기록.
+
+### `15-citizen-ux-feedback/` — 시민 접근성 UI/UX 피드백
+
+- **citizen-ux-feedback.md**: 핵심 목표 "일반 시민의 쉬운 법률안 접근" 대비 프론트엔드 UI/UX 전수 분석(홈/목록/상세/의미 검색/알림 여정 + 코드 근거 + 모의 실행 화면 확인). **CRITICAL 3대 결론**: ① 참여 동선 부재(의견 제출 CTA 없음) ② D-day/마감 기한 부재 ③ 전문용어 무설명 + "증거 수집 플랫폼" 프레이밍. 문제점 P1~P16을 근거 라인과 함께 기록하고 우선순위별 개선 제안(P0~P3) 정리. 2차 패스에서 의미 검색/웹훅/토론 화면 실탐색 + WCAG 대비율 실측(라이트 3건·다크 1건 AA 미충족) 반영.
+
+### `16-notion-admin-notices/` — Notion 관리자 공지 게시판
+
+- **plan.md**: Notion 데이터베이스 필드 계약(`제목`/`공개 여부`/`상태`/`노출 순서`/`내용`), `GET /api/announcements` 응답/설정(`NOTION_API_KEY`, `NOTION_DATABASE_ID`, `NOTION_API_URL`, `NOTION_TIMEOUT`, `NOTION_CACHE_TTL_MS`, `NOTION_MIN_REQUEST_INTERVAL_MS`) 계약, 60초(기본) 캐시·스냅샷 서빙·503 실패 계약, Notion 레이트리밋 방어(single-flight·340ms 페이싱·429 Retry-After 백오프, 스텁 실측 증거), `긴급` 체크박스 → 사이트 전체 긴급 배너(헤더 하단) 계약, 프론트 메인 최상단 고정 공지 배선, CRUD는 Notion 전용(단일 GET 라우트 스펙으로 방어) 기록 + 검증 증거.
 
 ## 에이전트 메모리 기록 규칙
 
