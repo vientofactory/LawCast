@@ -342,6 +342,53 @@ backend on every page view.
 - Follow-up candidate (not done): trim the single notice to `{id, title, urgent}` on the top
   endpoint — today the one embedded notice still carries `content`/`body` markdown.
 
+## Toggle rendering pass (2026-10-08)
+
+**Problem**: Notion toggle blocks are converted by notion-to-md into raw
+`<details>\n<summary>...</summary>...\n</details>` HTML (`md.toggle` in
+`backend/node_modules/notion-to-md/build/utils/md.js`), but the frontend lexer
+(`marked.lexer` in `src/routes/announcements/[id]/+page.server.ts`) split that markup
+into `html` tokens and `MarkdownBody.svelte` prints raw HTML as literal text (by
+design — never executed). Result: notice readers saw the literal tags
+`<details>` / `<summary>` instead of a collapsible toggle.
+
+**Fix (frontend-only, no backend/API contract change)**:
+
+- New server-side lexer `frontend/src/lib/server/notice-body.ts` —
+  `lexNoticeBody(markdown)` wraps `marked.lexer` and lifts balanced
+  `<details>/<summary>` blocks into a synthetic `notion-toggle` token
+  (`NoticeToggleToken extends Tokens.Generic`: `summary`, `summaryTokens`,
+  child `tokens`). Handles: **nested toggles** (recursive), **code fences**
+  (a `<details>` line inside ``` / ~~~ stays literal), **malformed/unbalanced**
+  markup (falls back to the old literal-HTML rendering instead of guessing),
+  CommonMark 3-space indent limit on block tags.
+- `MarkdownBody.svelte` renders `notion-toggle` as a native
+  `<details class="lc-md-toggle">` + `<summary>` (`data-testid="notice-toggle"`)
+  — keyboard-operable disclosure, rotating caret (`::before` triangle,
+  `summary::-webkit-details-marker` hidden), `:focus-visible` outline,
+  `--lc-*` theme tokens. Summary lexed as **inline** tokens (phrasing content
+  only) with a plain-text fallback for odd titles (`#`/`-` prefixed).
+- `+page.server.ts` loader now calls `lexNoticeBody` (plain array, no
+  `TokensList.links` — devalue-safe, same as the old spread).
+- `+page.svelte` meta description fallback strips HTML tags first
+  (`.replace(/<[^>]+>/g, '')`) so toggle markup never leaks into
+  `meta[name=description]` / `og:description`.
+- Mock fixture (`diffchain-ui-mock.ts`, announcement 2) gained a
+  notion-to-md-shaped `<details>` block; e2e `announcements.spec.ts` gained
+  `renders a Notion toggle as a clickable disclosure` (asserts no literal
+  `<details>`/`<summary>` text, collapsed -> click `summary` -> expanded ->
+  click again -> collapsed).
+
+**PITFALL**: adding a second `<strong>` to the fixture body made the existing
+`body.locator('strong')` assertion a strict-mode violation — scoped it to
+`body.locator('p strong').first()`.
+
+**Verification (2026-10-08)**: `svelte-check` 0/0, ESLint clean, Prettier clean
+on all touched files (`package.json` Prettier warn is pre-existing at HEAD);
+Playwright mock mode: announcements + home **28/28 passed** including the new
+toggle test; live preview click verified (DisclosureTriangle `expanded`, caret
+rotated, inline `<strong>` inside toggle body, zero console errors).
+
 ## Release Notes (when this ships)
 
 - Submodule versions (`backend/package.json`, `frontend/package.json`) must be bumped per AGENTS.md
