@@ -47,8 +47,12 @@ agent_memories/
 │   └── plan.md                                    ← 2임계값 3계층 설계, 키워드 폴백 제거 계약, $state.raw 함정
 ├── 15-citizen-ux-feedback/                      ← 시민 접근성 UI/UX 피드백
 │   └── citizen-ux-feedback.md                     ← "일반 시민의 쉬운 법률안 접근" 목표 대비 UI/UX 전수 분석
-└── 16-notion-admin-notices/                     ← Notion 기반 관리자 공지 게시판
-    └── plan.md                                   ← Notion 필드/공개 필터·정렬·캐시·오류 계약, 검증 증거
+├── 16-notion-admin-notices/                     ← Notion 기반 관리자 공지 게시판
+│   └── plan.md                                   ← Notion 필드/공개 필터·정렬·캐시·오류 계약, 검증 증거
+├── 17-ssr-payload-minimization/                  ← SSR 최소 페이로드 감사·리팩터링
+│   └── ssr-minimal-payload-audit.md              ← 로드↔사용 전수 비교 표, 카드 뷰 트림·실측 증거
+└── 18-node-build-stale-artifact/                 ← 프로덕션 `node build/index.js` 누락 원인 분석
+    └── bug-investigation-findings.md             ← 어답터 전환 후 build/ 미갱신 + PUBLIC_* 런타임 env 버그와 패치
 ```
 
 ## 폴더별 상세 내용
@@ -126,7 +130,15 @@ agent_memories/
 
 ### `16-notion-admin-notices/` — Notion 관리자 공지 게시판
 
-- **plan.md**: Notion 데이터베이스 필드 계약(`제목`/`공개 여부`/`상태`/`노출 순서`/`내용`), `GET /api/announcements` 응답/설정(`NOTION_API_KEY`, `NOTION_DATABASE_ID`, `NOTION_API_URL`, `NOTION_TIMEOUT`, `NOTION_CACHE_TTL_MS`, `NOTION_MIN_REQUEST_INTERVAL_MS`) 계약, 60초(기본) 캐시·스냅샷 서빙·503 실패 계약, Notion 레이트리밋 방어(single-flight·340ms 페이싱·429 Retry-After 백오프, 스텁 실측 증거), `긴급` 체크박스 → 사이트 전체 긴급 배너(헤더 하단) 계약, 프론트 메인 최상단 고정 공지 배선, CRUD는 Notion 전용(단일 GET 라우트 스펙으로 방어) 기록 + 검증 증거.
+- **plan.md**: Notion 데이터베이스 필드 계약(`제목`/`공개 여부`/`상태`/`노출 순서`/`내용`), `GET /api/announcements` 응답/설정(`NOTION_API_KEY`, `NOTION_DATABASE_ID`, `NOTION_API_URL`, `NOTION_TIMEOUT`, `NOTION_CACHE_TTL_MS`, `NOTION_MIN_REQUEST_INTERVAL_MS`) 계약, 60초(기본) 캐시·스냅샷 서빙·503 실패 계약, Notion 레이트리밋 방어(single-flight·340ms 페이싱·429 Retry-After 백오프, 스텁 실측 증거), `긴급` 체크박스 → 사이트 전체 긴급 배너(헤더 하단) 계약, 프론트 메인 최상단 고정 공지 배선, CRUD는 Notion 전용(  단일 GET 라우트 스펙으로 방어) 기록 + 검증 증거.
+
+### `17-ssr-payload-minimization/` — SSR 최소 페이로드 감사·리팩터링
+
+- **ssr-minimal-payload-audit.md**: 15개 서버 로더 전수에 대한 "로드된 키 ↔ 실제 사용 필드" 비교대조 표와 카드 뷰(`NoticeCard`/`DiscussionThreadCard`/`NoticeChangeCard`/`AdminNoticeCard`) 트림 기록. `lib/server/ssr-cards.ts` 매퍼가 필드 목록의 단일 소유처, `/api/announcements/top` 응답을 `id`·`title` 캡-1 뷰로 축소, 홈 stats 4,318→128B·변경목록 6,142→2,018B 실측치. **CRITICAL**: 템플릿 grep이 컴포넌트 헬퍼 함수의 필드 접근을 놓침(`isSourceDeleted`→`lifecycleStatus`), 로컬 `data:` 어노테이션 동기화 규칙, 홈/상태 각각 별도 stats 슬라이스 원칙 + 검증 증거(백엔드 885, e2e 255/0).
+
+### `18-node-build-stale-artifact/` — 프로덕션 `node build/index.js` 누락 원인 분석
+
+- **bug-investigation-findings.md**: dev에선 정상·프로덕션에선 대량 누락(``/discussions`` 404 등)의 두 가지 원인 — ① **CRITICAL** 2026-08-15 어답터 전환(43471c6, adapter-node → adapter-cloudflare) 후 `npm run build`가 `.svelte-kit/cloudflare`만 갱신해 `build/`가 8월 14일 아티팩트로 얼어버림(Dockerfile `COPY /app/build`도 함께 깨짐), ② `$env/dynamic/public`(`PUBLIC_*`)이 adapter-node에선 `process.env` 런타임 전용이라 `.env`를 안 읽으면 디스코드 섹션·시맨틱 검색 게이트가 사라짐. 패치: `SVELTE_ADAPTER=node` 듀얼 어답터 + `build:node`/`start:node`(`--env-file-if-exists`) 스크립트 + Dockerfile `ENV`·CMD 수정. **검증**: 10개 라우트 전부 200, 홈 텍스트 prod==dev 1,427자 0 word diff, lint/check 통과. 함정: 순수 `npm run build`는 여전히 cloudflare 출력(=build/ 미갱신), dev/prod HTML 바이트 비교 금지(dev는 CSS 116KB 인라인), `/api/announcements/top` 배포 순서(백엔드 먼저).
 
 ## 에이전트 메모리 기록 규칙
 

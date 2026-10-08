@@ -294,6 +294,54 @@ Goal: display a notice date using **only data Notion already returns**.
 - Follow-up candidate (not done): adding a Notion `게시일` date property and serving
   `게시일 ?? created_time` would make the date mean "published on" instead of "row created".
 
+## Single-notice SSR payload pass (2026-10-08)
+
+Goal: stop embedding the **full notice list in global SSR data** — `+layout.server.ts` loaded
+`adminNotices` on every route (urgent banner) and home `+page.server.ts` loaded it again (pinned
+chip), so unrelated pages serialized the whole list (twice on home) and SSR re-fetched it from the
+backend on every page view.
+
+- **Backend route (new, still read-only)**: `GET /api/announcements/top` serves ONE notice from the
+  same SWR-cached `getPublishedNotices()` (zero extra Notion calls): default = 노출순서 1위
+  (`items[0]`), `?urgent=true` = 긴급 공지 중 노출순서 1위. Response
+  `{ success, data: { item: { id, title } | null } }` (null when no match; the cap-1 **card view**
+  — content/body were dropped in the 2026-10-08 SSR payload pass, see
+  `agent_memories/17-ssr-payload-minimization/`). Selection semantics of
+  both UI spots are preserved exactly (chip = top row; banner = first urgent row, per README).
+  Controller spec grew 3 -> 5 specs (top pick, urgent pick, null cases) and the route-contract
+  spec now asserts **two GET routes / no writes** — update it deliberately on every route addition.
+- **Frontend wiring**: `getTopAdminNotice({urgent})` (api client) + `loadTopAdminNotice()`
+  (`lib/server/announcements.ts`, mock branch mirrors the backend selection) -> layout loads
+  `urgentNotice` (1 notice, `.catch(() => null)`), home loads `pinnedNotice` (1 notice);
+  `Header.svelte` reads `page.data.urgentNotice`, home chip reads `data.pinnedNotice`,
+  `+layout.svelte` fallback key renamed. `adminNotices` key is gone from the frontend entirely;
+  `/announcements` + `/announcements/[id]` keep `loadAdminNoticeList` (full list by design).
+- **Measurement (mock fixtures, 2 notices)**: `/` 186,130 -> 185,032 B with embedded notice
+  objects 4 -> 2 (1,748 -> 672 B); `/status` 166,129 -> 165,575 B, objs 2 -> 1; `/discussions`
+  144,479 -> 143,930 B, objs 2 -> 1; `/announcements` keeps the full list (3 objs = 1 layout + 2
+  board). Non-announcement pages no longer contain the second fixture's title at all.
+- **Measurement (real Notion, 2 rows, none urgent)**: `/status` embeds **0** notice bytes (was the
+  full list), `/` embeds only the pinned row (672 B), `/announcements` keeps both (1,101 B).
+  Live route check: `GET /api/announcements/top` -> 200 single item, `?urgent=true` -> 200
+  `{item: null}`, list unchanged.
+- **PITFALL (pre-existing, fixed here)**: at the `frontend-v1.13.0` tag the committed e2e asserted
+  `toHaveText('2026-09-01')` on `admin-notice-date` while the committed detail markup renders
+  `게시일: 2026-09-01` — the announcements suite was already RED at the release commit (the label
+  landed after the last e2e run). Assertion corrected to the shipped contract, not weakened.
+- **PITFALL**: a controller fixture of `{}` as `Request` has no `query`, so `req.query.urgent`
+  throws — model Express in fixtures (`{ query: {} } as Request`).
+- **New e2e guard**: `announcements.spec.ts::embeds the full list only on announcements routes`
+  fetches raw SSR HTML and asserts `adminNotices` absent + non-urgent fixture title absent on
+  `/` and `/status`, and the full list present on `/announcements`.
+- **Verification**: backend lint/tsc/build green, **885/885 specs / 68 suites** (+3 controller
+  specs); frontend lint + `svelte-check` 0/0; announcements e2e 6/6, full mock e2e
+  **255 passed / 45 skipped / 0 failed** (with `--config playwright-configs/playwright.config.ts`);
+  real-mode integration (built backend on 3001 + `DIFFCHAIN_UI_MOCK=0` dev server on 5195) passed
+  all 7 payload-shape checks against the live Notion rows.
+- Changes left uncommitted (no commit/release requested for this pass).
+- Follow-up candidate (not done): trim the single notice to `{id, title, urgent}` on the top
+  endpoint — today the one embedded notice still carries `content`/`body` markdown.
+
 ## Release Notes (when this ships)
 
 - Submodule versions (`backend/package.json`, `frontend/package.json`) must be bumped per AGENTS.md
