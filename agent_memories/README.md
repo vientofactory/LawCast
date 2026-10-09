@@ -51,8 +51,10 @@ agent_memories/
 │   └── plan.md                                   ← Notion 필드/공개 필터·정렬·캐시·오류 계약, 검증 증거
 ├── 17-ssr-payload-minimization/                  ← SSR 최소 페이로드 감사·리팩터링
 │   └── ssr-minimal-payload-audit.md              ← 로드↔사용 전수 비교 표, 카드 뷰 트림·실측 증거
-└── 18-node-build-stale-artifact/                 ← 프로덕션 `node build/index.js` 누락 원인 분석
-    └── bug-investigation-findings.md             ← 어답터 전환 후 build/ 미갱신 + PUBLIC_* 런타임 env 버그와 패치
+├── 18-node-build-stale-artifact/                 ← 프로덕션 `node build/index.js` 누락 원인 분석
+│   └── bug-investigation-findings.md             ← 어답터 전환 후 build/ 미갱신 + PUBLIC_* 런타임 env 버그와 패치
+└── 19-change-notification-exclusion/             ← diffchain 백필 이벤트 알림 제외 계획
+    └── plan.md                                   ← 소스 8종 알림 후보 분류(Tier A/B/C), dispatch 게이트 설계, isDoneSync 폭주 가드
 ```
 
 ## 폴더별 상세 내용
@@ -139,6 +141,10 @@ agent_memories/
 ### `18-node-build-stale-artifact/` — 프로덕션 `node build/index.js` 누락 원인 분석
 
 - **bug-investigation-findings.md**: dev에선 정상·프로덕션에선 대량 누락(``/discussions`` 404 등)의 두 가지 원인 — ① **CRITICAL** 2026-08-15 어답터 전환(43471c6, adapter-node → adapter-cloudflare) 후 `npm run build`가 `.svelte-kit/cloudflare`만 갱신해 `build/`가 8월 14일 아티팩트로 얼어버림(Dockerfile `COPY /app/build`도 함께 깨짐), ② `$env/dynamic/public`(`PUBLIC_*`)이 adapter-node에선 `process.env` 런타임 전용이라 `.env`를 안 읽으면 디스코드 섹션·시맨틱 검색 게이트가 사라짐. 패치: `SVELTE_ADAPTER=node` 듀얼 어답터 + `build:node`/`start:node`(`--env-file-if-exists`) 스크립트 + Dockerfile `ENV`·CMD 수정. **검증**: 10개 라우트 전부 200, 홈 텍스트 prod==dev 1,427자 0 word diff, lint/check 통과. 함정: 순수 `npm run build`는 여전히 cloudflare 출력(=build/ 미갱신), dev/prod HTML 바이트 비교 금지(dev는 CSS 116KB 인라인), `/api/announcements/top` 배포 순서(백엔드 먼저).
+
+### `19-change-notification-exclusion/` — 백필 이벤트 알림 제외 계획
+
+- **plan.md**: diffchain 변경 이벤트 8개 소스에 대한 **알림 제외 후보 분류와 제외 로직 설계의 단일 소유처**. 측정 기반 근거(`lawcast.db` 이벤트 분포: isDoneSync 19,424 / updateNsmHtmlAndDetail 203 / upsert isDone 플립 0건), Tier A 제외 대상(`archive:updateNsmHtmlAndDetail`, `archive:likmsProposalReason` — 백필 파이프라인 + 재시도 경로의 이중 알림 증거), Tier B 보류(isDoneSync 마감 알림 전채널 ⇒ 전면 제외 금지, 2026-08-10 하루 17,224건 폭주 ⇒ 런 단위 가드), **CRITICAL**: 제외는 `dispatchChangeNotification` 게이트에서만 — 이벤트 append/요약 재생성/체인 감사엔 절대 손대지 않는다.
 
 ## 에이전트 메모리 기록 규칙
 
