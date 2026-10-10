@@ -41,7 +41,8 @@ agent_memories/
 ├── 11-api-version-fallback-stamp/                 ← /api/version 0.0.1 프로덕션 버그 원인 분석
 │   └── bug-investigation-findings.md              ← compose 하드코딩 기본값(0.0.1)이 버전을 덮어쓰던 버그와 패치
 ├── 12-cron-env-compose-override/                  ← 크론 환경변수 미주입 프로덕션 버그
-│   └── bug-investigation-findings.md              ← compose `environment`가 `env_file`을 덮어쓰던 버그와 패치└── 13-sidecar-concurrency-audit/              ← 시맨틱 검색 사이드카 동시성 감사
+│   └── bug-investigation-findings.md              ← compose `environment`가 `env_file`을 덮어쓰던 버그와 패치
+├── 13-sidecar-concurrency-audit/              ← 시맨틱 검색 사이드카 동시성 감사
     └── sidecar-concurrency-analysis-and-tests.md  ← 사이드카 구조 분석·블로킹 구간 감사·동시성 테스트 실측
 ├── 14-relevance-tier-search/                  ← 시맨틱 검색 관련도 계층화
 │   └── plan.md                                    ← 2임계값 3계층 설계, 키워드 폴백 제거 계약, $state.raw 함정
@@ -52,12 +53,17 @@ agent_memories/
 ├── 17-ssr-payload-minimization/                  ← SSR 최소 페이로드 감사·리팩터링
 │   └── ssr-minimal-payload-audit.md              ← 로드↔사용 전수 비교 표, 카드 뷰 트림·실측 증거
 ├── 18-node-build-stale-artifact/                 ← 프로덕션 `node build/index.js` 누락 원인 분석
-│   └── bug-investigation-findings.md             ← 어답터 전환 후 build/ 미갱신 + PUBLIC_* 런타임 env 버그와 패치├── 19-change-notification-exclusion/            ← diffchain 백필 이벤트 알림 제외 계획
+│   └── bug-investigation-findings.md             ← 어답터 전환 후 build/ 미갱신 + PUBLIC_* 런타임 env 버그와 패치
+├── 19-change-notification-exclusion/            ← diffchain 백필 이벤트 알림 제외 계획
 │   └── plan.md                                   ← 소스 8종 알림 후보 분류(Tier A/B/C), dispatch 게이트 설계, isDoneSync 폭주 가드
 ├── 20-semantic-query-quality-eval/              ← 의미 검색 쿼리 후보 평가·적중률 분석
 │   └── query-quality-evaluation.md                ← 24개 후보 질의 실측(semantic vs FTS), 정답명 벤치마크, 임계값 캘리브레이션, 개선 방향
-└── 21-indexing-boilerplate-stripping/           ← 인덱스 구축 시 섹션 라벨·열거자 제거
-    └── chunk-text-normalization.md                ← 라벨 접두 인식·열거자 제거 설계, 실측 절감(−0.93% 청크·−1.04% 토큰), 오탐 함정 2종, 선행 버그 발견
+├── 21-indexing-boilerplate-stripping/           ← 인덱스 구축 시 섹션 라벨·열거자 제거
+│   └── chunk-text-normalization.md                ← 라벨 접두 인식·열거자 제거 설계, 실측 절감(−0.93% 청크·−1.04% 토큰), 오탐 함정 2종, 선행 버그 발견
+├── 22-chunk-floor-content-loss/                  ← 청크 하한 필터의 내용 손실 수정
+│   └── chunk-floor-content-loss.md                ← 하한 미만 청크 병합·필터 제거, 내용 손실 실측, 회귀 가드 3종
+└── 23-embedding-device-autodetect/               ← 임베딩 하드웨어 자동 탐지
+    └── plan.md                                      ← auto 디바이스 탐지(cuda>mps>xpu>cpu) 설계, cpu 폴백 게이트, cpu/mps 실측 2.98x/2.06x, 검증 근거
 ```
 
 ## 폴더별 상세 내용
@@ -123,7 +129,7 @@ agent_memories/
 
 ### `13-sidecar-concurrency-audit/` — 시맨틱 검색 사이드카 동시성 감사
 
-- **sidecar-concurrency-analysis-and-tests.md**: `semantic-search/service/app.py` HTTP 사이드카 구조 분석 + 블로킹 구간 코드 감사(스냅샷 락·백그라운드 로드·비차단 flock 확인)와 `tests/test_concurrency.py` 5개 동시성 테스트 실측치. **측정 함정 4건 기록**: 클라이언트 SSL 컨텍스트의 GIL 경합(~0.42s 측정 오염 → 사전 클라이언트 생성으로 해결), 서브프로세스 `stdout=PIPE` 미소비 데드락, 콜드스타트 기준선 왜곡(2.56s vs 0.11s → 3회 워밍업 + 3라운드 중앙값 필요), HuggingFace Hub 재검증으로 인한 엔진 로드 네트워크 의존성(정상 10s vs 허브 불가 143s → `HF_HUB_OFFLINE=1`로 아웃라이어 제거). **overlap_ratio 분산 계측 귀인(단발 0.56–0.79)**: (a) 콜드 기준선 전체 상승 → ratio 과소(중복 주장 부정확), (b) 동시 배치 wall 편차 → ratio 과대(0.85 임계 플리커), 클라이언트 오버헤드는 `client_delta=0.000s`로 배제 → 3라운드 중앙값(0.65–0.69, 스프레드 0.04) 재보정 + 0.85 마진 근거를 테스트에 문서화. GIL-vs-락 분리: 지연 3.4–4.1x 상승이면서 `max/sum`=0.65–0.69(락이면 ~1.0) → GIL/CPU 포화 증거.
+- **sidecar-concurrency-analysis-and-tests.md**: `semantic-search/service/app.py` HTTP 사이드카 구조 분석 + 블로킹 구간 코드 감사(스냅샷 락·백그라운드 로드·비차단 flock 확인)와 `tests/test_concurrency.py` 5개 동시성 테스트 실측치. **측정 함정 4건 기록**: 클라이언트 SSL 컨텍스트의 GIL 경합(~0.42s 측정 오염 → 사전 클라이언트 생성으로 해결), 서브프로세스 `stdout=PIPE` 미소비 데드락, 콜드스타트 기준선 왜곡(2.56s vs 0.11s → 3회 워밍업 + 3라운드 중앙값 필요), HuggingFace Hub 재검증으로 인한 엔진 로드 네트워크 의존성(정상 10s vs 허브 불가 143s → `HF_HUB_OFFLINE=1`로 아웃라이어 제거). **overlap_ratio 분산 계측 귀인(단발 0.56–0.79)**: (a) 콜드 기준선 전체 상승 → ratio 과소(중복 주장 부정확), (b) 동시 배치 wall 편차 → ratio 과대(0.85 임계 플리커), 클라이언트 오버헤드는 `client_delta=0.000s`로 배제 → 3라운드 중앙값(0.65–0.69, 스프레드 0.04) 재보정 + 0.85 마진 근거를 테스트에 문서화. GIL-vs-락 분리: 지연 3.4–4.1x 상승이면서 `max/sum`=0.65–0.69(락이면 ~1.0) → GIL/CPU 포화 증거. **2026-10-10 갱신**: device=auto가 mps를 잡으면 wall/sum이 0.86–0.92로 떠 0.85 게이트가 지속 실패(큐잉 아님 — 전 지연시간이 batch wall에 수렴, 즉 동시 시작) → 하드웨어 독립 **1차 완료자 게이트**(`min ≥ 2×median(single)`: 락이면 ~1x, 정직 실행은 3.0–5.5x)로 재설계 — wall/sum·사다리 스프레드 게이트는 부하에 흔들려(정직 실행 wall/sum 최대 1.02, 스프레드 0.57) 인쇄 전용으로 강등(2026-10-11).
 
 ### `14-relevance-tier-search/` — 시맨틱 검색 관련도 계층화
 
@@ -160,6 +166,10 @@ agent_memories/
 ### `22-chunk-floor-content-loss/` — 청크 하한 필터의 내용 손실 수정
 
 - **chunk-floor-content-loss.md**: `chunk_notice`의 `if len(text) < min_chars and chunks: continue` 필터가 **팩커가 이미 만든 텍스트를 삭제**해 인덱스에서 사라지게 하던 버그의 수정 기록. **메커니즘**: 하한 미만 청크는 항상 "끼어들 자리가 없던 잔여물"이고, 주 원인은 `_paragraph_units`가 문장부호 없는 장문(200~240자)을 예산 크기로 강제 분할한 **뒤의 꼬리 조각**(예: 공고 2221824 유닛 `[138,167,173,18]`의 18자). 캐리는 이전 청크의 마지막 유닛 단독이 `CHUNK_OVERLAP_CHARS`(50)를 넘으면 비므로, 그 조각은 뒤 청크에도 남지 않아 **완전히 검색 불가**가 됐다. **수정**: `_pack_units`가 하한 미만 청크를 앞 청크에 **병합**(캐리 중복분은 제외한 신규 유닛만)하고 `chunk_notice`는 필터를 제거. **실측(전량 코퍼스 19,396공고)**: 내용 손실 3,795건/4,434유닛 → **0**, 청크 93,701 → 93,782(+0.09%), 문자 +0.66%, 재임베딩 필요 5.54%(5,109 텍스트 변경 + 81 신규). **핵심 설계 이득**: 드롭과 병합 모두 청크 하나를 제거하므로 **청크 id·index가 불변** → 증분 갱신 비용이 바뀐 텍스트뿐. **예산 초과**는 병합에서만 최대 `CHUNK_MIN_CHARS`(40)자로, 최장 임베딩 입력 240자 = 최대 158토큰, `KURE-v1` 윈도우 8192에서 `truncated_count=0` 검증(단, 128토큰 모델로 교체 시 상위 5% 절단 위험). **대안 검토·기각**: 꼬리 조각을 앞 청크 문맥(~170자)으로 패딩해 별도 청크로 유지(+872 벡터/3,000공고, 중복 내용 경쟁), 마지막 두 청크 재분배(중간 단어 절단 패스 추가, 얻는 것 없음). **회귀 가드**: `tests/test_chunk_coverage.py` + 커밋된 실제 공고 픽스처 `tests/fixtures/notices-chunk-coverage.jsonl`(11건: 손실 공고 5건 직접 검증분·최단 `).`/최장 39자 조각·중간 손실·섹션 통째 손실·무영향 대조군 3건)가 문단 텍스트가 인덱스에서 사라지지 않음을 검증합니다. 오라클은 원문에서 재유도(공백 무시)하므로 패킹 변경이 스스로 만족시킬 수 없고, 2,000공고 전수 스윕은 `lawcast.db`가 있는 호스트에서만 실행됩니다(CI엔 DB가 없음). **fault-injection 3세계 매트릭스**(`_workspace/verify_coverage_guard_catches_drop.py`)로 각 단정이 자기 실패 모드에 반응함을 증명: drop 세계 coverage **19/38 실패**·corpus **실패**, 미병합 세계는 coverage 통과·**merge 속성 실패**, 병합 세계는 전부 통과. **검색 계층 가드** (`test_chunk_coverage_retrieval.py`): 청크 집합이 아니라 **질의로 도달되는지**를 단정 — 조항이 속한 문장으로 `/search` 기본 창(k=5)을 조회해 그 조항을 담은 청크가 **조항의 공고** 안에서 창에 들어오고 첫 공고가 그 공고임을 요구. 실측(해싱 n-gram 스텁): 출시 **11/11·11/11**, 병합 이전 **8/11·0/11**. faiss 검색을 먼저 하고 torch를 나중에 로드하면 libomp 이중 초기화로 abort하므로 랭킹은 서브프로세스 프로브(`tests/retrieval_probe.py`)에서만 돌리고, 병합 이전 규칙 복원은 `sitecustomize` shim으로 주입해 **11/11 케이스가 실패**함을 증명했습니다(훅 없는 주입). **검증**: ruff clean, pytest **242 passed, 0 skipped**(+4 청킹, +51 내용 보존 가드, +14 검색 가드 — 실모델 레이어와 사이드카 동시성 테스트가 라이브 아티팩트 재구축 후 최초로 skip 없이 실행), 하니스 `_workspace/chunk_floor_coverage.py`. 배포: 증분 계획 `to_embed 24,816 / reused 71,830 / dropped 825`→ **2026-10-10 apply 완료**(fingerprint `2c3e03179db0`, 백업 `artifacts/backup-pre-session22-apply/`, 사후 plan `to_embed 0`). 실모델 조항 recall@1 **10/11**(1건은 병행 법안군과 동일한 회계 보일러플레이트 문장이라 8위 → 실모델 레이어는 첫 페이지 내 노출(`SURFACE_BOUND=10`)을 단정, 근거·수치는 메모리 22 §7), 평가셋 회귀 없음(holdout 상위 1쿼리만 1→2위 스왑, `05_evaluate.py` 대조 실측). 커밋·버전 범프·프로덕션 배포는 미실시.
+
+### `23-embedding-device-autodetect/` — 임베딩 하드웨어 자동 탐지
+
+- **plan.md**: 임베딩 모델의 실행 디바이스를 `LAWCAST_SEMANTIC_DEVICE` 기본값 `auto`로 바꿔 CPU보다 우수한 하드웨어를 자동 탐지·사용하게 한 구현 기록. **핵심 설계**: `config.DEVICE`는 요청값(경량 유지·torch 지연 임포트), 탐지·핀 해석은 `lawcast_semantic/device.py` 단일 소유(cuda > mps > xpu > cpu, 각 가용성 검사 격리 → 불량 드라이버는 다음 후보로 강등), `KoreanEmbedder`는 **프로브 인코딩(형상+유한값) 통과 못 하면 경고 후 cpu 재로드**. 핀(`cpu` 등)은 탐지 없이 그대로 존중. **디바이스는 아티팩트를 무효화하지 않음**(cpu/mps 벡터 cosine 1.000000·max delta 0 실측). 관측: stage 2 `device` 줄 + `/health.device`(모델 단계에서 기록 → 아티팩트 로드 실패 시에도 남음, `mark_ready`에 두면 지워지는 함정). 실측(Apple Silicon, torch 2.14): 단일 질의 96.8→32.5ms(2.98x), 배치 14.4→29.6 chunks/s(2.06x), 모델 로드 +3s. 검증: ruff clean, pytest **267 passed** + 사전 존재 실패 1(`artifacts/faiss.index` 소실 → `embeddings.npz`/`id_map.json`도 없음, 이 세션 테스트 이전 상태)·skip 1(동일 원인), stage 2 CLI·uvicorn `/health` 라이브 실측. 운영 컨테이너는 CPU 전용 휠이라 `auto`→`cpu`로 행동 불변.
 
 ## 에이전트 메모리 기록 규칙
 

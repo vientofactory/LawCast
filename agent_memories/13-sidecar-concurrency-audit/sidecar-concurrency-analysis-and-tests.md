@@ -39,7 +39,7 @@ requests do not block each other.
 
 ## Test Suite: `semantic-search/tests/test_concurrency.py`
 
-Five tests, all passing with the full suite (134 passed, ruff clean):
+Five tests, all passing with the full suite (269 passed, ruff clean):
 
 1. **`test_concurrent_searches_overlap_and_all_succeed`** — 8 simultaneous
    `/search` against a 0.4 s stub searcher: `wall=0.42s` vs `serial_budget=3.20s`,
@@ -56,9 +56,10 @@ Five tests, all passing with the full suite (134 passed, ruff clean):
    `python -m uvicorn service.app:app` (exact Dockerfile CMD) as a
    subprocess, waits for `ready`, warms up, then measures THREE rounds of
    (sequential baseline, 6 concurrent queries) on the same warm process and
-   asserts on the **median** round (see margin rationale below): medians
-   `overlap_ratio 0.65–0.69` across 7 runs (single rounds 0.61–0.75), all
-   200 with results. Skipped in CI via `skipif` on artifacts + model cache.
+   asserts queue signatures per round (see margin rationale below, and the
+   device-shift subsection that replaced the fraction-of-sum gates): cpu
+   medians `overlap_ratio 0.62–0.69`, mps 0.86–0.92, all 200 with results.
+   Skipped in CI via `skipif` on artifacts + model cache.
 
 ### Measurement pitfalls found (control probes, since deleted)
 
@@ -126,7 +127,56 @@ Both tails were single-shot artifacts, so the test was recalibrated
 - **Threshold kept at 0.85, rationale documented in the test**: ≥0.10
   headroom over the worst single round (0.75), ≥0.16 over every median
   (max 0.69), and serialization lands at ~1.0 — strictly between the two
-  signatures.
+  signatures. **Superseded 2026-10-10**: that margin only held on the
+  CPU-only stack; see the device-shift subsection below for the
+  ladder-based replacement.
+
+### Device shift retired the 0.85 gate: latency-ladder signature (2026-10-10)
+
+**CRITICAL — the wall/sum margin is device calibration, not a queue
+detector.** After `LAWCAST_SEMANTIC_DEVICE=auto` (the default) started
+resolving to `mps` on this Apple Silicon host, the real-engine test failed
+**consistently** (`median_ratio 0.88–0.91 > 0.85`). A/B with identical code
+and artifacts (96646 chunks):
+
+| Device | single | sequential_sum | batch wall | wall/sum | inflation | latency shape |
+| --- | --- | --- | --- | --- | --- | --- |
+| `auto` → mps | 0.08 s | 0.47–0.49 s | 0.41–0.44 s | **0.86–0.92** | 4.8–5.5x | uniform, min/max 0.61–0.98 |
+| `cpu` pin | 0.13–0.14 s | 0.82–0.84 s | 0.55–0.56 s | 0.62–0.68 | 3.7–3.8x | uniform, min/max 0.89–1.0 |
+| lock prediction | — | = wall | ≈ sum | ≈ 1.00 | — | ladder min/max ≈ 1/N = 0.17 |
+
+**Environment scope**: macOS 26.6.2 (Darwin arm64) / Apple M4 / torch 2.14.0, `mps` backend
+vs the identical build pinned to `cpu`; faiss-cpu 1.15.1 for the index. CUDA/XPU, other
+OSes (Linux/Windows) and the Docker runtime were NOT part of this A/B. On any other chip,
+torch build or machine load the absolute latencies and the 0.61–1.0 ladder range **will
+shift** — what generalizes is the mechanism (simultaneous starts → uniform latencies vs a
+lock → 1/N ladder), not the figures.
+
+**Root cause: no queueing at all.** Every latency equals the batch wall
+(all requests start together behind the barrier), so requests genuinely
+overlap; MPS only narrows the margin because GIL + the single MPS command
+queue inflate each in-flight encode ~5x while the single-query baseline
+got 1.7x faster, shrinking the denominator. The 0.85 threshold
+(calibrated 2026-09/10-04 on a CPU-only stack) cannot separate that
+contention signature from a lock. No request-path lock was added — the
+only `service/app.py` change that period was the `/health` `device` field
+(snapshot-only lock usage).
+
+**Fix (device-independent), refined 2026-10-11 after flake evidence:** the
+test gates on the **first finisher's speed** — `min(latencies) >= 2.0 ×
+median(single)` on every round. A lock releases requests one by one, so
+the first finishes at its uncontended single-query speed (~1x baseline);
+with genuine overlap nobody finishes fast (measured 3.0–5.5x across cpu
+and mps, idle and busy — threshold 2.0 keeps ≥1.5x headroom). The earlier
+pair (`min >= 0.5 × max` ladder spread + `median_ratio < 1.0`) was
+replaced because BOTH proved load-sensitive on a busy host: honest
+wall/sum reached **1.02** (a serialized sidecar also lands ~1.0 → no
+separating margin for a sub-second wall clock) and ladder spread
+compressed to 0.57–0.61 under a head-start finisher while the batch was
+genuinely overlapping. Ratio and ladder now remain print-only diagnostics
+(`[real margin]`), and both fraction-of-sum gates (0.85) are likewise gone
+— a wall-clock fraction would need re-calibrating per device (cuda next).
+Verified: 8/8 isolated real-engine runs, then full suite green.
 
 ### GIL vs lock separation (real engine)
 
@@ -146,7 +196,7 @@ single) — the separating observables are `max/sum` and `wall/sum`.
 ```bash
 cd semantic-search
 .venv/bin/ruff check . && .venv/bin/ruff format --check .
-.venv/bin/python -m pytest tests/ -q                 # 134 passed
+.venv/bin/python -m pytest tests/ -q                 # 269 passed
 .venv/bin/python -m pytest tests/test_concurrency.py -v -s   # timing prints
 
 # Degraded-network repro (proves HF_HUB_OFFLINE=1 keeps load network-free).
