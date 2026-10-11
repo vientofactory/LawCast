@@ -26,7 +26,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
+      # working-directory is forced to the repo root: this job's defaults put
+      # every other step inside its service submodule, where these paths do not
+      # exist yet.
       - name: Init required submodules
+        working-directory: ${{ github.workspace }}
         run: git submodule update --init --recursive backend frontend semantic-search
 
       - name: Setup Node.js ${{ matrix.node-version }}
@@ -74,7 +78,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
+      # working-directory is forced to the repo root: this job's defaults put
+      # every other step inside its service submodule, where these paths do not
+      # exist yet.
       - name: Init required submodules
+        working-directory: ${{ github.workspace }}
         run: git submodule update --init --recursive backend frontend semantic-search
 
       - name: Setup Node.js ${{ matrix.node-version }}
@@ -104,7 +112,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
+      # working-directory is forced to the repo root: this job's defaults put
+      # every other step inside its service submodule, where these paths do not
+      # exist yet.
       - name: Init required submodules
+        working-directory: ${{ github.workspace }}
         run: git submodule update --init --recursive backend frontend semantic-search
 
       # Python version matches semantic-search/Dockerfile (python:3.13-slim).
