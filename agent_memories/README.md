@@ -62,8 +62,14 @@ agent_memories/
 │   └── chunk-text-normalization.md                ← 라벨 접두 인식·열거자 제거 설계, 실측 절감(−0.93% 청크·−1.04% 토큰), 오탐 함정 2종, 선행 버그 발견
 ├── 22-chunk-floor-content-loss/                  ← 청크 하한 필터의 내용 손실 수정
 │   └── chunk-floor-content-loss.md                ← 하한 미만 청크 병합·필터 제거, 내용 손실 실측, 회귀 가드 3종
-└── 23-embedding-device-autodetect/               ← 임베딩 하드웨어 자동 탐지
-    └── plan.md                                      ← auto 디바이스 탐지(cuda>mps>xpu>cpu) 설계, cpu 폴백 게이트, cpu/mps 실측 2.98x/2.06x, 검증 근거
+├── 23-embedding-device-autodetect/               ← 임베딩 하드웨어 자동 탐지
+│   └── plan.md                                      ← auto 디바이스 탐지(cuda>mps>xpu>cpu) 설계, cpu 폴백 게이트, cpu/mps 실측 2.98x/2.06x, 검증 근거
+├── 24-ai-summary-chunking/                        ← AI 요약 청킹 포함 + 검색 품질 A/B
+│   └── ai-summary-chunking-measurement.md           ← ai_summary 조인·`AI 요약` 섹션 구현, 405건 title-chunk 회귀와 additive 수정, before/after 실측(요약 질의 miss 33.7%→0%, 기존 지표 불변, dilution −0.10)
+├── 25-chunking-capability-gate/                    ← 청킹/파생 필드 능력 회귀 게이트 + 릴리스 리포트
+│   └── capability-regression-gate.md                ← 능력 오라클(`capabilities.py`)·게이트 설계, 스왑 회귀 자동 재현(405건), 실패/통과 양방향 검증, `scripts/07_capability_report.py`(릴리스 전후 한 줄 대조·무결성 2종)
+└── 26-ai-summary-final-verification/               ← AI 요약 인덱싱 최종 검증 + 프로덕션 레디니스
+    └── readiness-verification.md                    ← 초기 구축/증분 포함 확인(byte-identical·plan 양방향), 성능 A/B 재현(miss 33.7%→0%), HTTP 경로 실측, 릴리스 코드 위험 재검증, **BLOCKER 2건**(미커밋·미배포 역전)
 ```
 
 ## 폴더별 상세 내용
@@ -166,6 +172,19 @@ agent_memories/
 ### `22-chunk-floor-content-loss/` — 청크 하한 필터의 내용 손실 수정
 
 - **chunk-floor-content-loss.md**: `chunk_notice`의 `if len(text) < min_chars and chunks: continue` 필터가 **팩커가 이미 만든 텍스트를 삭제**해 인덱스에서 사라지게 하던 버그의 수정 기록. **메커니즘**: 하한 미만 청크는 항상 "끼어들 자리가 없던 잔여물"이고, 주 원인은 `_paragraph_units`가 문장부호 없는 장문(200~240자)을 예산 크기로 강제 분할한 **뒤의 꼬리 조각**(예: 공고 2221824 유닛 `[138,167,173,18]`의 18자). 캐리는 이전 청크의 마지막 유닛 단독이 `CHUNK_OVERLAP_CHARS`(50)를 넘으면 비므로, 그 조각은 뒤 청크에도 남지 않아 **완전히 검색 불가**가 됐다. **수정**: `_pack_units`가 하한 미만 청크를 앞 청크에 **병합**(캐리 중복분은 제외한 신규 유닛만)하고 `chunk_notice`는 필터를 제거. **실측(전량 코퍼스 19,396공고)**: 내용 손실 3,795건/4,434유닛 → **0**, 청크 93,701 → 93,782(+0.09%), 문자 +0.66%, 재임베딩 필요 5.54%(5,109 텍스트 변경 + 81 신규). **핵심 설계 이득**: 드롭과 병합 모두 청크 하나를 제거하므로 **청크 id·index가 불변** → 증분 갱신 비용이 바뀐 텍스트뿐. **예산 초과**는 병합에서만 최대 `CHUNK_MIN_CHARS`(40)자로, 최장 임베딩 입력 240자 = 최대 158토큰, `KURE-v1` 윈도우 8192에서 `truncated_count=0` 검증(단, 128토큰 모델로 교체 시 상위 5% 절단 위험). **대안 검토·기각**: 꼬리 조각을 앞 청크 문맥(~170자)으로 패딩해 별도 청크로 유지(+872 벡터/3,000공고, 중복 내용 경쟁), 마지막 두 청크 재분배(중간 단어 절단 패스 추가, 얻는 것 없음). **회귀 가드**: `tests/test_chunk_coverage.py` + 커밋된 실제 공고 픽스처 `tests/fixtures/notices-chunk-coverage.jsonl`(11건: 손실 공고 5건 직접 검증분·최단 `).`/최장 39자 조각·중간 손실·섹션 통째 손실·무영향 대조군 3건)가 문단 텍스트가 인덱스에서 사라지지 않음을 검증합니다. 오라클은 원문에서 재유도(공백 무시)하므로 패킹 변경이 스스로 만족시킬 수 없고, 2,000공고 전수 스윕은 `lawcast.db`가 있는 호스트에서만 실행됩니다(CI엔 DB가 없음). **fault-injection 3세계 매트릭스**(`_workspace/verify_coverage_guard_catches_drop.py`)로 각 단정이 자기 실패 모드에 반응함을 증명: drop 세계 coverage **19/38 실패**·corpus **실패**, 미병합 세계는 coverage 통과·**merge 속성 실패**, 병합 세계는 전부 통과. **검색 계층 가드** (`test_chunk_coverage_retrieval.py`): 청크 집합이 아니라 **질의로 도달되는지**를 단정 — 조항이 속한 문장으로 `/search` 기본 창(k=5)을 조회해 그 조항을 담은 청크가 **조항의 공고** 안에서 창에 들어오고 첫 공고가 그 공고임을 요구. 실측(해싱 n-gram 스텁): 출시 **11/11·11/11**, 병합 이전 **8/11·0/11**. faiss 검색을 먼저 하고 torch를 나중에 로드하면 libomp 이중 초기화로 abort하므로 랭킹은 서브프로세스 프로브(`tests/retrieval_probe.py`)에서만 돌리고, 병합 이전 규칙 복원은 `sitecustomize` shim으로 주입해 **11/11 케이스가 실패**함을 증명했습니다(훅 없는 주입). **검증**: ruff clean, pytest **242 passed, 0 skipped**(+4 청킹, +51 내용 보존 가드, +14 검색 가드 — 실모델 레이어와 사이드카 동시성 테스트가 라이브 아티팩트 재구축 후 최초로 skip 없이 실행), 하니스 `_workspace/chunk_floor_coverage.py`. 배포: 증분 계획 `to_embed 24,816 / reused 71,830 / dropped 825`→ **2026-10-10 apply 완료**(fingerprint `2c3e03179db0`, 백업 `artifacts/backup-pre-session22-apply/`, 사후 plan `to_embed 0`). 실모델 조항 recall@1 **10/11**(1건은 병행 법안군과 동일한 회계 보일러플레이트 문장이라 8위 → 실모델 레이어는 첫 페이지 내 노출(`SURFACE_BOUND=10`)을 단정, 근거·수치는 메모리 22 §7), 평가셋 회귀 없음(holdout 상위 1쿼리만 1→2위 스왑, `05_evaluate.py` 대조 실측). 커밋·버전 범프·프로덕션 배포는 미실시.
+
+### `24-ai-summary-chunking/` — AI 요약(aiSummary) 청킹 포함 + 검색 품질 A/B
+
+- **ai-summary-chunking-measurement.md**: `plan.md`의 "include `aiSummary` in chunks" 항목을 실제 시행한 구현·실측 기록. `notice_archive_snapshot_states.ai_summary`(21,177공고 중 21,071건, 평균 71자)를 `LEFT JOIN`으로 읽어 **`AI 요약` 섹션**으로 인덱싱(96,646 → 117,718청크, 본문 96,646행 바이트 단위 전량 재사용 = 순수 추가). **CRITICAL 회귀·수정**: 첫 구현이 빈 `proposal_reason` 405건의 제목-only 폴백 청크를 요약으로 *대체*해 title 부류 지표가 오르는 것처럼 보였으나(실은 청크 제거 부작용) 그 405건이 정확 제목 매칭 능력을 잃음(name_bench added coverage 80/133 → 48/133) → 제목 청크를 **유지한 채** 요약을 덧붙이는 additive 방식으로 수정(회귀 0). **실측**: 요약 어휘 질의 300건 miss **33.7% → 0%**(hit@1 0.407 → 0.990, self-match 천장값), 자연 시민 질의 61건·라벨 평가셋 40건·정답 법안명 벤치마크(n=200)는 **불변~소폭 개선**(무회귀), 비용은 요약 벡터끼리의 경쟁(dilution, 자기 요약 마스킹 시 hit@1 −0.10)이며 200청크 창의 공고 커버리지는 −1.2%로 무시 가능.
+
+### `25-chunking-capability-gate/` — 청킹/파생 필드 능력 회귀 게이트
+
+- **capability-regression-gate.md**: 세션 24의 405건 title-chunk 회귀를 **사람이 발견하는 대신 테스트가 자동으로 잡게** 만든 게이트 기록. `lawcast_semantic/capabilities.py`가 공고별 능력(`indexed`, `title_text`, `section:<라벨>`, `derived:<필드>`)을 원문에서 재유도하고, `derived_field_diff`가 파생 필드를 뺀 baseline과 넣은 후보를 비교해 잃은 능력이 있으면 실패합니다. `DERIVED_NOTICE_FIELDS` 미등록 새 레코드 필드는 스키마 검사에서 실패하므로 새 파생 필드가 게이트를 우회할 수 없습니다. 실측: 구현을 스왑으로 되돌리면 **구조 계층 5건 + 검색 계층 8건 실패**(빈 `proposalReason` 405건 보고), 되돌리지 않으면 25 passed. **함정 1건 수정**: `section:<라벨>`을 원문에서만 유도하면 어떤 규칙에도 반응하지 않는 공허한 능력이 되므로, 라벨은 원문에서·carrier는 청크 집합에서 판정하도록 고쳤습니다(라이브 0/24 위반 vs 라벨 `body` 전환 8/24·라벨 제거 12/24).
+- 아티팩트 리포트 `scripts/07_capability_report.py`: 서빙 중인 인덱스의 능력별 공고 수를 한 줄로 찍고, 저장한 기준선과 **공고 단위로** 대조해 손실 시 exit 1 합니다(카운트 델타로는 0으로 보이는 스왑도 잡힘). 모델·FAISS 없이 전량 4.4초. 롤백 세트 대조 실측에서 `derived:ai_summary 21071 → 0`(메모리 24 §8.1 사고)과 요약이 법안명을 담은 3건에 의한 `title_text 545 → 542`를 보고했고, 같은 읽기에서 `chunks.jsonl` ↔ `id_map.json` 행/지문 불일치도 `MISMATCH`로 잡습니다.
+
+### `26-ai-summary-final-verification/` — AI 요약 인덱싱 최종 검증 + 프로덕션 레디니스
+
+- **readiness-verification.md**: 세션 24/25의 요약 인덱싱을 현재 호스트에서 다시 측정한 최종 검증. ① 초기 구축: `01 --db`가 **21,072요약청크를 포함한 117,718청크**를 만들고 라이브 `artifacts/chunks.jsonl`과 `cmp` **바이트 동일**. ② 증분: 라이브 plan **멱등**(`to_embed 0 / reused 117,718 / has_changes false`), 요약 없는 세트 plan은 요약 행 **순수 추가**(`to_embed 21,072 / dropped 0`). ③ 성능 A/B 재현: 요약 어휘 질의 miss **33.7% → 0.0%**, 자연 질의 61건 불변, dilution −0.093. ④ HTTP 경로 실측(`/health` 117,718·gist 질의 top5 전부 `[AI 요약]`·경계 400/422). ⑤ **릴리스 코드 위험 재검증**: v2.4.0 시야 + 라이브 아티팩트 → `dropped 21,072 / shrink_refused false` = 요약 벡터 자동 삭제. **BLOCKER 2건**: 요약 기능이 **미커밋**(HEAD=v2.4.0에 `SUMMARY_SECTION`/`ai_summary` 0건)이라 지금 이미지를 빌드하면 §⑤ 사고가 자동 발생하며, 같은 워킹트리에 다른 스레드의 미커밋 요청 경계 작업이 섞여 있어 PR 분리 조율이 필요. Docker 데몬 미실행으로 컨테이너 배포 검증은 불가(로컬 프로세스 HTTP 검증만).
 
 ### `23-embedding-device-autodetect/` — 임베딩 하드웨어 자동 탐지
 

@@ -8,9 +8,18 @@ on:
         required: false
         default: false
         type: boolean
+      allow_capability_loss:
+        description: "Break-glass: deploy even if the index capability guard reports a lost class"
+        required: false
+        default: false
+        type: boolean
   workflow_call:
     inputs:
       skip_ci:
+        required: false
+        default: "false"
+        type: string
+      allow_capability_loss:
         required: false
         default: "false"
         type: string
@@ -135,6 +144,29 @@ jobs:
               exit 0
             fi
 
+            echo "--- Capability release guard: building the incoming image ---"
+            # Build first so the baseline/compare runs below execute the NEW
+            # code: an old image predates scripts/07 and would report with a
+            # stale oracle. deploy.sh rebuilds from cache a moment later.
+            docker compose build semantic-search
+
+            echo "--- Capability release guard: saving the pre-deploy baseline ---"
+            # Index capability comparison, mandatory for every semantic-search
+            # release (AGENTS.md "Mandatory index-capability guard"; commands in
+            # semantic-search/README.md "릴리스 절차"). Record, per notice, the
+            # retrieval capabilities (indexed / title_text / section:<label> /
+            # derived:<field>) of the artifact set being served BEFORE this
+            # release; the post-deploy step fails the release if the deployed
+            # code drops one. Aggregate recall/MRR are blind to this class (a
+            # 405-notice title_text regression rode a metric improvement — see
+            # agent_memories/24-ai-summary-chunking §4). The scratch dir is
+            # gitignored (under artifacts/) and tool-only; the sidecar ignores it.
+            rm -rf semantic-search/artifacts/.release
+            mkdir -p semantic-search/artifacts/.release
+            docker compose run --rm --no-deps --user 0:0 --entrypoint python semantic-search \
+              scripts/07_capability_report.py --db /data/lawcast.db \
+              --save /app/artifacts/.release/capability-baseline.json
+
             echo "--- Building and restarting semantic search ---"
             cd ${{ env.REPO_PATH }}
             # /cache and /app/artifacts ownership is aligned to uid 1001
@@ -163,6 +195,31 @@ jobs:
               echo "WARNING: semantic search not ready after 450s"
               docker compose logs semantic-search --tail=40 --no-color 2>&1 | head -60
               exit 1
+            fi
+
+            echo "--- Capability release guard: comparing the deployed code ---"
+            # Rebuild the chunk set from the DEPLOYED code (pure Python, seconds,
+            # no embeddings) and diff its per-notice capabilities against the
+            # pre-deploy baseline. The candidate is what the next update tick
+            # would serve, so a lost class fails BEFORE that tick applies it.
+            docker compose run --rm --no-deps --user 0:0 --entrypoint python semantic-search \
+              scripts/01_preprocess_chunk.py --db /data/lawcast.db \
+              --out /app/artifacts/.release/deployed-chunks.jsonl
+
+            if ! docker compose run --rm --no-deps --user 0:0 --entrypoint python semantic-search \
+              scripts/07_capability_report.py \
+              --chunks /app/artifacts/.release/deployed-chunks.jsonl \
+              --db /data/lawcast.db --compare /app/artifacts/.release/capability-baseline.json; then
+              if [ "${{ inputs.allow_capability_loss }}" = "true" ]; then
+                echo "WARNING: capability release guard reported a lost class;"
+                echo "allow_capability_loss=true — continuing (record why in the run/PR)."
+              else
+                echo "ERROR: capability release guard FAILED — the deployed code drops a retrieval capability."
+                echo "The next update tick would remove it from the served index."
+                echo "Fix the chunking change (or roll back); to ship an intentional loss, re-run"
+                echo "this workflow with the allow_capability_loss input and record the reason."
+                exit 1
+              fi
             fi
 
             # Record only after the engine is verified ready, so a failed
