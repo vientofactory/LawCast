@@ -162,6 +162,13 @@ jobs:
             # gitignored (under artifacts/) and tool-only; the sidecar ignores it.
             rm -rf semantic-search/artifacts/.release
             mkdir -p semantic-search/artifacts/.release
+            # The artifacts bind mount is owned by the host, and the container's
+            # root is not the host root (a container-side chown on this mount is
+            # EPERM-denied — see deploy.sh), so a plain host mkdir leaves a 0755
+            # directory the container cannot write into. That aborted the
+            # baseline save with PermissionError. deploy.sh solves the same
+            # problem for the mount root with chmod 0777; mirror it here.
+            chmod 0777 semantic-search/artifacts/.release
             docker compose run --rm --no-deps --user 0:0 --entrypoint python semantic-search \
               scripts/07_capability_report.py --db /data/lawcast.db \
               --save /app/artifacts/.release/capability-baseline.json
