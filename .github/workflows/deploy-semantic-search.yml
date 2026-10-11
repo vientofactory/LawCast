@@ -169,9 +169,14 @@ jobs:
             # baseline save with PermissionError. deploy.sh solves the same
             # problem for the mount root with chmod 0777; mirror it here.
             chmod 0777 semantic-search/artifacts/.release
+            # `</dev/null` on every `compose run` below is mandatory, for the
+            # same reason deploy.sh documents for its own: this script is fed on
+            # stdin (`ssh bash -s` heredoc) and `compose run` drains it, which
+            # silently truncated the whole deploy after the baseline (run
+            # 38168627330 reported success having never restarted the engine).
             docker compose run --rm --no-deps --user 0:0 --entrypoint python semantic-search \
               scripts/07_capability_report.py --db /data/lawcast.db \
-              --save /app/artifacts/.release/capability-baseline.json
+              --save /app/artifacts/.release/capability-baseline.json </dev/null
 
             echo "--- Building and restarting semantic search ---"
             cd ${{ env.REPO_PATH }}
@@ -210,12 +215,12 @@ jobs:
             # would serve, so a lost class fails BEFORE that tick applies it.
             docker compose run --rm --no-deps --user 0:0 --entrypoint python semantic-search \
               scripts/01_preprocess_chunk.py --db /data/lawcast.db \
-              --out /app/artifacts/.release/deployed-chunks.jsonl
+              --out /app/artifacts/.release/deployed-chunks.jsonl </dev/null
 
             if ! docker compose run --rm --no-deps --user 0:0 --entrypoint python semantic-search \
               scripts/07_capability_report.py \
               --chunks /app/artifacts/.release/deployed-chunks.jsonl \
-              --db /data/lawcast.db --compare /app/artifacts/.release/capability-baseline.json; then
+              --db /data/lawcast.db --compare /app/artifacts/.release/capability-baseline.json </dev/null; then
               if [ "${{ inputs.allow_capability_loss }}" = "true" ]; then
                 echo "WARNING: capability release guard reported a lost class;"
                 echo "allow_capability_loss=true — continuing (record why in the run/PR)."
