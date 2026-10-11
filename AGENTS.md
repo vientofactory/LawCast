@@ -308,6 +308,8 @@ When releasing changes across submodules, agents MUST follow these steps **in ex
 **Deployment triggers — what actually ships each piece**
 - **Frontend: automatic via Cloudflare Pages on `main` push.** A push event to the frontend repository's `main` branch (the Step 3 squash-merge of the release PR) automatically triggers a **Cloudflare Pages** build and deploy. There is no manual frontend deploy step — no deploy workflow and no Docker Compose service for the frontend — so finishing Steps 0–5 *is* the frontend deployment: the merge to `main` itself is the deploy trigger.
 - **Backend / semantic-search: root repository CI.** The Step 6 submodule-pointer push to the root `main` runs the `deploy-backend` / `deploy-semantic-search` workflow jobs, which rebuild the production containers.
+- **Mandatory index-capability guard (semantic-search).** Every semantic-search deploy runs an index capability comparison inside `deploy-semantic-search.yml`: it saves a capability baseline of the artifact set being served *before* the release, then, after the new image is up, rebuilds the chunk set with the deployed code and **fails the release** if any capability class (`indexed`, `title_text`, `section:<label>`, `derived:<field>`) was lost. Aggregate recall/MRR are blind to this class (a 405-notice `title_text` regression rode a metric improvement — `agent_memories/24-ai-summary-chunking` §4), so the guard is a hard gate; to ship an intentional loss, re-run the workflow manually with the `allow_capability_loss` break-glass input and record why. Commands and rationale: `semantic-search/README.md` → "릴리스 절차".
+- **Submodule checkout scope.** CI and both deploy workflows initialise only `backend`, `frontend`, `semantic-search`; `embedding-map` is a private sibling repo with no CI or deploy role, so a `submodules: recursive` checkout fails with the default `GITHUB_TOKEN` and the whole run dies at checkout. The deploy hosts' `git submodule update --recursive --remote` is scoped to the same three service submodules (embedding-map stays on the host but is never synced).
 - **Ordering warning**: because the frontend deploys the moment its `main` is pushed, any backend change a frontend release depends on must already be live in production (backend released, root pointer pushed, deploy job green) *before* merging the frontend PR.
 
 **Step 0 — Lint, format, typecheck, and lockfile sync (BEFORE any commit)**
@@ -322,6 +324,9 @@ cd backend && npm run lint && npx tsc --noEmit && npm run build && npm test
 # Semantic search (Python sidecar)
 cd semantic-search && .venv/bin/ruff check . && .venv/bin/ruff format --check .
 cd semantic-search && .venv/bin/python -m pytest tests/ -q
+# Index-capability release guard (mandatory; the deploy workflow re-runs this in the container):
+#   baseline the served set, then diff a candidate chunk set — exit 1 on a lost class
+cd semantic-search && .venv/bin/python scripts/07_capability_report.py --db ../backend/lawcast.db
 ```
 - `npm run lint` runs Prettier auto-fix + ESLint fix — all files MUST be `(unchanged)` or auto-fixed
 - `npm run check` (frontend) / `npx tsc --noEmit` (backend) MUST pass with 0 errors
@@ -463,6 +468,7 @@ cd frontend && npx playwright test       # E2E tests
 # Semantic search (Python sidecar)
 cd semantic-search && .venv/bin/ruff check . && .venv/bin/ruff format --check .   # Lint
 cd semantic-search && .venv/bin/python -m pytest tests/ -q                       # Unit tests
+cd semantic-search && .venv/bin/python scripts/07_capability_report.py --db ../backend/lawcast.db   # Capability line (release guard)
 cd semantic-search && python3 -c "import tomllib;print(tomllib.load(open('pyproject.toml','rb'))['project']['version'])"   # Version
 cd semantic-search && git tag -l 'semantic-search-v*'                           # Released versions
 
