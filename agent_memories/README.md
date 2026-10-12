@@ -68,8 +68,10 @@ agent_memories/
 │   └── ai-summary-chunking-measurement.md           ← ai_summary 조인·`AI 요약` 섹션 구현, 405건 title-chunk 회귀와 additive 수정, before/after 실측(요약 질의 miss 33.7%→0%, 기존 지표 불변, dilution −0.10)
 ├── 25-chunking-capability-gate/                    ← 청킹/파생 필드 능력 회귀 게이트 + 릴리스 리포트
 │   └── capability-regression-gate.md                ← 능력 오라클(`capabilities.py`)·게이트 설계, 스왑 회귀 자동 재현(405건), 실패/통과 양방향 검증, `scripts/07_capability_report.py`(릴리스 전후 한 줄 대조·무결성 2종)
-└── 26-ai-summary-final-verification/               ← AI 요약 인덱싱 최종 검증 + 프로덕션 레디니스
-    └── readiness-verification.md                    ← 초기 구축/증분 포함 확인(byte-identical·plan 양방향), 성능 A/B 재현(miss 33.7%→0%), HTTP 경로 실측, 릴리스 코드 위험 재검증, **BLOCKER 2건**(미커밋·미배포 역전)
+├── 26-ai-summary-final-verification/               ← AI 요약 인덱싱 최종 검증 + 프로덕션 레디니스
+│   └── readiness-verification.md                    ← 초기 구축/증분 포함 확인(byte-identical·plan 양방향), 성능 A/B 재현(miss 33.7%→0%), HTTP 경로 실측, 릴리스 코드 위험 재검증, **BLOCKER 2건**(미커밋·미배포 역전)
+└── 27-capability-guard-backfill-break-glass/        ← 능력 게이트 LOST의 데이터 백필 규명 + 브레이크글라스 배포
+    └── capability-guard-break-glass.md                ← v2.5.0 게이트 실패(title_text 8건 LOST) 원인은 제안이유 백필, v2.4.0/v2.5.0 A/B 동일 손실 증명, allow_capability_loss 재실행으로 배포 완료
 ```
 
 ## 폴더별 상세 내용
@@ -185,6 +187,10 @@ agent_memories/
 ### `26-ai-summary-final-verification/` — AI 요약 인덱싱 최종 검증 + 프로덕션 레디니스
 
 - **readiness-verification.md**: 세션 24/25의 요약 인덱싱을 현재 호스트에서 다시 측정한 최종 검증. ① 초기 구축: `01 --db`가 **21,072요약청크를 포함한 117,718청크**를 만들고 라이브 `artifacts/chunks.jsonl`과 `cmp` **바이트 동일**. ② 증분: 라이브 plan **멱등**(`to_embed 0 / reused 117,718 / has_changes false`), 요약 없는 세트 plan은 요약 행 **순수 추가**(`to_embed 21,072 / dropped 0`). ③ 성능 A/B 재현: 요약 어휘 질의 miss **33.7% → 0.0%**, 자연 질의 61건 불변, dilution −0.093. ④ HTTP 경로 실측(`/health` 117,718·gist 질의 top5 전부 `[AI 요약]`·경계 400/422). ⑤ **릴리스 코드 위험 재검증**: v2.4.0 시야 + 라이브 아티팩트 → `dropped 21,072 / shrink_refused false` = 요약 벡터 자동 삭제. **BLOCKER 2건**: 요약 기능이 **미커밋**(HEAD=v2.4.0에 `SUMMARY_SECTION`/`ai_summary` 0건)이라 지금 이미지를 빌드하면 §⑤ 사고가 자동 발생하며, 같은 워킹트리에 다른 스레드의 미커밋 요청 경계 작업이 섞여 있어 PR 분리 조율이 필요. Docker 데몬 미실행으로 컨테이너 배포 검증은 불가(로컬 프로세스 HTTP 검증만).
+
+### `27-capability-guard-backfill-break-glass/` — 능력 게이트 LOST의 데이터 백필 규명 + 브레이크글라스 배포
+
+- **capability-guard-break-glass.md**: semantic-search v2.5.0(`da6c0be`) 릴리스를 필수 능력 게이트가 `title_text` 8건 LOST로 블록한 사건의 규명·해결 기록. 원인은 **코드 회귀가 아니라 데이터 백필**: 제안이유가 비어 있던 8건 공지가 likms/PAL 백필로 채워지면서 제목 전용 폴백 청크가 실제 본문 섹션 청크로 대체되어, 제목 원문이 청크 텍스트에서 사라짐(제목은 여전히 임베딩 컨텍스트로만 존재). v2.4.0(서빙 중)·v2.5.0 청커를 동일 레코드로 A/B하여 **두 버전 모두 동일 8건을 손실**함을 증명했으므로 롤백으로 예방 불가. 반대편으로 146건이 title_text을 순증. `allow_capability_loss=true`로 재실행(run 38184195199)했고, 이전 업데이트 틱이 인덱스를 이미 갱신해 재비교는 `OK — no capability class lost`로 통과, `/health`에 `maxK:200` 노출 확인(백엔드 v1.11.0 cap 협상과 연결). 교훈: **게이트 LOST를 보면 코드 타임라인보다 데이터 타임라인을 먼저 대조**하라.
 
 ### `23-embedding-device-autodetect/` — 임베딩 하드웨어 자동 탐지
 
