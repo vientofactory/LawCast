@@ -119,9 +119,9 @@ jobs:
             git reset --hard origin/main
 
             echo "--- Syncing submodules ---"
-            # Explicit paths on purpose: embedding-map is private and serves no
-            # deployed service, so a recursive update of every submodule would
-            # fail to authenticate on this host.
+            # Explicit paths on purpose: only the three service submodules are
+            # managed here. embedding-map is an independent sibling checkout, not
+            # a submodule, so it is deliberately never synced on this host.
             git submodule update --init --recursive --remote backend frontend semantic-search
 
             echo "--- New HEAD ---"

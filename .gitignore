@@ -109,3 +109,6 @@ yarn.lock
 .vercel/
 .netlify/
 .output/
+
+# Independent sibling repository (not a submodule of this repo)
+embedding-map/
