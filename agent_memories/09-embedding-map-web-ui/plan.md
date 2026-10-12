@@ -186,6 +186,97 @@ artifacts and plots every index row (~93k) instead of the 1,000-point demo sampl
 - Synthetic `WheelEvent` bursts are far more aggressive than real input (one
   event per rAF at factor 1.21/frame) — use them as a stress test only.
 
+## Top-K input completion + "stale UI" triage (2026-10-12)
+
+User report: **"Top-K 입력 필드를 추가했는데 안뜸"**, framed as a browser-cache
+problem. Triage before assuming cache:
+
+- The running server **already** sent `Cache-Control: no-cache` for `/` and
+  `/static/*` (middleware in `server/app.py`) and answered `304` on revalidation.
+  A fresh browser picks up `web/*` edits on a plain reload (verified with a
+  throwaway marker in `index.html`/`app.js`, then reverted byte-identical).
+- **Real root cause**: the Top-K feature existed only as CSS. `web/app.css` had
+  `.topk-field` rules (added earlier) but **no markup in `index.html` and no
+  wiring in `app.js`** — so there was nothing to render and no cache was
+  involved. Lesson: a "missing UI element" is first a *contract check* (is the
+  markup + JS there?), not a cache hunt. The inert CSS was the tell.
+- Residual (separate) hazard: a browser that cached the assets **before** the
+  `no-cache` header existed keeps serving them until heuristic freshness
+  expires; that transition needs one hard reload. Cache-busting URLs are only
+  needed if we want this to hold for a pre-existing cache.
+
+Implemented (`web/index.html`, `web/app.js`, `web/app.css`):
+
+- `.topk-field` markup inside `.query-form`: `<label>` + `<input id="topk-input"
+  type=number min=1 step=1>`, disabled until the engine is ready.
+- `app.js`: `topk` element handle; on `loadMap()` set `max = payload.maxTopK` and
+  value = `payload.resultK`; `resolveTopK()` maps the box to the POST body
+  (empty = engine default, omit `topK`; otherwise whole number in `1..maxTopK`),
+  disables the box during the request, and surfaces a Korean error otherwise.
+- **Pitfall — native constraint validation swallowed the submit**: with
+  `min`/`max`/`step` on a number input inside a `<form>`, an out-of-range value
+  makes the form `:invalid` and the browser blocks submission, so the `submit`
+  handler (and its error message) never runs, and nothing visible happens.
+  Fix: `<form ... novalidate>` so `resolveTopK()` is the single validator. Any
+  form with an explicitly-validated numeric field needs this.
+- CSS: `.topk-field input { flex: none }` (`.query-form input { flex: 1 }`
+  otherwise stretches the box inside the column layout).
+
+Verified live on the running `--full` server (no restart needed for `web/*`):
+field renders (value 5, max 200), `topK=8` → stage 4 `→ 8` + 8 result cards,
+`topK=60` widens stage 2 to 60 candidates, empty → engine default 5,
+`topK=999` → `Top-K는 1에서 200 사이의 정수여야 합니다` with no request.
+Guards: `tests/test_api.py` asserts `topk-input` is in the served index.html;
+26 pytest passed, `node --check`/prettier/eslint clean.
+
+## Hover hit-area for score/rank + Top-K markers (2026-10-12)
+
+Same class of report as the Top-K box: **"스코어링/랭킹, Top-K 결과 마커에 커서
+호버 영역을 확대해서 ... 정보가 잘 보이지 않던 문제를 해결했었는데"** — the fix
+was again **not in the tree** (`web/map.js` carried only Prettier changes). Lesson
+repeated: before assuming a cache, check whether the change is actually in the
+file (and whether the file is even the one being served).
+
+**Root cause of the symptom**: hit-testing was a single uniform screen-px
+threshold (`HOVER_THRESHOLD_PX = 9`) over one mixed list where `payload.points`
+were scanned first. In full mode every candidate *is* a base point at identical
+coordinates, and the surrounding 117k-point cloud is dense, so a neighbouring
+base point won the nearest test and the score/rank line never appeared (or the
+tooltip showed "이번 검색의 후보로 선택되지 않음").
+
+**Fix** (`web/map.js`):
+
+- Two hit lists. `overlayTargets` (candidates, plus a `hitRadiusPx` flag for
+  final results) is tested **first**; the base cloud (`hoverTargets` =
+  `payload.points`) is the fallback. Previously out-of-sample demo candidates
+  were appended to the base list; they now live only in the overlay list.
+- Per-target radius replaces the single threshold: `CANDIDATE_HOVER_RADIUS_PX =
+  14`, `RESULT_HOVER_RADIUS_PX = 18` (vs 9 before). Result rings get the widest
+  area because they are drawn on top of candidates and their rank labels sit
+  ~13px above the marker.
+- `_nearestWithin(targets, dataX, dataY, radiusOf)` does the data-space nearest
+  search against a per-target screen-px radius.
+
+**Measured live** (full mode, 117,718 points, query "임대차 계약에서 세입자 보호",
+Top-K 8; synthetic `pointermove` at a marker center ± N screen px, reading the
+tooltip). Picked the overlay marker with the largest gap to its nearest overlay
+neighbour so the boundary is not contaminated by a second marker:
+
+| Marker      | Gap to nearest overlay | Own subject retained up to | Drops at |
+| ----------- | ---------------------- | -------------------------- | -------- |
+| candidate   | 33.4px                 | ~13–14px (has score)       | 14px     |
+| result ring | 63.2px                 | 18px (has score)           | 19px     |
+
+Beyond the boundary the tooltip falls back to a plain base point (no score
+line), and hovering a rank label resolves to its candidate with the score line
+(`hasScore=true`, `notCandidate=false`). Exact center still reports the correct
+marker. `node --check` + prettier + eslint clean; pytest 26 passed.
+
+**Gap**: there is still no automated JS test for `web/` (no jsdom/Playwright in
+this tool), so this boundary is verified by measured browser probes only. A
+DOM-lite harness for `_nearestWithin` would turn the two radii into unit-testable
+constants.
+
 ## Environment gotchas
 
 - **The terminal tool reaps background processes when a command returns** (nohup/`&` both die).
