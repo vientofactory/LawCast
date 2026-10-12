@@ -70,8 +70,14 @@ agent_memories/
 │   └── capability-regression-gate.md                ← 능력 오라클(`capabilities.py`)·게이트 설계, 스왑 회귀 자동 재현(405건), 실패/통과 양방향 검증, `scripts/07_capability_report.py`(릴리스 전후 한 줄 대조·무결성 2종)
 ├── 26-ai-summary-final-verification/               ← AI 요약 인덱싱 최종 검증 + 프로덕션 레디니스
 │   └── readiness-verification.md                    ← 초기 구축/증분 포함 확인(byte-identical·plan 양방향), 성능 A/B 재현(miss 33.7%→0%), HTTP 경로 실측, 릴리스 코드 위험 재검증, **BLOCKER 2건**(미커밋·미배포 역전)
-└── 27-capability-guard-backfill-break-glass/        ← 능력 게이트 LOST의 데이터 백필 규명 + 브레이크글라스 배포
-    └── capability-guard-break-glass.md                ← v2.5.0 게이트 실패(title_text 8건 LOST) 원인은 제안이유 백필, v2.4.0/v2.5.0 A/B 동일 손실 증명, allow_capability_loss 재실행으로 배포 완료
+├── 27-capability-guard-backfill-break-glass/        ← 능력 게이트 LOST의 데이터 백필 규명 + 브레이크글라스 배포
+│   └── capability-guard-break-glass.md                ← v2.5.0 게이트 실패(title_text 8건 LOST) 원인은 제안이유 백필, v2.4.0/v2.5.0 A/B 동일 손실 증명, allow_capability_loss 재실행으로 배포 완료
+├── 28-keyword-semantic-search-integration/          ← /notices 키워드 검색 UI에 의미 검색 통합
+│   └── plan.md                                          ← searchMode(auto/keyword/semantic) 설계, 하이브리드 백엔드·프론트 배선, 계약·필터·폴백·검증 계획 + **Phase 1(백엔드)·Phase 2(프론트) 구현 완료** 기록
+├── 29-search-ui-persona-audit/                     ← /notices 검색 UI 페르소나 사용성 실측·개선
+│    └── usability-audit-and-improvements.md          ← 시민/법조인 관점 실측, 1차 6건 개선(모드 설명·부분집합 고지·0건 회복·칩 설명·예시 검색어) + 2차 한계 재검토 5건(실 백엔드 재측정·온디맨드 키워드 건수·건수 의미 불일치 수정·약한 계층 페이징, 그리고 **예시 검색어 결정화 → 오너 결정으로 되돌림**), SSR 상태 매트릭스·e2e 검증
+└── 30-keyword-fts-default/                         ← 키워드 검색 FTS 기본화(제안이유 토글 제거)
+    └── keyword-fts-default.md                       ← `fullText` 파라미터 도메인 제거, FTS5 무조건 적용 + LIKE 부분일치 유지 근거, 캐시 매처 동기화, 실 인덱스 집합 실측(LIKE3 ∪ FTS = API total), e2e 재작성·검증
 ```
 
 ## 폴더별 상세 내용
@@ -81,7 +87,7 @@ agent_memories/
 모든 에이전트가 참고해야 하는 프로젝트 전반의 주의사항입니다.
 
 - **backend-testing-notes.md**: 백엔드 테스트 작성/실행 시 주의사항. CacheService mock 패턴, Redis 키 관리, diffchain 해시 규칙, immutable snapshot 계약, NSM/PAL 라우팅, 프로덕션 버그 패턴(7건 이상의 발견/수정 기록 포함).
-- **frontend-notes.md**: 프론트엔드 개발 주의사항. Svelte runes 사용법, Playwright e2e 테스트 패턴, 모의 데이터 처리, data-testid 사용법.
+- **frontend-notes.md**: 프론트엔드 개발 주의사항. Svelte runes 사용법, Playwright e2e 테스트 패턴, 모의 데이터 처리, data-testid 사용법, 라우트의 명시적 `data` prop 타입 함정.
 - **code-comment-convention-notes.md**: 코드/주석 컨벤션 적합성 심사(2026-10-07) 기록. 영문 주석 전환 범위, 한국어 식별자/데이터 인용은 허용이라는 판단 기준, 이모지 규칙의 제품 문자열 예외, `lc-` 접두사 개명 내역, `.util.ts` vs `.utils.ts` 네이밍 충돌(미해결), 컨벤션 리팩터 검증 게이트.
 
 ### `01-project-exploration-and-discussion-plan/` — 초기 탐색 및 토론 시스템 계획
@@ -124,6 +130,19 @@ agent_memories/
 ### `11-api-version-fallback-stamp/` — `/api/version` 0.0.1 원인 분석
 
 - **bug-investigation-findings.md**: 프로덕션 `/api/version`이 항상 `0.0.1`(`buildEnv: env`)을 반환하던 버그의 원인 분석. `docker-compose.yml`의 `${APP_VERSION:-0.0.1}` 하드코딩 기본값이 CI 밖에서 실행된 `docker compose up`/`./deploy.sh` 컨테이너 재생성 시 실제 버전을 가짜 값으로 도장 찍고, 백엔드 폴백 체인 1순위(env)가 `package.json`보다 우선하던 문제. CI export 검증 로그·부트 파이프라인 타임스탬프 기반 시각선, `${APP_VERSION:-}` 패치와 검증 방법 포함.
+
+### `28-keyword-semantic-search-integration/` — 전체 입법예고 검색에 의미 검색 통합
+
+- **plan.md**: `/notices`(전체 입법예고)의 기존 키워드 검색 UI에 의미 검색을 자연스럽게 통합하는 **구현 계획**. **Phase 1(백엔드) 구현 완료(2026-10-12)**: `searchMode`를 `/api/notices/archive`에 추가, `NoticesHybridSearchService`(키워드 패스스루·의미 하이드레이트·폴백·약한 계층·캐시 전용 append·관련도순 페이지네이션) + `NoticeArchiveService.getArchiveNoticesByRankedNums` + `NoticesQueryService.getCacheOnlySearchMatches`. 응답 가산적(`searchMode`/`appliedMode`/`semantic`/항목별 `relevance`), 기본값 keyword(하위호환). 검증: lint·tsc·build·**927 tests/70 suites** 그린. **Phase 2(프론트) 구현 완료(2026-10-13)**: `/notices` 검색 폼에 검색 방식 세그먼트 컨트롤(`자동`/`키워드`/`의미`, 플래그 게이트)과 관련도 칩(`유사도`/섹션/발췌) 추가, `?searchMode=`가 URL·로더·SSR 카드까지 배선(`toNoticeCard`가 `relevance` 이월), `appliedMode==='semantic'`일 때 정렬 슬롯이 관련도순 칩으로 전환, 폴백 배너·약한 계층 공개/숨기기 포함. 모드는 항상 명시적으로 기록(파라미터 삭제 시 플래그 기본값 `auto`로 되돌아가는 버그를 하이드레이션 클릭으로 발견·수정). 기존 `/notices/semantic-search` 진입 버튼(`semantic-search-entry`)은 검색 액션 줄에서 결과 하단 우측 구석(페이지네이션 옆, `PaginationNav` 바깥)으로 이동 — nav 안에 넣으면 `totalPages <= 1`일 때 사라져 빈 결과 케이스 e2e가 깨진다. 검증: `npm run check` 0/0, lint 클린, notices e2e(90개 전수) 89 pass/1 skip, semantic-search e2e 23 pass, SSR 5시나리오 + 하이드레이션 브라우저 클릭 플로우. e2e 스펙(Phase 3)·롤아웃(Phase 4) 미착수. 현재 상태 근거(`/api/notices/archive` → `NoticesQueryService` → `LIKE`/옵션 FTS5, `noticeNum` 정렬·오프셋 페이지네이션, 캐시+아카이브 병합; 의미 검색은 별도 엔드포인트/사이드카). **핵심 설계 결정**: `searchMode`(`auto` 기본/`keyword`/`semantic`)를 기존 `/api/notices/archive`에 추가하고, 새 `NoticesHybridSearchService`가 의미 후보(공개 `MAX_K=50`이 아닌 내부 상한 ~100)를 하이드레이트→필터(날짜/isDone/proposer)→관련도순 페이지네이션. 답변 계약은 가산적(`semantic{...}`, 항목별 `relevance{score,section,excerpt,weak}`), session 14 무결과 키워드 대체 금지·session 20 임계값 노이즈 필터 금지·session 17 SSR 카드 트림 규칙 준수. 캐시 전용(미아카이브) 공고는 키워드 매칭분을 뒤에 append, `source_deleted`는 기존 보존 칩 유지. `/notices/semantic-search` 페이지는 이전 호환용 존치. 6단계 페이즈·검증 매트릭스·미결 결정 6건(D1~D6).
+
+### `30-keyword-fts-default/` — 키워드 검색 FTS 기본화
+
+- **keyword-fts-default.md**: 제안이유 포함 검색 토글을 없애고 키워드 검색이 기본으로 제안이유를 FTS5로 매칭하도록 백엔드(7파일)·프론트엔드(7파일)·e2e를 고친 기록. 설계 판단(FTS만 쓰면 한국어 법률안명 부분일치가 깨져 LIKE 유지, 캐시 매처에 proposalReason 추가), 실 인덱스 집합 실측(`보호`/`임대차`/`국민연금`에서 `LIKE3 ∪ FTS = API total` 일치, `희토류` 0→4, `matchedCacheCount` 근거), 게이트(백엔드 928 테스트·프론트 e2e 253+33), 남은 관찰(중간 부분일치 구멍, `auto` 기본값 재검토, 파라미터 제거에 따른 버전 범프 필요).
+
+### `29-search-ui-persona-audit/` — /notices 검색 UI 페르소나 사용성 실측·개선
+
+- **usability-audit-and-improvements.md**: `/notices` 검색 UI가 일반 시민부터 법조인까지 포괄적으로 쓸 만한지 **mock 렌더 실측**으로 판정한 기록. SSR 프로브 8개 상태 + 1440/390 브라우저 측정(innerText·레이아웃·오버플로·탭 영역). 발견: 모드 설명 0건, 의미 모드가 **부분집합**이라는 고지 없음(계획 D6 미결), 0건 막다른 길, 유사도 칩 설명 없음, 콜드 스타트 어포던스 0건. 개선 6건(모드별 1줄 설명·범위 고지+키워드 링크·0건 회복 2방향·칩 `title`·예시 검색어 3개 로더 생성)과 검증(SSR 상태 매트릭스, notices e2e 89 pass, semantic e2e 26 pass) 포함.
+  **2차(§5~§7)**: 실 백엔드/엔진을 붙여 SSR·브라우저로 재측정하며 한계를 다시 판정. 의미 모드의 `stats.totalArchiveCount`(전체 아카이브 21,188)를 결과 건수로 오용해 문서 제목이 21,188건을 광고하던 문제, 무관한 쿼리에 약한 계층이 **100장 카드로 쏟아지던** 문제를 실측으로 찾아 수정(온디맨드 키워드 건수 대조 39 vs 509, 약한 계층 10건 배치 페이징). 예시 검색어는 이 라운드에서 KST 날짜 결정화를 시도했다가 **같은 날 전원이 같은 칩을 보게 되어 오너 결정으로 랜덤 추출로 되돌렸다**(§5.3) — 다시 결정화하지 말 것. 보드 의미 UI에 `e2e/semantic-search-board.spec.ts` 6개 테스트를 새로 붙였다(1차 기능은 수동 검증뿐이었다). 검증: mock e2e 256 pass, semantic e2e 33 pass.
 
 ### `10-index-last-update-tracking/` — 시맨틱 인덱스 마지막 업데이트 시각
 
