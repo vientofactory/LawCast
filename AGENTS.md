@@ -152,6 +152,26 @@ Session folders follow this pattern:
 - **Transactions**: `DataSource.transaction(async (manager) => { ... })`
 
 ### Comment Format (English Only)
+
+**Every comment and docstring MUST be written in English — never mix Korean into English
+comments, and never leave an explanatory clause un-translated.** This covers `//`, `/* */`,
+`/** */` JSDoc blocks, Python docstrings and `#` comments, CSS comments, HTML/Svelte comments and
+YAML/shell comments in all three submodules. The rule is machine-checked from the repo root:
+
+```bash
+python3 tools/check-comment-language.py     # exit 1 when a comment line holds Korean prose
+```
+
+- Write the explanation in English. A Korean sentence, fragment or aside inside a comment is a
+  violation even when the rest of the comment is English.
+- **Only exception — cited literals.** A value that exists verbatim in the code, the data or the
+  UI may appear in Korean when it is quoted: an identifier or enum value, a DB column value, a
+  Notion property name, a corpus sample, or a user-facing label. Quote it with backticks
+  (`` `제안이유` ``) or quotation marks (`"안건정보가 없습니다"`). Quoting marks it as data instead of
+  prose and is what the checker accepts.
+- **User-facing text is not a comment** and stays Korean: UI strings, API error messages, i18n
+  copy, test titles (`it('...')`, `test('...')`), and fixture data. Never translate them.
+
 ```typescript
 /**
  * Brief description of the method's purpose.
@@ -159,9 +179,15 @@ Session folders follow this pattern:
  */
 async myMethod(): Promise<Result> {
   // Inline comments explain WHY, not WHAT
-  // Use TODO: prefix for known issues
+  // `proposalReason` (`제안이유`) is matched through the FTS index, so the
+  // keyword the reader sees in the UI resolves to the archived column.
+  // TODO: prefix known issues with TODO:
 }
-````
+```
+
+Wrong: `// 제안이유는 FTS 인덱스로 매칭된다` / `// 제안이유 is matched, LIKE 폴백으로도 찾는다`
+
+Right: `` // `proposalReason` (`제안이유`) is matched through the FTS index, with a LIKE fallback ``
 
 ### Naming Conventions
 
@@ -235,9 +261,19 @@ async myMethod(): Promise<Result> {
 
 ### Comment Format (English Only)
 
+**English only, no Korean/English mix** — the same rule as backend §4, and the same checker:
+`python3 tools/check-comment-language.py`. It covers `<script>` comments, `<!-- -->` markup
+comments, Playwright spec comments and CSS comments. Korean may only appear as a quoted literal
+copied from the code, the data or the UI (`` `제안이유(원문)` ``, `'제도적 기반'`, `"다시 시도"`), never
+as an explanation.
+
+- Test titles and `expect(...)` copy are data, not comments: `test('전체 유형 옵션을 보여준다')` is fine.
+- Assertion messages written in Korean are fine for the same reason; the *comment above them* is not.
+
 ```svelte
 <script lang="ts">
   // Brief inline comments for non-obvious logic
+  // The chip shows the raw label `마감 D-3` supplied by the deadline util.
   // TODO: this needs optimization for large datasets
 </script>
 
@@ -261,7 +297,16 @@ async myMethod(): Promise<Result> {
 ### Language Policy
 
 - **Code**: All code comments, variable names, and API responses in **English**
-- **User-facing text**: Korean for UI strings, error messages, and documentation
+- **Comments and docstrings: English ONLY.** Never mix Korean into an English comment, and never
+  write the comment itself in Korean. The single exception is a **quoted** literal copied from the
+  code, the data or the UI (`` `제안이유` ``, `"안건정보가 없습니다"`), quoted precisely so a reviewer can
+  tell data from prose. See §4 Comment Format for the full rule and examples, and run
+  `python3 tools/check-comment-language.py` (exit 1 on Korean prose) before committing — the
+  checker is part of the Step 0 verification block below.
+- **User-facing text**: Korean for UI strings, error messages, and documentation — `README.md`,
+  `.env.example`, route copy and `agent_memories/` notes are **documentation, not code comments**,
+  and keep the language their readers use. The English-only rule above applies to comments and
+  docstrings inside source files, not to prose documentation.
 - **Agent notes**: Technical docs in English; exploration notes may mix Korean
 - **No emojis**: Never use emojis in code, commit messages, documentation, or PR descriptions
 
@@ -270,6 +315,7 @@ async myMethod(): Promise<Result> {
 - CI runs on push/PR to `main`: backend lint/typecheck/build/test, frontend typecheck/build
 - Always verify locally: `cd backend && npm run lint && npx tsc --noEmit && npm run build && npm test`
 - Always verify frontend: `cd frontend && npm run check`
+- Always verify comment language: `python3 tools/check-comment-language.py` (repo root; exit 0 required)
 
 ### Branching & Merging
 
@@ -332,6 +378,7 @@ cd semantic-search && .venv/bin/python scripts/07_capability_report.py --db ../b
 - `npm run lint` runs Prettier auto-fix + ESLint fix — all files MUST be `(unchanged)` or auto-fixed
 - `npm run check` (frontend) / `npx tsc --noEmit` (backend) MUST pass with 0 errors
 - `semantic-search` MUST pass ruff (check + format) and pytest; the version manifest guard is `tests/test_version.py`
+- Comment language MUST be clean (see §4/§5/§6): `python3 tools/check-comment-language.py` from the repo root exits 0 when no comment line carries Korean prose
 - **NEVER commit without running these first** — unformatted code will cause CI failures and unnecessary version bumps
 - If lint or check produces changes, include those changes in the same commit as the feature/fix
 
@@ -472,6 +519,10 @@ cd semantic-search && .venv/bin/python -m pytest tests/ -q                      
 cd semantic-search && .venv/bin/python scripts/07_capability_report.py --db ../backend/lawcast.db   # Capability line (release guard)
 cd semantic-search && python3 -c "import tomllib;print(tomllib.load(open('pyproject.toml','rb'))['project']['version'])"   # Version
 cd semantic-search && git tag -l 'semantic-search-v*'                           # Released versions
+
+# Comment language (English-only rule, see AGENTS.md §4/§5)
+python3 tools/check-comment-language.py                                          # Exit 1 on Korean prose in a comment
+python3 tools/check-comment-language.py --all                                    # List cited Korean literals too
 
 # Docker
 docker compose up -d --build             # Start all services
