@@ -88,8 +88,10 @@ agent_memories/
 │   └── likms-live-pipeline-verification.md          ← 목록 수집·아카이브·diffchain·캐시·요약 스테이징 정상(신규 270행), 단 상세 캡처가 여전히 NSM URL이라 errorWrap 오류 페이지를 스냅샷으로 저장(proposalReason 0건)·비법률안 유입 80% 실측
 ├── 35-likms-detail-capture-source-fix/               ← LIKMS 상세 캡처가 활성 소스를 따르도록 수정
 │   └── likms-detail-capture-source-fix.md            ← 근본 원인(captureNsmDetailFull이 NsmLmSts·NSM URL 하드코딩), likms 경로(getDetail + likms 상세 페이지) 분기, 백로그 자동 복구/스크린샷 재작성 불가(first-fill 트리거) 분석, 게이트 1110
-└── 36-detail-chain-head-overlay/                     ← 기본 상세 응답이 이전 리비전을 서빙하던 버그
-    └── detail-chain-head-overlay.md                  ← `resolvedRev=headRev`를 광고하면서 스냅샷 값(직전 리비전)을 반환(라이브 실측: billNumber/proposer/… null), 기본 경로가 추적 필드 전체를 `applyTrackedValue`로 오버레이하도록 수정, 되돌림 반증 테스트 포함, 게이트 1111 + e2e 43
+├── 36-detail-chain-head-overlay/                     ← 기본 상세 응답이 이전 리비전을 서빙하던 버그
+│   └── detail-chain-head-overlay.md                  ← `resolvedRev=headRev`를 광고하면서 스냅샷 값(직전 리비전)을 반환(라이브 실측: billNumber/proposer/… null), 기본 경로가 추적 필드 전체를 `applyTrackedValue`로 오버레이하도록 수정, 되돌림 반증 테스트 포함, 게이트 1111 + e2e 43
+└── 37-pal-html-fallback-source-guard/                ← PAL 전용 상세 HTML 폴백이 비PAL 페이지를 파싱
+    └── pal-html-fallback-source-guard.md             ← LIKMS 행이 likms 상세 HTML을 스냅샷으로 가지면서 PAL 셀렉터가 엉뚱한 셀을 읽어 `originalContent.committee`에 "제안회기 …"·`referralDate`에 "문서" 주입(목록 소관위원회까지 덮어씀), 아카이브 URL 호스트 게이트 도입, 되돌림 반증 테스트 포함, 게이트 1113 + e2e 43
 ```
 
 ## 폴더별 상세 내용
@@ -166,6 +168,10 @@ agent_memories/
 ### `34-likms-live-pipeline-verification/` — LIKMS 실제 활성 상태 라이브 파이프라인 검증
 
 - **likms-live-pipeline-verification.md**: `CRAWLING_NSM_SOURCE=likms`가 실제로 켜진 프로덕션(`10.20.0.1`)과 공개 사이트(`law.viento.me`)에서 계류의안 크롤러의 종단 경로를 실측한 기록. **정상**: 목록 160페이지·15,958행·unique 15,164·pending 77 수집, 중복 pending 스트림·삭제 프로브 스킵 로그 확인, `Pending sync done - new=214 newPending=77 syncOnly=137 sourceDeleted=0`, 90분간 신규 270행(`archive 21274→21488`)·`created` 이벤트 270건·캐시 1207→1458·요약 백필 스테이징 314건, 공개 API가 `likms.assembly.go.kr` 링크·`contentId: null`로 노출. **확정 결함**: 270행 전건이 NSM 포털 오류 페이지(`errorWrap`, 6,207 B 고정, `responseUrl=opinion.lawmaking.go.kr/...`)를 스냅샷으로 저장 — `proposalReason` 0건·`content_bill_number` 0건, AI 요약 `not_supported`(비교 기준: 전환 전 contentId-null 행 19,867건 중 19,395건은 제안이유 보유). 원인은 `captureNsmDetailFull`/`buildNsmDetailUrl`이 소스를 따르지 않고 `NsmLmSts` 하드코딩인 점(§31 line 126·§33 line 79 잔여 항목). **부수**: 신규 270행 중 `법률안` 54건뿐, `결의안` 88·`동의안` 13·`징계안` 다수 등 약 80%가 비법률안 계류의안으로 파이프라인 유입. **미검증**: 알림 발송(부트 파이프라인 억제로 미발생), 전환 안정화 이후 크론 사이클.
+
+### `37-pal-html-fallback-source-guard/` — PAL HTML 폴백의 소스 게이트
+
+- **pal-html-fallback-source-guard.md**: v1.15.3 검증 중 발견한 두 번째 프로덕션 결함. `extractPalFieldsFromSourceHtml`가 **모든** 아카이브 행에 PAL 공지 페이지 셀렉터(`<li>제안회기 : …</li>`, 본문 첫 `<tbody><tr>`의 `<td>` 0–4 = 의안번호/제안자/제안일/소관위원회/회부일)를 적용해 왔는데, v1.15.2 이후 LIKMS 행은 `likms.assembly.go.kr` 상세 페이지를 `source_html`로 저장하므로 같은 셀 위치가 무관한 텍스트를 담았다. **라이브 증거**: notice `2221897`의 `originalContent.committee = "제안회기 제22대(2024~2028)제439회"`, `referralDate = "문서"` — 스냅샷·diffchain 어느 쪽에도 없는 값(rev2는 `proposalSession`만 변경)이고, UI가 `originalContent.committee ?? notice.committee`를 쓰므로 정상 `소관위원회`까지 덮어썼다. 과거 NSM `errorWrap` 페이지에는 `<tbody>` 행이 없어 증상이 가려져 있었다. **수정**: 아카이브된 `requestUrl`/`responseUrl`이 `pal.assembly.go.kr`인 경우에만 폴백 적용(`isPalNoticePage`) — `contentId`가 아니라 URL로 게이트한 이유(채택 근거: likms `billId`가 PAL contentId와 동일하다고 문서화돼 있어 향후 PAL 보강이 LIKMS 행에 contentId를 붙일 수 있음), 프로덕션 21,030행 호스트 분포 실측 표 포함. **검증**: 비PAL 테스트는 가드 제거 시 실패·PAL 테스트는 양쪽 통과, 게이트 80 suites·1113 tests·e2e 43·comment 0. **인접 미해결**: `originalContent.title`이 의안명이 아니라 발의정보 라인, 일부 LIKMS 행은 캡처 후에도 `proposalReason` 공백(미규명), 잘못 저장된 스냅샷 재작성 불가.
 
 ### `36-detail-chain-head-overlay/` — 기본 상세 응답의 리비전 정체 수정
 
