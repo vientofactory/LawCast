@@ -207,6 +207,29 @@ next to it.
    legacy-document rows can be filtered by rejecting ids that are not 7-digit
    `의안번호` (a `isCrawlableNsmBill` tightening).
 
+## 4-1. Applied patches (backend-v1.15.1, 2026-10-14)
+
+Steps 1 and 2 of the recommendation above are now code, so switching the source no
+longer needs an extra env var and no longer pays for the second traversal.
+
+| # | Risk | Patch | Files |
+| --- | --- | --- | --- |
+| P1 | R1 — deletion confirmed against the wrong portal | `isNsmDeletionDetectionEnabled()` returns false whenever the active source is `likms`, whatever `CRAWLING_NSM_DELETION_DETECTION_ENABLED` says. Every `source_deleted` path already consulted that gate (detail probe, capture-error confirmation, `markSourceDeletedByMissingNsmNums`), so all of them stand down; list sightings keep being stamped so re-enabling detection later resumes from real gaps. A new `describeNsmDeletionDetectionDisabled()` puts the reason in the skip logs | `utils/source-deletion-detection.utils.ts` (+ spec), `crawling/archive-orchestrator.service.ts`, `notice/notice-archive.service.ts` |
+| P2 | R2 — pending scan re-walks the whole list | New `isNsmPendingStreamRedundant()` gates both pending scans (cron + pending sync): the LIKMS adapter derives `접수` by filtering the same list the all-bills scan already walked, so the all-bills `isPendingProgressStatus` classification is used instead of a second traversal. The NSM portal keeps its server-filtered stream (`rslRsltNmL=900101`), whose result is not guaranteed to be a subset of its all-bills list | `utils/crawler-activation.utils.ts` (+ spec), `crawling/utils/crawling-scheduler-pending-support.ts`, `crawling/utils/archive-sync-phase-executors.ts` |
+| P3 | Contract the skip relies on | New `nsm-pending-scan-contract.spec.ts` imports the real pal-crawl package: it asserts our classifier recognises `Config.LIKMS_PENDING_PROGRESS_STATUS` and that our pending set equals `LikmsNsmAdapter.likms.filterPending` for LIKMS-shaped items, so a vocabulary change in pal-crawl fails the test instead of silently dropping pending bills | `crawling/utils/nsm-pending-scan-contract.spec.ts` |
+
+Effect on the measured cost: the LIKMS cycle drops from ~320 list requests to ~160
+(the all-bills traversal), and deletion probing against `opinion.lawmaking.go.kr`
+stops entirely while the source is LIKMS. R3 (probe pool), R4 (cache), R6
+(legacy documents) and R5 (silent truncation) are unchanged and still need the
+follow-ups below.
+
+**Still open**: the all-bills stream itself must keep walking the whole list
+(source-missing reconciliation treats it as the universe, and it is where new
+bills of any stage are discovered), so R2 is halved, not removed; deletion
+detection cannot come back until capture/probe speak to the same portal that
+supplied the list.
+
 ## 5. Not verified / limits
 
 - Only 8 of 160 pages were sampled for coverage; the unmeasured region is the

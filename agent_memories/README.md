@@ -83,7 +83,7 @@ agent_memories/
 ├── 32-nsm-ua-block-and-probe-storm/                ← NSM 포털 UA 차단 → 조용한 수집 실패 + 삭제 프로브 폭주
 │   └── nsm-portal-block-and-probe-storm.md          ← `LawCast/1.0` UA만 5,451B 오류 페이지(브라우저·curl UA는 정상), NSM 수집 2026-09-09 중단, 삭제 프로브가 확정 불가 → 로그 폭주·감지 5주 공백, 후보 약 10,300건/사이클, 킬 스위치 완화
 └── 33-likms-source-switch-risk/                    ← LIKMS 소스 전환 + 수집 활성화 리스크 실측
-    └── likms-source-switch-risk.md                  ← 생성은 LIKMS·삭제 판정은 NSM(오탐 근거 실측), 목록 스캔 320요청/20분, 프로브 풀 40→수백, 캐시 교체, 꼬리 비의안 문서 유입, 권고 순서
+    └── likms-source-switch-risk.md                  ← 생성은 LIKMS·삭제 판정은 NSM(오탐 근거 실측), 목록 스캔 320요청/20분, 프로브 풀 40→수백, 캐시 교체, 꼬리 비의안 문서 유입, 권고 순서 + 적용 패치(backend-v1.15.1: likms 소스에서 삭제 감지 강제 off, 중복 pending 스트림 생략)
 ```
 
 ## 폴더별 상세 내용
@@ -155,7 +155,7 @@ agent_memories/
 
 ### `33-likms-source-switch-risk/` — LIKMS 소스 전환 + 수집 활성화 리스크
 
-- **likms-source-switch-risk.md**: `CRAWLING_NSM_SOURCE=likms` + `CRAWLING_NSM_ENABLED=1`을 켰을 때 무엇이 깨지는지 **프로덕션 실측**으로 판정한 기록(전환은 하지 않음 — `CRAWLING_NSM_ENABLED=0` 유지). 실측: LIKMS 계류의안 **15,956건/160페이지**, 표본 8페이지 커버리지(중간 페이지 99%·1페이지 58%(PAL 행)·꼬리 153~160페이지 0% = 2002~2003년 비의안 문서) → 첫 스캔 신규 수백~1,800행. 최고 위험은 **생성은 LIKMS, 삭제 판정은 NSM**이라는 분리: LIKMS에만 있는 2221889의 NSM 상세 페이지가 `안건정보가 없습니다`를 반환함을 실측(같은 페이지의 2221888은 정상) → 상세 프로브가 도는 순간 `source_deleted` 오탐(생성 시점엔 행이 없어 no-op, 프로브 단계에서 확정). 그 밖에 pending 스캔이 서버 필터 부재로 **maxPages 없이 전체 순회 = 320요청/20분(≈23,000/일)**, 프로브 풀 40→수백(`content_bill_number IS NULL` 우선), 캐시 5,000 교체, 6자리 비의안 id 유입, 0건 페이지 조용한 스캔 절단, compose 경로로만 env 주입. 권고: 삭제 감지 off로 먼저 켜고, 스캔 상한/필터를 넣고, 삭제 권한을 소스로 이관한 뒤 감지를 재개.
+- **likms-source-switch-risk.md**: `CRAWLING_NSM_SOURCE=likms` + `CRAWLING_NSM_ENABLED=1`을 켰을 때 무엇이 깨지는지 **프로덕션 실측**으로 판정한 기록(전환은 하지 않음 — `CRAWLING_NSM_ENABLED=0` 유지). 실측: LIKMS 계류의안 **15,956건/160페이지**, 표본 8페이지 커버리지(중간 페이지 99%·1페이지 58%(PAL 행)·꼬리 153~160페이지 0% = 2002~2003년 비의안 문서) → 첫 스캔 신규 수백~1,800행. 최고 위험은 **생성은 LIKMS, 삭제 판정은 NSM**이라는 분리: LIKMS에만 있는 2221889의 NSM 상세 페이지가 `안건정보가 없습니다`를 반환함을 실측(같은 페이지의 2221888은 정상) → 상세 프로브가 도는 순간 `source_deleted` 오탐(생성 시점엔 행이 없어 no-op, 프로브 단계에서 확정). 그 밖에 pending 스캔이 서버 필터 부재로 **maxPages 없이 전체 순회 = 320요청/20분(≈23,000/일)**, 프로브 풀 40→수백(`content_bill_number IS NULL` 우선), 캐시 5,000 교체, 6자리 비의안 id 유입, 0건 페이지 조용한 스캔 절단, compose 경로로만 env 주입. 권고: 삭제 감지 off로 먼저 켜고, 스캔 상한/필터를 넣고, 삭제 권한을 소스로 이관한 뒤 감지를 재개. **적용 패치(backend-v1.15.1, §4-1)**: 활성 소스가 likms면 `isNsmDeletionDetectionEnabled()`가 env 값과 무관하게 false(삭제 오탐 경로 전면 차단, 스킵 로그에 사유 표기), `isNsmPendingStreamRedundant()`가 두 pending 스트림(크론·동기화)을 건너뛰고 전체 목록 스캔의 분류를 사용, pal-crawl 실물로 어댑터 `filterPending`과의 일치를 고정하는 계약 스펙 추가. 남은 것: 전체 목록 스트림은 그대로 순회(요청량 절반만 감소), 캐시 교체·꼬리 비의안 문서·조용한 스캔 절단은 미해결.
 
 ### `29-search-ui-persona-audit/` — /notices 검색 UI 페르소나 사용성 실측·개선
 
