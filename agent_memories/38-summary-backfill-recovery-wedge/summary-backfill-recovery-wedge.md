@@ -106,16 +106,21 @@ the stop point matches the window above.
 1. **FIXED in `backend-v1.15.5`** — the cursor now advances over the summary-state rows and
    hydrates one page at a time (`readSummaryBackfillCursorPage` returns
    `{ cursorCount, rows }`; only `cursorCount` is compared against the page size). See §7.
-2. **Generator FIXED (unreleased, §9)** — `generateSummaryForNotice`'s `contentId` branch
+2. **Generator FIXED (`backend-v1.15.6`, §9)** — `generateSummaryForNotice`'s `contentId` branch
    resolves the reason through the new `resolveSummaryProposalReason` (live payload →
    caller-resolved value → chain head) instead of trusting the PAL payload alone.
    **Still open** — the `!row.contentId` recovery filter keeps those rows out of the
    backfill scan, so the 22 historical `not_supported` rows stay stuck until the scan
    accepts them (rows re-entering the crawl/proposal-retry path are covered by §9).
-3. **FIXED (unreleased, §10)** — the 15-minute tick no longer puts the summary backfill
+3. **FIXED (`backend-v1.15.6`, §10)** — the 15-minute tick no longer puts the summary backfill
    behind the crawl/browser guard, and a deferred summary backfill logs at production level
-   instead of `debugDev`. Open question left behind: whether a 15-minute cadence with a
-   CPU-friendly batch size keeps up with the LIKMS reason backlog.
+   instead of `debugDev`. Confirmed live in production (§11.2): the tick now fires on the
+   cadence, staging `scanned=340 stagedPending=315` per pass. Open question left behind:
+   whether a 15-minute cadence with a CPU-friendly batch size keeps up with the LIKMS reason
+   backlog.
+4. **FIXED (`backend-v1.15.6`, §11)** — the summary-state bulk upsert now stamps `updated_at`,
+   so the rows one pass processed are identifiable by timestamp; audited against the
+   production DB in §11.2.
 
 Note for future edits: the recovery pass can stay an offset walk only because the apply worker
 starts after staging completes. If a pass ever writes summary states while it stages, it must
@@ -174,11 +179,12 @@ fixed recovery pass.
 - **Caveat found while verifying**: `updateSummaryStatesByNoticeNums` did not bump
   `notice_archive_snapshot_states.updated_at`, so `updated_at` was not a reliable marker for
   "this pass touched the row" (rows processed by the 09:37 pass showed no timestamp change).
-  Compare status sets instead. **Fixed in §11** (unreleased).
+  Compare status sets instead. **Fixed in §11**, released as `backend-v1.15.6` and audited
+  live in §11.2.
 - Rows that still carry no reason anywhere stay `not_supported` after the pass (358 at check
   time) - expected, and they re-enter the scan on every pass now that the wedge is gone.
 
-## 9. Follow-up fix - `contentId` rows now summarize from the chain (unreleased)
+## 9. Follow-up fix - `contentId` rows now summarize from the chain (`backend-v1.15.6`)
 
 Asked by the user after §8: "make rows that have a `contentId` generate their summary from the
 chain's latest `제안이유` too". The generator was the single point that threw the recovered reason
@@ -222,7 +228,7 @@ now keeps a reason it already holds, and the LIKMS recovery flow (`fetchAndUpdat
 recovery scan, so the 22 historical rows need that widening (or a re-crawl) before they are
 re-attempted.
 
-## 10. Follow-up fix - the 15-minute trigger now runs the summary backfill (unreleased)
+## 10. Follow-up fix - the 15-minute trigger now runs the summary backfill (`backend-v1.15.6`)
 
 Asked by the user after §9: make the 15-minute cron actually run the summary backfill
 instead of only the start-up pass.
@@ -268,9 +274,14 @@ production-level skip line; idle runs both. **The first two fail on the pre-fix 
 lint 0, `tsc --noEmit` 0, build 0, `npm test` 80 suites / 1121 tests, `npm run test:e2e` 45,
 comment-language 0.
 
-**Not done**: no deployment yet, so production still runs the guarded version.
+**Deployed and confirmed live** (`backend-v1.15.6`, container started 2026-10-14 11:59:38 UTC).
+The periodic tick now runs in production: `cronJobs['proposalReason backfill drain'].lastRunAt`
+moved from `null` (the §10 pre-fix evidence) to `2026-10-14T12:54:37Z`, then `13:54:37Z`, on the
+15-minute cadence, and each pass logs `Summary backfill staged - scanned=340 stagedPending=315`
+followed by a drain to `queueRemaining=0` (80 batches of `requested=5, removed=5, failed=0`).
+The row-level audit of that pass is §11.2.
 
-## 11. Follow-up fix - summary state writes stamp `updated_at` (unreleased)
+## 11. Follow-up fix - summary state writes stamp `updated_at` (`backend-v1.15.6`)
 
 Asked by the user after §10: make the summary-state writes advance `updated_at` so the rows a
 backfill pass processed can be identified by timestamp (the caveat recorded in §8).
@@ -308,7 +319,59 @@ two pin the already-correct paths. Gates: lint 0, `tsc --noEmit` 0, build 0, `np
 suites / 1125 tests, `npm run test:e2e` 45, comment-language 0.
 
 Nothing reads the column yet (it is an operational marker), so a pass can now be audited with
-`WHERE updated_at >= '<pass start>'` instead of diffing status sets. **Not done**: no
-deployment yet.
+`WHERE updated_at >= '<pass start>'` instead of diffing status sets.
+
+### 11.1 Live verification (`backend-v1.15.6`, deployed 2026-10-14 11:59:38 UTC)
+
+Release trail: PR `#206` (`fix: resume the AI summary backfill and make its writes auditable`, squash,
+signed) → tag `backend-v1.15.6` → `dev` fast-forwarded → root-pointer commit
+`chore: update backend submodule to v1.15.6` on `main` → `deploy-backend` job green,
+`/api/version` = `1.15.6`.
+
+The container restarted into the fixed build and its bootstrap pass staged
+`scanned=340 stagedPending=315`, then drained the apply queue (`queueRemaining=0` at
+12:07:32). Read-only against the production volume DB:
+
+- **315 rows carry `updated_at >= 11:59:38`** - exactly the staged count, so the processed
+  set is now identifiable by timestamp.
+- Diffing the `not_supported`/`not_requested`/`unavailable` set before the deploy against the
+  same set afterwards: **315 rows moved, 25 did not**, and every unmoved row is one the scan
+  deliberately skips - `22` are `contentId` + `active` (the `!row.contentId` recovery filter,
+  still open) and `3` are `no contentId` + `source_deleted` (dropped by the active-archive
+  join). The counts reconcile: `315 + 22 + 3 = 340`.
+- No row flipped status in this pass (`not_supported 340 -> 340`, `ready 21,154 -> 21,154`):
+  those rows genuinely carry no `proposalReason` anywhere, so the pass rewrote the same
+  verdict - which is exactly the case the timestamp now makes visible.
+- Pre-fix comparison from the same DB: `2221036`/`2221042` had turned `ready` in the 11:17
+  pass while keeping `updated_at = 2026-09-16 15:13:02`.
+
+### 11.2 Post-deploy audit of a periodic pass (the acceptance criterion)
+
+Re-verified read-only against the production volume DB once the periodic tick had run twice
+(12:54 and 13:54 UTC), i.e. against a pass the 15-minute cron started rather than the bootstrap
+one. Criterion: **the rows a post-deploy backfill pass processed are identifiable from
+`updated_at` alone.**
+
+- **The 13:54 window isolates exactly the staged set.** `updated_at >= '2026-10-14 13:54:00'`
+  returns **315 rows, all `not_supported`**, spanning `13:54:10`-`14:01:14` (the async apply
+  drain). **No `ready` row falls inside the window**, so there is no false positive: the
+  timestamp does not sweep in rows some other path touched.
+- **All 340 `not_supported` rows are accounted for.** Joining the summary states to their archive
+  rows: **315 stamped in the pass**, **25 not** - `22` `contentId` set and `3` inactive archive
+  row. That is exactly `scanned=340 stagedPending=315` in the pass log, and exactly the two
+  deliberate skips (§9's `!row.contentId` filter and the active-archive join).
+  `315 + 22 + 3 = 340`, and `0` summary-state rows lack an archive row.
+- **The crawl path is separable.** It stamped only `ready` rows today, and those land *between*
+  passes (`13:49`-`13:51`, plus `08:52`-`09:02` and `00:23`), never inside `13:54`-`14:01`.
+- **Caveat - anchor the window at the pass, not the deploy.** A window anchored at the container
+  start (`>= 11:59:38`) no longer isolates one pass: the 12:54 and 13:54 passes re-stamped the
+  same candidate set (a repeated bulk upsert of the *same* verdict still advances `updated_at`,
+  as §11's spec pins), and the crawl cycle added ~17 `ready` rows in the gaps. Audit **per pass**
+  by anchoring on `cronJobs['proposalReason backfill drain'].lastRunAt` or the
+  `Summary backfill staged` log line.
+- **Why the marker only works now.** `2221036`, `2221042` and `2221131` still show
+  `2026-09-16 15:13:02` / `2026-09-18 15:00:55`: they are `ready`, left the recovery scan when
+  the 11:17 pass of `backend-v1.15.5` summarized them, and no later pass re-touches them. Under
+  the pre-§11 code that state was indistinguishable from "the pass never ran".
 
 
