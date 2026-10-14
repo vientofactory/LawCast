@@ -83,15 +83,38 @@ extra pass is additive.
   `npm run test:e2e` (43 passed, 3 suites env-skipped), `python3 tools/check-comment-language.py`
   (0 Korean prose comment lines).
 
-## 5. Remaining / not fixed
+## 5. Post-deploy live verification (backend-v1.15.3)
 
-- **`contentCommittee`, `referralDate`, `noticePeriod` can still be null even at the chain head** for
-  LIKMS rows: pal-crawl's `INsmBillDetail` (`getDetail`) has no field for them, so
-  `fetchAndUpdateProposalReason` has nothing to write and `preferIncomingTrackedValue` keeps the
-  snapshot value. Filling them needs a new source (the likms `심사정보` fragment carries 제안이유 only;
-  `소관위원회`/`회부일` would need the likms bill page's own panels or the list item).
+`/api/version` -> `1.15.3`; root CI run `38538976399` green including
+`Deploy backend / Deploy backend to production`.
+
+```
+GET /api/notices/2221891/detail
+revision {requestedRev: null, resolvedRev: 2, headRev: 2, isHistorical: false}
+  billNumber     = '2221891'
+  proposer       = '송영길의원 등 11인'
+  proposalDate   = '2026-10-14'
+  proposalSession= '제439회'
+  proposalReason len 732
+```
+
+The SSR payload of `https://law.viento.me/notices/2221891` now renders the facts row
+(`data-testid=notice-fact-제안일` -> `2026-10-14`, `notice-fact-제안회기` -> `제439회`,
+`제안자` -> `송영길의원 등 11인`). Pre-deploy the same page rendered none of them.
+
+## 6. Remaining / not fixed
+
+- **`originalContent.committee` (the PAL `contentCommittee`), `referralDate` and `noticePeriod` can
+  still be null even at the chain head** for LIKMS rows: pal-crawl's `INsmBillDetail` (`getDetail`)
+  has no field for them, so `fetchAndUpdateProposalReason` has nothing to write and
+  `preferIncomingTrackedValue` keeps the snapshot value.
+- **This does not mean `소관위원회` is missing.** The list-level field is a different column: the likms
+  list item (`ILikmsStateBillItem.committee`, carried through `LikmsNsmAdapter.toNsmItem`) is mapped at
+  upsert time into `notice.committee`, and the live archive list confirms it for referred bills
+  (`2221871` 재정경제기획위원회, `2221869` 기후에너지환경노동위원회, ...). The newest rows show `''`
+  because likms reports an empty committee until the bill is formally referred to one (제안일
+  2026-10-14 = the day of the scan), not because the pipeline drops it. Do not "fix" that by backfilling
+  `contentCommittee` from the list item without checking the semantics first.
 - **Already-archived wrong `source_html`/`screenshot_blob`** remain unrewritable (first-fill
   immutability trigger); a one-off migration is still the only way to replace them
   (`agent_memories/35-likms-detail-capture-source-fix/` §backlog).
-- The earlier finding that `INsmBillDetail` cannot express committee/referral/noticePeriod is the
-  reason the detail row for a LIKMS bill still shows only the fields the adapter exposes.
