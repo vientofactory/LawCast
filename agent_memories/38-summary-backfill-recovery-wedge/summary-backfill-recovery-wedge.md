@@ -116,6 +116,20 @@ Note for future edits: the recovery pass can stay an offset walk only because th
 starts after staging completes. If a pass ever writes summary states while it stages, it must
 become a `skip=0` drain loop instead.
 
+## 6. Verification method
+
+Read-only: public API (`/api/version`, `/api/stats`, `/api/crawling-transparency`,
+`/api/notices/:num/detail`), container logs (`docker logs lawcast-backend`), and
+`sqlite3 -readonly` against the production volume
+(`/var/lib/docker/100000.100000/volumes/lawcast_lawcast_db/_data/lawcast.db`). No writes. The
+production host is reachable as `root@10.20.0.1` with `~/.ssh/id_ed25519`; the backend container
+is `lawcast-backend` and its DB is the `lawcast_lawcast_db` volume. The 209/2214912 reproduction
+ran offline against the exported `not_supported` list.
+
+**Not established**: the exact date the wedge began (the first inactive candidate's summary
+state predates it), and whether `2220952` (marked `ready` on 2026-09-12) was recovered by this
+pass or by the crawl-cycle path.
+
 ## 7. Fix verification (`backend-v1.15.5`)
 
 `collectSummaryBackfillCandidates` (`notice-archive.service.ts`) + new
@@ -136,15 +150,27 @@ become a `skip=0` drain loop instead.
 - Gates: lint 0, `tsc --noEmit` 0, build 0, `npm test` 80 suites / 1115 tests,
   `npm run test:e2e` 44, comment-language 0.
 
-## 6. Verification method
+## 8. Live deployment verification (`backend-v1.15.5`, 2026-10-14)
 
-Read-only: public API (`/api/version`, `/api/stats`, `/api/crawling-transparency`,
-`/api/notices/:num/detail`), container logs (`docker logs lawcast-backend`), and  `sqlite3 -readonly` against the production volume
-  (`/var/lib/docker/100000.100000/volumes/lawcast_lawcast_db/_data/lawcast.db`). No writes.
-  The production host is reachable as `root@10.20.0.1` with `~/.ssh/id_ed25519`; the backend
-  container is `lawcast-backend` and its DB is the `lawcast_lawcast_db` volume.
-The 209/2214912 reproduction ran offline against the exported `not_supported` list.
+Deployed through the root-pointer push; the container restarted and its bootstrap pipeline ran the
+fixed recovery pass.
 
-**Not established**: the exact date the wedge began (the first inactive candidate's summary
-state predates it), and whether `2220952` (marked `ready` on 2026-09-12) was recovered by
-this pass or by the crawl-cycle path.
+- **Staging scope**: the pass staged `355` rows (`3` pending + `352` recovery) against the old
+  code's `209`. The apply queue drained past the old `209` watermark
+  (`summaryBackfillProcessedTotal` climbed past it while the queue still had rows left) - the
+  pre-fix collector could not stage more than `209` under any circumstance.
+- **Rows recovered in the wedge zone** (`notice_num > 2214912`, previously unreachable): 19 had
+  left `not_supported` by the time of the check (queue still draining), e.g. `2221036`, `2221042`,
+  `2221051`, `2221060`.
+- **End-to-end**: `2221042` - the row that renders a 3,863-char head-revision `제안이유` while
+  reporting `not_supported` - now returns `aiSummaryStatus: ready` with a real Ollama summary
+  (`출산 및 보육 지원 강화와 주택 세제 혜택 확대를 통해 국민의 경제적 부담을 경감하고 주거
+  안정성을 높이는 데 초점을 맞춤.`).
+- **Caveat found while verifying**: `updateSummaryStatesByNoticeNums` does not bump
+  `notice_archive_snapshot_states.updated_at`, so `updated_at` is not a reliable marker for
+  "this pass touched the row" (rows processed by the 09:37 pass showed no timestamp change).
+  Compare status sets instead.
+- Rows that still carry no reason anywhere stay `not_supported` after the pass (358 at check
+  time) - expected, and they re-enter the scan on every pass now that the wedge is gone.
+
+
