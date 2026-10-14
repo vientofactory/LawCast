@@ -80,8 +80,10 @@ agent_memories/
 │    └── keyword-fts-default.md                       ← `fullText` 파라미터 도메인 제거, FTS5 무조건 적용 + LIKE 부분일치 유지 근거, 캐시 매처 동기화, 실 인덱스 집합 실측(LIKE3 ∪ FTS = API total), e2e 재작성·검증
 ├── 31-likms-nsm-adapter-integration/               ← pal-crawl 2.3.0 + LikmsNsmAdapter 소스 전환
 │   └── likms-nsm-adapter-integration.md             ← `CRAWLING_NSM_SOURCE` 플래그·NSM 포트 어댑터 배선(호출부 무변경), 계류의안 라이브 실측(199/13건), 비의안 행(`ZZ22142`) 차단, 게이트(1010 tests)
-└── 32-nsm-ua-block-and-probe-storm/                ← NSM 포털 UA 차단 → 조용한 수집 실패 + 삭제 프로브 폭주
-    └── nsm-portal-block-and-probe-storm.md          ← `LawCast/1.0` UA만 5,451B 오류 페이지(브라우저·curl UA는 정상), NSM 수집 2026-09-09 중단, 삭제 프로브가 확정 불가 → 로그 폭주·감지 5주 공백, 후보 약 10,300건/사이클, 킬 스위치 완화
+├── 32-nsm-ua-block-and-probe-storm/                ← NSM 포털 UA 차단 → 조용한 수집 실패 + 삭제 프로브 폭주
+│   └── nsm-portal-block-and-probe-storm.md          ← `LawCast/1.0` UA만 5,451B 오류 페이지(브라우저·curl UA는 정상), NSM 수집 2026-09-09 중단, 삭제 프로브가 확정 불가 → 로그 폭주·감지 5주 공백, 후보 약 10,300건/사이클, 킬 스위치 완화
+└── 33-likms-source-switch-risk/                    ← LIKMS 소스 전환 + 수집 활성화 리스크 실측
+    └── likms-source-switch-risk.md                  ← 생성은 LIKMS·삭제 판정은 NSM(오탐 근거 실측), 목록 스캔 320요청/20분, 프로브 풀 40→수백, 캐시 교체, 꼬리 비의안 문서 유입, 권고 순서
 ```
 
 ## 폴더별 상세 내용
@@ -150,6 +152,10 @@ agent_memories/
 ### `32-nsm-ua-block-and-probe-storm/` — NSM 포털 UA 차단과 삭제 프로브 폭주
 
 - **nsm-portal-block-and-probe-storm.md**: 운영 로그의 `markSourceDeletedByMissingNsmNums … not confirmed deleted on detail page; left active` 폭주를 추적한 기록. `opinion.lawmaking.go.kr`가 **`LawCast/1.0` 토큰이 든 UA에만** 사이트 오류 페이지(200 + `<body class="errorWrap">`, 5,451 B)를 돌려준다는 것을 UA 매트릭스 2회 반복으로 확정(브라우저·`curl/8.7.1`·`Crawler/1.0`은 정상). 결과: (1) NSM 목록이 예외 없이 `total=0`이 되어 **수집이 조용히 0건**(DB상 마지막 NSM 행 2026-09-09 16:33, 이후 PAL만), (2) `probeNsmDeletedBillAlert`가 영원히 `null`이라 삭제 감지가 죽고(878 `source_deleted` 전부 2026-08-28) 같은 행을 매 사이클 재프로브, (3) 후보 풀 19,845행 대비 LIKMS 목록 15,950건 표본 커버리지 59.8% → **사이클당 약 10,300건 프로브**. 완화(`CRAWLING_NSM_DELETION_DETECTION_ENABLED=false`), 근본 원인 결정(UA 교체 vs NSM 소스 폐기), 후보 집합 재설계(마지막 목록 목격 시각 기록), 조용한 실패 제거, 관측성 구멍까지 정리. Notion `fetch failed` WARN은 별개(현재 도달 정상, 스냅샷 폴백 동작). **코드 패치 적용(§3-1)**: 0행 스캔 WARN, 포털 오류 페이지 감지(`nsm-portal-error-page.util.ts`), 프로브 outcome 분류(`deleted/alive/blocked/error/disabled`), 후보 상한 50 + 무작위 표본, 연속 unreadable 시 패스 중단, 활성 소스 라벨 — 게이트 lint/tsc/build + 1031 테스트 + 프론트 `check`/`status.spec` 13 pass. **후보 집합 재설계(§3-2)**: `nsm_last_seen_in_list_at`·`nsm_list_absence_probed_at` 컬럼 + 마이그레이션 `202610140001`, "목록에서 새로 사라진 행만" 후보(+쿨다운 168h·상한 50), 실 DB 사본 실측 — 완전 목록 0 프로브/200행 결손 시 프로브 전건이 그 200행 안/복귀 시 0, 게이트 75 suites·1042 테스트. **0행 스캔 승격(§3-3)**: 캐시 `crawling:nsmListScanHealth` 런렝스(연속 0건 스트리크·마지막 정상 수집), 임계값 3에서 ERROR 알림+`/api/stats` `status: degraded`, `/status`에 `수집 중단` 배지·전체 상태 주의 필요(전용 e2e 5건), 게이트 77 suites·1065 테스트. **UA 순환(§3-4)**: §3의 "UA 교체" 결정을 기본값으로 구현 — 실제 브라우저 UA 12개 풀(`browser-identities.util.ts`)에서 요청마다 하나를 뽑고, 그 신원이 보내는 클라이언트 힌트·`Sec-Fetch-*`·`Upgrade-Insecure-Requests`까지 함께 보낸다(`browser-request-headers.util.ts`). pal-crawl은 요청마다 `{User-Agent, ...customHeaders}` 스프레드를 만들므로 `customHeaders` 접근자로 클라이언트 하나에서 요청별 회전(이름 집합이 family별로 다르므로 family는 클라이언트당 고정), axios 경로는 요청별 전체 신원 회전. `CRAWLING_USER_AGENT`는 이제 고정용 이스케이프 해치. 검증: 신규 28 테스트 + `https.request` 스텁으로 **실제 pal-crawl 요청 헤더 캡처**.
+
+### `33-likms-source-switch-risk/` — LIKMS 소스 전환 + 수집 활성화 리스크
+
+- **likms-source-switch-risk.md**: `CRAWLING_NSM_SOURCE=likms` + `CRAWLING_NSM_ENABLED=1`을 켰을 때 무엇이 깨지는지 **프로덕션 실측**으로 판정한 기록(전환은 하지 않음 — `CRAWLING_NSM_ENABLED=0` 유지). 실측: LIKMS 계류의안 **15,956건/160페이지**, 표본 8페이지 커버리지(중간 페이지 99%·1페이지 58%(PAL 행)·꼬리 153~160페이지 0% = 2002~2003년 비의안 문서) → 첫 스캔 신규 수백~1,800행. 최고 위험은 **생성은 LIKMS, 삭제 판정은 NSM**이라는 분리: LIKMS에만 있는 2221889의 NSM 상세 페이지가 `안건정보가 없습니다`를 반환함을 실측(같은 페이지의 2221888은 정상) → 상세 프로브가 도는 순간 `source_deleted` 오탐(생성 시점엔 행이 없어 no-op, 프로브 단계에서 확정). 그 밖에 pending 스캔이 서버 필터 부재로 **maxPages 없이 전체 순회 = 320요청/20분(≈23,000/일)**, 프로브 풀 40→수백(`content_bill_number IS NULL` 우선), 캐시 5,000 교체, 6자리 비의안 id 유입, 0건 페이지 조용한 스캔 절단, compose 경로로만 env 주입. 권고: 삭제 감지 off로 먼저 켜고, 스캔 상한/필터를 넣고, 삭제 권한을 소스로 이관한 뒤 감지를 재개.
 
 ### `29-search-ui-persona-audit/` — /notices 검색 UI 페르소나 사용성 실측·개선
 
