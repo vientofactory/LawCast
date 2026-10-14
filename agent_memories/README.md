@@ -90,8 +90,10 @@ agent_memories/
 │   └── likms-detail-capture-source-fix.md            ← 근본 원인(captureNsmDetailFull이 NsmLmSts·NSM URL 하드코딩), likms 경로(getDetail + likms 상세 페이지) 분기, 백로그 자동 복구/스크린샷 재작성 불가(first-fill 트리거) 분석, 게이트 1110
 ├── 36-detail-chain-head-overlay/                     ← 기본 상세 응답이 이전 리비전을 서빙하던 버그
 │   └── detail-chain-head-overlay.md                  ← `resolvedRev=headRev`를 광고하면서 스냅샷 값(직전 리비전)을 반환(라이브 실측: billNumber/proposer/… null), 기본 경로가 추적 필드 전체를 `applyTrackedValue`로 오버레이하도록 수정, 되돌림 반증 테스트 포함, 게이트 1111 + e2e 43
-└── 37-pal-html-fallback-source-guard/                ← PAL 전용 상세 HTML 폴백이 비PAL 페이지를 파싱
-    └── pal-html-fallback-source-guard.md             ← LIKMS 행이 likms 상세 HTML을 스냅샷으로 가지면서 PAL 셀렉터가 엉뚱한 셀을 읽어 `originalContent.committee`에 "제안회기 …"·`referralDate`에 "문서" 주입(목록 소관위원회까지 덮어씀), 아카이브 URL 호스트 게이트 도입, 되돌림 반증 테스트 포함, 게이트 1113 + e2e 43
+├── 37-pal-html-fallback-source-guard/                ← PAL 전용 상세 HTML 폴백이 비PAL 페이지를 파싱
+│   └── pal-html-fallback-source-guard.md             ← LIKMS 행이 likms 상세 HTML을 스냅샷으로 가지면서 PAL 셀렉터가 엉뚱한 셀을 읽어 `originalContent.committee`에 "제안회기 …"·`referralDate`에 "문서" 주입(목록 소관위원회까지 덮어씀), 아카이브 URL 호스트 게이트 도입, 되돌림 반증 테스트 포함, 게이트 1113 + e2e 43
+└── 38-summary-backfill-recovery-wedge/               ← AI 요약 백필 복구 패스가 첫 비활성 행에서 멈춤
+    └── summary-backfill-recovery-wedge.md            ← `not_supported` 복구 스캔이 ACTIVE 조인으로 짧아진 페이지를 종료 신호로 오해(collector L1777 + 스테이징 루프), 프로덕션 2214911(source_deleted)에서 고정 → 143개 행(모든 LIKMS 2220xxx/2221xxx) 도달 불가, 시뮬레이션으로 staged=209·정지점 2214912 정확 재현. **수정(backend-v1.15.5)**: 커서를 요약 상태 테이블로 옮기고 페이지 단위 수화(`readSummaryBackfillCursorPage`) — unit+e2e 모두 구버전에서 실패 확인, 프로덕션 재생 352행·76스텝 종료. 잔여: 15분 drain cron lastRunAt=null(재시작에서만 실행), contentId SET 행은 복구 대상 제외
 ```
 
 ## 폴더별 상세 내용
@@ -168,6 +170,10 @@ agent_memories/
 ### `34-likms-live-pipeline-verification/` — LIKMS 실제 활성 상태 라이브 파이프라인 검증
 
 - **likms-live-pipeline-verification.md**: `CRAWLING_NSM_SOURCE=likms`가 실제로 켜진 프로덕션(`10.20.0.1`)과 공개 사이트(`law.viento.me`)에서 계류의안 크롤러의 종단 경로를 실측한 기록. **정상**: 목록 160페이지·15,958행·unique 15,164·pending 77 수집, 중복 pending 스트림·삭제 프로브 스킵 로그 확인, `Pending sync done - new=214 newPending=77 syncOnly=137 sourceDeleted=0`, 90분간 신규 270행(`archive 21274→21488`)·`created` 이벤트 270건·캐시 1207→1458·요약 백필 스테이징 314건, 공개 API가 `likms.assembly.go.kr` 링크·`contentId: null`로 노출. **확정 결함**: 270행 전건이 NSM 포털 오류 페이지(`errorWrap`, 6,207 B 고정, `responseUrl=opinion.lawmaking.go.kr/...`)를 스냅샷으로 저장 — `proposalReason` 0건·`content_bill_number` 0건, AI 요약 `not_supported`(비교 기준: 전환 전 contentId-null 행 19,867건 중 19,395건은 제안이유 보유). 원인은 `captureNsmDetailFull`/`buildNsmDetailUrl`이 소스를 따르지 않고 `NsmLmSts` 하드코딩인 점(§31 line 126·§33 line 79 잔여 항목). **부수**: 신규 270행 중 `법률안` 54건뿐, `결의안` 88·`동의안` 13·`징계안` 다수 등 약 80%가 비법률안 계류의안으로 파이프라인 유입. **미검증**: 알림 발송(부트 파이프라인 억제로 미발생), 전환 안정화 이후 크론 사이클.
+
+### `38-summary-backfill-recovery-wedge/` — AI 요약 백필 복구 패스의 고정
+
+- **summary-backfill-recovery-wedge.md**: "LIKMS 데이터에서 이후 리비전에 제안이유가 생기면 AI 요약 백필을 정상적으로 타는가"를 프로덕션 실측으로 검증한 기록. **결론**: 경로는 존재하고 도달한 행은 정상 처리(2221891 ready, 2221894~2221896 당일 ready, 2220952 체인 이유로 ready, 부트 패스 209건 failed=0)되지만, 정확히 이 케이스를 담당하는 `not_supported` 복구 스캔이 **영구히 멈춰 있다**. 원인은 `collectSummaryBackfillCandidates`(notice-archive.service.ts:1747-1782)와 스테이징 루프(archive-sync-phase-executors.ts:1581-1610)가 ACTIVE 조인 이후의 **짧은 페이지를 데이터 끝으로 해석**하는 것 — 조인은 `source_deleted`/`renumbered` 행을 의도적으로 떨어뜨리므로 그런 행이 낀 페이지는 항상 1행 짧다. 프로덕션 트리거는 `2214911`(`not_supported` + `source_deleted`), 창 `[2214749, 2214788, 2214857, 2214911, 2214912]`. **정확 재현**: 프로덕션 `not_supported` 377행을 그대로 시뮬레이션하면 `staged=209, stop=2214912`로 로그의 `scanned=209 stagedPending=209`·`summaryBackfillProcessedTotal: 209`와 일치. **결과**: `notice_num > 2214912`의 active·contentId-null `not_supported` 143행(모든 LIKMS 2219xxx/2220xxx/2221xxx)은 절대 스테이징되지 않는다(예: 2221042는 헤드 리비전에 제안이유 3,863자를 렌더하면서 `not_supported`, 요약 상태는 2026-09-16 이후 미갱신). **부수 결함**: 15분 `PROPOSAL_REASON_BACKFILL_DRAIN` cron은 컨테이너 기동 후 `lastRunAt: null`(재시작 시에만 백필 실행), contentId SET `not_supported` 22행은 `!row.contentId` 필터로 복구 대상에서 제외되고 `generateSummaryForNotice`의 contentId 분기가 체인을 무시하고 PAL 라이브 조회만 쓴다. **수정 방향**(미구현): 짧은 페이지를 커서 전진으로 처리(상태 테이블 기준 페이징 + skip=0 드레인), contentId 분기에 체인 폴백 추가 또는 복구 필터 제거, 스킵된 drain cron 관측 가능화.
 
 ### `37-pal-html-fallback-source-guard/` — PAL HTML 폴백의 소스 게이트
 
