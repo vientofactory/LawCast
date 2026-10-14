@@ -86,8 +86,10 @@ agent_memories/
 │   └── likms-source-switch-risk.md                  ← 생성은 LIKMS·삭제 판정은 NSM(오탐 근거 실측), 목록 스캔 320요청/20분, 프로브 풀 40→수백, 캐시 교체, 꼬리 비의안 문서 유입, 권고 순서 + 적용 패치(backend-v1.15.1: likms 소스에서 삭제 감지 강제 off, 중복 pending 스트림 생략)
 ├── 34-likms-live-pipeline-verification/             ← LIKMS 실제 활성 상태의 라이브 파이프라인 검증
 │   └── likms-live-pipeline-verification.md          ← 목록 수집·아카이브·diffchain·캐시·요약 스테이징 정상(신규 270행), 단 상세 캡처가 여전히 NSM URL이라 errorWrap 오류 페이지를 스냅샷으로 저장(proposalReason 0건)·비법률안 유입 80% 실측
-└── 35-likms-detail-capture-source-fix/               ← LIKMS 상세 캡처가 활성 소스를 따르도록 수정
-    └── likms-detail-capture-source-fix.md            ← 근본 원인(captureNsmDetailFull이 NsmLmSts·NSM URL 하드코딩), likms 경로(getDetail + likms 상세 페이지) 분기, 백로그 자동 복구/스크린샷 재작성 불가(first-fill 트리거) 분석, 게이트 1110
+├── 35-likms-detail-capture-source-fix/               ← LIKMS 상세 캡처가 활성 소스를 따르도록 수정
+│   └── likms-detail-capture-source-fix.md            ← 근본 원인(captureNsmDetailFull이 NsmLmSts·NSM URL 하드코딩), likms 경로(getDetail + likms 상세 페이지) 분기, 백로그 자동 복구/스크린샷 재작성 불가(first-fill 트리거) 분석, 게이트 1110
+└── 36-detail-chain-head-overlay/                     ← 기본 상세 응답이 이전 리비전을 서빙하던 버그
+    └── detail-chain-head-overlay.md                  ← `resolvedRev=headRev`를 광고하면서 스냅샷 값(직전 리비전)을 반환(라이브 실측: billNumber/proposer/… null), 기본 경로가 추적 필드 전체를 `applyTrackedValue`로 오버레이하도록 수정, 되돌림 반증 테스트 포함, 게이트 1111 + e2e 43
 ```
 
 ## 폴더별 상세 내용
@@ -164,6 +166,10 @@ agent_memories/
 ### `34-likms-live-pipeline-verification/` — LIKMS 실제 활성 상태 라이브 파이프라인 검증
 
 - **likms-live-pipeline-verification.md**: `CRAWLING_NSM_SOURCE=likms`가 실제로 켜진 프로덕션(`10.20.0.1`)과 공개 사이트(`law.viento.me`)에서 계류의안 크롤러의 종단 경로를 실측한 기록. **정상**: 목록 160페이지·15,958행·unique 15,164·pending 77 수집, 중복 pending 스트림·삭제 프로브 스킵 로그 확인, `Pending sync done - new=214 newPending=77 syncOnly=137 sourceDeleted=0`, 90분간 신규 270행(`archive 21274→21488`)·`created` 이벤트 270건·캐시 1207→1458·요약 백필 스테이징 314건, 공개 API가 `likms.assembly.go.kr` 링크·`contentId: null`로 노출. **확정 결함**: 270행 전건이 NSM 포털 오류 페이지(`errorWrap`, 6,207 B 고정, `responseUrl=opinion.lawmaking.go.kr/...`)를 스냅샷으로 저장 — `proposalReason` 0건·`content_bill_number` 0건, AI 요약 `not_supported`(비교 기준: 전환 전 contentId-null 행 19,867건 중 19,395건은 제안이유 보유). 원인은 `captureNsmDetailFull`/`buildNsmDetailUrl`이 소스를 따르지 않고 `NsmLmSts` 하드코딩인 점(§31 line 126·§33 line 79 잔여 항목). **부수**: 신규 270행 중 `법률안` 54건뿐, `결의안` 88·`동의안` 13·`징계안` 다수 등 약 80%가 비법률안 계류의안으로 파이프라인 유입. **미검증**: 알림 발송(부트 파이프라인 억제로 미발생), 전환 안정화 이후 크론 사이클.
+
+### `36-detail-chain-head-overlay/` — 기본 상세 응답의 리비전 정체 수정
+
+- **detail-chain-head-overlay.md**: LIKMS 캡처 수정(v1.15.2) 이후 `proposalReason`은 백필됐는데도 상세 페이지가 나머지 필드를 이전 리비전 값으로 렌더하던 결함의 근본 원인과 패치. **실측**: `GET /api/notices/2221891/detail`이 `revision.resolvedRev=2/headRev=2`를 광고하면서 `billNumber·proposer·proposalDate·committee·referralDate·noticePeriod·proposalSession`을 전부 null로 반환, `?rev=2`는 정상값 반환, `?rev=1`은 기본 응답과 동일(=`기본 = 직전 리비전`), 공개 SSR payload(`law.viento.me/notices/2221891`)에서도 같은 null 확인. **원인**: `applyCurrentOverlayToDetail`이 체인 헤드 오버레이를 목록 항목용 7개 필드로만 적용한 반면 리비전 경로(`applyRevisionOverlay`)는 `revisionTrackedFieldPaths` 전체를 적용 — `updateNsmHtmlAndDetail`로만 복구되는 필드가 헤드에는 있는데 기본 응답에는 없었다. **수정**: `detailChainHeadFieldPaths`(별칭 포함)를 `getLatestFieldValuesForFields` 1회 조회로 읽어 `applyTrackedValue`(리비전 경로와 동일한 writer)로 적용 → 기본 응답이 정의상 `?rev=headRev`와 일치. `isDone`은 양쪽 모두 제외(요약 상태 테이블 소유), 기존 7필드 가드(`canonicalizeProposalReason`·필수값 trim·`contentId`)는 그대로 두는 가산적 변경. **검증**: 신규 unit 1 + e2e 1(실 SQLite에서 `upsertNoticeArchive` → `updateNsmHtmlAndDetail` → 기본 응답 vs `?rev=headRev` 비교), **서비스 변경만 stash하면 e2e 1건 실패·복원 시 11건 통과**로 반증 확인, 게이트 lint/tsc/build/`npm test` 80 suites·1111 tests/`test:e2e` 43/comment-language 0. **남은 것**: `contentCommittee`·`referralDate`·`noticePeriod`는 pal-crawl `INsmBillDetail`에 필드가 없어 헤드에서도 null일 수 있고, 잘못 저장된 `source_html`/`screenshot_blob`은 여전히 재작성 불가.
 
 ### `35-likms-detail-capture-source-fix/` — LIKMS 상세 캡처 소스 추종 수정
 
