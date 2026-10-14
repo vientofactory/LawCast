@@ -98,19 +98,24 @@ the stop point matches the window above.
   later-revision reason in the chain). For those,
   `generateSummaryForNotice` re-reads PAL live (`crawlingCoreService.getContent(contentId)`)
   and ignores the chain, so a row whose reason arrived later stays `not_supported` even
-  though the chain holds it.
+  though the chain holds it. The generator half of this is fixed in §9; the staging filter
+  is still open.
 
 ## 5. Fix status
 
 1. **FIXED in `backend-v1.15.5`** — the cursor now advances over the summary-state rows and
    hydrates one page at a time (`readSummaryBackfillCursorPage` returns
    `{ cursorCount, rows }`; only `cursorCount` is compared against the page size). See §7.
-2. **Still open** — `generateSummaryForNotice`'s `contentId` branch ignores the chain and
-   re-reads PAL live, and the `!row.contentId` recovery filter keeps those rows out of the
-   scan (22 `not_supported` rows, 2 active with a later-revision reason).
-3. **Still open** — the 15-minute drain cron leaves no trace when skipped
-   (`lastRunAt: null`, `lastError: null`), so the backfill still effectively runs only at
-   container start.
+2. **Generator FIXED (unreleased, §9)** — `generateSummaryForNotice`'s `contentId` branch
+   resolves the reason through the new `resolveSummaryProposalReason` (live payload →
+   caller-resolved value → chain head) instead of trusting the PAL payload alone.
+   **Still open** — the `!row.contentId` recovery filter keeps those rows out of the
+   backfill scan, so the 22 historical `not_supported` rows stay stuck until the scan
+   accepts them (rows re-entering the crawl/proposal-retry path are covered by §9).
+3. **FIXED (unreleased, §10)** — the 15-minute tick no longer puts the summary backfill
+   behind the crawl/browser guard, and a deferred summary backfill logs at production level
+   instead of `debugDev`. Open question left behind: whether a 15-minute cadence with a
+   CPU-friendly batch size keeps up with the LIKMS reason backlog.
 
 Note for future edits: the recovery pass can stay an offset walk only because the apply worker
 starts after staging completes. If a pass ever writes summary states while it stages, it must
@@ -166,11 +171,144 @@ fixed recovery pass.
   reporting `not_supported` - now returns `aiSummaryStatus: ready` with a real Ollama summary
   (`출산 및 보육 지원 강화와 주택 세제 혜택 확대를 통해 국민의 경제적 부담을 경감하고 주거
   안정성을 높이는 데 초점을 맞춤.`).
-- **Caveat found while verifying**: `updateSummaryStatesByNoticeNums` does not bump
-  `notice_archive_snapshot_states.updated_at`, so `updated_at` is not a reliable marker for
+- **Caveat found while verifying**: `updateSummaryStatesByNoticeNums` did not bump
+  `notice_archive_snapshot_states.updated_at`, so `updated_at` was not a reliable marker for
   "this pass touched the row" (rows processed by the 09:37 pass showed no timestamp change).
-  Compare status sets instead.
+  Compare status sets instead. **Fixed in §11** (unreleased).
 - Rows that still carry no reason anywhere stay `not_supported` after the pass (358 at check
   time) - expected, and they re-enter the scan on every pass now that the wedge is gone.
+
+## 9. Follow-up fix - `contentId` rows now summarize from the chain (unreleased)
+
+Asked by the user after §8: "make rows that have a `contentId` generate their summary from the
+chain's latest `제안이유` too". The generator was the single point that threw the recovered reason
+away: for `notice.contentId` set it fetched PAL live and returned `not_supported` whenever
+`content.proposalReason` was empty, even though the caller had just resolved the text.
+
+**Change** (`summary-generation.service.ts`): the `contentId` branch now resolves the reason via
+the new private `resolveSummaryProposalReason(notice, liveReason)`, whose precedence is
+
+1. the live source payload (`content.proposalReason`) - unchanged healthy path;
+2. `notice.proposalReason` - a reason the caller already resolved (archive snapshot, or the
+   fresh LIKMS recovery that `crawling-scheduler-proposal-retry.ts` puts on the notice);
+3. the chain head (`NoticeArchiveService.getLatestProposalReasonForNotice`) - where a LIKMS
+   repair lands when the snapshot column was archived empty.
+
+The no-`contentId` branch keeps its old precedence (stored → chain) and now shares the helper.
+When no source carries a reason the row still returns `not_supported`, and the log line now
+names all three sources. `content?.title || notice.subject` supplies the title when PAL returns
+no payload at all.
+
+**Why this matters in production**: every generator caller (`crawling-scheduler-pending-support`,
+`crawling-scheduler-proposal-retry`, `archive-sync-phase-executors`, `crawling-scheduler-summary-support`)
+now keeps a reason it already holds, and the LIKMS recovery flow (`fetchAndUpdateProposalReason`
+→ chain append → `generateSummaryForNotice`) stops ending in `not_supported` for contentId rows.
+
+**Verification**:
+
+- Unit (`summary-generation.service.spec.ts`): 4 new/changed cases - contentId row with an empty
+  payload reason takes the chain head (4-row pre-fix failure: `not_supported`), a caller-resolved
+  reason is used without a chain read, a missing payload falls back to `notice.subject`, and the
+  healthy path asserts no extra chain read.
+- E2E (`diffchain.e2e-spec.ts`, real SQLite): notice `9301` archived with `contentId` and an
+  empty snapshot reason, `appendLikmsProposalReasonRepair` appends the text to the chain, a stub
+  PAL payload carries no reason - `generateSummaryForNotice` returns `ready` and passes the chain
+  text to `summarizeProposal`. **Confirmed failing on the pre-fix service** (`not_supported`).
+- Gates: lint 0, `tsc --noEmit` 0, build 0, `npm test` 80 suites / 1118 tests,
+  `npm run test:e2e` 45, comment-language 0.
+
+**Not done (deliberate, separate decision)**: the `!row.contentId` filter in
+`getNotSupportedSummaryRecoveryPage` still excludes contentId rows from the `not_supported`
+recovery scan, so the 22 historical rows need that widening (or a re-crawl) before they are
+re-attempted.
+
+## 10. Follow-up fix - the 15-minute trigger now runs the summary backfill (unreleased)
+
+Asked by the user after §9: make the 15-minute cron actually run the summary backfill
+instead of only the start-up pass.
+
+**Mechanism.** `handleProposalReasonBackfillDrain` (`cronjobs.service.ts`) put both parts of
+the tick behind one guard, `shouldSkipProposalReasonBackfillCron` = archive-sync write-heavy
+activity **or** `crawlingService.isSchedulerBusy({ includeBackground: true })`. The NSM
+reason drain needs that (it drives a browser session); the summary backfill does not -
+`runSummaryBackfill` writes single summary rows, fetches PAL content over HTTP
+(`CrawlingCoreService.getContent`, no browser session) and talks to Ollama. Inheriting the
+crawl half starved it.
+
+**Live evidence** (backend `1.15.5`, container started 10:41 UTC 2026-10-14; `/api/stats`
+polled every 20 s plus `docker logs`):
+
+- The task never ran in that uptime. `cronJobs['proposalReason backfill drain'].lastRunAt`
+  stayed `null`, and `docker logs lawcast-backend 2>&1 | grep -c 'proposalReason backfill
+  drain'` returned `0` - `shouldSkipCron` logs at `debugDev`, a no-op under
+  `NODE_ENV=production`, so every skip was invisible.
+- Ticks at 10:54/11:09/11:24 are explicable by archive-sync alone (bootstrap pass plus its
+  async apply drain until 11:17:22, then `isDone sync` 11:21:43-11:25).
+- The **11:39 tick is the decisive one**: every sample from 11:38:58 to 11:40:00 showed no
+  running phase, no running async apply worker and no queued apply task, the crawl cron had
+  run at 11:32:04, and the task still did nothing (`lastRunAt: null`, no log line). With the
+  archive-sync side verifiably idle, the crawl/browser clause is the only guard left that
+  could have deferred it.
+
+**Change** (`cronjobs.service.ts`):
+
+- New `shouldSkipSummaryBackfillCron(taskName)` - the archive-sync write-heavy guard only,
+  logged at production level (`shouldSkipCron` gained a `visibleInProduction` option) so a
+  deliberate deferral is never silent.
+- `handleProposalReasonBackfillDrain` evaluates the guards separately (NSM drain keeps
+  `shouldSkipProposalReasonBackfillCron`) and wraps the tick in `execute(...)` regardless, so
+  the status snapshot shows the schedule firing. The phase-level `crossPhaseGuard` inside
+  `runSummaryBackfill` still refuses to overlap another write-heavy phase and logs a visible
+  warning, which is what protects the DB.
+
+**Verification** (`cronjobs.service.spec.ts`, 3 new cases): crawl-busy + archive-idle runs the
+summary backfill while skipping the NSM drain; archive write-heavy defers it and emits the
+production-level skip line; idle runs both. **The first two fail on the pre-fix service**
+(the third is the control covering the already-working idle path). Gates after the change:
+lint 0, `tsc --noEmit` 0, build 0, `npm test` 80 suites / 1121 tests, `npm run test:e2e` 45,
+comment-language 0.
+
+**Not done**: no deployment yet, so production still runs the guarded version.
+
+## 11. Follow-up fix - summary state writes stamp `updated_at` (unreleased)
+
+Asked by the user after §10: make the summary-state writes advance `updated_at` so the rows a
+backfill pass processed can be identified by timestamp (the caveat recorded in §8).
+
+**Root cause.** Two write paths disagreed:
+
+- `updateSummaryStateByNoticeNum`, `persistSummaryState` and the isDone flips call
+  `repository.update(...)`, and TypeORM's `UpdateQueryBuilder` appends
+  `"updated_at" = CURRENT_TIMESTAMP` for the `@UpdateDateColumn`.
+- `updateSummaryStatesByNoticeNums` - the path the summary backfill's apply worker prefers
+  (`archive-sync-phase-executors.ts`: bulk first, per-row only as a fallback) - is a raw
+  `INSERT ... ON CONFLICT (notice_num) DO UPDATE SET ai_summary = EXCLUDED.ai_summary,
+  ai_summary_status = EXCLUDED.ai_summary_status`. `orUpdate` rewrote only the two listed
+  columns, and TypeORM's own `updated_at = DEFAULT` injection for the conflicting row is
+  explicitly skipped for the SQLite driver family (`InsertQueryBuilder.js`), so the column
+  kept its insert-time value.
+
+**Production evidence** (read-only, production volume DB): `2221036` and `2221042` turned
+`ready` during the 11:17 UTC pass of `backend-v1.15.5`, yet both still showed
+`updated_at = 2026-09-16 15:13:02`, and `2221131` (also `ready`) showed `2026-09-18 15:00:55`.
+The rows with a fresh `updated_at` were the ones written through `repository.update` (isDone
+flips) or freshly inserted.
+
+**Change** (`notice-archive-maintenance-support.ts`): `orUpdate(['ai_summary',
+'ai_summary_status', 'updated_at'], ['notice_num'])` - the conflict branch now takes the
+proposed row's `updated_at` (the column default, i.e. the write time), like the other two
+columns.
+
+**Verification** (`notice-archive-summary-state-timestamp.spec.ts`, real in-memory SQLite,
+4 cases): the bulk upsert advances `updated_at`; a repeated bulk upsert of the *same* text
+advances it again; the single-row write advances it; the bulk insert stamps it. The two bulk
+cases **fail on the pre-fix code** - they assert the value moved away from a backdated
+sentinel, so SQLite's one-second timestamp resolution cannot make them flaky - and the other
+two pin the already-correct paths. Gates: lint 0, `tsc --noEmit` 0, build 0, `npm test` 81
+suites / 1125 tests, `npm run test:e2e` 45, comment-language 0.
+
+Nothing reads the column yet (it is an operational marker), so a pass can now be audited with
+`WHERE updated_at >= '<pass start>'` instead of diffing status sets. **Not done**: no
+deployment yet.
 
 
