@@ -82,8 +82,12 @@ agent_memories/
 │   └── likms-nsm-adapter-integration.md             ← `CRAWLING_NSM_SOURCE` 플래그·NSM 포트 어댑터 배선(호출부 무변경), 계류의안 라이브 실측(199/13건), 비의안 행(`ZZ22142`) 차단, 게이트(1010 tests)
 ├── 32-nsm-ua-block-and-probe-storm/                ← NSM 포털 UA 차단 → 조용한 수집 실패 + 삭제 프로브 폭주
 │   └── nsm-portal-block-and-probe-storm.md          ← `LawCast/1.0` UA만 5,451B 오류 페이지(브라우저·curl UA는 정상), NSM 수집 2026-09-09 중단, 삭제 프로브가 확정 불가 → 로그 폭주·감지 5주 공백, 후보 약 10,300건/사이클, 킬 스위치 완화
-└── 33-likms-source-switch-risk/                    ← LIKMS 소스 전환 + 수집 활성화 리스크 실측
-    └── likms-source-switch-risk.md                  ← 생성은 LIKMS·삭제 판정은 NSM(오탐 근거 실측), 목록 스캔 320요청/20분, 프로브 풀 40→수백, 캐시 교체, 꼬리 비의안 문서 유입, 권고 순서 + 적용 패치(backend-v1.15.1: likms 소스에서 삭제 감지 강제 off, 중복 pending 스트림 생략)
+├── 33-likms-source-switch-risk/                    ← LIKMS 소스 전환 + 수집 활성화 리스크 실측
+│   └── likms-source-switch-risk.md                  ← 생성은 LIKMS·삭제 판정은 NSM(오탐 근거 실측), 목록 스캔 320요청/20분, 프로브 풀 40→수백, 캐시 교체, 꼬리 비의안 문서 유입, 권고 순서 + 적용 패치(backend-v1.15.1: likms 소스에서 삭제 감지 강제 off, 중복 pending 스트림 생략)
+├── 34-likms-live-pipeline-verification/             ← LIKMS 실제 활성 상태의 라이브 파이프라인 검증
+│   └── likms-live-pipeline-verification.md          ← 목록 수집·아카이브·diffchain·캐시·요약 스테이징 정상(신규 270행), 단 상세 캡처가 여전히 NSM URL이라 errorWrap 오류 페이지를 스냅샷으로 저장(proposalReason 0건)·비법률안 유입 80% 실측
+└── 35-likms-detail-capture-source-fix/               ← LIKMS 상세 캡처가 활성 소스를 따르도록 수정
+    └── likms-detail-capture-source-fix.md            ← 근본 원인(captureNsmDetailFull이 NsmLmSts·NSM URL 하드코딩), likms 경로(getDetail + likms 상세 페이지) 분기, 백로그 자동 복구/스크린샷 재작성 불가(first-fill 트리거) 분석, 게이트 1110
 ```
 
 ## 폴더별 상세 내용
@@ -156,6 +160,14 @@ agent_memories/
 ### `33-likms-source-switch-risk/` — LIKMS 소스 전환 + 수집 활성화 리스크
 
 - **likms-source-switch-risk.md**: `CRAWLING_NSM_SOURCE=likms` + `CRAWLING_NSM_ENABLED=1`을 켰을 때 무엇이 깨지는지 **프로덕션 실측**으로 판정한 기록(전환은 하지 않음 — `CRAWLING_NSM_ENABLED=0` 유지). 실측: LIKMS 계류의안 **15,956건/160페이지**, 표본 8페이지 커버리지(중간 페이지 99%·1페이지 58%(PAL 행)·꼬리 153~160페이지 0% = 2002~2003년 비의안 문서) → 첫 스캔 신규 수백~1,800행. 최고 위험은 **생성은 LIKMS, 삭제 판정은 NSM**이라는 분리: LIKMS에만 있는 2221889의 NSM 상세 페이지가 `안건정보가 없습니다`를 반환함을 실측(같은 페이지의 2221888은 정상) → 상세 프로브가 도는 순간 `source_deleted` 오탐(생성 시점엔 행이 없어 no-op, 프로브 단계에서 확정). 그 밖에 pending 스캔이 서버 필터 부재로 **maxPages 없이 전체 순회 = 320요청/20분(≈23,000/일)**, 프로브 풀 40→수백(`content_bill_number IS NULL` 우선), 캐시 5,000 교체, 6자리 비의안 id 유입, 0건 페이지 조용한 스캔 절단, compose 경로로만 env 주입. 권고: 삭제 감지 off로 먼저 켜고, 스캔 상한/필터를 넣고, 삭제 권한을 소스로 이관한 뒤 감지를 재개. **적용 패치(backend-v1.15.1, §4-1)**: 활성 소스가 likms면 `isNsmDeletionDetectionEnabled()`가 env 값과 무관하게 false(삭제 오탐 경로 전면 차단, 스킵 로그에 사유 표기), `isNsmPendingStreamRedundant()`가 두 pending 스트림(크론·동기화)을 건너뛰고 전체 목록 스캔의 분류를 사용, pal-crawl 실물로 어댑터 `filterPending`과의 일치를 고정하는 계약 스펙 추가. 남은 것: 전체 목록 스트림은 그대로 순회(요청량 절반만 감소), 캐시 교체·꼬리 비의안 문서·조용한 스캔 절단은 미해결.
+
+### `34-likms-live-pipeline-verification/` — LIKMS 실제 활성 상태 라이브 파이프라인 검증
+
+- **likms-live-pipeline-verification.md**: `CRAWLING_NSM_SOURCE=likms`가 실제로 켜진 프로덕션(`10.20.0.1`)과 공개 사이트(`law.viento.me`)에서 계류의안 크롤러의 종단 경로를 실측한 기록. **정상**: 목록 160페이지·15,958행·unique 15,164·pending 77 수집, 중복 pending 스트림·삭제 프로브 스킵 로그 확인, `Pending sync done - new=214 newPending=77 syncOnly=137 sourceDeleted=0`, 90분간 신규 270행(`archive 21274→21488`)·`created` 이벤트 270건·캐시 1207→1458·요약 백필 스테이징 314건, 공개 API가 `likms.assembly.go.kr` 링크·`contentId: null`로 노출. **확정 결함**: 270행 전건이 NSM 포털 오류 페이지(`errorWrap`, 6,207 B 고정, `responseUrl=opinion.lawmaking.go.kr/...`)를 스냅샷으로 저장 — `proposalReason` 0건·`content_bill_number` 0건, AI 요약 `not_supported`(비교 기준: 전환 전 contentId-null 행 19,867건 중 19,395건은 제안이유 보유). 원인은 `captureNsmDetailFull`/`buildNsmDetailUrl`이 소스를 따르지 않고 `NsmLmSts` 하드코딩인 점(§31 line 126·§33 line 79 잔여 항목). **부수**: 신규 270행 중 `법률안` 54건뿐, `결의안` 88·`동의안` 13·`징계안` 다수 등 약 80%가 비법률안 계류의안으로 파이프라인 유입. **미검증**: 알림 발송(부트 파이프라인 억제로 미발생), 전환 안정화 이후 크론 사이클.
+
+### `35-likms-detail-capture-source-fix/` — LIKMS 상세 캡처 소스 추종 수정
+
+- **likms-detail-capture-source-fix.md**: §34에서 찾은 두 결함의 근본 원인과 패치. 원인은 `captureNsmDetailFull`/`captureNsmDetailScreenshot`가 `NsmLmSts`와 `buildNsmDetailUrl(opinion.lawmaking.go.kr)`을 하드코딩하고 `NsmLmStsParser`로 파싱한 것 — 목록·상세 조회(`getNsmDetail`)만 소스를 따르고 캡처 경로는 따르지 않았다. 수정: `isLikmsNsmSourceEnabled()`로 분기해 likms 경로(`LikmsCrawler.resolveBillId` → likms 상세 페이지 네비게이션·스크린샷, 파싱 필드는 `LikmsNsmAdapter.getDetail`의 `심사정보` 조각)를 추가하고, Waitingroom·NSM 삭제 휴리스틱은 likms에서 제거. `buildLikmsBillDetailUrl`·`captureLikmsDetailScreenshot`·공용 `fitScreenshotWithinSizeLimit` 추가. **백로그 판정**: `제안이유` 등 상세 필드는 기존 `PROPOSAL_REASON_BACKFILL_DRAIN` cron이 `billNo → notice.num` 폴백으로 자동 복구(diffchain 경로), 그러나 잘못 저장된 `source_html`/`screenshot_blob`은 first-fill 트리거 때문에 재작성 불가 — 별도 마이그레이션 필요. 검증: 신규 3 테스트, 게이트 80 suites·1110 테스트, backend v1.15.2.
 
 ### `29-search-ui-persona-audit/` — /notices 검색 UI 페르소나 사용성 실측·개선
 
