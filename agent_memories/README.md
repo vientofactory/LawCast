@@ -98,8 +98,16 @@ agent_memories/
     └── likms-reason-backfill-throughput.md          ← 요약 백필은 13틱 중 12회 실행(패스당 315행 = 적용 배치 63개, 스팬 25~27초 ≈ 12행/s, 판정 변경 0행)되지만 같은 틱의 제안이유 드레인은 0회 실행(로그 0줄 + Redis 큐 키 부재) — 차단 원인은 드레인에만 남은 `isSchedulerBusy({includeBackground:true})` 가드(요약 반쪽이 돈 11틱 전부에서 크롤 busy), 실비용은 Ollama 16.2~50.2초/건(슬롯 1 ≈144건/h), 백로그 925행(실대상 180행) 대 수요 약 1.75건/h. 추가 결함: 후보가 `noticeNum ASC LIMIT 20` + 시도 이력 필터 없음이라 선두 20행(전부 contentId NULL 절차 안건)이 매 틱 재시드·즉시 제거 → 신규 진행 0행, 실대상 앞 267행이 영구 차단. **§11 수정(미릴리스)**: 후보 페이지를 시도 이력(`proposal_reason_retry_count`, `proposal_reason_retried_at`) 기준으로 정렬하고 드레인이 시도한 행을 `finally`에서 스탬프 — 신규 도착 후보가 항상 먼저, 같은 횟수 내에서는 오래 전 시도가 먼저(로테이션), 영구 제외는 없음(이유가 늦게 올 수 있으므로). 실 SQLite 신규 spec 7건 중 3건이 구 정렬에서 실패함을 확인, 임시 벤치로 정렬 키 추가 비용이 노이즈 이하(29.700ms vs 29.785ms)임을 측정해 인덱스는 추가하지 않음. **§12 수정(미릴리스)**: 드레인 가드를 브라우저 임대 기준으로 좁히고 스킵을 유한 대기로 바꿈 — 재실측 0/15틱(같은 틱 요약 백필은 15/15)이라 차별 조건은 `isSchedulerBusy({includeBackground:true})` 하나뿐이었고, 이제 archive-sync write-heavy만 크론에서 프로덕션 로그와 함께 디퍼하며 나머지는 `PROPOSAL_REASON_DRAIN_WAIT_MS`(기본 300s)까지 브라우저 임대·크롤 fast path가 비기를 기다린 뒤 `deferred this tick - <blockers> held the browser for Nms`를 남김(`hasActiveLease()` + `CrawlingCoreService.isBrowserLeaseActive()`, 대기 루프를 1회 프로브로 되돌리면 신규 5건 중 2건 실패). **§13 관측 도구**: `src/scripts/proposal-reason-drain-observation.ts`가 틱 단위 표(status/seed/att(log)/att(db)/realAtt/arriv/resolved/queue/wait/pool~)와 판정 7종을 내고 fail 시 exit 1 — 지표·임계·예상 타임라인(재사용 가능 20행은 약 16틱 뒤 도달 → 소진 판정은 ≥20틱 창) 포함. **§14 별건**: 후보 술어 COUNT가 프로덕션에서 139.2s/137.1s인데 동등한 집합 표현은 2.836s(48배, 같은 결과) — 드레인이 틱마다 브라우저 작업 전에 약 2.3분을 쓰며 §8의 틱 비용 추정에서 빠져 있었다(미수정, 후속 검토). 또한 §6의 925행은 컬럼 기준 상위집합이고 후보 술어 적용 시 **334행(재사용 가능 20)**이다
 ├── 40-backfill-assembly-scope/                     ← 백필 풀에서 이전 대수 법률안 제외
 │   └── backfill-assembly-scope.md                  ← 프로덕션에서 1953년 의안(21076)까지 제안이유 재시도가 돌던 원인. 아카이브에 두 번호 체계 공존(22대 21,461행 2200001~2221897 + 이전 대수 33행 20490~50589), 두 백필 표면(제안이유 후보·요약 백필 커서)이 상태로만 선별. 비용: 후보 20행 페이지가 전부 구 대수 행(경고 20건/틱)이고 요약 패스는 매번 33행 재스테이징(scanned=319 = 286 + 33). **수정(backend-v1.16.1)**: `ARCHIVE_SYNC.CURRENT_ASSEMBLY`(기본 22, env 노출) + 파생 `BACKFILL_MIN_NOTICE_NUM = 대수 × 100000`(기본 2200000). 번호 체계는 `<대수><5자리 일련>`(21대 2100001+, 22대 2200001+, 구 대수는 5자리). 후보 쿼리·요약 커서(요약 상태 테이블/아카이브 폴백 양쪽)·관측 스크립트 풀 술어에 동일 하한 적용. 스코프 경계일 뿐 삭제가 아님(레거시 행은 아카이브·수명주기·요약 상태 유지). 검증: 실 SQLite spec(20490/21076/50589 미시드), 목 커서 쿼리 인자에 `moreThanOrEqual(2200000)`, 관측 픽스처를 현 대수 범위로 이동 + 레거시 1행은 풀 카운트에서 제외, 게이트 83 suites·1172 tests·comment 0
-└── 41-snapshot-source-alignment/                   ← 스냅샷·스크린샷 수집 페이지를 수집 소스에 고정
-    └── snapshot-source-alignment.md                 ← LIKMS 수집 공지의 스냅샷·스크린샷이 국민참여입법센터 404 셸로 저장되던 문제. 실측: likms 메타데이터 275행 중 274행의 `source_html`이 NSM 404 셸이고 스크린샷이 동일 21,977B(정상 likms 행은 118,479B). 원인은 #201/v1.15.2(2026-10-14 17:06 JST) 이전 캡처가 likms 공지에도 `buildNsmDetailUrl`을 열어 200 응답 셸을 "성공"으로 저장한 것 — 06:00~08:11 UTC에 275행 전부, 08:49 UTC 이후 0행. 남은 결함은 규칙 가장자리: ① `captureNsmDetailScreenshot`이 likms 분기보다 `isNsmCrawlerEnabled()`를 먼저 봐서 NSM 포털 비활성 시 likms 스크린샷이 조용히 버려짐 ② 코디네이터 큐/백필 게이트도 같은 플래그 ③ 브라우저가 실제로 어디에 도착했는지 검증 없음 ④ `requestUrl`이 시도한 URL(리스트 링크)이었음. **수정(backend-v1.16.2)**: `isSnapshotSourcePageUrl`로 likms 캡처가 `likms.assembly.go.kr` 밖에 도착하면 전체 캡처는 throw·스크린샷은 null(NSM 폴백 없음), `captureNsmDetailScreenshot`은 likms 분기를 먼저(NSM 포털 플래그는 그 포털만 게이트), `isSnapshotSourceCaptureEnabled()` = likms 소스 OR NSM 활성으로 큐·백필 게이트, 캡처 결과 `requestUrl`을 모든 httpMetadata 기록에 저장, 대수 하한을 스크린샷·스냅샷 3개 풀에도 확대. **의도적 미복구**: `trg_notice_archives_prevent_update`가 NULL→값 1회만 허용(202608130001)하고 삭제 트리거도 있어 274행은 교체 불가 — 운영자가 규칙 수정만 선택. 검증: lint·tsc·build·83 suites·1185 tests·comment 0
+├── 41-snapshot-source-alignment/                   ← 스냅샷·스크린샷 수집 페이지를 수집 소스에 고정
+│   └── snapshot-source-alignment.md                 ← LIKMS 수집 공지의 스냅샷·스크린샷이 국민참여입법센터 404 셸로 저장되던 문제. 실측: likms 메타데이터 275행 중 274행의 `source_html`이 NSM 404 셸이고 스크린샷이 동일 21,977B(정상 likms 행은 118,479B). 원인은 #201/v1.15.2(2026-10-14 17:06 JST) 이전 캡처가 likms 공지에도 `buildNsmDetailUrl`을 열어 200 응답 셸을 "성공"으로 저장한 것 — 06:00~08:11 UTC에 275행 전부, 08:49 UTC 이후 0행. 남은 결함은 규칙 가장자리: ① `captureNsmDetailScreenshot`이 likms 분기보다 `isNsmCrawlerEnabled()`를 먼저 봐서 NSM 포털 비활성 시 likms 스크린샷이 조용히 버려짐 ② 코디네이터 큐/백필 게이트도 같은 플래그 ③ 브라우저가 실제로 어디에 도착했는지 검증 없음 ④ `requestUrl`이 시도한 URL(리스트 링크)이었음. **수정(backend-v1.16.2)**: `isSnapshotSourcePageUrl`로 likms 캡처가 `likms.assembly.go.kr` 밖에 도착하면 전체 캡처는 throw·스크린샷은 null(NSM 폴백 없음), `captureNsmDetailScreenshot`은 likms 분기를 먼저(NSM 포털 플래그는 그 포털만 게이트), `isSnapshotSourceCaptureEnabled()` = likms 소스 OR NSM 활성으로 큐·백필 게이트, 캡처 결과 `requestUrl`을 모든 httpMetadata 기록에 저장, 대수 하한을 스크린샷·스냅샷 3개 풀에도 확대. **의도적 미복구**: `trg_notice_archives_prevent_update`가 NULL→값 1회만 허용(202608130001)하고 삭제 트리거도 있어 274행은 교체 불가 — 운영자가 규칙 수정만 선택. 검증: lint·tsc·build·83 suites·1185 tests·comment 0
+├── 43-admin-notice-slow-response/                  ← 관리자 공지 느린 응답(SSR 대기) 구멍 분석·수정
+│   └── admin-notice-ssr-timeout.md                  ← Notion 지연/실패 시 SSR 대기 구멍 2건과 백엔드 경량 `/top`·대기 예산 수정 기록
+├── 44-semantic-search-latency-optimization/        ← 시맨틱 검색 지연 최적화(스레드 튜닝·ONNX INT8 A/B)
+│   └── notes.md                                     ← RERANK_TOP_K 축소·ONNX 동적 양자화 측정 기록
+├── 45-model-ab-koe5-bgem3ko/                       ← KURE-v1 대비 KoE5·BGE-m3-ko 추가 A/B 실측
+│   └── notes.md                                     ← 서브셋 4후보→전체 119k 3자 승격 검증: BGE-m3-ko 승격 후보, KoE5 탈락
+└── 46-bge-production-switch/                       ← BGE-m3-ko 운영 전환(별칭 6건·모델+아티팩트 교체·리랭커 유지 판정)
+    └── notes.md                                     ← holdout MRR 0.251(r@5 0.333) 최종 검증, semantic-search-v2.8.0, 릴리스 체크리스트 포함
 ```
 
 ## 폴더별 상세 내용
@@ -176,6 +184,10 @@ agent_memories/
 ### `34-likms-live-pipeline-verification/` — LIKMS 실제 활성 상태 라이브 파이프라인 검증
 
 - **likms-live-pipeline-verification.md**: `CRAWLING_NSM_SOURCE=likms`가 실제로 켜진 프로덕션(`10.20.0.1`)과 공개 사이트(`law.viento.me`)에서 계류의안 크롤러의 종단 경로를 실측한 기록. **정상**: 목록 160페이지·15,958행·unique 15,164·pending 77 수집, 중복 pending 스트림·삭제 프로브 스킵 로그 확인, `Pending sync done - new=214 newPending=77 syncOnly=137 sourceDeleted=0`, 90분간 신규 270행(`archive 21274→21488`)·`created` 이벤트 270건·캐시 1207→1458·요약 백필 스테이징 314건, 공개 API가 `likms.assembly.go.kr` 링크·`contentId: null`로 노출. **확정 결함**: 270행 전건이 NSM 포털 오류 페이지(`errorWrap`, 6,207 B 고정, `responseUrl=opinion.lawmaking.go.kr/...`)를 스냅샷으로 저장 — `proposalReason` 0건·`content_bill_number` 0건, AI 요약 `not_supported`(비교 기준: 전환 전 contentId-null 행 19,867건 중 19,395건은 제안이유 보유). 원인은 `captureNsmDetailFull`/`buildNsmDetailUrl`이 소스를 따르지 않고 `NsmLmSts` 하드코딩인 점(§31 line 126·§33 line 79 잔여 항목). **부수**: 신규 270행 중 `법률안` 54건뿐, `결의안` 88·`동의안` 13·`징계안` 다수 등 약 80%가 비법률안 계류의안으로 파이프라인 유입. **미검증**: 알림 발송(부트 파이프라인 억제로 미발생), 전환 안정화 이후 크론 사이클.
+
+### `43-admin-notice-slow-response/` — 관리자 공지 느린 응답 구멍 분석·수정
+
+- **admin-notice-ssr-timeout.md**: Notion 지연/실패 시 SSR이 끌려다니던 원인 2건(① `/top`이 `{id,title}`만 반환하면서 본문 변환 전체를 대기 ② 콜드 리프레시 합산 무제한)과 수정 기록. 백엔드 `getPublishedNotices({includeBodies})`·`refreshFull`/`refreshLight` 분리·15초 대기 예산(`NOTION_REFRESH_BUDGET_MS`) + 프론트 2500ms 최소 패치. 검증: 백엔드 31/31·프론트 check 0/0·e2e 7/7.
 
 ### `38-summary-backfill-recovery-wedge/` — AI 요약 백필 복구 패스의 고정
 
@@ -280,6 +292,14 @@ agent_memories/
 ### `23-embedding-device-autodetect/` — 임베딩 하드웨어 자동 탐지
 
 - **plan.md**: 임베딩 모델의 실행 디바이스를 `LAWCAST_SEMANTIC_DEVICE` 기본값 `auto`로 바꿔 CPU보다 우수한 하드웨어를 자동 탐지·사용하게 한 구현 기록. **핵심 설계**: `config.DEVICE`는 요청값(경량 유지·torch 지연 임포트), 탐지·핀 해석은 `lawcast_semantic/device.py` 단일 소유(cuda > mps > xpu > cpu, 각 가용성 검사 격리 → 불량 드라이버는 다음 후보로 강등), `KoreanEmbedder`는 **프로브 인코딩(형상+유한값) 통과 못 하면 경고 후 cpu 재로드**. 핀(`cpu` 등)은 탐지 없이 그대로 존중. **디바이스는 아티팩트를 무효화하지 않음**(cpu/mps 벡터 cosine 1.000000·max delta 0 실측). 관측: stage 2 `device` 줄 + `/health.device`(모델 단계에서 기록 → 아티팩트 로드 실패 시에도 남음, `mark_ready`에 두면 지워지는 함정). 실측(Apple Silicon, torch 2.14): 단일 질의 96.8→32.5ms(2.98x), 배치 14.4→29.6 chunks/s(2.06x), 모델 로드 +3s. 검증: ruff clean, pytest **267 passed** + 사전 존재 실패 1(`artifacts/faiss.index` 소실 → `embeddings.npz`/`id_map.json`도 없음, 이 세션 테스트 이전 상태)·skip 1(동일 원인), stage 2 CLI·uvicorn `/health` 라이브 실측. 운영 컨테이너는 CPU 전용 휠이라 `auto`→`cpu`로 행동 불변.
+
+### `44-semantic-search-latency-optimization/` — 시맨틱 검색 지연 최적화
+
+- **notes.md**: 스레드 튜닝·RERANK_TOP_K 축소·ONNX 동적 INT8 양자화 A/B 측정 기록(선행 세션).
+
+### `45-model-ab-koe5-bgem3ko/` — KURE-v1 대비 KoE5·BGE-m3-ko 추가 A/B 실측
+
+- **notes.md**: 공유 12k 서브셋 4후보 비교 후 전체 119k 코퍼스 3자(live KURE-v1 vs BGE-m3-ko vs KoE5-prefix) 승격 검증을 한 실측 기록. 최종: holdout MRR BGE 0.232(+0.085, top-1 3건 추가) > KoE5-prefix 0.206 > KURE 0.147, main은 KURE 0.535 vs BGE/KoE5 0.522(노이즈), 지연 동률(~36ms) → **BGE-m3-ko 승격 후보, KoE5 탈락**. 원본 `semantic-search/_workspace/ab_results_full.json`.
 
 ## 에이전트 메모리 기록 규칙
 

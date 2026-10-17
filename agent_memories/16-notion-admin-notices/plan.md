@@ -389,6 +389,43 @@ Playwright mock mode: announcements + home **28/28 passed** including the new
 toggle test; live preview click verified (DisclosureTriangle `expanded`, caret
 rotated, inline `<strong>` inside toggle body, zero console errors).
 
+## Slow-response pass (2026-10-16, unreleased)
+
+**Problem**: cold Notion refreshes held API callers (and through them SSR) far
+longer than the 5000ms per-request `NOTION_TIMEOUT` suggests. Hole 1:
+`GET /api/announcements/top` ran the full refresh including sequential block
+conversions for up to 50 notices while returning only `{id, title}` — the
+layout loader hits `/top` on every route, so one cold cache dragged all SSR.
+Hole 2: the refresh aggregate (up to 10 query pages + 50 bodies, all serial
+under the 340ms pacing) had no bound — minutes worst case.
+
+**Backend** (`admin-notices.service.ts`, unreleased):
+
+- `getPublishedNotices({ includeBodies }: { includeBodies?: boolean } = {})` —
+  default `true` keeps the list/detail contract; `false` is the `/top` path
+  (cold: body-free query, never writes the cache; success kicks a full refresh
+  behind it so list/detail is warm; failure kicks nothing so a 429 pause is
+  never hammered through).
+- `refreshFull()` (ex-`refresh()`) + `refreshLight()` (own single-flight slot,
+  no cache write); `queryPublishedRows()` factored out of
+  `fetchPublishedNotices(includeBodies)`.
+- `waitWithBudget()` bounds only the waiting (default
+  `ADMIN_NOTICES_REFRESH_BUDGET_MS` = 15s, `NOTION_REFRESH_BUDGET_MS` →
+  `notion.refreshBudgetMs`, `<= 0` disables): the fetch runs to completion so
+  single-flight holds and a budget timeout still warms the cache on success.
+- Controller `/top` passes `{ includeBodies: false }`; route contract
+  unchanged (two GET routes, no writes).
+
+**Frontend** (`lib/server/announcements.ts` + two route loaders, unreleased):
+one 2500ms race; top falls back to `{item: null}` on any error (decorative
+chip/banner); list/detail map failures to `error(503)` (429 preserved).
+
+**Verification**: backend tsc/build green, admin-notices specs **31/31** (+5
+new: stalled-blocks cold top, fresh-cache light, stale light + background
+full, light 429 backoff, 100ms-budget fail-fast + convergence); frontend
+check 0/0, lint/prettier/comment clean, announcements e2e 7/7 mock.
+Full analysis: `agent_memories/43-admin-notice-slow-response/`.
+
 ## Release Notes (when this ships)
 
 - Submodule versions (`backend/package.json`, `frontend/package.json`) must be bumped per AGENTS.md

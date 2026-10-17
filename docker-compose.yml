@@ -102,7 +102,7 @@ services:
       # the reader opens it mode=ro — SQLite WAL needs -shm write access for a
       # read, and the backend keeps writing. Same-host only; not NFS-safe.
       - lawcast_db:/data
-      # KURE-v1 weights (~2.2GB) download once here, not per rebuild.
+      # BGE-m3-ko weights (~2.2GB) download once here, not per rebuild.
       - lawcast_semantic_hf_cache:/cache
     # §3.2 uid alignment: backend data-file uid (1001) so the shared WAL -shm
     # is writable for both producers (measured 2026-10-01; details in

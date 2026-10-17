@@ -43,7 +43,7 @@ jobs:
   deploy:
     name: Deploy semantic search to production
     runs-on: ubuntu-latest
-    # Image rebuild plus a cold KURE-v1 download (~2.2GB) into a fresh cache
+    # Image rebuild plus a cold BGE-m3-ko download (~2.2GB) into a fresh cache
     # volume on first production boot.
     timeout-minutes: 20
 
