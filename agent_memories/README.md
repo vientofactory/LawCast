@@ -110,6 +110,10 @@ agent_memories/
     └── notes.md                                     ← holdout MRR 0.251(r@5 0.333) 최종 검증, semantic-search-v2.8.0, 릴리스 체크리스트 포함
 ```
 
+## GA4 consent integration
+
+- [46-ga4-consent-integration/ga4-consent-integration.md](46-ga4-consent-integration/ga4-consent-integration.md): Arguments-based consent commands, returning-visitor updates, GTM duplicate page views and denied-data transmission settings, regression tests and release verification.
+
 ## 폴더별 상세 내용
 
 ### `repo/` — 프로젝트 전반 공유 노트
