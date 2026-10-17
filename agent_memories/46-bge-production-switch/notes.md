@@ -104,11 +104,36 @@ pairs in `/tmp/rerank_pairs.json` (ephemeral).
   `shadow`, so host-side manual `/search` needs the override. Pre-existing,
   unrelated to the embedding switch; production image is CPU-only.
 
-## 6. Release checklist (for the release session)
+## 6. Release (2026-10-18, done)
 
-- [x] `pyproject.toml` 2.7.1 -> 2.8.0 (minor: model switch + alias entries)
-- [ ] `git tag -l 'semantic-search-v*'` collision check, squash-merge PR,
-      `gh release create semantic-search-v2.8.0`, `dev` ff-only sync,
-      root submodule pointer update (AGENTS.md §6 Steps 1-7)
-- [ ] Production deploy pulls new image + host artifacts refresh
-      (`artifacts/` is host-mounted; refresh from the promoted set)
+- [x] `pyproject.toml` 2.7.1 -> 2.8.0, no tag collision
+- [x] Submodule PR #18 (feat/bge-m3ko-production-switch) squash-merged
+      as `8438508`, `gh release create semantic-search-v2.8.0`
+      (semantic-search tracks `main` directly, no `dev` branch)
+- [x] Root `80a5178` (`chore: update submodules to
+      semantic-search-v2.8.0` + root comment sync + sessions 43-46
+      memories) pushed to `main`; root CI run `39044092882`
+- [x] Deploy rebuilt the image and restarted the engine: `/health`
+      `ready`, `dragonkue/BGE-m3-ko` on cpu, 118,973 chunks
+
+## 7. Deploy guard break-glass record (why `allow_capability_loss=true`)
+
+- First deploy from the release (CI `39044092882`) failed ONLY at the
+  post-deploy capability compare: `LOST — title_text (8 notices:
+  2212742, 2214708, 2220960, 2220961, 2220964, 2220969, 2221272,
+  2221274)`; engine restart + readiness had already passed.
+- Root cause is DB drift, NOT the release: `c26964e..8438508`
+  touches no chunking/capability/datasource file (only aliases,
+  model-default config, comments, tests, version).
+- Row-level proof (production container, current DB vs served
+  chunks): e.g. notice `2220960` subject `하천법 일부개정법률안` is
+  present in the served chunks but absent from the CURRENT
+  `proposalReason` — the Assembly source dropped the title line
+  after the artifacts were built (same for `2212742`). The next
+  incremental tick would rebuild these notices identically with or
+  without this release.
+- So the re-run uses the AGENTS.md break-glass
+  (`allow_capability_loss=true`) with this section as the recorded
+  reason. Follow-up (non-blocking): the 8 notices regain
+  `title_text` automatically if the Assembly re-adds title lines;
+  no code action needed.
