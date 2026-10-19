@@ -1,0 +1,13 @@
+{
+  "description": "LawCast public responses - 120 seconds",
+  "original_rule_id": "ed61b034e9d44a39998711d668e7dc16",
+  "original_enabled": true,
+  "expression": "(http.host eq \"law.viento.me\" and http.request.method in {\"GET\" \"HEAD\"} and not any(http.request.headers[\"authorization\"][*] ne \"\") and (http.request.uri.path in {\"/\" \"/proposals\" \"/crawling-transparency\" \"/announcements\" \"/webhook\" \"/license\"} or (starts_with(http.request.uri.path, \"/announcements/\") and not ends_with(http.request.uri.path, \"/__data.json\")) or (http.request.uri.path wildcard \"/notices/*\" and not http.request.uri.path wildcard \"/notices/*/*\" and not http.request.uri.path in {\"/notices/changes\" \"/notices/semantic-search\"}) or http.request.uri.path wildcard \"/notices/*/og.png\" or http.request.uri.path wildcard \"/api/notices/*/screenshot\")) and not ends_with(http.request.uri.path, \"/__data.json\") and http.response.code eq 200 and not any(http.response.headers[\"set-cookie\"][*] ne \"\")",
+  "cache_control_directives": {
+    "public": true,
+    "max-age": 0,
+    "s-maxage": 120
+  },
+  "cloudflare_only": false,
+  "purpose": "Restoration reference captured before the requested migration to a regular Cache Rule."
+}

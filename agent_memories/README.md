@@ -360,3 +360,11 @@ agent_memories/
 ### 필수 업데이트
 
 **반드시 이 README.md의 목차를 업데이트하세요.** 새 폴더를 만들었으면 해당 폴더 설명도 추가합니다.
+
+## 47 — Cloudflare Page Cache Review (2026-10-18)
+
+- [Cache review and production validation](47-cloudflare-page-cache/cache-review-and-validation.md): frontend/backend request relationships, scoped 120-second public page cache, migration from response rules to status-code TTL in a regular Cache Rule, browser-cache correction, cookie/Authorization privacy bypass hardening, KIX measurements, exclusions, and TTL expiry verification.
+
+## 48 — GTM Consent Diagnostics (2026-10-18)
+
+- [GTM warning diagnosis](48-gtm-consent-diagnostics/diagnosis.md): advertising `ad_user_data` zero-percent warning distinguished from healthy analytics consent, recent GTM commits, published version 5, and real Tag Assistant page-view/SPA verification.

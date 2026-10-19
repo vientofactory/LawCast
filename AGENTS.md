@@ -159,8 +159,12 @@ comments, and never leave an explanatory clause un-translated.** This covers `//
 YAML/shell comments in all three submodules. The rule is machine-checked from the repo root:
 
 ```bash
-python3 tools/check-comment-language.py     # exit 1 when a comment line holds Korean prose
+python3 tools/check-agent-guidelines.py     # exit 1 on any C1/T1/E1 violation (comments, test titles, emojis)
 ```
+
+`tools/check-agent-guidelines.py` is the recommended checker: C1 covers this
+comment rule (superset of the legacy `tools/check-comment-language.py`), T1
+covers test-description language, and E1 covers emojis in comments.
 
 - Write the explanation in English. A Korean sentence, fragment or aside inside a comment is a
   violation even when the rest of the comment is English.
@@ -170,7 +174,12 @@ python3 tools/check-comment-language.py     # exit 1 when a comment line holds K
   (`` `제안이유` ``) or quotation marks (`"안건정보가 없습니다"`). Quoting marks it as data instead of
   prose and is what the checker accepts.
 - **User-facing text is not a comment** and stays Korean: UI strings, API error messages, i18n
-  copy, test titles (`it('...')`, `test('...')`), and fixture data. Never translate them.
+  copy, and fixture data. Never translate them.
+- **Test descriptions are English ONLY.** `describe(...)` / `it(...)` / `test(...)` titles, including
+  unit tests, Jest specs, and Playwright e2e specs, MUST be written in English. Korean may appear
+  only as a quoted literal copied from the code, the data, or the UI (same quoting rule as
+  comments). Fixture data, request payloads, and `expect(...)` values stay in their original
+  language and are not translated.
 
 ```typescript
 /**
@@ -205,6 +214,9 @@ Right: `` // `proposalReason` (`제안이유`) is matched through the FTS index,
 - Mock pattern: `jest.fn()` with explicit method names matching the real service
 - Run specific tests: `npm test -- --testPathPattern=discussions`
 - Run in band: `npm test -- --runInBand`
+- **Test descriptions in English ONLY**: `describe(...)` / `it(...)` titles MUST be English; cite Korean
+  domain values only as quoted literals, e.g. `it('treats both NSM `발의` and LIKMS `접수` as pending-like')`.
+  Fully Korean titles are violations and MUST be rewritten.
 - **Critical**: When adding methods to services (e.g., `CacheService`), update ALL test mocks immediately
 
 ---
@@ -262,13 +274,17 @@ Right: `` // `proposalReason` (`제안이유`) is matched through the FTS index,
 ### Comment Format (English Only)
 
 **English only, no Korean/English mix** — the same rule as backend §4, and the same checker:
-`python3 tools/check-comment-language.py`. It covers `<script>` comments, `<!-- -->` markup
+`python3 tools/check-agent-guidelines.py`. It covers `<script>` comments, `<!-- -->` markup
 comments, Playwright spec comments and CSS comments. Korean may only appear as a quoted literal
 copied from the code, the data or the UI (`` `제안이유(원문)` ``, `'제도적 기반'`, `"다시 시도"`), never
 as an explanation.
 
-- Test titles and `expect(...)` copy are data, not comments: `test('전체 유형 옵션을 보여준다')` is fine.
-- Assertion messages written in Korean are fine for the same reason; the *comment above them* is not.
+- Test descriptions are English ONLY (`describe(...)` / `it(...)` / `test(...)` titles), including
+  Playwright e2e specs. Korean may appear only as a quoted literal copied from the code, the data,
+  or the UI, e.g. `test('shows "기록 없음" when the engine has no recorded update times')`.
+  A fully Korean title such as `test('전체 유형 옵션을 보여준다')` is a violation — rewrite it in English.
+- `expect(...)` values, fixture data, and assertion messages keep their original language and are
+  not translated; the *comment above them* must still be English.
 
 ```svelte
 <script lang="ts">
@@ -289,6 +305,9 @@ as an explanation.
 - **E2E**: `cd frontend && npx playwright test`
 - **With mock data**: `DIFFCHAIN_UI_MOCK=1 npx playwright test`
 - **data-testid**: Always add on primary regions and interactive elements
+- **Test descriptions in English ONLY**: `test(...)` / `test.describe(...)` titles MUST be English; cite
+  Korean UI copy only as a quoted literal, e.g. `test('shows "기록 없음" when the engine has no recorded update times')`.
+  Fully Korean titles are violations and MUST be rewritten.
 
 ---
 
@@ -296,17 +315,23 @@ as an explanation.
 
 ### Language Policy
 
-- **Code**: All code comments, variable names, and API responses in **English**
+- **Code**: All code comments, variable names, API responses, and test descriptions
+  (`describe(...)` / `it(...)` / `test(...)` titles, Jest and Playwright) in **English**
 - **Comments and docstrings: English ONLY.** Never mix Korean into an English comment, and never
   write the comment itself in Korean. The single exception is a **quoted** literal copied from the
   code, the data or the UI (`` `제안이유` ``, `"안건정보가 없습니다"`), quoted precisely so a reviewer can
   tell data from prose. See §4 Comment Format for the full rule and examples, and run
-  `python3 tools/check-comment-language.py` (exit 1 on Korean prose) before committing — the
-  checker is part of the Step 0 verification block below.
+  `python3 tools/check-agent-guidelines.py` (exit 1 on any C1/T1/E1 violation) before committing —
+  the checker is part of the Step 0 verification block below.
+- **Test descriptions**: English ONLY for every `describe(...)` / `it(...)` / `test(...)` title
+  across backend Jest specs, frontend Playwright specs, and semantic-search pytest docstrings.
+  Korean is allowed only as a quoted literal (`"정상"`, `` `제안이유` ``, `'노출 순서'`) naming the exact
+  UI string, DB value, or fixture under test. Fully Korean titles must be rewritten in English.
+  Fixture data, payloads, and expected UI copy stay in their original language.
 - **User-facing text**: Korean for UI strings, error messages, and documentation — `README.md`,
   `.env.example`, route copy and `agent_memories/` notes are **documentation, not code comments**,
-  and keep the language their readers use. The English-only rule above applies to comments and
-  docstrings inside source files, not to prose documentation.
+  and keep the language their readers use. The English-only rule above applies to comments,
+  docstrings, and test descriptions inside source files, not to prose documentation.
 - **Agent notes**: Technical docs in English; exploration notes may mix Korean
 - **No emojis**: Never use emojis in code, commit messages, documentation, or PR descriptions
 
@@ -315,7 +340,7 @@ as an explanation.
 - CI runs on push/PR to `main`: backend lint/typecheck/build/test, frontend typecheck/build
 - Always verify locally: `cd backend && npm run lint && npx tsc --noEmit && npm run build && npm test`
 - Always verify frontend: `cd frontend && npm run check`
-- Always verify comment language: `python3 tools/check-comment-language.py` (repo root; exit 0 required)
+- Always verify agent guidelines: `python3 tools/check-agent-guidelines.py` (repo root; exit 0 required)
 
 ### Branching & Merging
 
@@ -378,7 +403,7 @@ cd semantic-search && .venv/bin/python scripts/07_capability_report.py --db ../b
 - `npm run lint` runs Prettier auto-fix + ESLint fix — all files MUST be `(unchanged)` or auto-fixed
 - `npm run check` (frontend) / `npx tsc --noEmit` (backend) MUST pass with 0 errors
 - `semantic-search` MUST pass ruff (check + format) and pytest; the version manifest guard is `tests/test_version.py`
-- Comment language MUST be clean (see §4/§5/§6): `python3 tools/check-comment-language.py` from the repo root exits 0 when no comment line carries Korean prose
+- Agent guidelines MUST be clean (see §4/§5/§6): `python3 tools/check-agent-guidelines.py` from the repo root exits 0 (C1 comments, T1 test titles, E1 emojis in comments)
 - **NEVER commit without running these first** — unformatted code will cause CI failures and unnecessary version bumps
 - If lint or check produces changes, include those changes in the same commit as the feature/fix
 
@@ -520,9 +545,11 @@ cd semantic-search && .venv/bin/python scripts/07_capability_report.py --db ../b
 cd semantic-search && python3 -c "import tomllib;print(tomllib.load(open('pyproject.toml','rb'))['project']['version'])"   # Version
 cd semantic-search && git tag -l 'semantic-search-v*'                           # Released versions
 
-# Comment language (English-only rule, see AGENTS.md §4/§5)
-python3 tools/check-comment-language.py                                          # Exit 1 on Korean prose in a comment
-python3 tools/check-comment-language.py --all                                    # List cited Korean literals too
+# Agent guidelines (English-only rules, see AGENTS.md §4/§5/§6)
+python3 tools/check-agent-guidelines.py                                          # Exit 1 on any C1/T1/E1 violation
+python3 tools/check-agent-guidelines.py --all                                    # List cited Korean literals too
+python3 tools/check-agent-guidelines.py --only=C1,T1                            # Subset of checks
+python3 tools/check-comment-language.py                                          # Legacy comment-only checker (C1 subset)
 
 # Docker
 docker compose up -d --build             # Start all services

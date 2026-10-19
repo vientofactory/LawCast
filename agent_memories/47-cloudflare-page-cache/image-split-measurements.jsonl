@@ -1,0 +1,14 @@
+{"age":null,"cache_control":"public, max-age=300, no-store","cache_status":"MISS","note":"baseline before split: 120s edge (Rule 5) + no-store (Browser Bypass)","url":"https://law.viento.me/notices/2221944/og.png?bl=BASELINE_TS"}
+{"age":0,"cache_control":"public, max-age=300, no-store","cache_status":"HIT","url":"https://law.viento.me/notices/2221944/og.png?bl=BASELINE_TS"}
+{"age":null,"cache_control":"public, max-age=86400, no-store","cache_status":"MISS","note":"baseline before split","url":"https://law.viento.me/api/notices/2221944/screenshot?bl=BASELINE_TS"}
+{"age":0,"cache_control":"public, max-age=86400, no-store","cache_status":"HIT","url":"https://law.viento.me/api/notices/2221944/screenshot?bl=BASELINE_TS"}
+{"age":null,"cache_control":"public, max-age=300","cache_status":"MISS","note":"after split: new image rule, no-store gone (Respect origin)","url":"https://law.viento.me/notices/2221944/og.png?split=AFTER_TS"}
+{"age":0,"cache_control":"public, max-age=300","cache_status":"HIT","url":"https://law.viento.me/notices/2221944/og.png?split=AFTER_TS"}
+{"age":null,"cache_control":"public, max-age=86400","cache_status":"MISS","note":"after split","url":"https://law.viento.me/api/notices/2221944/screenshot?split=AFTER_TS"}
+{"age":0,"cache_control":"public, max-age=86400","cache_status":"HIT","url":"https://law.viento.me/api/notices/2221944/screenshot?split=AFTER_TS"}
+{"age":2,"cache_control":"public, max-age=300","cache_status":"DYNAMIC","note":"cookie image request bypasses (rule order: bypass before images rule); Age on DYNAMIC noted but status is authoritative","url":"https://law.viento.me/notices/2221944/og.png?split=AFTER_TS + Cookie: _ga=x"}
+{"age":null,"cache_control":"no-store","cache_status":"EXPIRED","note":"HTML regression: proposals still 120s edge + no-store, Rule 5 edit did not break HTML","url":"https://law.viento.me/proposals"}
+{"age":null,"cache_control":"private, no-cache","cache_status":"DYNAMIC","note":"regression: random-chip page still uncached","url":"https://law.viento.me/notices"}
+{"age":null,"cache_control":"private, no-cache","cache_status":"DYNAMIC","note":"regression: SPA data still uncached","url":"https://law.viento.me/notices/__data.json?x-sveltekit-invalidated=011"}
+{"age":153,"cache_control":"public, max-age=300","cache_status":"HIT","note":"2h proof: same OG key HIT at Age 153s; old 120s rule would return EXPIRED","url":"https://law.viento.me/notices/2221944/og.png?ttl2h=PROOF_TS"}
+{"age":153,"cache_control":"public, max-age=86400","cache_status":"HIT","note":"2h proof: same screenshot key HIT at Age 153s","url":"https://law.viento.me/api/notices/2221944/screenshot?ttl2h=PROOF_TS"}

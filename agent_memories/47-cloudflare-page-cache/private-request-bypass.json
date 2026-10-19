@@ -1,0 +1,9 @@
+{
+  "ruleId": "335a264844564074bdd59a678400bcd3",
+  "name": "LawCast private requests - bypass cache",
+  "expression": "(http.host eq \"law.viento.me\" and not starts_with(http.request.uri.path, \"/_app/immutable/\") and (any(http.request.headers[\"cookie\"][*] ne \"\") or any(http.request.headers[\"authorization\"][*] ne \"\") or not http.request.method in {\"GET\" \"HEAD\"} or ends_with(http.request.uri.path, \"/__data.json\") or (starts_with(http.request.uri.path, \"/api/\") and not http.request.uri.path wildcard \"/api/notices/*/screenshot\") or http.request.uri.path in {\"/notices\" \"/notices/changes\" \"/notices/semantic-search\" \"/status\" \"/discussions\"} or starts_with(http.request.uri.path, \"/discussions/\") or http.request.uri.path wildcard \"/notices/*/discussions*\"))",
+  "cacheEligibility": "bypass",
+  "browserTTL": "bypass",
+  "position": "last",
+  "publicRuleExpression": "((http.host eq \"law.viento.me\" and http.request.method in {\"GET\" \"HEAD\"} and not any(http.request.headers[\"authorization\"][*] ne \"\") and (http.request.uri.path in {\"/\" \"/proposals\" \"/crawling-transparency\" \"/announcements\" \"/webhook\" \"/license\"} or (starts_with(http.request.uri.path, \"/announcements/\") and not ends_with(http.request.uri.path, \"/__data.json\")) or (http.request.uri.path wildcard \"/notices/*\" and not http.request.uri.path wildcard \"/notices/*/*\" and not http.request.uri.path in {\"/notices/changes\" \"/notices/semantic-search\"}) or http.request.uri.path wildcard \"/notices/*/og.png\" or http.request.uri.path wildcard \"/api/notices/*/screenshot\")) and not ends_with(http.request.uri.path, \"/__data.json\")) and not any(http.request.headers[\"cookie\"][*] ne \"\")"
+}
