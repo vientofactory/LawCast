@@ -368,3 +368,7 @@ agent_memories/
 ## 48 — GTM Consent Diagnostics (2026-10-18)
 
 - [GTM warning diagnosis](48-gtm-consent-diagnostics/diagnosis.md): advertising `ad_user_data` zero-percent warning distinguished from healthy analytics consent, recent GTM commits, published version 5, and real Tag Assistant page-view/SPA verification.
+
+## 49 — Node2Shell Runtime Hardening (2026-10-24)
+
+- [Exposure and remediation](49-node2shell-runtime-hardening/findings.md): CVE-2026-111497 request/response decoder reachability, patched Docker/Node/CI versions, strict npm engine requirements, safe HTTP probes, local verification, and outstanding production runtime checks.
