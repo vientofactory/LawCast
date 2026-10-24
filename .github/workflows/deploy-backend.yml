@@ -154,6 +154,13 @@ jobs:
 
             if [ "$HEALTHY" = "true" ]; then
               echo "Backend is healthy ✓"
+              EXPECTED_NODE="v$(tr -d '\r\n' < backend/.node-version)"
+              ACTUAL_NODE=$(docker compose exec -T backend node --version | tr -d '\r\n')
+              echo "Backend runtime: $ACTUAL_NODE (expected $EXPECTED_NODE)"
+              if [ "$ACTUAL_NODE" != "$EXPECTED_NODE" ]; then
+                echo "ERROR: Backend Node.js runtime does not match the patched release"
+                exit 1
+              fi
               # Record only after the health check passed, so a failed deploy
               # is retried on the next run.
               .github/scripts/deploy-change-guard.sh record backend
