@@ -376,3 +376,7 @@ agent_memories/
 ## 50 — PWA Installation (2026-10-28)
 
 - [Architecture and implementation](50-pwa-installation/architecture-and-implementation.md): project structure, shared push/PWA worker, existing brand assets, browser-gated native install prompt, seven-day cooldown, bounded offline fallback and isolated production Playwright suite.
+
+## 51 — Open Signal Brand (2026-10-28)
+
+- [Implementation and release](51-open-signal-brand/implementation-and-release.md): preserved Pretendard wordmark, versioned brand asset URLs for Chrome icon updates, shared SVG symbol geometry, first-load intro and subtitle, reduced-motion behavior, and PWA/push/cache validation.
