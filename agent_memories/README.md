@@ -380,3 +380,7 @@ agent_memories/
 ## 51 — Open Signal Brand (2026-10-28)
 
 - [Implementation and release](51-open-signal-brand/implementation-and-release.md): preserved Pretendard wordmark, versioned brand asset URLs for Chrome icon updates, shared SVG symbol geometry, first-load intro and subtitle, reduced-motion behavior, and PWA/push/cache validation.
+
+## 52 — Pages Production Actions (2026-10-28)
+
+- [Migration and verification](52-pages-production-actions/migration.md): native disabled previews still create skipped records; main-only GitHub Actions replacement, encrypted binding preservation, credential scope, cutover order and real push verification.
