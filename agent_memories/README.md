@@ -372,3 +372,7 @@ agent_memories/
 ## 49 — Node2Shell Runtime Hardening (2026-10-24)
 
 - [Exposure and remediation](49-node2shell-runtime-hardening/findings.md): CVE-2026-111497 request/response decoder reachability, patched Docker/Node/CI versions, strict npm engine requirements, safe HTTP probes, local verification, and outstanding production runtime checks.
+
+## 50 — PWA Installation (2026-10-28)
+
+- [Architecture and implementation](50-pwa-installation/architecture-and-implementation.md): project structure, shared push/PWA worker, existing brand assets, browser-gated native install prompt, seven-day cooldown, bounded offline fallback and isolated production Playwright suite.
