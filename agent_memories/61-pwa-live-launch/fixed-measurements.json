@@ -1,0 +1,158 @@
+{
+  "origin": "https://law.viento.me",
+  "release": "frontend-v1.25.7",
+  "cache": "lawcast-pwa-v6",
+  "browser": "Chrome 156.0.8078.48 on macOS",
+  "viewport": [
+    390,
+    844
+  ],
+  "mode": "visible browser tab using the production manifest start URL, not an OS standalone app",
+  "cases": [
+    {
+      "label": "fixed-uncached-assets-3g-1",
+      "http_cache_disabled": true,
+      "conditions": {
+        "offline": false,
+        "latency": 8000,
+        "downloadThroughput": 51200,
+        "uploadThroughput": 25600,
+        "connectionType": "cellular3g"
+      },
+      "frames": 644,
+      "home_load_seconds": null,
+      "javascript_exceptions": null,
+      "first_captured_frame_seconds": 0.08551692962646484,
+      "documents": [
+        {
+          "elapsed": 0.01878499984741211,
+          "url": "https://law.viento.me/pwa-start",
+          "status": 200,
+          "from_service_worker": true
+        },
+        {
+          "elapsed": 16.89271879196167,
+          "url": "https://law.viento.me/",
+          "status": 200,
+          "from_service_worker": true
+        }
+      ],
+      "contentful_paints_received_seconds": [
+        0.06996989250183105,
+        16.950056791305542
+      ],
+      "home_commit_seconds": 16.92070770263672,
+      "home_commit_to_paint_seconds": 0.029349088668823242,
+      "largest_frame_gap_seconds": 0.6999809741973877,
+      "largest_launch_to_home_frame_gap_seconds": 0.6999809741973877,
+      "gap_before_seconds": 1.6021568775177002,
+      "gap_after_seconds": 2.302137851715088,
+      "white_frames_over_99_percent": [],
+      "unique_loader_frames_per_three_seconds": {
+        "0": 76,
+        "1": 71,
+        "2": 73,
+        "3": 73,
+        "4": 74,
+        "5": 67
+      }
+    },
+    {
+      "label": "fixed-uncached-assets-3g-2",
+      "http_cache_disabled": true,
+      "conditions": {
+        "offline": false,
+        "latency": 8000,
+        "downloadThroughput": 51200,
+        "uploadThroughput": 25600,
+        "connectionType": "cellular3g"
+      },
+      "frames": 644,
+      "home_load_seconds": null,
+      "javascript_exceptions": null,
+      "first_captured_frame_seconds": 0.01836109161376953,
+      "documents": [
+        {
+          "elapsed": 0.027785062789916992,
+          "url": "https://law.viento.me/pwa-start",
+          "status": 200,
+          "from_service_worker": true
+        },
+        {
+          "elapsed": 16.92843222618103,
+          "url": "https://law.viento.me/",
+          "status": 200,
+          "from_service_worker": true
+        }
+      ],
+      "contentful_paints_received_seconds": [
+        0.09944319725036621,
+        16.984114170074463
+      ],
+      "home_commit_seconds": 16.95709204673767,
+      "home_commit_to_paint_seconds": 0.027022123336791992,
+      "largest_frame_gap_seconds": 0.7082271575927734,
+      "largest_launch_to_home_frame_gap_seconds": 0.7082271575927734,
+      "gap_before_seconds": 13.597409009933472,
+      "gap_after_seconds": 14.305636167526245,
+      "white_frames_over_99_percent": [],
+      "unique_loader_frames_per_three_seconds": {
+        "0": 71,
+        "1": 74,
+        "2": 73,
+        "3": 69,
+        "4": 74,
+        "5": 64
+      }
+    },
+    {
+      "label": "fixed-uncached-assets-3g-full-load",
+      "http_cache_disabled": true,
+      "conditions": {
+        "offline": false,
+        "latency": 8000,
+        "downloadThroughput": 51200,
+        "uploadThroughput": 25600,
+        "connectionType": "cellular3g"
+      },
+      "frames": 670,
+      "home_load_seconds": 31.595066785812378,
+      "javascript_exceptions": 0,
+      "first_captured_frame_seconds": -0.08687019348144531,
+      "documents": [
+        {
+          "elapsed": 0.039433956146240234,
+          "url": "https://law.viento.me/pwa-start",
+          "status": 200,
+          "from_service_worker": true
+        },
+        {
+          "elapsed": 16.86842107772827,
+          "url": "https://law.viento.me/",
+          "status": 200,
+          "from_service_worker": true
+        }
+      ],
+      "contentful_paints_received_seconds": [
+        0.06480097770690918,
+        16.924795866012573
+      ],
+      "home_commit_seconds": 16.898483991622925,
+      "home_commit_to_paint_seconds": 0.026311874389648438,
+      "largest_frame_gap_seconds": 7.004056930541992,
+      "largest_launch_to_home_frame_gap_seconds": 0.7092421054840088,
+      "gap_before_seconds": 19.063570022583008,
+      "gap_after_seconds": 26.067626953125,
+      "white_frames_over_99_percent": [],
+      "unique_loader_frames_per_three_seconds": {
+        "-1": 3,
+        "0": 76,
+        "1": 73,
+        "2": 75,
+        "3": 74,
+        "4": 72,
+        "5": 68
+      }
+    }
+  ]
+}

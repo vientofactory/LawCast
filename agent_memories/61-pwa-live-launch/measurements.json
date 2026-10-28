@@ -1,0 +1,139 @@
+{
+  "origin": "https://law.viento.me",
+  "release": "frontend-v1.25.6",
+  "cache": "lawcast-pwa-v5",
+  "browser": "Chrome 156.0.8078.48 on macOS",
+  "viewport": [
+    390,
+    844
+  ],
+  "mode": "visible browser tab using the production manifest start URL, not an OS standalone app",
+  "cases": [
+    {
+      "label": "warm-3g-repeat",
+      "http_cache_disabled": false,
+      "conditions": {
+        "offline": false,
+        "latency": 8000,
+        "downloadThroughput": 51200,
+        "uploadThroughput": 25600,
+        "connectionType": "cellular3g"
+      },
+      "frames": 356,
+      "first_captured_frame_seconds": 0.017770051956176758,
+      "documents": [
+        {
+          "elapsed": 0.015588045120239258,
+          "url": "https://law.viento.me/pwa-start",
+          "status": 200,
+          "from_service_worker": true
+        },
+        {
+          "elapsed": 8.165362119674683,
+          "url": "https://law.viento.me/",
+          "status": 200,
+          "from_service_worker": true
+        }
+      ],
+      "contentful_paints_received_seconds": [
+        0.07919621467590332,
+        8.222545146942139
+      ],
+      "home_commit_seconds": 8.165370225906372,
+      "home_commit_to_paint_seconds": 0.0571749210357666,
+      "largest_frame_gap_seconds": 0.7000229358673096,
+      "gap_before_seconds": 4.609387159347534,
+      "gap_after_seconds": 5.309410095214844,
+      "white_frames_over_99_percent": [],
+      "unique_loader_frames_per_three_seconds": {
+        "0": 70,
+        "1": 70,
+        "2": 64
+      }
+    },
+    {
+      "label": "uncached-assets-3g",
+      "http_cache_disabled": true,
+      "conditions": {
+        "offline": false,
+        "latency": 8000,
+        "downloadThroughput": 51200,
+        "uploadThroughput": 25600,
+        "connectionType": "cellular3g"
+      },
+      "frames": 360,
+      "first_captured_frame_seconds": 0.016211986541748047,
+      "documents": [
+        {
+          "elapsed": 0.017076969146728516,
+          "url": "https://law.viento.me/pwa-start",
+          "status": 200,
+          "from_service_worker": true
+        },
+        {
+          "elapsed": 8.25657606124878,
+          "url": "https://law.viento.me/",
+          "status": 200,
+          "from_service_worker": true
+        }
+      ],
+      "contentful_paints_received_seconds": [
+        0.09290194511413574,
+        19.54345393180847
+      ],
+      "home_commit_seconds": 8.25658392906189,
+      "home_commit_to_paint_seconds": 11.286870002746582,
+      "largest_frame_gap_seconds": 11.924865007400513,
+      "gap_before_seconds": 7.600294828414917,
+      "gap_after_seconds": 19.52515983581543,
+      "white_frames_over_99_percent": [],
+      "unique_loader_frames_per_three_seconds": {
+        "0": 74,
+        "1": 72,
+        "2": 64
+      }
+    },
+    {
+      "label": "uncached-assets-3g-repeat",
+      "http_cache_disabled": true,
+      "conditions": {
+        "offline": false,
+        "latency": 8000,
+        "downloadThroughput": 51200,
+        "uploadThroughput": 25600,
+        "connectionType": "cellular3g"
+      },
+      "frames": 357,
+      "first_captured_frame_seconds": 0.01657700538635254,
+      "documents": [
+        {
+          "elapsed": 0.014354944229125977,
+          "url": "https://law.viento.me/pwa-start",
+          "status": 200,
+          "from_service_worker": true
+        },
+        {
+          "elapsed": 8.137301921844482,
+          "url": "https://law.viento.me/",
+          "status": 200,
+          "from_service_worker": true
+        }
+      ],
+      "contentful_paints_received_seconds": [
+        0.04728198051452637,
+        19.437824964523315
+      ],
+      "home_commit_seconds": 8.137310981750488,
+      "home_commit_to_paint_seconds": 11.300513982772827,
+      "largest_frame_gap_seconds": 11.849884033203125,
+      "gap_before_seconds": 7.599900007247925,
+      "gap_after_seconds": 19.44978404045105,
+      "white_frames_over_99_percent": [],
+      "unique_loader_frames_per_three_seconds": {
+        "0": 72,
+        "1": 68,
+        "2": 62
+      }
+    }
+  ]
+}

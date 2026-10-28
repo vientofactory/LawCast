@@ -420,3 +420,8 @@ agent_memories/
 ## 60 — Search and Prompt UX (2026-10-28)
 
 - [Release verification](60-search-prompt-ux/release-verification.md): aligned PWA/consent prompts, shared theme-aware Open Signal search loading, touch-keyboard focus handling, 83 local browser checks, and frontend 1.25.5 release evidence.
+
+## 61 — Production PWA Launch (2026-10-29)
+
+- [Slow-network verification](61-pwa-live-launch/verification.md): real production worker/cache testing in Chrome on port 9222; cached entry paints within 0.1 seconds, but two runs with HTTP asset cache bypassed freeze the retained loader for approximately 11.3 seconds after home navigation commits. Includes sanitized measurements and sampled frames; native OS standalone launch remains unverified.
+- [Active-loader fix and production recheck](61-pwa-live-launch/active-loader-fix.md): frontend 1.25.7 keeps the launch document active during HTML/CSS preparation and transfers responses once through bounded worker memory. Both cold-CSS production repeats eliminate the 11.3-second freeze, with 27–29 ms from home commit to paint; includes 28 browser regressions on each local runtime.
