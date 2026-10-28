@@ -400,3 +400,13 @@ agent_memories/
 ## 56 — Local Stats Bottlenecks (2026-10-28)
 
 - [Local patch and verification](56-local-stats-bottlenecks/verification.md): shared stats/list snapshot, coalesced cold loads and invalidation races, independent bounded Ollama health checks with unchanged generation timeout, 1254 backend tests, isolated Redis/HTTP comparisons and digest-timer teardown with verified Jest process exit, followed by the explicitly authorized backend 1.19.4 release.
+
+
+## 57 — Postdeployment SSR Web Vitals (2026-10-28)
+
+- [End-to-end verification](57-postdeploy-ssr-vitals/verification.md): 36 production Lighthouse navigations, six forced HTML-cache-miss/dynamic SSR controls, 14 Playwright checks, and origin/API-path measurements. Browser budgets passed, but transient external API delays and origin event-loop stalls prevent an all-bottlenecks-resolved verdict.
+
+
+## 58 — API Tail and SQLite Queue (2026-10-28)
+
+- [Same-request attribution and local fix](58-api-tail-db-queue/verification.md): 48 external requests matched to passive origin timestamps; a 4.96-second request spent 4.69 seconds in the origin, with additional 15-second timeouts. Retry-candidate SQL repeatedly searched global details, delaying the shared SQLite connection. Equivalent notice-scoped EXISTS queries and real-schema regression checks fix the local reproduction, followed by the owner-authorized backend 1.19.5 release and production verification.

@@ -1,0 +1,461 @@
+{
+  "sqliteVersion": "3.52.0",
+  "results": [
+    {
+      "arm": "baseline",
+      "candidateAndRequestsMs": 17195.322333,
+      "candidates": [
+        2222193,
+        2222179,
+        2222177,
+        2222158,
+        2211806,
+        2211819,
+        2211837,
+        2211848,
+        2211901,
+        2212019,
+        2212057,
+        2212134,
+        2212393,
+        2212446,
+        2212505,
+        2212600,
+        2212684,
+        2212721,
+        2212726,
+        2212882
+      ],
+      "samples": [
+        {
+          "endpoint": "/api/version",
+          "status": 200,
+          "ms": 16.089999999999975,
+          "body": {
+            "success": true,
+            "data": {
+              "version": "1.19.4"
+            }
+          }
+        },
+        {
+          "endpoint": "/api/stats",
+          "status": 200,
+          "ms": 17174.11875,
+          "body": {
+            "success": true,
+            "data": {
+              "archive": 21786,
+              "events": 20817
+            }
+          }
+        },
+        {
+          "endpoint": "/api/discussions/threads",
+          "status": 200,
+          "ms": 17173.683375,
+          "body": {
+            "success": true,
+            "data": [
+              {
+                "count": 7
+              }
+            ]
+          }
+        }
+      ],
+      "plan": [
+        {
+          "id": 5,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH na USING INDEX idx_notice_archives_lifecycle_status (lifecycle_status=?)"
+        },
+        {
+          "id": 19,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 25,
+          "parent": 19,
+          "notused": 62,
+          "detail": "SEARCH d USING INDEX idx_notice_change_details_field_path_event_id_id (field_path=?)"
+        },
+        {
+          "id": 37,
+          "parent": 19,
+          "notused": 45,
+          "detail": "SEARCH e USING INTEGER PRIMARY KEY (rowid=?)"
+        },
+        {
+          "id": 49,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 55,
+          "parent": 49,
+          "notused": 62,
+          "detail": "SEARCH d USING INDEX idx_notice_change_details_field_path_event_id_id (field_path=?)"
+        },
+        {
+          "id": 64,
+          "parent": 49,
+          "notused": 45,
+          "detail": "SEARCH e USING INTEGER PRIMARY KEY (rowid=?)"
+        },
+        {
+          "id": 94,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        }
+      ]
+    },
+    {
+      "arm": "patched",
+      "candidateAndRequestsMs": 213.2137909999983,
+      "candidates": [
+        2222193,
+        2222179,
+        2222177,
+        2222158,
+        2211806,
+        2211819,
+        2211837,
+        2211848,
+        2211901,
+        2212019,
+        2212057,
+        2212134,
+        2212393,
+        2212446,
+        2212505,
+        2212600,
+        2212684,
+        2212721,
+        2212726,
+        2212882
+      ],
+      "samples": [
+        {
+          "endpoint": "/api/version",
+          "status": 200,
+          "ms": 1.5797500000007858,
+          "body": {
+            "success": true,
+            "data": {
+              "version": "1.19.4"
+            }
+          }
+        },
+        {
+          "endpoint": "/api/stats",
+          "status": 200,
+          "ms": 200.0877909999981,
+          "body": {
+            "success": true,
+            "data": {
+              "archive": 21786,
+              "events": 20817
+            }
+          }
+        },
+        {
+          "endpoint": "/api/discussions/threads",
+          "status": 200,
+          "ms": 200.109375,
+          "body": {
+            "success": true,
+            "data": [
+              {
+                "count": 7
+              }
+            ]
+          }
+        }
+      ],
+      "plan": [
+        {
+          "id": 5,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH na USING INDEX idx_notice_archives_lifecycle_status (lifecycle_status=?)"
+        },
+        {
+          "id": 19,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 26,
+          "parent": 19,
+          "notused": 52,
+          "detail": "SEARCH e USING COVERING INDEX idx_notice_change_events_notice_num_detected_at_id (notice_num=?)"
+        },
+        {
+          "id": 31,
+          "parent": 19,
+          "notused": 62,
+          "detail": "SEARCH d EXISTS USING INDEX idx_notice_change_details_event_id_field_path_id (event_id=? AND field_path=?)"
+        },
+        {
+          "id": 52,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 4"
+        },
+        {
+          "id": 59,
+          "parent": 52,
+          "notused": 52,
+          "detail": "SEARCH e USING COVERING INDEX idx_notice_change_events_notice_num_detected_at_id (notice_num=?)"
+        },
+        {
+          "id": 64,
+          "parent": 52,
+          "notused": 62,
+          "detail": "SEARCH d EXISTS USING INDEX idx_notice_change_details_event_id_field_path_id (event_id=? AND field_path=?)"
+        },
+        {
+          "id": 100,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        }
+      ]
+    },
+    {
+      "arm": "patched",
+      "candidateAndRequestsMs": 32.68987500000003,
+      "candidates": [
+        2222193,
+        2222179,
+        2222177,
+        2222158,
+        2211806,
+        2211819,
+        2211837,
+        2211848,
+        2211901,
+        2212019,
+        2212057,
+        2212134,
+        2212393,
+        2212446,
+        2212505,
+        2212600,
+        2212684,
+        2212721,
+        2212726,
+        2212882
+      ],
+      "samples": [
+        {
+          "endpoint": "/api/version",
+          "status": 200,
+          "ms": 1.4968340000013995,
+          "body": {
+            "success": true,
+            "data": {
+              "version": "1.19.4"
+            }
+          }
+        },
+        {
+          "endpoint": "/api/stats",
+          "status": 200,
+          "ms": 21.718000000000757,
+          "body": {
+            "success": true,
+            "data": {
+              "archive": 21786,
+              "events": 20817
+            }
+          }
+        },
+        {
+          "endpoint": "/api/discussions/threads",
+          "status": 200,
+          "ms": 21.75666700000147,
+          "body": {
+            "success": true,
+            "data": [
+              {
+                "count": 7
+              }
+            ]
+          }
+        }
+      ],
+      "plan": [
+        {
+          "id": 5,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH na USING INDEX idx_notice_archives_lifecycle_status (lifecycle_status=?)"
+        },
+        {
+          "id": 19,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 26,
+          "parent": 19,
+          "notused": 52,
+          "detail": "SEARCH e USING COVERING INDEX idx_notice_change_events_notice_num_detected_at_id (notice_num=?)"
+        },
+        {
+          "id": 31,
+          "parent": 19,
+          "notused": 62,
+          "detail": "SEARCH d EXISTS USING INDEX idx_notice_change_details_event_id_field_path_id (event_id=? AND field_path=?)"
+        },
+        {
+          "id": 52,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 4"
+        },
+        {
+          "id": 59,
+          "parent": 52,
+          "notused": 52,
+          "detail": "SEARCH e USING COVERING INDEX idx_notice_change_events_notice_num_detected_at_id (notice_num=?)"
+        },
+        {
+          "id": 64,
+          "parent": 52,
+          "notused": 62,
+          "detail": "SEARCH d EXISTS USING INDEX idx_notice_change_details_event_id_field_path_id (event_id=? AND field_path=?)"
+        },
+        {
+          "id": 100,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        }
+      ]
+    },
+    {
+      "arm": "patched",
+      "candidateAndRequestsMs": 33.08300000000236,
+      "candidates": [
+        2222193,
+        2222179,
+        2222177,
+        2222158,
+        2211806,
+        2211819,
+        2211837,
+        2211848,
+        2211901,
+        2212019,
+        2212057,
+        2212134,
+        2212393,
+        2212446,
+        2212505,
+        2212600,
+        2212684,
+        2212721,
+        2212726,
+        2212882
+      ],
+      "samples": [
+        {
+          "endpoint": "/api/version",
+          "status": 200,
+          "ms": 1.950582999998005,
+          "body": {
+            "success": true,
+            "data": {
+              "version": "1.19.4"
+            }
+          }
+        },
+        {
+          "endpoint": "/api/stats",
+          "status": 200,
+          "ms": 19.50945800000045,
+          "body": {
+            "success": true,
+            "data": {
+              "archive": 21786,
+              "events": 20817
+            }
+          }
+        },
+        {
+          "endpoint": "/api/discussions/threads",
+          "status": 200,
+          "ms": 19.45324999999866,
+          "body": {
+            "success": true,
+            "data": [
+              {
+                "count": 7
+              }
+            ]
+          }
+        }
+      ],
+      "plan": [
+        {
+          "id": 5,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH na USING INDEX idx_notice_archives_lifecycle_status (lifecycle_status=?)"
+        },
+        {
+          "id": 19,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 26,
+          "parent": 19,
+          "notused": 52,
+          "detail": "SEARCH e USING COVERING INDEX idx_notice_change_events_notice_num_detected_at_id (notice_num=?)"
+        },
+        {
+          "id": 31,
+          "parent": 19,
+          "notused": 62,
+          "detail": "SEARCH d EXISTS USING INDEX idx_notice_change_details_event_id_field_path_id (event_id=? AND field_path=?)"
+        },
+        {
+          "id": 52,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 4"
+        },
+        {
+          "id": 59,
+          "parent": 52,
+          "notused": 52,
+          "detail": "SEARCH e USING COVERING INDEX idx_notice_change_events_notice_num_detected_at_id (notice_num=?)"
+        },
+        {
+          "id": 64,
+          "parent": 52,
+          "notused": 62,
+          "detail": "SEARCH d EXISTS USING INDEX idx_notice_change_details_event_id_field_path_id (event_id=? AND field_path=?)"
+        },
+        {
+          "id": 100,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        }
+      ]
+    }
+  ]
+}

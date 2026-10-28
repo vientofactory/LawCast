@@ -1,0 +1,18 @@
+[
+  {
+    "arm": "baseline",
+    "noticeScopedGuardPasses": false
+  },
+  {
+    "arm": "patched",
+    "noticeScopedGuardPasses": true
+  },
+  {
+    "arm": "patched",
+    "noticeScopedGuardPasses": true
+  },
+  {
+    "arm": "patched",
+    "noticeScopedGuardPasses": true
+  }
+]

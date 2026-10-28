@@ -1,0 +1,42 @@
+[
+  {
+    "clientStart": 1793174255.9062028,
+    "clientEnd": 1793174256.073465,
+    "received": 1793174256.199195,
+    "sent": 1793174256.199201,
+    "offsetEstimateMs": 209.3641757965088,
+    "uncertaintyMs": 83.63115787506104
+  },
+  {
+    "clientStart": 1793174256.175841,
+    "clientEnd": 1793174256.4016562,
+    "received": 1793174256.527179,
+    "sent": 1793174256.52719,
+    "offsetEstimateMs": 238.4357452392578,
+    "uncertaintyMs": 112.9075288772583
+  },
+  {
+    "clientStart": 1793174256.511295,
+    "clientEnd": 1793174256.643219,
+    "received": 1793174256.847177,
+    "sent": 1793174256.8471835,
+    "offsetEstimateMs": 269.92321014404297,
+    "uncertaintyMs": 65.96195697784424
+  },
+  {
+    "clientStart": 1793174256.752962,
+    "clientEnd": 1793174257.067497,
+    "received": 1793174257.0872352,
+    "sent": 1793174257.0872412,
+    "offsetEstimateMs": 177.00862884521484,
+    "uncertaintyMs": 157.26745128631592
+  },
+  {
+    "clientStart": 1793174257.1774778,
+    "clientEnd": 1793174257.352284,
+    "received": 1793174257.5571434,
+    "sent": 1793174257.55715,
+    "offsetEstimateMs": 292.2656536102295,
+    "uncertaintyMs": 87.4030590057373
+  }
+]

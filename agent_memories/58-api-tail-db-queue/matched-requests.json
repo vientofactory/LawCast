@@ -1,0 +1,1588 @@
+[
+  {
+    "id": "lc58-external-b7388ec2a0f749",
+    "name": "backend-stats",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 427.606,
+    "externalTotalMs": 498.68600000000004,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173142.9704106,
+      "id": "lc58-external-b7388ec2a0f749",
+      "path": "/api/stats",
+      "at": 1793173142.303469,
+      "cfRay": "a51848cb4d649649-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173142.9711885,
+      "id": "lc58-external-b7388ec2a0f749",
+      "at": 1793173142.386409,
+      "appTotalMs": 82.94,
+      "responseBytes": 6360,
+      "health": {
+        "status": "healthy",
+        "lastCheckedAt": "2026-10-28T07:38:53.548Z",
+        "lastLatencyMs": 4,
+        "availableModelCount": 2
+      },
+      "eventLoop": {
+        "min": 19,
+        "max": 28,
+        "mean": 20,
+        "stddev": 1,
+        "percentiles": {
+          "p50": 20,
+          "p90": 21,
+          "p99": 25
+        },
+        "exceeds": 0,
+        "lastUpdated": 1793173141962
+      }
+    }
+  },
+  {
+    "id": "lc58-external-b0303e5d211c44",
+    "name": "front-stats",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 534.738,
+    "externalTotalMs": 626.067,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173143.992167,
+      "id": "lc58-external-b0303e5d211c44",
+      "path": "/api/stats",
+      "at": 1793173143.967167,
+      "cfRay": "a51848d5ab968d13-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173145.0165925,
+      "id": "lc58-external-b0303e5d211c44",
+      "at": 1793173144.007811,
+      "appTotalMs": 40.644,
+      "responseBytes": 6360,
+      "health": {
+        "status": "healthy",
+        "lastCheckedAt": "2026-10-28T07:38:53.548Z",
+        "lastLatencyMs": 4,
+        "availableModelCount": 2
+      },
+      "eventLoop": {
+        "min": 19,
+        "max": 38,
+        "mean": 21,
+        "stddev": 2,
+        "percentiles": {
+          "p50": 20,
+          "p90": 21,
+          "p99": 30
+        },
+        "exceeds": 0,
+        "lastUpdated": 1793173143963
+      }
+    }
+  },
+  {
+    "id": "lc58-external-cd65b8c053a349",
+    "name": "backend-version",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 312.212,
+    "externalTotalMs": 313.739,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173146.03995,
+      "id": "lc58-external-cd65b8c053a349",
+      "path": "/api/version",
+      "at": 1793173145.442966,
+      "cfRay": "a51848deb9398b51-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173146.0402007,
+      "id": "lc58-external-cd65b8c053a349",
+      "at": 1793173145.444728,
+      "appTotalMs": 1.762,
+      "responseBytes": 61,
+      "health": null,
+      "eventLoop": null
+    }
+  },
+  {
+    "id": "lc58-external-7bfc17a1468241",
+    "name": "front-discussions",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 299.92400000000004,
+    "externalTotalMs": 300.519,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173147.0641909,
+      "id": "lc58-external-7bfc17a1468241",
+      "path": "/api/discussions/threads",
+      "at": 1793173146.767645,
+      "cfRay": "a51848e72895d3cd-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173147.0643487,
+      "id": "lc58-external-7bfc17a1468241",
+      "at": 1793173146.771393,
+      "appTotalMs": 3.748,
+      "responseBytes": 65,
+      "health": null,
+      "eventLoop": null
+    }
+  },
+  {
+    "id": "lc58-external-c541a02c8d2f48",
+    "name": "backend-stats",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 386.243,
+    "externalTotalMs": 772.938,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173149.1128252,
+      "id": "lc58-external-c541a02c8d2f48",
+      "path": "/api/stats",
+      "at": 1793173148.162801,
+      "cfRay": "a51848efe82f00f0-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173149.1143064,
+      "id": "lc58-external-c541a02c8d2f48",
+      "at": 1793173148.191419,
+      "appTotalMs": 28.618,
+      "responseBytes": 6360,
+      "health": {
+        "status": "healthy",
+        "lastCheckedAt": "2026-10-28T07:38:53.548Z",
+        "lastLatencyMs": 4,
+        "availableModelCount": 2
+      },
+      "eventLoop": {
+        "min": 19,
+        "max": 32,
+        "mean": 21,
+        "stddev": 2,
+        "percentiles": {
+          "p50": 20,
+          "p90": 22,
+          "p99": 32
+        },
+        "exceeds": 0,
+        "lastUpdated": 1793173147963
+      }
+    }
+  },
+  {
+    "id": "lc58-external-4f549de3674949",
+    "name": "front-stats",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 445.308,
+    "externalTotalMs": 802.57,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173150.1360054,
+      "id": "lc58-external-4f549de3674949",
+      "path": "/api/stats",
+      "at": 1793173150.020234,
+      "cfRay": "a51848fb88f69623-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173150.1366634,
+      "id": "lc58-external-4f549de3674949",
+      "at": 1793173150.046304,
+      "appTotalMs": 26.07,
+      "responseBytes": 6359,
+      "health": {
+        "status": "healthy",
+        "lastCheckedAt": "2026-10-28T07:38:53.548Z",
+        "lastLatencyMs": 4,
+        "availableModelCount": 2
+      },
+      "eventLoop": {
+        "min": 19,
+        "max": 33,
+        "mean": 21,
+        "stddev": 2,
+        "percentiles": {
+          "p50": 20,
+          "p90": 22,
+          "p99": 28
+        },
+        "exceeds": 0,
+        "lastUpdated": 1793173149964
+      }
+    }
+  },
+  {
+    "id": "lc58-external-c57aab113e7f44",
+    "name": "backend-version",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 527.023,
+    "externalTotalMs": 527.922,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173152.1848757,
+      "id": "lc58-external-c57aab113e7f44",
+      "path": "/api/version",
+      "at": 1793173151.963716,
+      "cfRay": "a5184907ac9619e5-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173152.185064,
+      "id": "lc58-external-c57aab113e7f44",
+      "at": 1793173151.965576,
+      "appTotalMs": 1.86,
+      "responseBytes": 61,
+      "health": null,
+      "eventLoop": null
+    }
+  },
+  {
+    "id": "lc58-external-caca959150784c",
+    "name": "front-discussions",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 890.839,
+    "externalTotalMs": 892.455,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173154.2319453,
+      "id": "lc58-external-caca959150784c",
+      "path": "/api/discussions/threads",
+      "at": 1793173153.874242,
+      "cfRay": "a5184913af7bd3cd-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173154.2323036,
+      "id": "lc58-external-caca959150784c",
+      "at": 1793173153.879451,
+      "appTotalMs": 5.209,
+      "responseBytes": 65,
+      "health": null,
+      "eventLoop": null
+    }
+  },
+  {
+    "id": "lc58-external-db72b7b5428f43",
+    "name": "backend-stats",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 308.682,
+    "externalTotalMs": 310.28299999999996,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173155.2558663,
+      "id": "lc58-external-db72b7b5428f43",
+      "path": "/api/stats",
+      "at": 1793173155.203612,
+      "cfRay": "a518491bcf2f96c8-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173155.256601,
+      "id": "lc58-external-db72b7b5428f43",
+      "at": 1793173155.227924,
+      "appTotalMs": 24.312,
+      "responseBytes": 6358,
+      "health": {
+        "status": "healthy",
+        "lastCheckedAt": "2026-10-28T07:38:53.548Z",
+        "lastLatencyMs": 4,
+        "availableModelCount": 2
+      },
+      "eventLoop": {
+        "min": 19,
+        "max": 21,
+        "mean": 20,
+        "stddev": 0,
+        "percentiles": {
+          "p50": 20,
+          "p90": 20,
+          "p99": 21
+        },
+        "exceeds": 0,
+        "lastUpdated": 1793173153965
+      }
+    }
+  },
+  {
+    "id": "lc58-external-e2c39eaaabd94b",
+    "name": "front-stats",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 418.735,
+    "externalTotalMs": 753.779,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173157.3068888,
+      "id": "lc58-external-e2c39eaaabd94b",
+      "path": "/api/stats",
+      "at": 1793173156.63659,
+      "cfRay": "a5184924e8c88b51-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173157.3076382,
+      "id": "lc58-external-e2c39eaaabd94b",
+      "at": 1793173156.660383,
+      "appTotalMs": 23.793,
+      "responseBytes": 6357,
+      "health": {
+        "status": "healthy",
+        "lastCheckedAt": "2026-10-28T07:38:53.548Z",
+        "lastLatencyMs": 4,
+        "availableModelCount": 2
+      },
+      "eventLoop": {
+        "min": 19,
+        "max": 24,
+        "mean": 20,
+        "stddev": 1,
+        "percentiles": {
+          "p50": 20,
+          "p90": 21,
+          "p99": 22
+        },
+        "exceeds": 0,
+        "lastUpdated": 1793173155964
+      }
+    }
+  },
+  {
+    "id": "lc58-external-f5c50879f28442",
+    "name": "backend-version",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 274.17900000000003,
+    "externalTotalMs": 274.932,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173158.3282783,
+      "id": "lc58-external-f5c50879f28442",
+      "path": "/api/version",
+      "at": 1793173158.302803,
+      "cfRay": "a518492f4f4e2d64-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173158.3283699,
+      "id": "lc58-external-f5c50879f28442",
+      "at": 1793173158.304427,
+      "appTotalMs": 1.624,
+      "responseBytes": 61,
+      "health": null,
+      "eventLoop": null
+    }
+  },
+  {
+    "id": "lc58-external-ef42a23474ad43",
+    "name": "front-discussions",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 443.289,
+    "externalTotalMs": 443.712,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173160.375873,
+      "id": "lc58-external-ef42a23474ad43",
+      "path": "/api/discussions/threads",
+      "at": 1793173159.748198,
+      "cfRay": "a518493859fd9623-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173160.3761246,
+      "id": "lc58-external-ef42a23474ad43",
+      "at": 1793173159.774666,
+      "appTotalMs": 26.468,
+      "responseBytes": 65,
+      "health": null,
+      "eventLoop": null
+    }
+  },
+  {
+    "id": "lc58-external-97760ffa0a8546",
+    "name": "backend-stats",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 641.327,
+    "externalTotalMs": 642.1869999999999,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173161.3998785,
+      "id": "lc58-external-97760ffa0a8546",
+      "path": "/api/stats",
+      "at": 1793173161.3819,
+      "cfRay": "a51849428bb0fc99-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173162.4243069,
+      "id": "lc58-external-97760ffa0a8546",
+      "at": 1793173161.409927,
+      "appTotalMs": 28.027,
+      "responseBytes": 6358,
+      "health": {
+        "status": "healthy",
+        "lastCheckedAt": "2026-10-28T07:38:53.548Z",
+        "lastLatencyMs": 4,
+        "availableModelCount": 2
+      },
+      "eventLoop": {
+        "min": 19,
+        "max": 31,
+        "mean": 20,
+        "stddev": 1,
+        "percentiles": {
+          "p50": 20,
+          "p90": 21,
+          "p99": 23
+        },
+        "exceeds": 0,
+        "lastUpdated": 1793173159965
+      }
+    }
+  },
+  {
+    "id": "lc58-external-9c691a9f5fc74a",
+    "name": "front-stats",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 877.265,
+    "externalTotalMs": 1499.1000000000001,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173163.4479296,
+      "id": "lc58-external-9c691a9f5fc74a",
+      "path": "/api/stats",
+      "at": 1793173163.330173,
+      "cfRay": "a518494ec8568b51-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173163.4484406,
+      "id": "lc58-external-9c691a9f5fc74a",
+      "at": 1793173163.35492,
+      "appTotalMs": 24.747,
+      "responseBytes": 6359,
+      "health": {
+        "status": "healthy",
+        "lastCheckedAt": "2026-10-28T07:38:53.548Z",
+        "lastLatencyMs": 4,
+        "availableModelCount": 2
+      },
+      "eventLoop": {
+        "min": 20,
+        "max": 92,
+        "mean": 21,
+        "stddev": 7,
+        "percentiles": {
+          "p50": 20,
+          "p90": 21,
+          "p99": 28
+        },
+        "exceeds": 0,
+        "lastUpdated": 1793173162015
+      }
+    }
+  },
+  {
+    "id": "lc58-external-4c4c8b0411f444",
+    "name": "backend-version",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 345.422,
+    "externalTotalMs": 719.919,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173165.4967735,
+      "id": "lc58-external-4c4c8b0411f444",
+      "path": "/api/version",
+      "at": 1793173165.352233,
+      "cfRay": "a518495b59cad1cb-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173165.49701,
+      "id": "lc58-external-4c4c8b0411f444",
+      "at": 1793173165.353636,
+      "appTotalMs": 1.403,
+      "responseBytes": 61,
+      "health": null,
+      "eventLoop": null
+    }
+  },
+  {
+    "id": "lc58-external-79481221025343",
+    "name": "front-discussions",
+    "status": 0,
+    "exit": 28,
+    "externalTtfbMs": null,
+    "externalTotalMs": 15001.906,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173167.5438886,
+      "id": "lc58-external-79481221025343",
+      "path": "/api/discussions/threads",
+      "at": 1793173167.135394,
+      "cfRay": "a51849668ee29623-KIX"
+    },
+    "originResponse": null
+  },
+  {
+    "id": "lc58-external-ac50eab0dd6e4b",
+    "name": "backend-stats",
+    "status": 0,
+    "exit": 28,
+    "externalTtfbMs": null,
+    "externalTotalMs": 15003.349,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173183.9278224,
+      "id": "lc58-external-ac50eab0dd6e4b",
+      "path": "/api/stats",
+      "at": 1793173183.161207,
+      "cfRay": "a51849ca9e81fc98-KIX"
+    },
+    "originResponse": null
+  },
+  {
+    "id": "lc58-external-0e3ef830cfd947",
+    "name": "front-stats",
+    "status": 0,
+    "exit": 28,
+    "externalTtfbMs": null,
+    "externalTotalMs": 15005.573999999999,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173199.288595,
+      "id": "lc58-external-0e3ef830cfd947",
+      "path": "/api/stats",
+      "at": 1793173199.130974,
+      "cfRay": "a5184a2e79589623-KIX"
+    },
+    "originResponse": null
+  },
+  {
+    "id": "lc58-external-d6a81f3415f447",
+    "name": "backend-version",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 287.77599999999995,
+    "externalTotalMs": 288.49399999999997,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173215.6718926,
+      "id": "lc58-external-d6a81f3415f447",
+      "path": "/api/version",
+      "at": 1793173215.13491,
+      "cfRay": "a5184a927d96d1c7-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173215.6721432,
+      "id": "lc58-external-d6a81f3415f447",
+      "at": 1793173215.148229,
+      "appTotalMs": 13.319,
+      "responseBytes": 61,
+      "health": null,
+      "eventLoop": null
+    }
+  },
+  {
+    "id": "lc58-external-5caf0f3ebf6740",
+    "name": "front-discussions",
+    "status": 0,
+    "exit": 28,
+    "externalTtfbMs": null,
+    "externalTotalMs": 15004.679,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173216.6964183,
+      "id": "lc58-external-5caf0f3ebf6740",
+      "path": "/api/discussions/threads",
+      "at": 1793173216.588951,
+      "cfRay": "a5184a9b99b09623-KIX"
+    },
+    "originResponse": null
+  },
+  {
+    "id": "lc58-external-4029c52fed654f",
+    "name": "backend-stats",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 4962.615000000001,
+    "externalTotalMs": 4963.355,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173233.0799375,
+      "id": "lc58-external-4029c52fed654f",
+      "path": "/api/stats",
+      "at": 1793173232.47297,
+      "cfRay": "a5184afec91596a4-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173237.1787343,
+      "id": "lc58-external-4029c52fed654f",
+      "at": 1793173237.159398,
+      "appTotalMs": 4686.428,
+      "responseBytes": 6344,
+      "health": {
+        "status": "unhealthy",
+        "lastCheckedAt": "2026-10-28T07:40:28.317Z",
+        "lastLatencyMs": 2012,
+        "availableModelCount": 2
+      },
+      "eventLoop": {
+        "min": 19,
+        "max": 22,
+        "mean": 20,
+        "stddev": 0,
+        "percentiles": {
+          "p50": 20,
+          "p90": 20,
+          "p99": 21
+        },
+        "exceeds": 0,
+        "lastUpdated": 1793173236024
+      }
+    }
+  },
+  {
+    "id": "lc58-external-eb646bdf0f4642",
+    "name": "front-stats",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 660.25,
+    "externalTotalMs": 660.7969999999999,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173239.2249537,
+      "id": "lc58-external-eb646bdf0f4642",
+      "path": "/api/stats",
+      "at": 1793173238.787585,
+      "cfRay": "a5184b265afad3cd-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173239.2254195,
+      "id": "lc58-external-eb646bdf0f4642",
+      "at": 1793173238.817622,
+      "appTotalMs": 30.037,
+      "responseBytes": 6347,
+      "health": {
+        "status": "unhealthy",
+        "lastCheckedAt": "2026-10-28T07:40:28.317Z",
+        "lastLatencyMs": 2012,
+        "availableModelCount": 2
+      },
+      "eventLoop": {
+        "min": 20,
+        "max": 613,
+        "mean": 32,
+        "stddev": 76,
+        "percentiles": {
+          "p50": 20,
+          "p90": 22,
+          "p99": 114
+        },
+        "exceeds": 0,
+        "lastUpdated": 1793173238023
+      }
+    }
+  },
+  {
+    "id": "lc58-external-d7356fe6233b4a",
+    "name": "backend-version",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 600.2800000000001,
+    "externalTotalMs": 601.037,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173241.2723553,
+      "id": "lc58-external-d7356fe6233b4a",
+      "path": "/api/version",
+      "at": 1793173240.427782,
+      "cfRay": "a5184b306c9effa4-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173241.2724717,
+      "id": "lc58-external-d7356fe6233b4a",
+      "at": 1793173240.432777,
+      "appTotalMs": 4.995,
+      "responseBytes": 61,
+      "health": null,
+      "eventLoop": null
+    }
+  },
+  {
+    "id": "lc58-external-d2c781f1036849",
+    "name": "front-discussions",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 352.966,
+    "externalTotalMs": 353.628,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173242.296086,
+      "id": "lc58-external-d2c781f1036849",
+      "path": "/api/discussions/threads",
+      "at": 1793173241.8535,
+      "cfRay": "a5184b39792f8b51-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173242.296398,
+      "id": "lc58-external-d2c781f1036849",
+      "at": 1793173241.859842,
+      "appTotalMs": 6.342,
+      "responseBytes": 65,
+      "health": null,
+      "eventLoop": null
+    }
+  },
+  {
+    "id": "lc58-external-13aebd1504ab4d",
+    "name": "backend-stats",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 527.747,
+    "externalTotalMs": 528.3639999999999,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173244.3442457,
+      "id": "lc58-external-13aebd1504ab4d",
+      "path": "/api/stats",
+      "at": 1793173243.383233,
+      "cfRay": "a5184b430d511a14-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173244.3452246,
+      "id": "lc58-external-13aebd1504ab4d",
+      "at": 1793173243.421631,
+      "appTotalMs": 38.398,
+      "responseBytes": 6344,
+      "health": {
+        "status": "unhealthy",
+        "lastCheckedAt": "2026-10-28T07:40:28.317Z",
+        "lastLatencyMs": 2012,
+        "availableModelCount": 2
+      },
+      "eventLoop": {
+        "min": 19,
+        "max": 38,
+        "mean": 21,
+        "stddev": 2,
+        "percentiles": {
+          "p50": 20,
+          "p90": 21,
+          "p99": 33
+        },
+        "exceeds": 0,
+        "lastUpdated": 1793173242026
+      }
+    }
+  },
+  {
+    "id": "lc58-external-2ca5be31322b41",
+    "name": "front-stats",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 504.83199999999994,
+    "externalTotalMs": 506.672,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173245.368963,
+      "id": "lc58-external-2ca5be31322b41",
+      "path": "/api/stats",
+      "at": 1793173244.817754,
+      "cfRay": "a5184b4c0b028b51-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173245.3694172,
+      "id": "lc58-external-2ca5be31322b41",
+      "at": 1793173244.851602,
+      "appTotalMs": 33.848,
+      "responseBytes": 6344,
+      "health": {
+        "status": "unhealthy",
+        "lastCheckedAt": "2026-10-28T07:40:28.317Z",
+        "lastLatencyMs": 2012,
+        "availableModelCount": 2
+      },
+      "eventLoop": {
+        "min": 19,
+        "max": 29,
+        "mean": 20,
+        "stddev": 1,
+        "percentiles": {
+          "p50": 20,
+          "p90": 21,
+          "p99": 23
+        },
+        "exceeds": 0,
+        "lastUpdated": 1793173244027
+      }
+    }
+  },
+  {
+    "id": "lc58-external-b53d608d68b547",
+    "name": "backend-version",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 373.421,
+    "externalTotalMs": 374.14,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173246.3918886,
+      "id": "lc58-external-b53d608d68b547",
+      "path": "/api/version",
+      "at": 1793173246.281743,
+      "cfRay": "a5184b552c85d1c2-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173246.3921876,
+      "id": "lc58-external-b53d608d68b547",
+      "at": 1793173246.283381,
+      "appTotalMs": 1.638,
+      "responseBytes": 61,
+      "health": null,
+      "eventLoop": null
+    }
+  },
+  {
+    "id": "lc58-external-042d2bc86abd4b",
+    "name": "front-discussions",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 574.029,
+    "externalTotalMs": 574.699,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173248.439924,
+      "id": "lc58-external-042d2bc86abd4b",
+      "path": "/api/discussions/threads",
+      "at": 1793173247.907428,
+      "cfRay": "a5184b5f5d5dd3cd-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173248.440214,
+      "id": "lc58-external-042d2bc86abd4b",
+      "at": 1793173247.912722,
+      "appTotalMs": 5.294,
+      "responseBytes": 65,
+      "health": null,
+      "eventLoop": null
+    }
+  },
+  {
+    "id": "lc58-external-f55c597f9ad542",
+    "name": "backend-stats",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 448.255,
+    "externalTotalMs": 448.86199999999997,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173249.4651709,
+      "id": "lc58-external-f55c597f9ad542",
+      "path": "/api/stats",
+      "at": 1793173249.422792,
+      "cfRay": "a5184b68cae50087-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173249.465837,
+      "id": "lc58-external-f55c597f9ad542",
+      "at": 1793173249.442817,
+      "appTotalMs": 20.025,
+      "responseBytes": 6344,
+      "health": {
+        "status": "unhealthy",
+        "lastCheckedAt": "2026-10-28T07:40:28.317Z",
+        "lastLatencyMs": 2012,
+        "availableModelCount": 2
+      },
+      "eventLoop": {
+        "min": 19,
+        "max": 21,
+        "mean": 20,
+        "stddev": 0,
+        "percentiles": {
+          "p50": 20,
+          "p90": 20,
+          "p99": 21
+        },
+        "exceeds": 0,
+        "lastUpdated": 1793173248029
+      }
+    }
+  },
+  {
+    "id": "lc58-external-9e4e2123db3245",
+    "name": "front-stats",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 583.6479999999999,
+    "externalTotalMs": 584.646,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173251.511873,
+      "id": "lc58-external-9e4e2123db3245",
+      "path": "/api/stats",
+      "at": 1793173250.984217,
+      "cfRay": "a5184b729f7e8b51-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173251.5125349,
+      "id": "lc58-external-9e4e2123db3245",
+      "at": 1793173251.012494,
+      "appTotalMs": 28.277,
+      "responseBytes": 6344,
+      "health": {
+        "status": "unhealthy",
+        "lastCheckedAt": "2026-10-28T07:40:28.317Z",
+        "lastLatencyMs": 2012,
+        "availableModelCount": 2
+      },
+      "eventLoop": {
+        "min": 19,
+        "max": 23,
+        "mean": 20,
+        "stddev": 0,
+        "percentiles": {
+          "p50": 20,
+          "p90": 20,
+          "p99": 22
+        },
+        "exceeds": 0,
+        "lastUpdated": 1793173250029
+      }
+    }
+  },
+  {
+    "id": "lc58-external-b46628cf94184a",
+    "name": "backend-version",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 349.315,
+    "externalTotalMs": 350.084,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173252.5359335,
+      "id": "lc58-external-b46628cf94184a",
+      "path": "/api/version",
+      "at": 1793173252.371964,
+      "cfRay": "a5184b7b3e45006e-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173252.5364244,
+      "id": "lc58-external-b46628cf94184a",
+      "at": 1793173252.373569,
+      "appTotalMs": 1.605,
+      "responseBytes": 61,
+      "health": null,
+      "eventLoop": null
+    }
+  },
+  {
+    "id": "lc58-external-84ae6f47af5c4b",
+    "name": "front-discussions",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 326.43100000000004,
+    "externalTotalMs": 326.874,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173254.5839386,
+      "id": "lc58-external-84ae6f47af5c4b",
+      "path": "/api/discussions/threads",
+      "at": 1793173253.737212,
+      "cfRay": "a5184b83cfc6d3cd-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173254.584235,
+      "id": "lc58-external-84ae6f47af5c4b",
+      "at": 1793173253.743056,
+      "appTotalMs": 5.844,
+      "responseBytes": 65,
+      "health": null,
+      "eventLoop": null
+    }
+  },
+  {
+    "id": "lc58-external-c15901994f304b",
+    "name": "backend-stats",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 554.26,
+    "externalTotalMs": 554.923,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173255.6088507,
+      "id": "lc58-external-c15901994f304b",
+      "path": "/api/stats",
+      "at": 1793173255.311753,
+      "cfRay": "a5184b8d8e77cffc-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173255.6093454,
+      "id": "lc58-external-c15901994f304b",
+      "at": 1793173255.338607,
+      "appTotalMs": 26.854,
+      "responseBytes": 6344,
+      "health": {
+        "status": "unhealthy",
+        "lastCheckedAt": "2026-10-28T07:40:28.317Z",
+        "lastLatencyMs": 2012,
+        "availableModelCount": 2
+      },
+      "eventLoop": {
+        "min": 19,
+        "max": 23,
+        "mean": 20,
+        "stddev": 0,
+        "percentiles": {
+          "p50": 20,
+          "p90": 20,
+          "p99": 22
+        },
+        "exceeds": 0,
+        "lastUpdated": 1793173254029
+      }
+    }
+  },
+  {
+    "id": "lc58-external-a28703b759ac49",
+    "name": "front-stats",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 440.987,
+    "externalTotalMs": 441.52000000000004,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173257.6560504,
+      "id": "lc58-external-a28703b759ac49",
+      "path": "/api/stats",
+      "at": 1793173256.819242,
+      "cfRay": "a5184b970c498d13-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173257.6565373,
+      "id": "lc58-external-a28703b759ac49",
+      "at": 1793173256.842809,
+      "appTotalMs": 23.567,
+      "responseBytes": 6344,
+      "health": {
+        "status": "unhealthy",
+        "lastCheckedAt": "2026-10-28T07:40:28.317Z",
+        "lastLatencyMs": 2012,
+        "availableModelCount": 2
+      },
+      "eventLoop": {
+        "min": 19,
+        "max": 26,
+        "mean": 20,
+        "stddev": 1,
+        "percentiles": {
+          "p50": 20,
+          "p90": 20,
+          "p99": 24
+        },
+        "exceeds": 0,
+        "lastUpdated": 1793173256029
+      }
+    }
+  },
+  {
+    "id": "lc58-external-f2db496872624e",
+    "name": "backend-version",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 479.902,
+    "externalTotalMs": 482.282,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173258.6798382,
+      "id": "lc58-external-f2db496872624e",
+      "path": "/api/version",
+      "at": 1793173258.28274,
+      "cfRay": "a5184ba02d7b440f-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173258.6801283,
+      "id": "lc58-external-f2db496872624e",
+      "at": 1793173258.28487,
+      "appTotalMs": 2.13,
+      "responseBytes": 61,
+      "health": null,
+      "eventLoop": null
+    }
+  },
+  {
+    "id": "lc58-external-2d9464cf5eec46",
+    "name": "front-discussions",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 340.113,
+    "externalTotalMs": 340.59099999999995,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173260.7289,
+      "id": "lc58-external-2d9464cf5eec46",
+      "path": "/api/discussions/threads",
+      "at": 1793173259.706307,
+      "cfRay": "a5184ba91e719623-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173260.7292223,
+      "id": "lc58-external-2d9464cf5eec46",
+      "at": 1793173259.71176,
+      "appTotalMs": 5.453,
+      "responseBytes": 65,
+      "health": null,
+      "eventLoop": null
+    }
+  },
+  {
+    "id": "lc58-external-bfd4b62848c04c",
+    "name": "backend-stats",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 286.55,
+    "externalTotalMs": 287.097,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173261.752059,
+      "id": "lc58-external-bfd4b62848c04c",
+      "path": "/api/stats",
+      "at": 1793173260.995604,
+      "cfRay": "a5184bb1292ad3d9-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173261.75258,
+      "id": "lc58-external-bfd4b62848c04c",
+      "at": 1793173261.033146,
+      "appTotalMs": 37.542,
+      "responseBytes": 6344,
+      "health": {
+        "status": "unhealthy",
+        "lastCheckedAt": "2026-10-28T07:40:28.317Z",
+        "lastLatencyMs": 2012,
+        "availableModelCount": 2
+      },
+      "eventLoop": {
+        "min": 19,
+        "max": 23,
+        "mean": 20,
+        "stddev": 0,
+        "percentiles": {
+          "p50": 20,
+          "p90": 21,
+          "p99": 23
+        },
+        "exceeds": 0,
+        "lastUpdated": 1793173260029
+      }
+    }
+  },
+  {
+    "id": "lc58-external-c716081b8e0148",
+    "name": "front-stats",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 429.23699999999997,
+    "externalTotalMs": 429.745,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173262.794579,
+      "id": "lc58-external-c716081b8e0148",
+      "path": "/api/stats",
+      "at": 1793173262.357709,
+      "cfRay": "a5184bb9afa4d3cd-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173262.7950456,
+      "id": "lc58-external-c716081b8e0148",
+      "at": 1793173262.3867,
+      "appTotalMs": 28.991,
+      "responseBytes": 6344,
+      "health": {
+        "status": "unhealthy",
+        "lastCheckedAt": "2026-10-28T07:40:28.317Z",
+        "lastLatencyMs": 2012,
+        "availableModelCount": 2
+      },
+      "eventLoop": {
+        "min": 19,
+        "max": 35,
+        "mean": 21,
+        "stddev": 2,
+        "percentiles": {
+          "p50": 20,
+          "p90": 21,
+          "p99": 30
+        },
+        "exceeds": 0,
+        "lastUpdated": 1793173262029
+      }
+    }
+  },
+  {
+    "id": "lc58-external-433dcd85ac7c46",
+    "name": "backend-version",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 456.96799999999996,
+    "externalTotalMs": 457.55400000000003,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173264.8239017,
+      "id": "lc58-external-433dcd85ac7c46",
+      "path": "/api/version",
+      "at": 1793173263.972079,
+      "cfRay": "a5184bc3bb2c1a04-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173264.824288,
+      "id": "lc58-external-433dcd85ac7c46",
+      "at": 1793173263.976602,
+      "appTotalMs": 4.523,
+      "responseBytes": 61,
+      "health": null,
+      "eventLoop": null
+    }
+  },
+  {
+    "id": "lc58-external-cfd1b394d6674f",
+    "name": "front-discussions",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 279.02500000000003,
+    "externalTotalMs": 279.62399999999997,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173265.8488846,
+      "id": "lc58-external-cfd1b394d6674f",
+      "path": "/api/discussions/threads",
+      "at": 1793173265.276337,
+      "cfRay": "a5184bcbe8509623-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173265.8491607,
+      "id": "lc58-external-cfd1b394d6674f",
+      "at": 1793173265.282918,
+      "appTotalMs": 6.581,
+      "responseBytes": 65,
+      "health": null,
+      "eventLoop": null
+    }
+  },
+  {
+    "id": "lc58-external-dda2a2c2d5e74a",
+    "name": "backend-stats",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 495.632,
+    "externalTotalMs": 496.153,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173266.8722932,
+      "id": "lc58-external-dda2a2c2d5e74a",
+      "path": "/api/stats",
+      "at": 1793173266.732825,
+      "cfRay": "a5184bd4ff6e6ed6-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173266.8727193,
+      "id": "lc58-external-dda2a2c2d5e74a",
+      "at": 1793173266.762454,
+      "appTotalMs": 29.629,
+      "responseBytes": 6344,
+      "health": {
+        "status": "unhealthy",
+        "lastCheckedAt": "2026-10-28T07:40:28.317Z",
+        "lastLatencyMs": 2012,
+        "availableModelCount": 2
+      },
+      "eventLoop": {
+        "min": 19,
+        "max": 25,
+        "mean": 20,
+        "stddev": 1,
+        "percentiles": {
+          "p50": 20,
+          "p90": 21,
+          "p99": 25
+        },
+        "exceeds": 0,
+        "lastUpdated": 1793173266034
+      }
+    }
+  },
+  {
+    "id": "lc58-external-e315bf82aef44c",
+    "name": "front-stats",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 427.39500000000004,
+    "externalTotalMs": 427.905,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173268.921944,
+      "id": "lc58-external-e315bf82aef44c",
+      "path": "/api/stats",
+      "at": 1793173268.231072,
+      "cfRay": "a5184bde6b218d13-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173268.922609,
+      "id": "lc58-external-e315bf82aef44c",
+      "at": 1793173268.25935,
+      "appTotalMs": 28.278,
+      "responseBytes": 6344,
+      "health": {
+        "status": "unhealthy",
+        "lastCheckedAt": "2026-10-28T07:40:28.317Z",
+        "lastLatencyMs": 2012,
+        "availableModelCount": 2
+      },
+      "eventLoop": {
+        "min": 19,
+        "max": 23,
+        "mean": 20,
+        "stddev": 1,
+        "percentiles": {
+          "p50": 20,
+          "p90": 21,
+          "p99": 22
+        },
+        "exceeds": 0,
+        "lastUpdated": 1793173268033
+      }
+    }
+  },
+  {
+    "id": "lc58-external-20cd883021d647",
+    "name": "backend-version",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 477.358,
+    "externalTotalMs": 477.89500000000004,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173269.9438305,
+      "id": "lc58-external-20cd883021d647",
+      "path": "/api/version",
+      "at": 1793173269.678602,
+      "cfRay": "a5184be768ec96b2-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173269.9441807,
+      "id": "lc58-external-20cd883021d647",
+      "at": 1793173269.680495,
+      "appTotalMs": 1.893,
+      "responseBytes": 61,
+      "health": null,
+      "eventLoop": null
+    }
+  },
+  {
+    "id": "lc58-external-479b07c5f90149",
+    "name": "front-discussions",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 286.524,
+    "externalTotalMs": 288.323,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173271.9926722,
+      "id": "lc58-external-479b07c5f90149",
+      "path": "/api/discussions/threads",
+      "at": 1793173271.07783,
+      "cfRay": "a5184bf02edbd3cd-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173271.9928818,
+      "id": "lc58-external-479b07c5f90149",
+      "at": 1793173271.08294,
+      "appTotalMs": 5.11,
+      "responseBytes": 65,
+      "health": null,
+      "eventLoop": null
+    }
+  },
+  {
+    "id": "lc58-external-0cab805de8b648",
+    "name": "backend-stats",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 444.181,
+    "externalTotalMs": 446.538,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173273.0158272,
+      "id": "lc58-external-0cab805de8b648",
+      "path": "/api/stats",
+      "at": 1793173272.4679,
+      "cfRay": "a5184bf8cd47d3d2-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173273.0162885,
+      "id": "lc58-external-0cab805de8b648",
+      "at": 1793173272.505423,
+      "appTotalMs": 37.523,
+      "responseBytes": 6344,
+      "health": {
+        "status": "unhealthy",
+        "lastCheckedAt": "2026-10-28T07:40:28.317Z",
+        "lastLatencyMs": 2012,
+        "availableModelCount": 2
+      },
+      "eventLoop": {
+        "min": 19,
+        "max": 29,
+        "mean": 21,
+        "stddev": 1,
+        "percentiles": {
+          "p50": 20,
+          "p90": 21,
+          "p99": 25
+        },
+        "exceeds": 0,
+        "lastUpdated": 1793173272036
+      }
+    }
+  },
+  {
+    "id": "lc58-external-73d7e02051ab4d",
+    "name": "front-stats",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 308.816,
+    "externalTotalMs": 310.48199999999997,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173274.0429096,
+      "id": "lc58-external-73d7e02051ab4d",
+      "path": "/api/stats",
+      "at": 1793173273.857294,
+      "cfRay": "a5184c018ebf9623-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173274.0433764,
+      "id": "lc58-external-73d7e02051ab4d",
+      "at": 1793173273.889378,
+      "appTotalMs": 32.084,
+      "responseBytes": 6344,
+      "health": {
+        "status": "unhealthy",
+        "lastCheckedAt": "2026-10-28T07:40:28.317Z",
+        "lastLatencyMs": 2012,
+        "availableModelCount": 2
+      },
+      "eventLoop": {
+        "min": 19,
+        "max": 29,
+        "mean": 21,
+        "stddev": 1,
+        "percentiles": {
+          "p50": 20,
+          "p90": 21,
+          "p99": 25
+        },
+        "exceeds": 0,
+        "lastUpdated": 1793173272036
+      }
+    }
+  },
+  {
+    "id": "lc58-external-951ef73fc3ac49",
+    "name": "backend-version",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 276.123,
+    "externalTotalMs": 276.60699999999997,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173276.087841,
+      "id": "lc58-external-951ef73fc3ac49",
+      "path": "/api/version",
+      "at": 1793173275.193681,
+      "cfRay": "a5184c09d82119ea-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173276.0882,
+      "id": "lc58-external-951ef73fc3ac49",
+      "at": 1793173275.195277,
+      "appTotalMs": 1.596,
+      "responseBytes": 61,
+      "health": null,
+      "eventLoop": null
+    }
+  },
+  {
+    "id": "lc58-external-b23aed00d9f542",
+    "name": "front-discussions",
+    "status": 200,
+    "exit": 0,
+    "externalTtfbMs": 479.371,
+    "externalTotalMs": 479.91,
+    "originRequest": {
+      "kind": "originRequest",
+      "serverAt": 1793173277.1152477,
+      "id": "lc58-external-b23aed00d9f542",
+      "path": "/api/discussions/threads",
+      "at": 1793173276.693132,
+      "cfRay": "a5184c134804d3cd-KIX"
+    },
+    "originResponse": {
+      "kind": "originResponseEnd",
+      "serverAt": 1793173277.1153355,
+      "id": "lc58-external-b23aed00d9f542",
+      "at": 1793173276.69849,
+      "appTotalMs": 5.358,
+      "responseBytes": 65,
+      "health": null,
+      "eventLoop": null
+    }
+  }
+]
