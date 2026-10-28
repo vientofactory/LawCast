@@ -4,7 +4,7 @@
 
 The owner explicitly requested a Cloudflare-side fix and production Lighthouse verification on 2026-10-28 JST. **Verdict: partial remediation only.** Rocket Loader's extra script and JavaScript rewriting are removed from LawCast production. The deprecated APIs in Cloudflare's bot-detection code and legacy/polyfill/cache diagnostics in vendor scripts remain. Best Practices scores did not improve, and the small timing shifts do not demonstrate a consistent performance improvement.
 
-This is independent of [frontend PR 172](https://github.com/vientofactory/LawCast-Frontend/pull/172), which remains unmerged. Production continued to serve frontend v1.25.1 throughout the comparison. No application deployment, new credential, analytics removal or security relaxation was performed.
+This is independent of [frontend PR 172](https://github.com/vientofactory/LawCast-Frontend/pull/172), which was unmerged during this Cloudflare-only comparison. Production continued to serve frontend v1.25.1 throughout these measurements. No application deployment, new credential, analytics removal or security relaxation was performed in this phase. The subsequent owner-approved v1.25.2 release and retest are recorded in [session 53](../53-frontend-web-vitals/audit-and-regressions.md#deployment-completion-after-owner-approval).
 
 ## Configuration evidence
 

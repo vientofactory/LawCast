@@ -1,0 +1,52 @@
+[
+  {
+    "device": "desktop",
+    "version": "1.25.2",
+    "url": "https://law.viento.me/notices",
+    "consentDefault": {
+      "ad_storage": "denied",
+      "ad_user_data": "denied",
+      "ad_personalization": "denied",
+      "analytics_storage": "denied"
+    },
+    "externalFontStylesheets": 0,
+    "initialDiscordRequests": 0,
+    "explicitDiscordLoad": true,
+    "widgetGeometry": {
+      "x": 107.5,
+      "y": 200.375,
+      "width": 350,
+      "height": 500
+    },
+    "rocketLoaderRequests": 0,
+    "gtmLoaded": true,
+    "spaNavigation": true,
+    "theme": "dark",
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "version": "1.25.2",
+    "url": "https://law.viento.me/notices",
+    "consentDefault": {
+      "ad_storage": "denied",
+      "ad_user_data": "denied",
+      "ad_personalization": "denied",
+      "analytics_storage": "denied"
+    },
+    "externalFontStylesheets": 0,
+    "initialDiscordRequests": 0,
+    "explicitDiscordLoad": true,
+    "widgetGeometry": {
+      "x": 41,
+      "y": 169.25,
+      "width": 330,
+      "height": 500
+    },
+    "rocketLoaderRequests": 0,
+    "gtmLoaded": true,
+    "spaNavigation": true,
+    "theme": "dark",
+    "errors": []
+  }
+]

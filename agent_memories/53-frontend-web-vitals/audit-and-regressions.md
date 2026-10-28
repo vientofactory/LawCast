@@ -39,7 +39,7 @@ Public screens: home, notice board, notice detail (`2221891` in production, `221
 ## Validation and release
 
 - GitHub PR CI passed: [web-vitals run 40613008673](https://github.com/vientofactory/LawCast-Frontend/actions/runs/40613008673), including lint, type check and all 58 production-build browser tests; GitGuardian also passed.
-- Candidate version: `frontend-v1.25.2`; signed feature commit `93242c9`. GPG verification reported a good signature. [PR 172](https://github.com/vientofactory/LawCast-Frontend/pull/172) is ready for review. Production deployment is pending owner approval; no post-deployment production result is claimed.
+- Candidate version: `frontend-v1.25.2`; signed feature commit `93242c9`. GPG verification reported a good signature. [PR 172](https://github.com/vientofactory/LawCast-Frontend/pull/172) was initially ready for review and pending owner approval. Deployment completion after explicit approval is recorded below.
 - Controlled home mobile comparison, three cold runs per version: median performance **98 → 100**, FCP/LCP **1969.6 → 945.6 ms** (52.0% faster), TBT **8.5 → 4.5 ms**, CLS **0 → 0**. Candidate scores were 100 in performance/accessibility/best practices/SEO in every run. Baseline best practices was 77 (the local baseline still loads Discord, while it has no zone-level Cloudflare injections).
 - All eleven candidate mobile screens passed median lab budgets; the ten non-home routes each scored 100 performance/accessibility/best practices. Five representative desktop screens also scored 100 in these three categories. Status/webhook SEO remains 69 because of intentional robots exclusions. Desktop status CLS was 0.0112, within the 0.1 budget; other candidate measurements were 0.
 - The production crawling-transparency retry succeeded: performance 88, accessibility 100, best practices 81, SEO 100; LCP 1942 ms, TBT 7.5 ms, CLS 0. Its render-blocking CDN font CSS took 1035 ms. The initial NO_FCP run is excluded from comparisons.
@@ -54,3 +54,25 @@ Public screens: home, notice board, notice detail (`2221891` in production, `221
 - Native status list: `frontend/src/routes/+page.svelte:189`; reserved Discord slot and activation: lines 468–491.
 - Named progressbar template: `frontend/src/routes/+layout.svelte:17`; modal layering: `frontend/src/lib/components/ModalShell.svelte:48`.
 - The regression suite is `frontend/e2e/web-vitals.spec.ts`; its dedicated production configuration is `frontend/playwright-configs/playwright.web-vitals.config.ts`.
+
+## Deployment completion after owner approval
+
+- The owner explicitly approved merging, deploying and production retesting on 2026-10-28 JST. PR 172 merged at `2026-10-28T04:52:53Z` (13:52:53 JST), squash commit `5e7674718738dd4df47db1134a9a5f366d996e54`.
+- Release: [frontend-v1.25.2](https://github.com/vientofactory/LawCast-Frontend/releases/tag/frontend-v1.25.2), targeting that exact merged commit.
+- [Production deployment Actions run 40634791415](https://github.com/vientofactory/LawCast-Frontend/actions/runs/40634791415) succeeded. Cloudflare deployment `cde402c3-cb51-4476-9831-69cd5ec1810a` is production/main, exact release SHA, status success at `2026-10-28T04:54:23.274786Z` (13:54:23 JST).
+- The custom hostname returned v1.25.2, the explicit Discord widget button and native status list, with no external font stylesheet or Rocket Loader. The Cloudflare host-scoped exception from session 54 remains active.
+- Frontend `dev`, `origin/dev`, `origin/main` and the release tag agree on the squash commit. `npm install` after fast-forward left the lockfile unchanged. Existing unrelated backend working-tree changes were preserved.
+
+### Released production Lighthouse results
+
+- Mobile: eleven routes, three cold runs each (33 total), all median LCP <=2500 ms / TBT <=200 ms / CLS <=0.1 budgets passed. Per-route median Performance ranged **98–100**; Accessibility was **100 in every run**.
+- Home mobile median: Performance **98**, FCP/LCP **1003 ms**, TBT **29.5 ms**, CLS **0**. Relative to the immediately preceding Cloudflare-only production baseline (v1.25.1 with Rocket Loader already disabled), median LCP changed **2317 → 1003 ms** and Best Practices **58 → 81**. These are lab comparisons across live-site runs, not field percentiles.
+- The 38 mobile/desktop reports all show zero Rocket Loader, external font stylesheet and automatic Discord widget requests. Third-party-cookie audits pass; visible-label-name audits pass where applicable and report notApplicable on screens without matching controls. Cloudflare's three deprecated API warnings remain; Best Practices is **81** rather than a claimed 100. RUM/bot protection are retained. Status/webhook SEO stays 69 because of the intentional robots policy.
+- Desktop: home, board, detail, status and webhook each scored **100 Performance and Accessibility**, with LCP **230–519 ms**, TBT 0 and CLS at most **0.0184**.
+- Do not hide individual outliers: four mobile runs (board, changes, status and license) measured LCP **3.19–3.55 seconds**, although every route's three-run median passed. Their observed document TTFB was 101–189 ms, so these reports do not establish a slow-backend root cause. Original reports and the machine-readable record preserve the outliers.
+- Main-push web-vitals CI [run 40634791443](https://github.com/vientofactory/LawCast-Frontend/actions/runs/40634791443) also passed all 58 production-build regression tests.
+
+### Released production browser checks
+
+- Actual desktop and Pixel 7 contexts verified footer version v1.25.2, denied consent defaults before GTM, no initial Discord traffic, explicit widget activation with unchanged 500px-high geometry, no external font stylesheet/Rocket Loader, a working dark-theme toggle and same-document SPA navigation to the board. Both contexts recorded zero uncaught page errors.
+- Evidence: [released-production-smoke.json](released-production-smoke.json). Tests made no subscription or discussion writes.
