@@ -415,3 +415,8 @@ agent_memories/
 ## 59 — Frontend API and SQLite Audit (2026-10-28)
 
 - [Local audit and verification](59-frontend-api-sqlite-audit/verification.md): SSR endpoint dependency tracing, lightweight home stats, health-free detail flags, targeted status invalidation, coalesced aggregate reads, metadata trigger protection and fairer SQLite write batches. Includes immutable-snapshot regressions, isolated browser checks and reproducible local-copy measurements. No production access or deployment.
+
+
+## 60 — Search and Prompt UX (2026-10-28)
+
+- [Release verification](60-search-prompt-ux/release-verification.md): aligned PWA/consent prompts, shared theme-aware Open Signal search loading, touch-keyboard focus handling, 83 local browser checks, and frontend 1.25.5 release evidence.
