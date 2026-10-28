@@ -410,3 +410,8 @@ agent_memories/
 ## 58 — API Tail and SQLite Queue (2026-10-28)
 
 - [Same-request attribution and local fix](58-api-tail-db-queue/verification.md): 48 external requests matched to passive origin timestamps; a 4.96-second request spent 4.69 seconds in the origin, with additional 15-second timeouts. Retry-candidate SQL repeatedly searched global details, delaying the shared SQLite connection. Equivalent notice-scoped EXISTS queries and real-schema regression checks fix the local reproduction, followed by the owner-authorized backend 1.19.5 release and [postdeployment verification](58-api-tail-db-queue/release-verification.md): the query improved, but API tails remain during pending sync.
+
+
+## 59 — Frontend API and SQLite Audit (2026-10-28)
+
+- [Local audit and verification](59-frontend-api-sqlite-audit/verification.md): SSR endpoint dependency tracing, lightweight home stats, health-free detail flags, targeted status invalidation, coalesced aggregate reads, metadata trigger protection and fairer SQLite write batches. Includes immutable-snapshot regressions, isolated browser checks and reproducible local-copy measurements. No production access or deployment.

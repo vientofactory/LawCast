@@ -1,0 +1,38 @@
+[
+  {
+    "round": 1,
+    "arm": "baseline",
+    "ms": 94.96029200090561,
+    "vmStepsLowerBound": 101000
+  },
+  {
+    "round": 1,
+    "arm": "scoped",
+    "ms": 32.36079199996311,
+    "vmStepsLowerBound": 21000
+  },
+  {
+    "round": 2,
+    "arm": "scoped",
+    "ms": 40.28129199286923,
+    "vmStepsLowerBound": 22000
+  },
+  {
+    "round": 2,
+    "arm": "baseline",
+    "ms": 42.74679100490175,
+    "vmStepsLowerBound": 101000
+  },
+  {
+    "round": 3,
+    "arm": "baseline",
+    "ms": 40.467750004609115,
+    "vmStepsLowerBound": 102000
+  },
+  {
+    "round": 3,
+    "arm": "scoped",
+    "ms": 36.66275000432506,
+    "vmStepsLowerBound": 21000
+  }
+]
