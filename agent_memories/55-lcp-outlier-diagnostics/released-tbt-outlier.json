@@ -1,0 +1,23 @@
+{
+  "simulatedTbt": 361.5,
+  "observedFcpMs": 409.866,
+  "longestMainTask": {
+    "startMs": 325.179,
+    "endMs": 409.906,
+    "durationMs": 84.727
+  },
+  "subtasks": [
+    {
+      "name": "v8.evaluateModule",
+      "startMs": 326.302,
+      "durationMs": 30.628
+    },
+    {
+      "name": "RunMicrotasks",
+      "startMs": 362.011,
+      "durationMs": 47.715
+    }
+  ],
+  "postFcpTasksOver50ms": 0,
+  "attribution": "Module evaluation and microtasks; the report labels this task Unattributable. Do not claim a Cloudflare-only root cause."
+}

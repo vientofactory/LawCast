@@ -1,0 +1,146 @@
+[
+  {
+    "report": "_license-mobile-1.json",
+    "url": "https://law.viento.me/license",
+    "simulatedLcp": 3549.799499999999,
+    "observedLcp": 1539,
+    "observedFcp": 1539,
+    "observedLoad": 1197,
+    "serverResponseTime": 103,
+    "breakdown": {
+      "type": "table",
+      "headings": [
+        {
+          "key": "label",
+          "valueType": "text",
+          "label": "Subpart"
+        },
+        {
+          "key": "duration",
+          "valueType": "ms",
+          "label": "Duration"
+        }
+      ],
+      "items": [
+        {
+          "subpart": "timeToFirstByte",
+          "label": "Time to first byte",
+          "duration": 279.2700000076294
+        },
+        {
+          "subpart": "elementRenderDelay",
+          "label": "Element render delay",
+          "duration": 1259.6789999923706
+        }
+      ]
+    }
+  },
+  {
+    "report": "_notices-mobile-3.json",
+    "url": "https://law.viento.me/notices",
+    "simulatedLcp": 3494.7744999999995,
+    "observedLcp": 1562,
+    "observedFcp": 1562,
+    "observedLoad": 1113,
+    "serverResponseTime": 113,
+    "breakdown": {
+      "type": "table",
+      "headings": [
+        {
+          "key": "label",
+          "valueType": "text",
+          "label": "Subpart"
+        },
+        {
+          "key": "duration",
+          "valueType": "ms",
+          "label": "Duration"
+        }
+      ],
+      "items": [
+        {
+          "subpart": "timeToFirstByte",
+          "label": "Time to first byte",
+          "duration": 215.9720000076294
+        },
+        {
+          "subpart": "elementRenderDelay",
+          "label": "Element render delay",
+          "duration": 1345.7669999923705
+        }
+      ]
+    }
+  },
+  {
+    "report": "_notices_changes-mobile-1.json",
+    "url": "https://law.viento.me/notices/changes",
+    "simulatedLcp": 3192.826,
+    "observedLcp": 1593,
+    "observedFcp": 1593,
+    "observedLoad": 1144,
+    "serverResponseTime": 101,
+    "breakdown": {
+      "type": "table",
+      "headings": [
+        {
+          "key": "label",
+          "valueType": "text",
+          "label": "Subpart"
+        },
+        {
+          "key": "duration",
+          "valueType": "ms",
+          "label": "Duration"
+        }
+      ],
+      "items": [
+        {
+          "subpart": "timeToFirstByte",
+          "label": "Time to first byte",
+          "duration": 287.091
+        },
+        {
+          "subpart": "elementRenderDelay",
+          "label": "Element render delay",
+          "duration": 1306.082
+        }
+      ]
+    }
+  },
+  {
+    "report": "_status-mobile-1.json",
+    "url": "https://law.viento.me/status",
+    "simulatedLcp": 3447.5394999999994,
+    "observedLcp": 2656,
+    "observedFcp": 2656,
+    "observedLoad": 1130,
+    "serverResponseTime": 189,
+    "breakdown": {
+      "type": "table",
+      "headings": [
+        {
+          "key": "label",
+          "valueType": "text",
+          "label": "Subpart"
+        },
+        {
+          "key": "duration",
+          "valueType": "ms",
+          "label": "Duration"
+        }
+      ],
+      "items": [
+        {
+          "subpart": "timeToFirstByte",
+          "label": "Time to first byte",
+          "duration": 362.95600000762937
+        },
+        {
+          "subpart": "elementRenderDelay",
+          "label": "Element render delay",
+          "duration": 2292.9449999923704
+        }
+      ]
+    }
+  }
+]

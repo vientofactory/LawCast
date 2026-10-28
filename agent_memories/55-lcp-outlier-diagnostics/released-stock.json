@@ -1,0 +1,1335 @@
+{
+  "results": [
+    {
+      "route": "/",
+      "formFactor": "mobile",
+      "metrics": {
+        "first-contentful-paint": 983.284,
+        "largest-contentful-paint": 983.284,
+        "total-blocking-time": 49,
+        "cumulative-layout-shift": 0
+      },
+      "distributions": {
+        "first-contentful-paint": {
+          "count": 3,
+          "median": 983.284,
+          "p75": 1002.127,
+          "max": 1002.127,
+          "overBudget": 0
+        },
+        "largest-contentful-paint": {
+          "count": 3,
+          "median": 983.284,
+          "p75": 1002.127,
+          "max": 1002.127,
+          "overBudget": 0
+        },
+        "total-blocking-time": {
+          "count": 3,
+          "median": 49,
+          "p75": 361.5,
+          "max": 361.5,
+          "overBudget": 1
+        },
+        "cumulative-layout-shift": {
+          "count": 3,
+          "median": 0,
+          "p75": 0,
+          "max": 0,
+          "overBudget": 0
+        }
+      },
+      "measurements": [
+        {
+          "url": "https://law.viento.me/",
+          "fetchTime": "2026-10-28T05:41:04.863Z",
+          "lighthouseVersion": "13.6.0",
+          "browserUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+          "browserProfile": "stock",
+          "throttlingMethod": "simulate",
+          "observed": {
+            "firstContentfulPaint": 983,
+            "largestContentfulPaint": 983,
+            "interactive": 2959,
+            "speedIndex": 1462,
+            "totalBlockingTime": 362,
+            "maxPotentialFID": 339,
+            "cumulativeLayoutShift": 0,
+            "cumulativeLayoutShiftMainFrame": 0,
+            "timeToFirstByte": 463,
+            "observedTimeOrigin": 0,
+            "observedTimeOriginTs": 70804123578,
+            "observedNavigationStart": 0,
+            "observedNavigationStartTs": 70804123578,
+            "observedFirstPaint": 410,
+            "observedFirstPaintTs": 70804533444,
+            "observedFirstContentfulPaint": 410,
+            "observedFirstContentfulPaintTs": 70804533444,
+            "observedFirstContentfulPaintAllFrames": 410,
+            "observedFirstContentfulPaintAllFramesTs": 70804533444,
+            "observedLargestContentfulPaint": 410,
+            "observedLargestContentfulPaintTs": 70804533444,
+            "observedLargestContentfulPaintAllFrames": 410,
+            "observedLargestContentfulPaintAllFramesTs": 70804533444,
+            "observedTraceEnd": 3222,
+            "observedTraceEndTs": 70807345514,
+            "observedLoad": 811,
+            "observedLoadTs": 70804934531,
+            "observedDomContentLoaded": 509,
+            "observedDomContentLoadedTs": 70804632559,
+            "observedCumulativeLayoutShift": 0,
+            "observedCumulativeLayoutShiftMainFrame": 0,
+            "observedFirstVisualChange": 6,
+            "observedFirstVisualChangeTs": 70804129578,
+            "observedLastVisualChange": 2440,
+            "observedLastVisualChangeTs": 70806563578,
+            "observedSpeedIndex": 455,
+            "observedSpeedIndexTs": 70804578393
+          },
+          "document": {
+            "status": 200,
+            "protocol": "h3",
+            "requestTiming": {
+              "requestTime": 70804.124932,
+              "proxyStart": -1,
+              "proxyEnd": -1,
+              "dnsStart": 0,
+              "dnsEnd": 0,
+              "connectStart": 0,
+              "connectEnd": 85.141,
+              "sslStart": 0,
+              "sslEnd": 85.141,
+              "workerStart": -1,
+              "workerReady": -1,
+              "workerFetchStart": -1,
+              "workerRespondWithSettled": -1,
+              "sendStart": 85.189,
+              "sendEnd": 85.236,
+              "pushStart": 0,
+              "pushEnd": 0,
+              "receiveHeadersStart": 177.294,
+              "receiveHeadersEnd": 183.779
+            },
+            "serverResponseTime": 92,
+            "serverTiming": "cfCacheStatus;desc=\"HIT\"\ncfEdge;dur=5,cfOrigin;dur=0\ncfExtPri",
+            "cfCacheStatus": "HIT",
+            "cfRay": "a5179c03fcd496a4-KIX"
+          },
+          "scores": {
+            "performance": 0.92,
+            "accessibility": 1,
+            "best-practices": 0.81,
+            "seo": 1,
+            "agentic-browsing": 1
+          },
+          "metrics": {
+            "first-contentful-paint": 983.284,
+            "largest-contentful-paint": 983.284,
+            "total-blocking-time": 361.5,
+            "cumulative-layout-shift": 0
+          },
+          "warnings": [],
+          "failedAudits": [
+            {
+              "id": "total-blocking-time",
+              "title": "Total Blocking Time",
+              "displayValue": "360 ms"
+            },
+            {
+              "id": "max-potential-fid",
+              "title": "Max Potential First Input Delay",
+              "displayValue": "340 ms"
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "displayValue": "3.0 s"
+            },
+            {
+              "id": "deprecations",
+              "title": "Uses deprecated APIs",
+              "displayValue": "3 warnings found"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "displayValue": "Est savings of 93 KiB"
+            },
+            {
+              "id": "cache-insight",
+              "title": "Use efficient cache lifetimes",
+              "displayValue": "Est savings of 15 KiB"
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "displayValue": "Est savings of 10 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree"
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests"
+            }
+          ]
+        },
+        {
+          "url": "https://law.viento.me/",
+          "fetchTime": "2026-10-28T05:41:14.462Z",
+          "lighthouseVersion": "13.6.0",
+          "browserUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+          "browserProfile": "stock",
+          "throttlingMethod": "simulate",
+          "observed": {
+            "firstContentfulPaint": 973,
+            "largestContentfulPaint": 973,
+            "interactive": 3223,
+            "speedIndex": 1373,
+            "totalBlockingTime": 49,
+            "maxPotentialFID": 85,
+            "cumulativeLayoutShift": 0,
+            "cumulativeLayoutShiftMainFrame": 0,
+            "timeToFirstByte": 454,
+            "observedTimeOrigin": 0,
+            "observedTimeOriginTs": 70813651242,
+            "observedNavigationStart": 0,
+            "observedNavigationStartTs": 70813651242,
+            "observedFirstPaint": 341,
+            "observedFirstPaintTs": 70813991940,
+            "observedFirstContentfulPaint": 341,
+            "observedFirstContentfulPaintTs": 70813991940,
+            "observedFirstContentfulPaintAllFrames": 341,
+            "observedFirstContentfulPaintAllFramesTs": 70813991940,
+            "observedLargestContentfulPaint": 341,
+            "observedLargestContentfulPaintTs": 70813991940,
+            "observedLargestContentfulPaintAllFrames": 341,
+            "observedLargestContentfulPaintAllFramesTs": 70813991940,
+            "observedTraceEnd": 3224,
+            "observedTraceEndTs": 70816875419,
+            "observedLoad": 797,
+            "observedLoadTs": 70814448156,
+            "observedDomContentLoaded": 489,
+            "observedDomContentLoadedTs": 70814140101,
+            "observedCumulativeLayoutShift": 0,
+            "observedCumulativeLayoutShiftMainFrame": 0,
+            "observedFirstVisualChange": 7,
+            "observedFirstVisualChangeTs": 70813658242,
+            "observedLastVisualChange": 2438,
+            "observedLastVisualChangeTs": 70816089242,
+            "observedSpeedIndex": 392,
+            "observedSpeedIndexTs": 70814043610
+          },
+          "document": {
+            "status": 200,
+            "protocol": "h3",
+            "requestTiming": {
+              "requestTime": 70813.651957,
+              "proxyStart": -1,
+              "proxyEnd": -1,
+              "dnsStart": 0,
+              "dnsEnd": 0,
+              "connectStart": 0,
+              "connectEnd": 86.422,
+              "sslStart": 0,
+              "sslEnd": 86.422,
+              "workerStart": -1,
+              "workerReady": -1,
+              "workerFetchStart": -1,
+              "workerRespondWithSettled": -1,
+              "sendStart": 86.475,
+              "sendEnd": 86.525,
+              "pushStart": 0,
+              "pushEnd": 0,
+              "receiveHeadersStart": 184.569,
+              "receiveHeadersEnd": 190.741
+            },
+            "serverResponseTime": 98,
+            "serverTiming": "cfCacheStatus;desc=\"HIT\"\ncfEdge;dur=4,cfOrigin;dur=0\ncfExtPri",
+            "cfCacheStatus": "HIT",
+            "cfRay": "a5179c3f9c9300bc-KIX"
+          },
+          "scores": {
+            "performance": 1,
+            "accessibility": 1,
+            "best-practices": 0.81,
+            "seo": 1,
+            "agentic-browsing": 1
+          },
+          "metrics": {
+            "first-contentful-paint": 973.0089999999998,
+            "largest-contentful-paint": 973.0089999999998,
+            "total-blocking-time": 49,
+            "cumulative-layout-shift": 0
+          },
+          "warnings": [],
+          "failedAudits": [
+            {
+              "id": "max-potential-fid",
+              "title": "Max Potential First Input Delay",
+              "displayValue": "90 ms"
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "displayValue": "3.2 s"
+            },
+            {
+              "id": "deprecations",
+              "title": "Uses deprecated APIs",
+              "displayValue": "3 warnings found"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "displayValue": "Est savings of 93 KiB"
+            },
+            {
+              "id": "cache-insight",
+              "title": "Use efficient cache lifetimes",
+              "displayValue": "Est savings of 15 KiB"
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "displayValue": "Est savings of 10 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree"
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests"
+            }
+          ]
+        },
+        {
+          "url": "https://law.viento.me/",
+          "fetchTime": "2026-10-28T05:41:23.789Z",
+          "lighthouseVersion": "13.6.0",
+          "browserUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+          "browserProfile": "stock",
+          "throttlingMethod": "simulate",
+          "observed": {
+            "firstContentfulPaint": 1002,
+            "largestContentfulPaint": 1002,
+            "interactive": 2873,
+            "speedIndex": 1515,
+            "totalBlockingTime": 10,
+            "maxPotentialFID": 63,
+            "cumulativeLayoutShift": 0,
+            "cumulativeLayoutShiftMainFrame": 0,
+            "timeToFirstByte": 454,
+            "observedTimeOrigin": 0,
+            "observedTimeOriginTs": 70823000175,
+            "observedNavigationStart": 0,
+            "observedNavigationStartTs": 70823000175,
+            "observedFirstPaint": 466,
+            "observedFirstPaintTs": 70823465872,
+            "observedFirstContentfulPaint": 466,
+            "observedFirstContentfulPaintTs": 70823465872,
+            "observedFirstContentfulPaintAllFrames": 466,
+            "observedFirstContentfulPaintAllFramesTs": 70823465872,
+            "observedLargestContentfulPaint": 466,
+            "observedLargestContentfulPaintTs": 70823465872,
+            "observedLargestContentfulPaintAllFrames": 466,
+            "observedLargestContentfulPaintAllFramesTs": 70823465872,
+            "observedTraceEnd": 3357,
+            "observedTraceEndTs": 70826357168,
+            "observedLoad": 916,
+            "observedLoadTs": 70823915800,
+            "observedDomContentLoaded": 610,
+            "observedDomContentLoadedTs": 70823609934,
+            "observedCumulativeLayoutShift": 0,
+            "observedCumulativeLayoutShiftMainFrame": 0,
+            "observedFirstVisualChange": 7,
+            "observedFirstVisualChangeTs": 70823007175,
+            "observedLastVisualChange": 2567,
+            "observedLastVisualChangeTs": 70825567175,
+            "observedSpeedIndex": 508,
+            "observedSpeedIndexTs": 70823508102
+          },
+          "document": {
+            "status": 200,
+            "protocol": "h3",
+            "requestTiming": {
+              "requestTime": 70823.000759,
+              "proxyStart": -1,
+              "proxyEnd": -1,
+              "dnsStart": 0,
+              "dnsEnd": 0,
+              "connectStart": 0,
+              "connectEnd": 131.626,
+              "sslStart": 0,
+              "sslEnd": 131.626,
+              "workerStart": -1,
+              "workerReady": -1,
+              "workerFetchStart": -1,
+              "workerRespondWithSettled": -1,
+              "sendStart": 131.678,
+              "sendEnd": 131.729,
+              "pushStart": 0,
+              "pushEnd": 0,
+              "receiveHeadersStart": 300.702,
+              "receiveHeadersEnd": 301.725
+            },
+            "serverResponseTime": 169,
+            "serverTiming": "cfCacheStatus;desc=\"HIT\"\ncfEdge;dur=4,cfOrigin;dur=0\ncfExtPri",
+            "cfCacheStatus": "HIT",
+            "cfRay": "a5179c7a3f9dd3f3-KIX"
+          },
+          "scores": {
+            "performance": 1,
+            "accessibility": 1,
+            "best-practices": 0.81,
+            "seo": 1,
+            "agentic-browsing": 1
+          },
+          "metrics": {
+            "first-contentful-paint": 1002.127,
+            "largest-contentful-paint": 1002.127,
+            "total-blocking-time": 10,
+            "cumulative-layout-shift": 0
+          },
+          "warnings": [],
+          "failedAudits": [
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "displayValue": "2.9 s"
+            },
+            {
+              "id": "deprecations",
+              "title": "Uses deprecated APIs",
+              "displayValue": "3 warnings found"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "displayValue": "Est savings of 93 KiB"
+            },
+            {
+              "id": "cache-insight",
+              "title": "Use efficient cache lifetimes",
+              "displayValue": "Est savings of 15 KiB"
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "displayValue": "Est savings of 10 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree"
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "route": "/license",
+      "formFactor": "mobile",
+      "metrics": {
+        "first-contentful-paint": 857.6690000000001,
+        "largest-contentful-paint": 857.6690000000001,
+        "total-blocking-time": 3,
+        "cumulative-layout-shift": 0
+      },
+      "distributions": {
+        "first-contentful-paint": {
+          "count": 3,
+          "median": 857.6690000000001,
+          "p75": 876.1599999999999,
+          "max": 876.1599999999999,
+          "overBudget": 0
+        },
+        "largest-contentful-paint": {
+          "count": 3,
+          "median": 857.6690000000001,
+          "p75": 876.1599999999999,
+          "max": 876.1599999999999,
+          "overBudget": 0
+        },
+        "total-blocking-time": {
+          "count": 3,
+          "median": 3,
+          "p75": 5,
+          "max": 5,
+          "overBudget": 0
+        },
+        "cumulative-layout-shift": {
+          "count": 3,
+          "median": 0,
+          "p75": 0,
+          "max": 0,
+          "overBudget": 0
+        }
+      },
+      "measurements": [
+        {
+          "url": "https://law.viento.me/license",
+          "fetchTime": "2026-10-28T05:41:33.338Z",
+          "lighthouseVersion": "13.6.0",
+          "browserUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+          "browserProfile": "stock",
+          "throttlingMethod": "simulate",
+          "observed": {
+            "firstContentfulPaint": 876,
+            "largestContentfulPaint": 876,
+            "interactive": 3007,
+            "speedIndex": 2176,
+            "totalBlockingTime": 3,
+            "maxPotentialFID": 54,
+            "cumulativeLayoutShift": 0,
+            "cumulativeLayoutShiftMainFrame": 0,
+            "timeToFirstByte": 455,
+            "observedTimeOrigin": 0,
+            "observedTimeOriginTs": 70832526145,
+            "observedNavigationStart": 0,
+            "observedNavigationStartTs": 70832526145,
+            "observedFirstPaint": 924,
+            "observedFirstPaintTs": 70833450493,
+            "observedFirstContentfulPaint": 924,
+            "observedFirstContentfulPaintTs": 70833450493,
+            "observedFirstContentfulPaintAllFrames": 924,
+            "observedFirstContentfulPaintAllFramesTs": 70833450493,
+            "observedLargestContentfulPaint": 924,
+            "observedLargestContentfulPaintTs": 70833450493,
+            "observedLargestContentfulPaintAllFrames": 924,
+            "observedLargestContentfulPaintAllFramesTs": 70833450493,
+            "observedTraceEnd": 3743,
+            "observedTraceEndTs": 70836269597,
+            "observedLoad": 1348,
+            "observedLoadTs": 70833874557,
+            "observedDomContentLoaded": 1050,
+            "observedDomContentLoadedTs": 70833576269,
+            "observedCumulativeLayoutShift": 0,
+            "observedCumulativeLayoutShiftMainFrame": 0,
+            "observedFirstVisualChange": 7,
+            "observedFirstVisualChangeTs": 70832533145,
+            "observedLastVisualChange": 3033,
+            "observedLastVisualChangeTs": 70835559145,
+            "observedSpeedIndex": 979,
+            "observedSpeedIndexTs": 70833504762
+          },
+          "document": {
+            "status": 200,
+            "protocol": "h3",
+            "requestTiming": {
+              "requestTime": 70832.527051,
+              "proxyStart": -1,
+              "proxyEnd": -1,
+              "dnsStart": 0,
+              "dnsEnd": 0,
+              "connectStart": 0,
+              "connectEnd": 356.981,
+              "sslStart": 0,
+              "sslEnd": 356.981,
+              "workerStart": -1,
+              "workerReady": -1,
+              "workerFetchStart": -1,
+              "workerRespondWithSettled": -1,
+              "sendStart": 357.145,
+              "sendEnd": 357.336,
+              "pushStart": 0,
+              "pushEnd": 0,
+              "receiveHeadersStart": 442.997,
+              "receiveHeadersEnd": 775.411
+            },
+            "serverResponseTime": 86,
+            "serverTiming": "cfCacheStatus;desc=\"EXPIRED\"\ncfEdge;dur=6,cfOrigin;dur=329\ncfExtPri",
+            "cfCacheStatus": "EXPIRED",
+            "cfRay": "a5179cb719490795-KIX"
+          },
+          "scores": {
+            "performance": 1,
+            "accessibility": 1,
+            "best-practices": 0.81,
+            "seo": 1,
+            "agentic-browsing": 1
+          },
+          "metrics": {
+            "first-contentful-paint": 876.1599999999999,
+            "largest-contentful-paint": 876.1599999999999,
+            "total-blocking-time": 3,
+            "cumulative-layout-shift": 0
+          },
+          "warnings": [],
+          "failedAudits": [
+            {
+              "id": "speed-index",
+              "title": "Speed Index",
+              "displayValue": "2.2 s"
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "displayValue": "3.0 s"
+            },
+            {
+              "id": "deprecations",
+              "title": "Uses deprecated APIs",
+              "displayValue": "3 warnings found"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "displayValue": "Est savings of 93 KiB"
+            },
+            {
+              "id": "cache-insight",
+              "title": "Use efficient cache lifetimes",
+              "displayValue": "Est savings of 15 KiB"
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "displayValue": "Est savings of 10 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree"
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "displayValue": "Est savings of 120 ms"
+            }
+          ]
+        },
+        {
+          "url": "https://law.viento.me/license",
+          "fetchTime": "2026-10-28T05:41:43.147Z",
+          "lighthouseVersion": "13.6.0",
+          "browserUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+          "browserProfile": "stock",
+          "throttlingMethod": "simulate",
+          "observed": {
+            "firstContentfulPaint": 858,
+            "largestContentfulPaint": 858,
+            "interactive": 2173,
+            "speedIndex": 1372,
+            "totalBlockingTime": 3,
+            "maxPotentialFID": 56,
+            "cumulativeLayoutShift": 0,
+            "cumulativeLayoutShiftMainFrame": 0,
+            "timeToFirstByte": 465,
+            "observedTimeOrigin": 0,
+            "observedTimeOriginTs": 70842367259,
+            "observedNavigationStart": 0,
+            "observedNavigationStartTs": 70842367259,
+            "observedFirstPaint": 317,
+            "observedFirstPaintTs": 70842684161,
+            "observedFirstContentfulPaint": 317,
+            "observedFirstContentfulPaintTs": 70842684161,
+            "observedFirstContentfulPaintAllFrames": 317,
+            "observedFirstContentfulPaintAllFramesTs": 70842684161,
+            "observedLargestContentfulPaint": 317,
+            "observedLargestContentfulPaintTs": 70842684161,
+            "observedLargestContentfulPaintAllFrames": 317,
+            "observedLargestContentfulPaintAllFramesTs": 70842684161,
+            "observedTraceEnd": 3417,
+            "observedTraceEndTs": 70845784673,
+            "observedLoad": 1004,
+            "observedLoadTs": 70843370980,
+            "observedDomContentLoaded": 539,
+            "observedDomContentLoadedTs": 70842906403,
+            "observedCumulativeLayoutShift": 0,
+            "observedCumulativeLayoutShiftMainFrame": 0,
+            "observedFirstVisualChange": 9,
+            "observedFirstVisualChangeTs": 70842376259,
+            "observedLastVisualChange": 2434,
+            "observedLastVisualChangeTs": 70844801259,
+            "observedSpeedIndex": 423,
+            "observedSpeedIndexTs": 70842790374
+          },
+          "document": {
+            "status": 200,
+            "protocol": "h3",
+            "requestTiming": {
+              "requestTime": 70842.367997,
+              "proxyStart": -1,
+              "proxyEnd": -1,
+              "dnsStart": 0,
+              "dnsEnd": 0,
+              "connectStart": 0,
+              "connectEnd": 91.48,
+              "sslStart": 0,
+              "sslEnd": 91.48,
+              "workerStart": -1,
+              "workerReady": -1,
+              "workerFetchStart": -1,
+              "workerRespondWithSettled": -1,
+              "sendStart": 91.531,
+              "sendEnd": 91.581,
+              "pushStart": 0,
+              "pushEnd": 0,
+              "receiveHeadersStart": 175.16,
+              "receiveHeadersEnd": 183.59
+            },
+            "serverResponseTime": 84,
+            "serverTiming": "cfCacheStatus;desc=\"HIT\"\ncfEdge;dur=6,cfOrigin;dur=0\ncfExtPri",
+            "cfCacheStatus": "HIT",
+            "cfRay": "a5179cf2f88b2c48-KIX"
+          },
+          "scores": {
+            "performance": 1,
+            "accessibility": 1,
+            "best-practices": 0.81,
+            "seo": 1,
+            "agentic-browsing": 1
+          },
+          "metrics": {
+            "first-contentful-paint": 857.6690000000001,
+            "largest-contentful-paint": 857.6690000000001,
+            "total-blocking-time": 3,
+            "cumulative-layout-shift": 0
+          },
+          "warnings": [],
+          "failedAudits": [
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "displayValue": "2.2 s"
+            },
+            {
+              "id": "deprecations",
+              "title": "Uses deprecated APIs",
+              "displayValue": "3 warnings found"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "displayValue": "Est savings of 93 KiB"
+            },
+            {
+              "id": "cache-insight",
+              "title": "Use efficient cache lifetimes",
+              "displayValue": "Est savings of 16 KiB"
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "displayValue": "Est savings of 10 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree"
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "displayValue": "Est savings of 120 ms"
+            }
+          ]
+        },
+        {
+          "url": "https://law.viento.me/license",
+          "fetchTime": "2026-10-28T05:41:52.536Z",
+          "lighthouseVersion": "13.6.0",
+          "browserUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+          "browserProfile": "stock",
+          "throttlingMethod": "simulate",
+          "observed": {
+            "firstContentfulPaint": 814,
+            "largestContentfulPaint": 814,
+            "interactive": 2112,
+            "speedIndex": 1310,
+            "totalBlockingTime": 5,
+            "maxPotentialFID": 60,
+            "cumulativeLayoutShift": 0,
+            "cumulativeLayoutShiftMainFrame": 0,
+            "timeToFirstByte": 472,
+            "observedTimeOrigin": 0,
+            "observedTimeOriginTs": 70851762867,
+            "observedNavigationStart": 0,
+            "observedNavigationStartTs": 70851762867,
+            "observedFirstPaint": 300,
+            "observedFirstPaintTs": 70852062864,
+            "observedFirstContentfulPaint": 300,
+            "observedFirstContentfulPaintTs": 70852062864,
+            "observedFirstContentfulPaintAllFrames": 300,
+            "observedFirstContentfulPaintAllFramesTs": 70852062864,
+            "observedLargestContentfulPaint": 300,
+            "observedLargestContentfulPaintTs": 70852062864,
+            "observedLargestContentfulPaintAllFrames": 300,
+            "observedLargestContentfulPaintAllFramesTs": 70852062864,
+            "observedTraceEnd": 3176,
+            "observedTraceEndTs": 70854938928,
+            "observedLoad": 773,
+            "observedLoadTs": 70852535875,
+            "observedDomContentLoaded": 471,
+            "observedDomContentLoadedTs": 70852233656,
+            "observedCumulativeLayoutShift": 0,
+            "observedCumulativeLayoutShiftMainFrame": 0,
+            "observedFirstVisualChange": 7,
+            "observedFirstVisualChangeTs": 70851769867,
+            "observedLastVisualChange": 2397,
+            "observedLastVisualChangeTs": 70854159867,
+            "observedSpeedIndex": 387,
+            "observedSpeedIndexTs": 70852149880
+          },
+          "document": {
+            "status": 200,
+            "protocol": "h3",
+            "requestTiming": {
+              "requestTime": 70851.763612,
+              "proxyStart": -1,
+              "proxyEnd": -1,
+              "dnsStart": 0,
+              "dnsEnd": 0,
+              "connectStart": 0,
+              "connectEnd": 72.196,
+              "sslStart": 0,
+              "sslEnd": 72.196,
+              "workerStart": -1,
+              "workerReady": -1,
+              "workerFetchStart": -1,
+              "workerRespondWithSettled": -1,
+              "sendStart": 72.243,
+              "sendEnd": 72.291,
+              "pushStart": 0,
+              "pushEnd": 0,
+              "receiveHeadersStart": 164.658,
+              "receiveHeadersEnd": 167.444
+            },
+            "serverResponseTime": 92,
+            "serverTiming": "cfCacheStatus;desc=\"HIT\"\ncfEdge;dur=5,cfOrigin;dur=0\ncfExtPri",
+            "cfCacheStatus": "HIT",
+            "cfRay": "a5179d2dacc21a16-KIX"
+          },
+          "scores": {
+            "performance": 1,
+            "accessibility": 1,
+            "best-practices": 0.81,
+            "seo": 1,
+            "agentic-browsing": 1
+          },
+          "metrics": {
+            "first-contentful-paint": 814.4855,
+            "largest-contentful-paint": 814.4855,
+            "total-blocking-time": 5,
+            "cumulative-layout-shift": 0
+          },
+          "warnings": [],
+          "failedAudits": [
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "displayValue": "2.1 s"
+            },
+            {
+              "id": "deprecations",
+              "title": "Uses deprecated APIs",
+              "displayValue": "3 warnings found"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "displayValue": "Est savings of 93 KiB"
+            },
+            {
+              "id": "cache-insight",
+              "title": "Use efficient cache lifetimes",
+              "displayValue": "Est savings of 15 KiB"
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "displayValue": "Est savings of 10 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree"
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "displayValue": "Est savings of 110 ms"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "route": "/status",
+      "formFactor": "mobile",
+      "metrics": {
+        "first-contentful-paint": 1058.2649999999999,
+        "largest-contentful-paint": 1058.2649999999999,
+        "total-blocking-time": 27.5,
+        "cumulative-layout-shift": 0
+      },
+      "distributions": {
+        "first-contentful-paint": {
+          "count": 3,
+          "median": 1058.2649999999999,
+          "p75": 1136.546,
+          "max": 1136.546,
+          "overBudget": 0
+        },
+        "largest-contentful-paint": {
+          "count": 3,
+          "median": 1058.2649999999999,
+          "p75": 1136.546,
+          "max": 1136.546,
+          "overBudget": 0
+        },
+        "total-blocking-time": {
+          "count": 3,
+          "median": 27.5,
+          "p75": 51,
+          "max": 51,
+          "overBudget": 0
+        },
+        "cumulative-layout-shift": {
+          "count": 3,
+          "median": 0,
+          "p75": 0,
+          "max": 0,
+          "overBudget": 0
+        }
+      },
+      "measurements": [
+        {
+          "url": "https://law.viento.me/status",
+          "fetchTime": "2026-10-28T05:42:01.575Z",
+          "lighthouseVersion": "13.6.0",
+          "browserUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+          "browserProfile": "stock",
+          "throttlingMethod": "simulate",
+          "observed": {
+            "firstContentfulPaint": 1137,
+            "largestContentfulPaint": 1137,
+            "interactive": 3710,
+            "speedIndex": 2789,
+            "totalBlockingTime": 51,
+            "maxPotentialFID": 94,
+            "cumulativeLayoutShift": 0,
+            "cumulativeLayoutShiftMainFrame": 0,
+            "timeToFirstByte": 771,
+            "observedTimeOrigin": 0,
+            "observedTimeOriginTs": 70860834520,
+            "observedNavigationStart": 0,
+            "observedNavigationStartTs": 70860834520,
+            "observedFirstPaint": 1209,
+            "observedFirstPaintTs": 70862043433,
+            "observedFirstContentfulPaint": 1209,
+            "observedFirstContentfulPaintTs": 70862043433,
+            "observedFirstContentfulPaintAllFrames": 1209,
+            "observedFirstContentfulPaintAllFramesTs": 70862043433,
+            "observedLargestContentfulPaint": 1209,
+            "observedLargestContentfulPaintTs": 70862043433,
+            "observedLargestContentfulPaintAllFrames": 1209,
+            "observedLargestContentfulPaintAllFramesTs": 70862043433,
+            "observedTraceEnd": 4560,
+            "observedTraceEndTs": 70865394545,
+            "observedLoad": 2137,
+            "observedLoadTs": 70862971040,
+            "observedDomContentLoaded": 2136,
+            "observedDomContentLoadedTs": 70862970773,
+            "observedCumulativeLayoutShift": 0,
+            "observedCumulativeLayoutShiftMainFrame": 0,
+            "observedFirstVisualChange": 8,
+            "observedFirstVisualChangeTs": 70860842520,
+            "observedLastVisualChange": 4557,
+            "observedLastVisualChangeTs": 70865391520,
+            "observedSpeedIndex": 1316,
+            "observedSpeedIndexTs": 70862150869
+          },
+          "document": {
+            "status": 200,
+            "protocol": "h2",
+            "requestTiming": {
+              "requestTime": 70860.836015,
+              "proxyStart": -1,
+              "proxyEnd": -1,
+              "dnsStart": 304.794,
+              "dnsEnd": 304.808,
+              "connectStart": 304.808,
+              "connectEnd": 457.352,
+              "sslStart": 383.77,
+              "sslEnd": 457.334,
+              "workerStart": -1,
+              "workerReady": -1,
+              "workerFetchStart": -1,
+              "workerRespondWithSettled": -1,
+              "sendStart": 457.735,
+              "sendEnd": 458.007,
+              "pushStart": 0,
+              "pushEnd": 0,
+              "receiveHeadersStart": 548.994,
+              "receiveHeadersEnd": 885.231
+            },
+            "serverResponseTime": 91,
+            "serverTiming": "cfCacheStatus;desc=\"DYNAMIC\"\ncfEdge;dur=3,cfOrigin;dur=328",
+            "cfCacheStatus": "DYNAMIC",
+            "cfRay": "a5179d68bfc2dd96-KIX"
+          },
+          "scores": {
+            "performance": 1,
+            "accessibility": 1,
+            "best-practices": 0.81,
+            "seo": 0.69,
+            "agentic-browsing": 1
+          },
+          "metrics": {
+            "first-contentful-paint": 1136.546,
+            "largest-contentful-paint": 1136.546,
+            "total-blocking-time": 51,
+            "cumulative-layout-shift": 0
+          },
+          "warnings": [],
+          "failedAudits": [
+            {
+              "id": "first-contentful-paint",
+              "title": "First Contentful Paint",
+              "displayValue": "1.1 s"
+            },
+            {
+              "id": "speed-index",
+              "title": "Speed Index",
+              "displayValue": "2.8 s"
+            },
+            {
+              "id": "max-potential-fid",
+              "title": "Max Potential First Input Delay",
+              "displayValue": "90 ms"
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "displayValue": "3.7 s"
+            },
+            {
+              "id": "deprecations",
+              "title": "Uses deprecated APIs",
+              "displayValue": "3 warnings found"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "displayValue": "Est savings of 93 KiB"
+            },
+            {
+              "id": "is-crawlable",
+              "title": "Page is blocked from indexing"
+            },
+            {
+              "id": "cache-insight",
+              "title": "Use efficient cache lifetimes",
+              "displayValue": "Est savings of 16 KiB"
+            },
+            {
+              "id": "forced-reflow-insight",
+              "title": "Forced reflow"
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "displayValue": "Est savings of 10 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree"
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests"
+            }
+          ]
+        },
+        {
+          "url": "https://law.viento.me/status",
+          "fetchTime": "2026-10-28T05:42:12.066Z",
+          "lighthouseVersion": "13.6.0",
+          "browserUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+          "browserProfile": "stock",
+          "throttlingMethod": "simulate",
+          "observed": {
+            "firstContentfulPaint": 953,
+            "largestContentfulPaint": 953,
+            "interactive": 2924,
+            "speedIndex": 2997,
+            "totalBlockingTime": 28,
+            "maxPotentialFID": 73,
+            "cumulativeLayoutShift": 0,
+            "cumulativeLayoutShiftMainFrame": 0,
+            "timeToFirstByte": 468,
+            "observedTimeOrigin": 0,
+            "observedTimeOriginTs": 70871274097,
+            "observedNavigationStart": 0,
+            "observedNavigationStartTs": 70871274097,
+            "observedFirstPaint": 1670,
+            "observedFirstPaintTs": 70872943704,
+            "observedFirstContentfulPaint": 1670,
+            "observedFirstContentfulPaintTs": 70872943704,
+            "observedFirstContentfulPaintAllFrames": 1670,
+            "observedFirstContentfulPaintAllFramesTs": 70872943704,
+            "observedLargestContentfulPaint": 1670,
+            "observedLargestContentfulPaintTs": 70872943704,
+            "observedLargestContentfulPaintAllFrames": 1670,
+            "observedLargestContentfulPaintAllFramesTs": 70872943704,
+            "observedTraceEnd": 3998,
+            "observedTraceEndTs": 70875271600,
+            "observedLoad": 1499,
+            "observedLoadTs": 70872772948,
+            "observedDomContentLoaded": 830,
+            "observedDomContentLoadedTs": 70872104078,
+            "observedCumulativeLayoutShift": 0,
+            "observedCumulativeLayoutShiftMainFrame": 0,
+            "observedFirstVisualChange": 8,
+            "observedFirstVisualChangeTs": 70871282097,
+            "observedLastVisualChange": 3764,
+            "observedLastVisualChangeTs": 70875038097,
+            "observedSpeedIndex": 1606,
+            "observedSpeedIndexTs": 70872879895
+          },
+          "document": {
+            "status": 200,
+            "protocol": "h3",
+            "requestTiming": {
+              "requestTime": 70871.274797,
+              "proxyStart": -1,
+              "proxyEnd": -1,
+              "dnsStart": 0,
+              "dnsEnd": 68.071,
+              "connectStart": 68.214,
+              "connectEnd": 154.717,
+              "sslStart": 68.214,
+              "sslEnd": 154.717,
+              "workerStart": -1,
+              "workerReady": -1,
+              "workerFetchStart": -1,
+              "workerRespondWithSettled": -1,
+              "sendStart": 154.813,
+              "sendEnd": 154.897,
+              "pushStart": 0,
+              "pushEnd": 0,
+              "receiveHeadersStart": 238.872,
+              "receiveHeadersEnd": 533.57
+            },
+            "serverResponseTime": 84,
+            "serverTiming": "cfCacheStatus;desc=\"DYNAMIC\"\ncfEdge;dur=5,cfOrigin;dur=289\ncfExtPri",
+            "cfCacheStatus": "DYNAMIC",
+            "cfRay": "a5179da80aca8c38-KIX"
+          },
+          "scores": {
+            "performance": 0.99,
+            "accessibility": 1,
+            "best-practices": 0.81,
+            "seo": 0.69,
+            "agentic-browsing": 1
+          },
+          "metrics": {
+            "first-contentful-paint": 952.5335000000001,
+            "largest-contentful-paint": 952.5335000000001,
+            "total-blocking-time": 27.5,
+            "cumulative-layout-shift": 0
+          },
+          "warnings": [],
+          "failedAudits": [
+            {
+              "id": "speed-index",
+              "title": "Speed Index",
+              "displayValue": "3.0 s"
+            },
+            {
+              "id": "max-potential-fid",
+              "title": "Max Potential First Input Delay",
+              "displayValue": "70 ms"
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "displayValue": "2.9 s"
+            },
+            {
+              "id": "deprecations",
+              "title": "Uses deprecated APIs",
+              "displayValue": "3 warnings found"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "displayValue": "Est savings of 93 KiB"
+            },
+            {
+              "id": "is-crawlable",
+              "title": "Page is blocked from indexing"
+            },
+            {
+              "id": "cache-insight",
+              "title": "Use efficient cache lifetimes",
+              "displayValue": "Est savings of 15 KiB"
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "displayValue": "Est savings of 10 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree"
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests"
+            }
+          ]
+        },
+        {
+          "url": "https://law.viento.me/status",
+          "fetchTime": "2026-10-28T05:42:21.746Z",
+          "lighthouseVersion": "13.6.0",
+          "browserUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+          "browserProfile": "stock",
+          "throttlingMethod": "simulate",
+          "observed": {
+            "firstContentfulPaint": 1058,
+            "largestContentfulPaint": 1058,
+            "interactive": 3024,
+            "speedIndex": 2983,
+            "totalBlockingTime": 23,
+            "maxPotentialFID": 70,
+            "cumulativeLayoutShift": 0,
+            "cumulativeLayoutShiftMainFrame": 0,
+            "timeToFirstByte": 545,
+            "observedTimeOrigin": 0,
+            "observedTimeOriginTs": 70880966841,
+            "observedNavigationStart": 0,
+            "observedNavigationStartTs": 70880966841,
+            "observedFirstPaint": 1614,
+            "observedFirstPaintTs": 70882581136,
+            "observedFirstContentfulPaint": 1614,
+            "observedFirstContentfulPaintTs": 70882581136,
+            "observedFirstContentfulPaintAllFrames": 1614,
+            "observedFirstContentfulPaintAllFramesTs": 70882581136,
+            "observedLargestContentfulPaint": 1614,
+            "observedLargestContentfulPaintTs": 70882581136,
+            "observedLargestContentfulPaintAllFrames": 1614,
+            "observedLargestContentfulPaintAllFramesTs": 70882581136,
+            "observedTraceEnd": 3944,
+            "observedTraceEndTs": 70884910987,
+            "observedLoad": 1100,
+            "observedLoadTs": 70882066929,
+            "observedDomContentLoaded": 791,
+            "observedDomContentLoadedTs": 70881757945,
+            "observedCumulativeLayoutShift": 0,
+            "observedCumulativeLayoutShiftMainFrame": 0,
+            "observedFirstVisualChange": 6,
+            "observedFirstVisualChangeTs": 70880972841,
+            "observedLastVisualChange": 3745,
+            "observedLastVisualChangeTs": 70884711841,
+            "observedSpeedIndex": 1558,
+            "observedSpeedIndexTs": 70882524490
+          },
+          "document": {
+            "status": 200,
+            "protocol": "h3",
+            "requestTiming": {
+              "requestTime": 70880.967437,
+              "proxyStart": -1,
+              "proxyEnd": -1,
+              "dnsStart": 0,
+              "dnsEnd": 0,
+              "connectStart": 0,
+              "connectEnd": 93.268,
+              "sslStart": 0,
+              "sslEnd": 93.268,
+              "workerStart": -1,
+              "workerReady": -1,
+              "workerFetchStart": -1,
+              "workerRespondWithSettled": -1,
+              "sendStart": 93.329,
+              "sendEnd": 93.396,
+              "pushStart": 0,
+              "pushEnd": 0,
+              "receiveHeadersStart": 265.269,
+              "receiveHeadersEnd": 486.551
+            },
+            "serverResponseTime": 172,
+            "serverTiming": "cfCacheStatus;desc=\"DYNAMIC\"\ncfEdge;dur=6,cfOrigin;dur=291\ncfExtPri",
+            "cfCacheStatus": "DYNAMIC",
+            "cfRay": "a5179de44f3119ea-KIX"
+          },
+          "scores": {
+            "performance": 0.99,
+            "accessibility": 1,
+            "best-practices": 0.81,
+            "seo": 0.69,
+            "agentic-browsing": 1
+          },
+          "metrics": {
+            "first-contentful-paint": 1058.2649999999999,
+            "largest-contentful-paint": 1058.2649999999999,
+            "total-blocking-time": 23,
+            "cumulative-layout-shift": 0
+          },
+          "warnings": [],
+          "failedAudits": [
+            {
+              "id": "speed-index",
+              "title": "Speed Index",
+              "displayValue": "3.0 s"
+            },
+            {
+              "id": "max-potential-fid",
+              "title": "Max Potential First Input Delay",
+              "displayValue": "70 ms"
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "displayValue": "3.0 s"
+            },
+            {
+              "id": "deprecations",
+              "title": "Uses deprecated APIs",
+              "displayValue": "3 warnings found"
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "displayValue": "Est savings of 93 KiB"
+            },
+            {
+              "id": "is-crawlable",
+              "title": "Page is blocked from indexing"
+            },
+            {
+              "id": "cache-insight",
+              "title": "Use efficient cache lifetimes",
+              "displayValue": "Est savings of 16 KiB"
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "displayValue": "Est savings of 10 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree"
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "failures": [
+    {
+      "url": "https://law.viento.me/",
+      "error": "Individual lab performance budget exceeded"
+    }
+  ]
+}

@@ -1,0 +1,162 @@
+[
+  {
+    "profile": "mobile",
+    "run": 1,
+    "version": "1.25.2",
+    "light": {
+      "ratio": 6.701618401398807,
+      "fg": "color: rgb(255, 255, 255)",
+      "bg": "background: rgb(29, 78, 216)"
+    },
+    "dark": {
+      "ratio": 6.701618401398807,
+      "fg": "color: rgb(255, 255, 255)",
+      "bg": "background: rgb(29, 78, 216)"
+    },
+    "errors": []
+  },
+  {
+    "profile": "mobile",
+    "run": 2,
+    "version": "1.25.2",
+    "light": {
+      "ratio": 6.701618401398807,
+      "fg": "color: rgb(255, 255, 255)",
+      "bg": "background: rgb(29, 78, 216)"
+    },
+    "dark": {
+      "ratio": 6.701618401398807,
+      "fg": "color: rgb(255, 255, 255)",
+      "bg": "background: rgb(29, 78, 216)"
+    },
+    "errors": []
+  },
+  {
+    "profile": "mobile",
+    "run": 3,
+    "version": "1.25.2",
+    "light": {
+      "ratio": 6.701618401398807,
+      "fg": "color: rgb(255, 255, 255)",
+      "bg": "background: rgb(29, 78, 216)"
+    },
+    "dark": {
+      "ratio": 6.701618401398807,
+      "fg": "color: rgb(255, 255, 255)",
+      "bg": "background: rgb(29, 78, 216)"
+    },
+    "errors": []
+  },
+  {
+    "profile": "mobile",
+    "run": 4,
+    "version": "1.25.2",
+    "light": {
+      "ratio": 6.701618401398807,
+      "fg": "color: rgb(255, 255, 255)",
+      "bg": "background: rgb(29, 78, 216)"
+    },
+    "dark": {
+      "ratio": 6.701618401398807,
+      "fg": "color: rgb(255, 255, 255)",
+      "bg": "background: rgb(29, 78, 216)"
+    },
+    "errors": []
+  },
+  {
+    "profile": "mobile",
+    "run": 5,
+    "version": "1.25.2",
+    "light": {
+      "ratio": 6.701618401398807,
+      "fg": "color: rgb(255, 255, 255)",
+      "bg": "background: rgb(29, 78, 216)"
+    },
+    "dark": {
+      "ratio": 6.701618401398807,
+      "fg": "color: rgb(255, 255, 255)",
+      "bg": "background: rgb(29, 78, 216)"
+    },
+    "errors": []
+  },
+  {
+    "profile": "desktop",
+    "run": 1,
+    "version": "1.25.2",
+    "light": {
+      "ratio": 6.701618401398807,
+      "fg": "color: rgb(255, 255, 255)",
+      "bg": "background: rgb(29, 78, 216)"
+    },
+    "dark": {
+      "ratio": 6.701618401398807,
+      "fg": "color: rgb(255, 255, 255)",
+      "bg": "background: rgb(29, 78, 216)"
+    },
+    "errors": []
+  },
+  {
+    "profile": "desktop",
+    "run": 2,
+    "version": "1.25.2",
+    "light": {
+      "ratio": 6.701618401398807,
+      "fg": "color: rgb(255, 255, 255)",
+      "bg": "background: rgb(29, 78, 216)"
+    },
+    "dark": {
+      "ratio": 6.701618401398807,
+      "fg": "color: rgb(255, 255, 255)",
+      "bg": "background: rgb(29, 78, 216)"
+    },
+    "errors": []
+  },
+  {
+    "profile": "desktop",
+    "run": 3,
+    "version": "1.25.2",
+    "light": {
+      "ratio": 6.701618401398807,
+      "fg": "color: rgb(255, 255, 255)",
+      "bg": "background: rgb(29, 78, 216)"
+    },
+    "dark": {
+      "ratio": 6.701618401398807,
+      "fg": "color: rgb(255, 255, 255)",
+      "bg": "background: rgb(29, 78, 216)"
+    },
+    "errors": []
+  },
+  {
+    "profile": "desktop",
+    "run": 4,
+    "version": "1.25.2",
+    "light": {
+      "ratio": 6.701618401398807,
+      "fg": "color: rgb(255, 255, 255)",
+      "bg": "background: rgb(29, 78, 216)"
+    },
+    "dark": {
+      "ratio": 6.701618401398807,
+      "fg": "color: rgb(255, 255, 255)",
+      "bg": "background: rgb(29, 78, 216)"
+    },
+    "errors": []
+  },
+  {
+    "profile": "desktop",
+    "run": 5,
+    "version": "1.25.2",
+    "light": {
+      "ratio": 6.701618401398807,
+      "fg": "color: rgb(255, 255, 255)",
+      "bg": "background: rgb(29, 78, 216)"
+    },
+    "dark": {
+      "ratio": 6.701618401398807,
+      "fg": "color: rgb(255, 255, 255)",
+      "bg": "background: rgb(29, 78, 216)"
+    },
+    "errors": []
+  }
+]

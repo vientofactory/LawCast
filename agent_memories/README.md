@@ -392,3 +392,7 @@ agent_memories/
 ## 54 — Cloudflare Script Timing (2026-10-28)
 
 - [Production verification](54-cloudflare-script-timing/verification.md): hostname-scoped Rocket Loader exception, saved API configuration and rollback, paired production Lighthouse measurements, real desktop/mobile smoke checks, and partial-remediation verdict with unchanged bot-defense/RUM warnings.
+
+## 55 — LCP Outlier Diagnostics (2026-10-28)
+
+- [Production investigation](55-lcp-outlier-diagnostics/investigation.md): 24 new cold Lighthouse runs, single-feature browser isolation, application Paint versus presentation and Cloudflare response timing, simulated versus actual-throttled LCP, preserved outliers and audit/Playwright regression guards.
