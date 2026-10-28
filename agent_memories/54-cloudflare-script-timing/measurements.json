@@ -1,0 +1,4017 @@
+{
+  "comparison": [
+    {
+      "route": "/",
+      "before": {
+        "performanceMedian": 0.93,
+        "metrics": {
+          "first-contentful-paint": 2438.0600000000004,
+          "largest-contentful-paint": 2438.0600000000004,
+          "total-blocking-time": 4.5,
+          "cumulative-layout-shift": 0
+        }
+      },
+      "after": {
+        "performanceMedian": 0.95,
+        "metrics": {
+          "first-contentful-paint": 2317.3419999999996,
+          "largest-contentful-paint": 2317.3419999999996,
+          "total-blocking-time": 6,
+          "cumulative-layout-shift": 0
+        }
+      }
+    },
+    {
+      "route": "/webhook",
+      "before": {
+        "performanceMedian": 0.97,
+        "metrics": {
+          "first-contentful-paint": 1794.741,
+          "largest-contentful-paint": 1794.741,
+          "total-blocking-time": 27,
+          "cumulative-layout-shift": 0
+        }
+      },
+      "after": {
+        "performanceMedian": 0.98,
+        "metrics": {
+          "first-contentful-paint": 1674.3829999999998,
+          "largest-contentful-paint": 1674.3829999999998,
+          "total-blocking-time": 3.5,
+          "cumulative-layout-shift": 0
+        }
+      }
+    },
+    {
+      "route": "/crawling-transparency",
+      "before": {
+        "performanceMedian": 0.99,
+        "metrics": {
+          "first-contentful-paint": 1625.089,
+          "largest-contentful-paint": 1625.089,
+          "total-blocking-time": 2,
+          "cumulative-layout-shift": 0
+        }
+      },
+      "after": {
+        "performanceMedian": 0.98,
+        "metrics": {
+          "first-contentful-paint": 1733.9359999999997,
+          "largest-contentful-paint": 1733.9359999999997,
+          "total-blocking-time": 12.5,
+          "cumulative-layout-shift": 0
+        }
+      }
+    }
+  ],
+  "summaries": {
+    "cloudflare-before": {
+      "results": [
+        {
+          "route": "/",
+          "formFactor": "mobile",
+          "metrics": {
+            "first-contentful-paint": 2438.0600000000004,
+            "largest-contentful-paint": 2438.0600000000004,
+            "total-blocking-time": 4.5,
+            "cumulative-layout-shift": 0
+          },
+          "measurements": [
+            {
+              "url": "https://law.viento.me/",
+              "fetchTime": "2026-10-28T01:12:42.448Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 0.93,
+                "accessibility": 1,
+                "best-practices": 0.58,
+                "seo": 1,
+                "agentic-browsing": 0.5
+              },
+              "metrics": {
+                "first-contentful-paint": 2438.0600000000004,
+                "largest-contentful-paint": 2438.0600000000004,
+                "total-blocking-time": 13.5,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "first-contentful-paint",
+                  "title": "First Contentful Paint",
+                  "displayValue": "2.4 s"
+                },
+                {
+                  "id": "largest-contentful-paint",
+                  "title": "Largest Contentful Paint",
+                  "displayValue": "2.4 s"
+                },
+                {
+                  "id": "speed-index",
+                  "title": "Speed Index",
+                  "displayValue": "4.1 s"
+                },
+                {
+                  "id": "interactive",
+                  "title": "Time to Interactive",
+                  "displayValue": "4.9 s"
+                },
+                {
+                  "id": "deprecations",
+                  "title": "Uses deprecated APIs",
+                  "displayValue": "3 warnings found"
+                },
+                {
+                  "id": "third-party-cookies",
+                  "title": "Uses third-party cookies",
+                  "displayValue": "1 cookie found"
+                },
+                {
+                  "id": "label-content-name-mismatch",
+                  "title": "Elements with visible text labels do not have matching accessible names."
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "inspector-issues",
+                  "title": "Issues were logged in the `Issues` panel in Chrome Devtools"
+                },
+                {
+                  "id": "agent-accessibility-tree",
+                  "title": "Accessibility tree is not well-formed"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 29 KiB"
+                },
+                {
+                  "id": "legacy-javascript-insight",
+                  "title": "Legacy JavaScript",
+                  "displayValue": "Est savings of 10 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests"
+                }
+              ]
+            },
+            {
+              "url": "https://law.viento.me/",
+              "fetchTime": "2026-10-28T01:12:53.744Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 0.95,
+                "accessibility": 1,
+                "best-practices": 0.58,
+                "seo": 1,
+                "agentic-browsing": 0.5
+              },
+              "metrics": {
+                "first-contentful-paint": 2269.2219999999998,
+                "largest-contentful-paint": 2269.2219999999998,
+                "total-blocking-time": 4.5,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "first-contentful-paint",
+                  "title": "First Contentful Paint",
+                  "displayValue": "2.3 s"
+                },
+                {
+                  "id": "largest-contentful-paint",
+                  "title": "Largest Contentful Paint",
+                  "displayValue": "2.3 s"
+                },
+                {
+                  "id": "speed-index",
+                  "title": "Speed Index",
+                  "displayValue": "3.3 s"
+                },
+                {
+                  "id": "interactive",
+                  "title": "Time to Interactive",
+                  "displayValue": "4.1 s"
+                },
+                {
+                  "id": "deprecations",
+                  "title": "Uses deprecated APIs",
+                  "displayValue": "3 warnings found"
+                },
+                {
+                  "id": "third-party-cookies",
+                  "title": "Uses third-party cookies",
+                  "displayValue": "1 cookie found"
+                },
+                {
+                  "id": "label-content-name-mismatch",
+                  "title": "Elements with visible text labels do not have matching accessible names."
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "inspector-issues",
+                  "title": "Issues were logged in the `Issues` panel in Chrome Devtools"
+                },
+                {
+                  "id": "agent-accessibility-tree",
+                  "title": "Accessibility tree is not well-formed"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 30 KiB"
+                },
+                {
+                  "id": "legacy-javascript-insight",
+                  "title": "Legacy JavaScript",
+                  "displayValue": "Est savings of 10 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests"
+                }
+              ]
+            },
+            {
+              "url": "https://law.viento.me/",
+              "fetchTime": "2026-10-28T01:13:03.551Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 0.9,
+                "accessibility": 1,
+                "best-practices": 0.58,
+                "seo": 1,
+                "agentic-browsing": 0.5
+              },
+              "metrics": {
+                "first-contentful-paint": 2836.781,
+                "largest-contentful-paint": 2836.781,
+                "total-blocking-time": 3.5,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "first-contentful-paint",
+                  "title": "First Contentful Paint",
+                  "displayValue": "2.8 s"
+                },
+                {
+                  "id": "largest-contentful-paint",
+                  "title": "Largest Contentful Paint",
+                  "displayValue": "2.8 s"
+                },
+                {
+                  "id": "speed-index",
+                  "title": "Speed Index",
+                  "displayValue": "3.7 s"
+                },
+                {
+                  "id": "interactive",
+                  "title": "Time to Interactive",
+                  "displayValue": "5.2 s"
+                },
+                {
+                  "id": "deprecations",
+                  "title": "Uses deprecated APIs",
+                  "displayValue": "3 warnings found"
+                },
+                {
+                  "id": "third-party-cookies",
+                  "title": "Uses third-party cookies",
+                  "displayValue": "1 cookie found"
+                },
+                {
+                  "id": "label-content-name-mismatch",
+                  "title": "Elements with visible text labels do not have matching accessible names."
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "inspector-issues",
+                  "title": "Issues were logged in the `Issues` panel in Chrome Devtools"
+                },
+                {
+                  "id": "agent-accessibility-tree",
+                  "title": "Accessibility tree is not well-formed"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 29 KiB"
+                },
+                {
+                  "id": "legacy-javascript-insight",
+                  "title": "Legacy JavaScript",
+                  "displayValue": "Est savings of 10 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "route": "/webhook",
+          "formFactor": "mobile",
+          "metrics": {
+            "first-contentful-paint": 1794.741,
+            "largest-contentful-paint": 1794.741,
+            "total-blocking-time": 27,
+            "cumulative-layout-shift": 0
+          },
+          "measurements": [
+            {
+              "url": "https://law.viento.me/webhook",
+              "fetchTime": "2026-10-28T01:13:16.652Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 0.96,
+                "accessibility": 1,
+                "best-practices": 0.81,
+                "seo": 0.69,
+                "agentic-browsing": 1
+              },
+              "metrics": {
+                "first-contentful-paint": 1794.741,
+                "largest-contentful-paint": 1794.741,
+                "total-blocking-time": 27,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "first-contentful-paint",
+                  "title": "First Contentful Paint",
+                  "displayValue": "1.8 s"
+                },
+                {
+                  "id": "largest-contentful-paint",
+                  "title": "Largest Contentful Paint",
+                  "displayValue": "1.8 s"
+                },
+                {
+                  "id": "speed-index",
+                  "title": "Speed Index",
+                  "displayValue": "4.5 s"
+                },
+                {
+                  "id": "interactive",
+                  "title": "Time to Interactive",
+                  "displayValue": "3.5 s"
+                },
+                {
+                  "id": "deprecations",
+                  "title": "Uses deprecated APIs",
+                  "displayValue": "3 warnings found"
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "is-crawlable",
+                  "title": "Page is blocked from indexing"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 16 KiB"
+                },
+                {
+                  "id": "lcp-breakdown-insight",
+                  "title": "LCP breakdown"
+                },
+                {
+                  "id": "legacy-javascript-insight",
+                  "title": "Legacy JavaScript",
+                  "displayValue": "Est savings of 10 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 930 ms"
+                }
+              ]
+            },
+            {
+              "url": "https://law.viento.me/webhook",
+              "fetchTime": "2026-10-28T01:13:27.382Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 0.97,
+                "accessibility": 1,
+                "best-practices": 0.81,
+                "seo": 0.69,
+                "agentic-browsing": 1
+              },
+              "metrics": {
+                "first-contentful-paint": 1880.6760000000002,
+                "largest-contentful-paint": 1880.6760000000002,
+                "total-blocking-time": 46.5,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "first-contentful-paint",
+                  "title": "First Contentful Paint",
+                  "displayValue": "1.9 s"
+                },
+                {
+                  "id": "largest-contentful-paint",
+                  "title": "Largest Contentful Paint",
+                  "displayValue": "1.9 s"
+                },
+                {
+                  "id": "speed-index",
+                  "title": "Speed Index",
+                  "displayValue": "3.2 s"
+                },
+                {
+                  "id": "max-potential-fid",
+                  "title": "Max Potential First Input Delay",
+                  "displayValue": "90 ms"
+                },
+                {
+                  "id": "interactive",
+                  "title": "Time to Interactive",
+                  "displayValue": "3.6 s"
+                },
+                {
+                  "id": "deprecations",
+                  "title": "Uses deprecated APIs",
+                  "displayValue": "3 warnings found"
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "is-crawlable",
+                  "title": "Page is blocked from indexing"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 16 KiB"
+                },
+                {
+                  "id": "legacy-javascript-insight",
+                  "title": "Legacy JavaScript",
+                  "displayValue": "Est savings of 10 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 930 ms"
+                }
+              ]
+            },
+            {
+              "url": "https://law.viento.me/webhook",
+              "fetchTime": "2026-10-28T01:13:36.418Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 0.99,
+                "accessibility": 1,
+                "best-practices": 0.81,
+                "seo": 0.69,
+                "agentic-browsing": 1
+              },
+              "metrics": {
+                "first-contentful-paint": 1649.21,
+                "largest-contentful-paint": 1649.21,
+                "total-blocking-time": 24,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "first-contentful-paint",
+                  "title": "First Contentful Paint",
+                  "displayValue": "1.6 s"
+                },
+                {
+                  "id": "largest-contentful-paint",
+                  "title": "Largest Contentful Paint",
+                  "displayValue": "1.6 s"
+                },
+                {
+                  "id": "max-potential-fid",
+                  "title": "Max Potential First Input Delay",
+                  "displayValue": "70 ms"
+                },
+                {
+                  "id": "interactive",
+                  "title": "Time to Interactive",
+                  "displayValue": "3.4 s"
+                },
+                {
+                  "id": "deprecations",
+                  "title": "Uses deprecated APIs",
+                  "displayValue": "3 warnings found"
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "is-crawlable",
+                  "title": "Page is blocked from indexing"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 17 KiB"
+                },
+                {
+                  "id": "legacy-javascript-insight",
+                  "title": "Legacy JavaScript",
+                  "displayValue": "Est savings of 10 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 780 ms"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "route": "/crawling-transparency",
+          "formFactor": "mobile",
+          "metrics": {
+            "first-contentful-paint": 1625.089,
+            "largest-contentful-paint": 1625.089,
+            "total-blocking-time": 2,
+            "cumulative-layout-shift": 0
+          },
+          "measurements": [
+            {
+              "url": "https://law.viento.me/crawling-transparency",
+              "fetchTime": "2026-10-28T01:13:44.866Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 0.99,
+                "accessibility": 1,
+                "best-practices": 0.81,
+                "seo": 1,
+                "agentic-browsing": 1
+              },
+              "metrics": {
+                "first-contentful-paint": 1574.779,
+                "largest-contentful-paint": 1574.779,
+                "total-blocking-time": 8,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "first-contentful-paint",
+                  "title": "First Contentful Paint",
+                  "displayValue": "1.6 s"
+                },
+                {
+                  "id": "largest-contentful-paint",
+                  "title": "Largest Contentful Paint",
+                  "displayValue": "1.6 s"
+                },
+                {
+                  "id": "speed-index",
+                  "title": "Speed Index",
+                  "displayValue": "3.0 s"
+                },
+                {
+                  "id": "interactive",
+                  "title": "Time to Interactive",
+                  "displayValue": "3.3 s"
+                },
+                {
+                  "id": "deprecations",
+                  "title": "Uses deprecated APIs",
+                  "displayValue": "3 warnings found"
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 16 KiB"
+                },
+                {
+                  "id": "legacy-javascript-insight",
+                  "title": "Legacy JavaScript",
+                  "displayValue": "Est savings of 10 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 780 ms"
+                }
+              ]
+            },
+            {
+              "url": "https://law.viento.me/crawling-transparency",
+              "fetchTime": "2026-10-28T01:13:54.219Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 0.99,
+                "accessibility": 1,
+                "best-practices": 0.81,
+                "seo": 1,
+                "agentic-browsing": 1
+              },
+              "metrics": {
+                "first-contentful-paint": 1625.089,
+                "largest-contentful-paint": 1625.089,
+                "total-blocking-time": 2,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "first-contentful-paint",
+                  "title": "First Contentful Paint",
+                  "displayValue": "1.6 s"
+                },
+                {
+                  "id": "largest-contentful-paint",
+                  "title": "Largest Contentful Paint",
+                  "displayValue": "1.6 s"
+                },
+                {
+                  "id": "interactive",
+                  "title": "Time to Interactive",
+                  "displayValue": "2.9 s"
+                },
+                {
+                  "id": "deprecations",
+                  "title": "Uses deprecated APIs",
+                  "displayValue": "3 warnings found"
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 16 KiB"
+                },
+                {
+                  "id": "legacy-javascript-insight",
+                  "title": "Legacy JavaScript",
+                  "displayValue": "Est savings of 10 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 770 ms"
+                }
+              ]
+            },
+            {
+              "url": "https://law.viento.me/crawling-transparency",
+              "fetchTime": "2026-10-28T01:14:02.814Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 0.99,
+                "accessibility": 1,
+                "best-practices": 0.81,
+                "seo": 1,
+                "agentic-browsing": 1
+              },
+              "metrics": {
+                "first-contentful-paint": 1751.3505,
+                "largest-contentful-paint": 1751.3505,
+                "total-blocking-time": 2,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "first-contentful-paint",
+                  "title": "First Contentful Paint",
+                  "displayValue": "1.8 s"
+                },
+                {
+                  "id": "largest-contentful-paint",
+                  "title": "Largest Contentful Paint",
+                  "displayValue": "1.8 s"
+                },
+                {
+                  "id": "interactive",
+                  "title": "Time to Interactive",
+                  "displayValue": "3.0 s"
+                },
+                {
+                  "id": "deprecations",
+                  "title": "Uses deprecated APIs",
+                  "displayValue": "3 warnings found"
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 16 KiB"
+                },
+                {
+                  "id": "legacy-javascript-insight",
+                  "title": "Legacy JavaScript",
+                  "displayValue": "Est savings of 10 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 880 ms"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "failures": []
+    },
+    "cloudflare-after": {
+      "results": [
+        {
+          "route": "/",
+          "formFactor": "mobile",
+          "metrics": {
+            "first-contentful-paint": 2317.3419999999996,
+            "largest-contentful-paint": 2317.3419999999996,
+            "total-blocking-time": 6,
+            "cumulative-layout-shift": 0
+          },
+          "measurements": [
+            {
+              "url": "https://law.viento.me/",
+              "fetchTime": "2026-10-28T01:15:29.655Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 0.9,
+                "accessibility": 1,
+                "best-practices": 0.58,
+                "seo": 1,
+                "agentic-browsing": 0.5
+              },
+              "metrics": {
+                "first-contentful-paint": 2663.637,
+                "largest-contentful-paint": 2663.637,
+                "total-blocking-time": 32.5,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "first-contentful-paint",
+                  "title": "First Contentful Paint",
+                  "displayValue": "2.7 s"
+                },
+                {
+                  "id": "largest-contentful-paint",
+                  "title": "Largest Contentful Paint",
+                  "displayValue": "2.7 s"
+                },
+                {
+                  "id": "speed-index",
+                  "title": "Speed Index",
+                  "displayValue": "4.6 s"
+                },
+                {
+                  "id": "max-potential-fid",
+                  "title": "Max Potential First Input Delay",
+                  "displayValue": "100 ms"
+                },
+                {
+                  "id": "interactive",
+                  "title": "Time to Interactive",
+                  "displayValue": "4.3 s"
+                },
+                {
+                  "id": "deprecations",
+                  "title": "Uses deprecated APIs",
+                  "displayValue": "3 warnings found"
+                },
+                {
+                  "id": "third-party-cookies",
+                  "title": "Uses third-party cookies",
+                  "displayValue": "1 cookie found"
+                },
+                {
+                  "id": "label-content-name-mismatch",
+                  "title": "Elements with visible text labels do not have matching accessible names."
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "inspector-issues",
+                  "title": "Issues were logged in the `Issues` panel in Chrome Devtools"
+                },
+                {
+                  "id": "agent-accessibility-tree",
+                  "title": "Accessibility tree is not well-formed"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 27 KiB"
+                },
+                {
+                  "id": "lcp-breakdown-insight",
+                  "title": "LCP breakdown"
+                },
+                {
+                  "id": "legacy-javascript-insight",
+                  "title": "Legacy JavaScript",
+                  "displayValue": "Est savings of 10 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests"
+                }
+              ]
+            },
+            {
+              "url": "https://law.viento.me/",
+              "fetchTime": "2026-10-28T01:15:40.505Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 0.95,
+                "accessibility": 1,
+                "best-practices": 0.58,
+                "seo": 1,
+                "agentic-browsing": 0.5
+              },
+              "metrics": {
+                "first-contentful-paint": 2317.3419999999996,
+                "largest-contentful-paint": 2317.3419999999996,
+                "total-blocking-time": 2.5,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "first-contentful-paint",
+                  "title": "First Contentful Paint",
+                  "displayValue": "2.3 s"
+                },
+                {
+                  "id": "largest-contentful-paint",
+                  "title": "Largest Contentful Paint",
+                  "displayValue": "2.3 s"
+                },
+                {
+                  "id": "speed-index",
+                  "title": "Speed Index",
+                  "displayValue": "3.4 s"
+                },
+                {
+                  "id": "interactive",
+                  "title": "Time to Interactive",
+                  "displayValue": "3.8 s"
+                },
+                {
+                  "id": "deprecations",
+                  "title": "Uses deprecated APIs",
+                  "displayValue": "3 warnings found"
+                },
+                {
+                  "id": "third-party-cookies",
+                  "title": "Uses third-party cookies",
+                  "displayValue": "1 cookie found"
+                },
+                {
+                  "id": "label-content-name-mismatch",
+                  "title": "Elements with visible text labels do not have matching accessible names."
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "inspector-issues",
+                  "title": "Issues were logged in the `Issues` panel in Chrome Devtools"
+                },
+                {
+                  "id": "agent-accessibility-tree",
+                  "title": "Accessibility tree is not well-formed"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 27 KiB"
+                },
+                {
+                  "id": "legacy-javascript-insight",
+                  "title": "Legacy JavaScript",
+                  "displayValue": "Est savings of 10 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 160 ms"
+                }
+              ]
+            },
+            {
+              "url": "https://law.viento.me/",
+              "fetchTime": "2026-10-28T01:15:50.345Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 0.98,
+                "accessibility": 1,
+                "best-practices": 0.58,
+                "seo": 1,
+                "agentic-browsing": 0.5
+              },
+              "metrics": {
+                "first-contentful-paint": 1864.5869999999998,
+                "largest-contentful-paint": 1864.5869999999998,
+                "total-blocking-time": 6,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "first-contentful-paint",
+                  "title": "First Contentful Paint",
+                  "displayValue": "1.9 s"
+                },
+                {
+                  "id": "largest-contentful-paint",
+                  "title": "Largest Contentful Paint",
+                  "displayValue": "1.9 s"
+                },
+                {
+                  "id": "interactive",
+                  "title": "Time to Interactive",
+                  "displayValue": "3.4 s"
+                },
+                {
+                  "id": "deprecations",
+                  "title": "Uses deprecated APIs",
+                  "displayValue": "3 warnings found"
+                },
+                {
+                  "id": "third-party-cookies",
+                  "title": "Uses third-party cookies",
+                  "displayValue": "1 cookie found"
+                },
+                {
+                  "id": "label-content-name-mismatch",
+                  "title": "Elements with visible text labels do not have matching accessible names."
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "inspector-issues",
+                  "title": "Issues were logged in the `Issues` panel in Chrome Devtools"
+                },
+                {
+                  "id": "agent-accessibility-tree",
+                  "title": "Accessibility tree is not well-formed"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 27 KiB"
+                },
+                {
+                  "id": "legacy-javascript-insight",
+                  "title": "Legacy JavaScript",
+                  "displayValue": "Est savings of 10 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 910 ms"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "route": "/webhook",
+          "formFactor": "mobile",
+          "metrics": {
+            "first-contentful-paint": 1674.3829999999998,
+            "largest-contentful-paint": 1674.3829999999998,
+            "total-blocking-time": 3.5,
+            "cumulative-layout-shift": 0
+          },
+          "measurements": [
+            {
+              "url": "https://law.viento.me/webhook",
+              "fetchTime": "2026-10-28T01:15:59.925Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 0.98,
+                "accessibility": 1,
+                "best-practices": 0.81,
+                "seo": 0.69,
+                "agentic-browsing": 1
+              },
+              "metrics": {
+                "first-contentful-paint": 1727.348,
+                "largest-contentful-paint": 1727.348,
+                "total-blocking-time": 6,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "first-contentful-paint",
+                  "title": "First Contentful Paint",
+                  "displayValue": "1.7 s"
+                },
+                {
+                  "id": "largest-contentful-paint",
+                  "title": "Largest Contentful Paint",
+                  "displayValue": "1.7 s"
+                },
+                {
+                  "id": "speed-index",
+                  "title": "Speed Index",
+                  "displayValue": "3.1 s"
+                },
+                {
+                  "id": "interactive",
+                  "title": "Time to Interactive",
+                  "displayValue": "3.3 s"
+                },
+                {
+                  "id": "deprecations",
+                  "title": "Uses deprecated APIs",
+                  "displayValue": "3 warnings found"
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "is-crawlable",
+                  "title": "Page is blocked from indexing"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 16 KiB"
+                },
+                {
+                  "id": "legacy-javascript-insight",
+                  "title": "Legacy JavaScript",
+                  "displayValue": "Est savings of 10 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 920 ms"
+                }
+              ]
+            },
+            {
+              "url": "https://law.viento.me/webhook",
+              "fetchTime": "2026-10-28T01:16:08.732Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 0.99,
+                "accessibility": 1,
+                "best-practices": 0.81,
+                "seo": 0.69,
+                "agentic-browsing": 1
+              },
+              "metrics": {
+                "first-contentful-paint": 1604.538,
+                "largest-contentful-paint": 1604.538,
+                "total-blocking-time": 3.5,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "first-contentful-paint",
+                  "title": "First Contentful Paint",
+                  "displayValue": "1.6 s"
+                },
+                {
+                  "id": "largest-contentful-paint",
+                  "title": "Largest Contentful Paint",
+                  "displayValue": "1.6 s"
+                },
+                {
+                  "id": "interactive",
+                  "title": "Time to Interactive",
+                  "displayValue": "3.2 s"
+                },
+                {
+                  "id": "deprecations",
+                  "title": "Uses deprecated APIs",
+                  "displayValue": "3 warnings found"
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "is-crawlable",
+                  "title": "Page is blocked from indexing"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 15 KiB"
+                },
+                {
+                  "id": "legacy-javascript-insight",
+                  "title": "Legacy JavaScript",
+                  "displayValue": "Est savings of 10 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 830 ms"
+                }
+              ]
+            },
+            {
+              "url": "https://law.viento.me/webhook",
+              "fetchTime": "2026-10-28T01:16:17.374Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 0.98,
+                "accessibility": 1,
+                "best-practices": 0.81,
+                "seo": 0.69,
+                "agentic-browsing": 1
+              },
+              "metrics": {
+                "first-contentful-paint": 1674.3829999999998,
+                "largest-contentful-paint": 1674.3829999999998,
+                "total-blocking-time": 2.5,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "first-contentful-paint",
+                  "title": "First Contentful Paint",
+                  "displayValue": "1.7 s"
+                },
+                {
+                  "id": "largest-contentful-paint",
+                  "title": "Largest Contentful Paint",
+                  "displayValue": "1.7 s"
+                },
+                {
+                  "id": "speed-index",
+                  "title": "Speed Index",
+                  "displayValue": "3.0 s"
+                },
+                {
+                  "id": "interactive",
+                  "title": "Time to Interactive",
+                  "displayValue": "3.2 s"
+                },
+                {
+                  "id": "deprecations",
+                  "title": "Uses deprecated APIs",
+                  "displayValue": "3 warnings found"
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "is-crawlable",
+                  "title": "Page is blocked from indexing"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 15 KiB"
+                },
+                {
+                  "id": "legacy-javascript-insight",
+                  "title": "Legacy JavaScript",
+                  "displayValue": "Est savings of 10 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 880 ms"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "route": "/crawling-transparency",
+          "formFactor": "mobile",
+          "metrics": {
+            "first-contentful-paint": 1733.9359999999997,
+            "largest-contentful-paint": 1733.9359999999997,
+            "total-blocking-time": 12.5,
+            "cumulative-layout-shift": 0
+          },
+          "measurements": [
+            {
+              "url": "https://law.viento.me/crawling-transparency",
+              "fetchTime": "2026-10-28T01:16:26.056Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 0.98,
+                "accessibility": 1,
+                "best-practices": 0.81,
+                "seo": 1,
+                "agentic-browsing": 1
+              },
+              "metrics": {
+                "first-contentful-paint": 1733.9359999999997,
+                "largest-contentful-paint": 1733.9359999999997,
+                "total-blocking-time": 12.5,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "first-contentful-paint",
+                  "title": "First Contentful Paint",
+                  "displayValue": "1.7 s"
+                },
+                {
+                  "id": "largest-contentful-paint",
+                  "title": "Largest Contentful Paint",
+                  "displayValue": "1.7 s"
+                },
+                {
+                  "id": "speed-index",
+                  "title": "Speed Index",
+                  "displayValue": "3.0 s"
+                },
+                {
+                  "id": "max-potential-fid",
+                  "title": "Max Potential First Input Delay",
+                  "displayValue": "70 ms"
+                },
+                {
+                  "id": "interactive",
+                  "title": "Time to Interactive",
+                  "displayValue": "3.2 s"
+                },
+                {
+                  "id": "deprecations",
+                  "title": "Uses deprecated APIs",
+                  "displayValue": "3 warnings found"
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 14 KiB"
+                },
+                {
+                  "id": "legacy-javascript-insight",
+                  "title": "Legacy JavaScript",
+                  "displayValue": "Est savings of 10 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 780 ms"
+                }
+              ]
+            },
+            {
+              "url": "https://law.viento.me/crawling-transparency",
+              "fetchTime": "2026-10-28T01:16:34.974Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 0.98,
+                "accessibility": 1,
+                "best-practices": 0.81,
+                "seo": 1,
+                "agentic-browsing": 1
+              },
+              "metrics": {
+                "first-contentful-paint": 1763.829,
+                "largest-contentful-paint": 1763.829,
+                "total-blocking-time": 21,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "first-contentful-paint",
+                  "title": "First Contentful Paint",
+                  "displayValue": "1.8 s"
+                },
+                {
+                  "id": "largest-contentful-paint",
+                  "title": "Largest Contentful Paint",
+                  "displayValue": "1.8 s"
+                },
+                {
+                  "id": "speed-index",
+                  "title": "Speed Index",
+                  "displayValue": "3.0 s"
+                },
+                {
+                  "id": "max-potential-fid",
+                  "title": "Max Potential First Input Delay",
+                  "displayValue": "70 ms"
+                },
+                {
+                  "id": "interactive",
+                  "title": "Time to Interactive",
+                  "displayValue": "3.3 s"
+                },
+                {
+                  "id": "deprecations",
+                  "title": "Uses deprecated APIs",
+                  "displayValue": "3 warnings found"
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 16 KiB"
+                },
+                {
+                  "id": "legacy-javascript-insight",
+                  "title": "Legacy JavaScript",
+                  "displayValue": "Est savings of 10 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 940 ms"
+                }
+              ]
+            },
+            {
+              "url": "https://law.viento.me/crawling-transparency",
+              "fetchTime": "2026-10-28T01:16:43.974Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 0.99,
+                "accessibility": 1,
+                "best-practices": 0.81,
+                "seo": 1,
+                "agentic-browsing": 1
+              },
+              "metrics": {
+                "first-contentful-paint": 1595.1759999999997,
+                "largest-contentful-paint": 1595.1759999999997,
+                "total-blocking-time": 2.5,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "first-contentful-paint",
+                  "title": "First Contentful Paint",
+                  "displayValue": "1.6 s"
+                },
+                {
+                  "id": "largest-contentful-paint",
+                  "title": "Largest Contentful Paint",
+                  "displayValue": "1.6 s"
+                },
+                {
+                  "id": "speed-index",
+                  "title": "Speed Index",
+                  "displayValue": "3.0 s"
+                },
+                {
+                  "id": "interactive",
+                  "title": "Time to Interactive",
+                  "displayValue": "2.7 s"
+                },
+                {
+                  "id": "deprecations",
+                  "title": "Uses deprecated APIs",
+                  "displayValue": "3 warnings found"
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 15 KiB"
+                },
+                {
+                  "id": "legacy-javascript-insight",
+                  "title": "Legacy JavaScript",
+                  "displayValue": "Est savings of 10 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 800 ms"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "failures": []
+    },
+    "cloudflare-after-desktop": {
+      "results": [
+        {
+          "route": "/",
+          "formFactor": "desktop",
+          "metrics": {
+            "first-contentful-paint": 562.4479999999999,
+            "largest-contentful-paint": 562.4479999999999,
+            "total-blocking-time": 0,
+            "cumulative-layout-shift": 0
+          },
+          "measurements": [
+            {
+              "url": "https://law.viento.me/",
+              "fetchTime": "2026-10-28T01:16:56.835Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 1,
+                "accessibility": 1,
+                "best-practices": 0.58,
+                "seo": 1,
+                "agentic-browsing": 0.5
+              },
+              "metrics": {
+                "first-contentful-paint": 562.4479999999999,
+                "largest-contentful-paint": 562.4479999999999,
+                "total-blocking-time": 0,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "first-contentful-paint",
+                  "title": "First Contentful Paint",
+                  "displayValue": "0.6 s"
+                },
+                {
+                  "id": "speed-index",
+                  "title": "Speed Index",
+                  "displayValue": "0.7 s"
+                },
+                {
+                  "id": "deprecations",
+                  "title": "Uses deprecated APIs",
+                  "displayValue": "3 warnings found"
+                },
+                {
+                  "id": "third-party-cookies",
+                  "title": "Uses third-party cookies",
+                  "displayValue": "1 cookie found"
+                },
+                {
+                  "id": "label-content-name-mismatch",
+                  "title": "Elements with visible text labels do not have matching accessible names."
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "inspector-issues",
+                  "title": "Issues were logged in the `Issues` panel in Chrome Devtools"
+                },
+                {
+                  "id": "agent-accessibility-tree",
+                  "title": "Accessibility tree is not well-formed"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 27 KiB"
+                },
+                {
+                  "id": "legacy-javascript-insight",
+                  "title": "Legacy JavaScript",
+                  "displayValue": "Est savings of 10 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 280 ms"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "route": "/webhook",
+          "formFactor": "desktop",
+          "metrics": {
+            "first-contentful-paint": 565.152,
+            "largest-contentful-paint": 565.152,
+            "total-blocking-time": 0,
+            "cumulative-layout-shift": 0
+          },
+          "measurements": [
+            {
+              "url": "https://law.viento.me/webhook",
+              "fetchTime": "2026-10-28T01:17:06.663Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 1,
+                "accessibility": 1,
+                "best-practices": 0.81,
+                "seo": 0.69,
+                "agentic-browsing": 1
+              },
+              "metrics": {
+                "first-contentful-paint": 565.152,
+                "largest-contentful-paint": 565.152,
+                "total-blocking-time": 0,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "first-contentful-paint",
+                  "title": "First Contentful Paint",
+                  "displayValue": "0.6 s"
+                },
+                {
+                  "id": "deprecations",
+                  "title": "Uses deprecated APIs",
+                  "displayValue": "3 warnings found"
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "is-crawlable",
+                  "title": "Page is blocked from indexing"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 15 KiB"
+                },
+                {
+                  "id": "legacy-javascript-insight",
+                  "title": "Legacy JavaScript",
+                  "displayValue": "Est savings of 10 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 290 ms"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "route": "/crawling-transparency",
+          "formFactor": "desktop",
+          "metrics": {
+            "first-contentful-paint": 758.0825,
+            "largest-contentful-paint": 758.0825,
+            "total-blocking-time": 0,
+            "cumulative-layout-shift": 0
+          },
+          "measurements": [
+            {
+              "url": "https://law.viento.me/crawling-transparency",
+              "fetchTime": "2026-10-28T01:17:15.801Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 0.99,
+                "accessibility": 1,
+                "best-practices": 0.81,
+                "seo": 1,
+                "agentic-browsing": 1
+              },
+              "metrics": {
+                "first-contentful-paint": 758.0825,
+                "largest-contentful-paint": 758.0825,
+                "total-blocking-time": 0,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "first-contentful-paint",
+                  "title": "First Contentful Paint",
+                  "displayValue": "0.8 s"
+                },
+                {
+                  "id": "largest-contentful-paint",
+                  "title": "Largest Contentful Paint",
+                  "displayValue": "0.8 s"
+                },
+                {
+                  "id": "speed-index",
+                  "title": "Speed Index",
+                  "displayValue": "0.8 s"
+                },
+                {
+                  "id": "deprecations",
+                  "title": "Uses deprecated APIs",
+                  "displayValue": "3 warnings found"
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 15 KiB"
+                },
+                {
+                  "id": "legacy-javascript-insight",
+                  "title": "Legacy JavaScript",
+                  "displayValue": "Est savings of 10 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 470 ms"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "failures": []
+    }
+  },
+  "scriptEvidence": [
+    {
+      "stage": "cloudflare-before",
+      "report": "_-mobile-1.json",
+      "url": "https://law.viento.me/",
+      "fetchTime": "2026-10-28T01:12:42.448Z",
+      "rocketRequests": 1,
+      "rocketTransferBytes": 4368,
+      "deprecations": [
+        {
+          "value": "Fenced Frame API is deprecated and scheduled for removal.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 33821
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "type": "link",
+                "url": "https://chromestatus.com/feature/6366274495053824",
+                "text": "Check the feature status page for more details."
+              },
+              {
+                "type": "link",
+                "url": "https://chromiumdash.appspot.com/schedule",
+                "text": "This change will go into effect with milestone 156."
+              }
+            ]
+          }
+        },
+        {
+          "value": "StorageType.persistent is deprecated. Please use standardized navigator.storage instead.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 33821
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "type": "link",
+                "url": "https://chromestatus.com/feature/5176235376246784",
+                "text": "Check the feature status page for more details."
+              },
+              {
+                "type": "link",
+                "url": "https://chromiumdash.appspot.com/schedule",
+                "text": "This change will go into effect with milestone 106."
+              }
+            ]
+          }
+        },
+        {
+          "value": "The Protected Audience API is deprecated and will be removed in a future release.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 33821
+          }
+        }
+      ],
+      "bestPracticesScore": 0.58,
+      "rumBeaconRequests": 1,
+      "legacyWarnings": [
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "wastedBytes": 10483,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "signal": "Array.prototype.at",
+                "location": {
+                  "type": "source-location",
+                  "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+                  "urlProvider": "network",
+                  "line": 0,
+                  "column": 1118
+                }
+              },
+              {
+                "signal": "Array.prototype.findLast",
+                "location": {
+                  "type": "source-location",
+                  "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+                  "urlProvider": "network",
+                  "line": 0,
+                  "column": 888
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "cacheWarnings": [
+        {
+          "url": "https://discord.com/cdn-cgi/challenge-platform/h/g/scripts/jsd/c787ce48cf6b/main.js?",
+          "cacheLifetimeMs": 14400000,
+          "totalBytes": 16934,
+          "wastedBytes": 11515.119999999999
+        },
+        {
+          "url": "https://law.viento.me/cdn-cgi/challenge-platform/h/g/scripts/jsd/c787ce48cf6b/main.js?",
+          "cacheLifetimeMs": 14400000,
+          "totalBytes": 16597,
+          "wastedBytes": 11285.96
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "cacheLifetimeMs": 86400000,
+          "totalBytes": 10478,
+          "wastedBytes": 4191.2
+        },
+        {
+          "url": "https://cdn.discordapp.com/widget-avatars/2k9Kk8SObgMJ2NhxsVEUSC-_l-MjrJbgpdZOi0pT-w8/fKDOqj1uHpUa5z32nA61z9dyQ3LSX-qyanHy4bWgulFGn-p6XXbvFYgsaBu5LCddGc3oPB65xA8HSm0anPw",
+          "cacheLifetimeMs": 14400000,
+          "totalBytes": 2345,
+          "wastedBytes": 1594.6
+        },
+        {
+          "url": "https://law.viento.me/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js",
+          "cacheLifetimeMs": 172793000,
+          "totalBytes": 4368,
+          "wastedBytes": 1310.435388888889
+        }
+      ]
+    },
+    {
+      "stage": "cloudflare-before",
+      "report": "_-mobile-2.json",
+      "url": "https://law.viento.me/",
+      "fetchTime": "2026-10-28T01:12:53.744Z",
+      "rocketRequests": 1,
+      "rocketTransferBytes": 4373,
+      "deprecations": [
+        {
+          "value": "Fenced Frame API is deprecated and scheduled for removal.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 31152
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "type": "link",
+                "url": "https://chromestatus.com/feature/6366274495053824",
+                "text": "Check the feature status page for more details."
+              },
+              {
+                "type": "link",
+                "url": "https://chromiumdash.appspot.com/schedule",
+                "text": "This change will go into effect with milestone 156."
+              }
+            ]
+          }
+        },
+        {
+          "value": "StorageType.persistent is deprecated. Please use standardized navigator.storage instead.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 31152
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "type": "link",
+                "url": "https://chromestatus.com/feature/5176235376246784",
+                "text": "Check the feature status page for more details."
+              },
+              {
+                "type": "link",
+                "url": "https://chromiumdash.appspot.com/schedule",
+                "text": "This change will go into effect with milestone 106."
+              }
+            ]
+          }
+        },
+        {
+          "value": "The Protected Audience API is deprecated and will be removed in a future release.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 31152
+          }
+        }
+      ],
+      "bestPracticesScore": 0.58,
+      "rumBeaconRequests": 1,
+      "legacyWarnings": [
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "wastedBytes": 10483,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "signal": "Array.prototype.at",
+                "location": {
+                  "type": "source-location",
+                  "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+                  "urlProvider": "network",
+                  "line": 0,
+                  "column": 1118
+                }
+              },
+              {
+                "signal": "Array.prototype.findLast",
+                "location": {
+                  "type": "source-location",
+                  "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+                  "urlProvider": "network",
+                  "line": 0,
+                  "column": 888
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "cacheWarnings": [
+        {
+          "url": "https://law.viento.me/cdn-cgi/challenge-platform/h/g/scripts/jsd/c787ce48cf6b/main.js?",
+          "cacheLifetimeMs": 14400000,
+          "totalBytes": 17271,
+          "wastedBytes": 11744.279999999999
+        },
+        {
+          "url": "https://discord.com/cdn-cgi/challenge-platform/h/g/scripts/jsd/c787ce48cf6b/main.js?",
+          "cacheLifetimeMs": 14400000,
+          "totalBytes": 16954,
+          "wastedBytes": 11528.72
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "cacheLifetimeMs": 86400000,
+          "totalBytes": 10478,
+          "wastedBytes": 4191.2
+        },
+        {
+          "url": "https://cdn.discordapp.com/widget-avatars/2k9Kk8SObgMJ2NhxsVEUSC-_l-MjrJbgpdZOi0pT-w8/fKDOqj1uHpUa5z32nA61z9dyQ3LSX-qyanHy4bWgulFGn-p6XXbvFYgsaBu5LCddGc3oPB65xA8HSm0anPw",
+          "cacheLifetimeMs": 14400000,
+          "totalBytes": 2338,
+          "wastedBytes": 1589.84
+        },
+        {
+          "url": "https://law.viento.me/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js",
+          "cacheLifetimeMs": 172794000,
+          "totalBytes": 4373,
+          "wastedBytes": 1311.9303680555554
+        }
+      ]
+    },
+    {
+      "stage": "cloudflare-before",
+      "report": "_-mobile-3.json",
+      "url": "https://law.viento.me/",
+      "fetchTime": "2026-10-28T01:13:03.551Z",
+      "rocketRequests": 1,
+      "rocketTransferBytes": 4369,
+      "deprecations": [
+        {
+          "value": "Fenced Frame API is deprecated and scheduled for removal.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 29849
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "type": "link",
+                "url": "https://chromestatus.com/feature/6366274495053824",
+                "text": "Check the feature status page for more details."
+              },
+              {
+                "type": "link",
+                "url": "https://chromiumdash.appspot.com/schedule",
+                "text": "This change will go into effect with milestone 156."
+              }
+            ]
+          }
+        },
+        {
+          "value": "StorageType.persistent is deprecated. Please use standardized navigator.storage instead.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 29849
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "type": "link",
+                "url": "https://chromestatus.com/feature/5176235376246784",
+                "text": "Check the feature status page for more details."
+              },
+              {
+                "type": "link",
+                "url": "https://chromiumdash.appspot.com/schedule",
+                "text": "This change will go into effect with milestone 106."
+              }
+            ]
+          }
+        },
+        {
+          "value": "The Protected Audience API is deprecated and will be removed in a future release.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 29849
+          }
+        }
+      ],
+      "bestPracticesScore": 0.58,
+      "rumBeaconRequests": 1,
+      "legacyWarnings": [
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "wastedBytes": 10483,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "signal": "Array.prototype.at",
+                "location": {
+                  "type": "source-location",
+                  "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+                  "urlProvider": "network",
+                  "line": 0,
+                  "column": 1118
+                }
+              },
+              {
+                "signal": "Array.prototype.findLast",
+                "location": {
+                  "type": "source-location",
+                  "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+                  "urlProvider": "network",
+                  "line": 0,
+                  "column": 888
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "cacheWarnings": [
+        {
+          "url": "https://discord.com/cdn-cgi/challenge-platform/h/g/scripts/jsd/c787ce48cf6b/main.js?",
+          "cacheLifetimeMs": 14400000,
+          "totalBytes": 16934,
+          "wastedBytes": 11515.119999999999
+        },
+        {
+          "url": "https://law.viento.me/cdn-cgi/challenge-platform/h/g/scripts/jsd/c787ce48cf6b/main.js?",
+          "cacheLifetimeMs": 14400000,
+          "totalBytes": 16658,
+          "wastedBytes": 11327.439999999999
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "cacheLifetimeMs": 86400000,
+          "totalBytes": 10478,
+          "wastedBytes": 4191.2
+        },
+        {
+          "url": "https://cdn.discordapp.com/widget-avatars/2k9Kk8SObgMJ2NhxsVEUSC-_l-MjrJbgpdZOi0pT-w8/fKDOqj1uHpUa5z32nA61z9dyQ3LSX-qyanHy4bWgulFGn-p6XXbvFYgsaBu5LCddGc3oPB65xA8HSm0anPw",
+          "cacheLifetimeMs": 14400000,
+          "totalBytes": 2343,
+          "wastedBytes": 1593.2399999999998
+        },
+        {
+          "url": "https://law.viento.me/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js",
+          "cacheLifetimeMs": 172795000,
+          "totalBytes": 4369,
+          "wastedBytes": 1310.7252835648148
+        }
+      ]
+    },
+    {
+      "stage": "cloudflare-before",
+      "report": "_crawling-transparency-mobile-1.json",
+      "url": "https://law.viento.me/crawling-transparency",
+      "fetchTime": "2026-10-28T01:13:44.866Z",
+      "rocketRequests": 1,
+      "rocketTransferBytes": 4372,
+      "deprecations": [
+        {
+          "value": "Fenced Frame API is deprecated and scheduled for removal.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 4674
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "type": "link",
+                "url": "https://chromestatus.com/feature/6366274495053824",
+                "text": "Check the feature status page for more details."
+              },
+              {
+                "type": "link",
+                "url": "https://chromiumdash.appspot.com/schedule",
+                "text": "This change will go into effect with milestone 156."
+              }
+            ]
+          }
+        },
+        {
+          "value": "StorageType.persistent is deprecated. Please use standardized navigator.storage instead.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 4674
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "type": "link",
+                "url": "https://chromestatus.com/feature/5176235376246784",
+                "text": "Check the feature status page for more details."
+              },
+              {
+                "type": "link",
+                "url": "https://chromiumdash.appspot.com/schedule",
+                "text": "This change will go into effect with milestone 106."
+              }
+            ]
+          }
+        },
+        {
+          "value": "The Protected Audience API is deprecated and will be removed in a future release.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 4674
+          }
+        }
+      ],
+      "bestPracticesScore": 0.81,
+      "rumBeaconRequests": 1,
+      "legacyWarnings": [
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "wastedBytes": 10483,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "signal": "Array.prototype.at",
+                "location": {
+                  "type": "source-location",
+                  "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+                  "urlProvider": "network",
+                  "line": 0,
+                  "column": 1118
+                }
+              },
+              {
+                "signal": "Array.prototype.findLast",
+                "location": {
+                  "type": "source-location",
+                  "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+                  "urlProvider": "network",
+                  "line": 0,
+                  "column": 888
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "cacheWarnings": [
+        {
+          "url": "https://law.viento.me/cdn-cgi/challenge-platform/h/g/scripts/jsd/c787ce48cf6b/main.js?",
+          "cacheLifetimeMs": 14400000,
+          "totalBytes": 15818,
+          "wastedBytes": 10756.24
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "cacheLifetimeMs": 86400000,
+          "totalBytes": 10478,
+          "wastedBytes": 4191.2
+        },
+        {
+          "url": "https://law.viento.me/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js",
+          "cacheLifetimeMs": 172795000,
+          "totalBytes": 4372,
+          "wastedBytes": 1311.625300925926
+        }
+      ]
+    },
+    {
+      "stage": "cloudflare-before",
+      "report": "_crawling-transparency-mobile-2.json",
+      "url": "https://law.viento.me/crawling-transparency",
+      "fetchTime": "2026-10-28T01:13:54.219Z",
+      "rocketRequests": 1,
+      "rocketTransferBytes": 4379,
+      "deprecations": [
+        {
+          "value": "Fenced Frame API is deprecated and scheduled for removal.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 26956
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "type": "link",
+                "url": "https://chromestatus.com/feature/6366274495053824",
+                "text": "Check the feature status page for more details."
+              },
+              {
+                "type": "link",
+                "url": "https://chromiumdash.appspot.com/schedule",
+                "text": "This change will go into effect with milestone 156."
+              }
+            ]
+          }
+        },
+        {
+          "value": "StorageType.persistent is deprecated. Please use standardized navigator.storage instead.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 26956
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "type": "link",
+                "url": "https://chromestatus.com/feature/5176235376246784",
+                "text": "Check the feature status page for more details."
+              },
+              {
+                "type": "link",
+                "url": "https://chromiumdash.appspot.com/schedule",
+                "text": "This change will go into effect with milestone 106."
+              }
+            ]
+          }
+        },
+        {
+          "value": "The Protected Audience API is deprecated and will be removed in a future release.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 26956
+          }
+        }
+      ],
+      "bestPracticesScore": 0.81,
+      "rumBeaconRequests": 1,
+      "legacyWarnings": [
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "wastedBytes": 10483,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "signal": "Array.prototype.at",
+                "location": {
+                  "type": "source-location",
+                  "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+                  "urlProvider": "network",
+                  "line": 0,
+                  "column": 1118
+                }
+              },
+              {
+                "signal": "Array.prototype.findLast",
+                "location": {
+                  "type": "source-location",
+                  "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+                  "urlProvider": "network",
+                  "line": 0,
+                  "column": 888
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "cacheWarnings": [
+        {
+          "url": "https://law.viento.me/cdn-cgi/challenge-platform/h/g/scripts/jsd/c787ce48cf6b/main.js?",
+          "cacheLifetimeMs": 14400000,
+          "totalBytes": 15894,
+          "wastedBytes": 10807.919999999998
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "cacheLifetimeMs": 86400000,
+          "totalBytes": 10478,
+          "wastedBytes": 4191.2
+        },
+        {
+          "url": "https://law.viento.me/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js",
+          "cacheLifetimeMs": 172795000,
+          "totalBytes": 4379,
+          "wastedBytes": 1313.7253414351853
+        }
+      ]
+    },
+    {
+      "stage": "cloudflare-before",
+      "report": "_crawling-transparency-mobile-3.json",
+      "url": "https://law.viento.me/crawling-transparency",
+      "fetchTime": "2026-10-28T01:14:02.814Z",
+      "rocketRequests": 1,
+      "rocketTransferBytes": 4366,
+      "deprecations": [
+        {
+          "value": "Fenced Frame API is deprecated and scheduled for removal.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 4674
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "type": "link",
+                "url": "https://chromestatus.com/feature/6366274495053824",
+                "text": "Check the feature status page for more details."
+              },
+              {
+                "type": "link",
+                "url": "https://chromiumdash.appspot.com/schedule",
+                "text": "This change will go into effect with milestone 156."
+              }
+            ]
+          }
+        },
+        {
+          "value": "StorageType.persistent is deprecated. Please use standardized navigator.storage instead.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 4674
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "type": "link",
+                "url": "https://chromestatus.com/feature/5176235376246784",
+                "text": "Check the feature status page for more details."
+              },
+              {
+                "type": "link",
+                "url": "https://chromiumdash.appspot.com/schedule",
+                "text": "This change will go into effect with milestone 106."
+              }
+            ]
+          }
+        },
+        {
+          "value": "The Protected Audience API is deprecated and will be removed in a future release.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 4674
+          }
+        }
+      ],
+      "bestPracticesScore": 0.81,
+      "rumBeaconRequests": 1,
+      "legacyWarnings": [
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "wastedBytes": 10483,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "signal": "Array.prototype.at",
+                "location": {
+                  "type": "source-location",
+                  "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+                  "urlProvider": "network",
+                  "line": 0,
+                  "column": 1118
+                }
+              },
+              {
+                "signal": "Array.prototype.findLast",
+                "location": {
+                  "type": "source-location",
+                  "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+                  "urlProvider": "network",
+                  "line": 0,
+                  "column": 888
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "cacheWarnings": [
+        {
+          "url": "https://law.viento.me/cdn-cgi/challenge-platform/h/g/scripts/jsd/c787ce48cf6b/main.js?",
+          "cacheLifetimeMs": 14400000,
+          "totalBytes": 15818,
+          "wastedBytes": 10756.24
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "cacheLifetimeMs": 86400000,
+          "totalBytes": 10478,
+          "wastedBytes": 4191.2
+        },
+        {
+          "url": "https://law.viento.me/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js",
+          "cacheLifetimeMs": 172796000,
+          "totalBytes": 4366,
+          "wastedBytes": 1309.8202129629633
+        }
+      ]
+    },
+    {
+      "stage": "cloudflare-before",
+      "report": "_webhook-mobile-1.json",
+      "url": "https://law.viento.me/webhook",
+      "fetchTime": "2026-10-28T01:13:16.652Z",
+      "rocketRequests": 1,
+      "rocketTransferBytes": 4368,
+      "deprecations": [
+        {
+          "value": "Fenced Frame API is deprecated and scheduled for removal.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 26956
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "type": "link",
+                "url": "https://chromestatus.com/feature/6366274495053824",
+                "text": "Check the feature status page for more details."
+              },
+              {
+                "type": "link",
+                "url": "https://chromiumdash.appspot.com/schedule",
+                "text": "This change will go into effect with milestone 156."
+              }
+            ]
+          }
+        },
+        {
+          "value": "StorageType.persistent is deprecated. Please use standardized navigator.storage instead.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 26956
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "type": "link",
+                "url": "https://chromestatus.com/feature/5176235376246784",
+                "text": "Check the feature status page for more details."
+              },
+              {
+                "type": "link",
+                "url": "https://chromiumdash.appspot.com/schedule",
+                "text": "This change will go into effect with milestone 106."
+              }
+            ]
+          }
+        },
+        {
+          "value": "The Protected Audience API is deprecated and will be removed in a future release.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 26956
+          }
+        }
+      ],
+      "bestPracticesScore": 0.81,
+      "rumBeaconRequests": 1,
+      "legacyWarnings": [
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "wastedBytes": 10483,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "signal": "Array.prototype.at",
+                "location": {
+                  "type": "source-location",
+                  "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+                  "urlProvider": "network",
+                  "line": 0,
+                  "column": 1118
+                }
+              },
+              {
+                "signal": "Array.prototype.findLast",
+                "location": {
+                  "type": "source-location",
+                  "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+                  "urlProvider": "network",
+                  "line": 0,
+                  "column": 888
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "cacheWarnings": [
+        {
+          "url": "https://law.viento.me/cdn-cgi/challenge-platform/h/g/scripts/jsd/c787ce48cf6b/main.js?",
+          "cacheLifetimeMs": 14400000,
+          "totalBytes": 15894,
+          "wastedBytes": 10807.919999999998
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "cacheLifetimeMs": 86400000,
+          "totalBytes": 10478,
+          "wastedBytes": 4191.2
+        },
+        {
+          "url": "https://law.viento.me/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js",
+          "cacheLifetimeMs": 172794000,
+          "totalBytes": 4368,
+          "wastedBytes": 1310.4303333333332
+        }
+      ]
+    },
+    {
+      "stage": "cloudflare-before",
+      "report": "_webhook-mobile-2.json",
+      "url": "https://law.viento.me/webhook",
+      "fetchTime": "2026-10-28T01:13:27.382Z",
+      "rocketRequests": 1,
+      "rocketTransferBytes": 4365,
+      "deprecations": [
+        {
+          "value": "Fenced Frame API is deprecated and scheduled for removal.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 30141
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "type": "link",
+                "url": "https://chromestatus.com/feature/6366274495053824",
+                "text": "Check the feature status page for more details."
+              },
+              {
+                "type": "link",
+                "url": "https://chromiumdash.appspot.com/schedule",
+                "text": "This change will go into effect with milestone 156."
+              }
+            ]
+          }
+        },
+        {
+          "value": "StorageType.persistent is deprecated. Please use standardized navigator.storage instead.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 30141
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "type": "link",
+                "url": "https://chromestatus.com/feature/5176235376246784",
+                "text": "Check the feature status page for more details."
+              },
+              {
+                "type": "link",
+                "url": "https://chromiumdash.appspot.com/schedule",
+                "text": "This change will go into effect with milestone 106."
+              }
+            ]
+          }
+        },
+        {
+          "value": "The Protected Audience API is deprecated and will be removed in a future release.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 30141
+          }
+        }
+      ],
+      "bestPracticesScore": 0.81,
+      "rumBeaconRequests": 1,
+      "legacyWarnings": [
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "wastedBytes": 10483,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "signal": "Array.prototype.at",
+                "location": {
+                  "type": "source-location",
+                  "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+                  "urlProvider": "network",
+                  "line": 0,
+                  "column": 1118
+                }
+              },
+              {
+                "signal": "Array.prototype.findLast",
+                "location": {
+                  "type": "source-location",
+                  "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+                  "urlProvider": "network",
+                  "line": 0,
+                  "column": 888
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "cacheWarnings": [
+        {
+          "url": "https://law.viento.me/cdn-cgi/challenge-platform/h/g/scripts/jsd/c787ce48cf6b/main.js?",
+          "cacheLifetimeMs": 14400000,
+          "totalBytes": 16085,
+          "wastedBytes": 10937.8
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "cacheLifetimeMs": 86400000,
+          "totalBytes": 10478,
+          "wastedBytes": 4191.2
+        },
+        {
+          "url": "https://law.viento.me/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js",
+          "cacheLifetimeMs": 172795000,
+          "totalBytes": 4365,
+          "wastedBytes": 1309.5252604166667
+        }
+      ]
+    },
+    {
+      "stage": "cloudflare-before",
+      "report": "_webhook-mobile-3.json",
+      "url": "https://law.viento.me/webhook",
+      "fetchTime": "2026-10-28T01:13:36.418Z",
+      "rocketRequests": 1,
+      "rocketTransferBytes": 4368,
+      "deprecations": [
+        {
+          "value": "Fenced Frame API is deprecated and scheduled for removal.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 30168
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "type": "link",
+                "url": "https://chromestatus.com/feature/6366274495053824",
+                "text": "Check the feature status page for more details."
+              },
+              {
+                "type": "link",
+                "url": "https://chromiumdash.appspot.com/schedule",
+                "text": "This change will go into effect with milestone 156."
+              }
+            ]
+          }
+        },
+        {
+          "value": "StorageType.persistent is deprecated. Please use standardized navigator.storage instead.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 30168
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "type": "link",
+                "url": "https://chromestatus.com/feature/5176235376246784",
+                "text": "Check the feature status page for more details."
+              },
+              {
+                "type": "link",
+                "url": "https://chromiumdash.appspot.com/schedule",
+                "text": "This change will go into effect with milestone 106."
+              }
+            ]
+          }
+        },
+        {
+          "value": "The Protected Audience API is deprecated and will be removed in a future release.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 30168
+          }
+        }
+      ],
+      "bestPracticesScore": 0.81,
+      "rumBeaconRequests": 1,
+      "legacyWarnings": [
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "wastedBytes": 10483,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "signal": "Array.prototype.at",
+                "location": {
+                  "type": "source-location",
+                  "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+                  "urlProvider": "network",
+                  "line": 0,
+                  "column": 1118
+                }
+              },
+              {
+                "signal": "Array.prototype.findLast",
+                "location": {
+                  "type": "source-location",
+                  "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+                  "urlProvider": "network",
+                  "line": 0,
+                  "column": 888
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "cacheWarnings": [
+        {
+          "url": "https://law.viento.me/cdn-cgi/challenge-platform/h/g/scripts/jsd/c787ce48cf6b/main.js?",
+          "cacheLifetimeMs": 14400000,
+          "totalBytes": 16770,
+          "wastedBytes": 11403.599999999999
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "cacheLifetimeMs": 86400000,
+          "totalBytes": 10478,
+          "wastedBytes": 4191.2
+        },
+        {
+          "url": "https://law.viento.me/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js",
+          "cacheLifetimeMs": 172795000,
+          "totalBytes": 4368,
+          "wastedBytes": 1310.4252777777779
+        }
+      ]
+    },
+    {
+      "stage": "cloudflare-after",
+      "report": "_-mobile-1.json",
+      "url": "https://law.viento.me/",
+      "fetchTime": "2026-10-28T01:15:29.655Z",
+      "rocketRequests": 0,
+      "rocketTransferBytes": 0,
+      "deprecations": [
+        {
+          "value": "Fenced Frame API is deprecated and scheduled for removal.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 4674
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "type": "link",
+                "url": "https://chromestatus.com/feature/6366274495053824",
+                "text": "Check the feature status page for more details."
+              },
+              {
+                "type": "link",
+                "url": "https://chromiumdash.appspot.com/schedule",
+                "text": "This change will go into effect with milestone 156."
+              }
+            ]
+          }
+        },
+        {
+          "value": "StorageType.persistent is deprecated. Please use standardized navigator.storage instead.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 4674
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "type": "link",
+                "url": "https://chromestatus.com/feature/5176235376246784",
+                "text": "Check the feature status page for more details."
+              },
+              {
+                "type": "link",
+                "url": "https://chromiumdash.appspot.com/schedule",
+                "text": "This change will go into effect with milestone 106."
+              }
+            ]
+          }
+        },
+        {
+          "value": "The Protected Audience API is deprecated and will be removed in a future release.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 4674
+          }
+        }
+      ],
+      "bestPracticesScore": 0.58,
+      "rumBeaconRequests": 1,
+      "legacyWarnings": [
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "wastedBytes": 10483,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "signal": "Array.prototype.at",
+                "location": {
+                  "type": "source-location",
+                  "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+                  "urlProvider": "network",
+                  "line": 0,
+                  "column": 1118
+                }
+              },
+              {
+                "signal": "Array.prototype.findLast",
+                "location": {
+                  "type": "source-location",
+                  "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+                  "urlProvider": "network",
+                  "line": 0,
+                  "column": 888
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "cacheWarnings": [
+        {
+          "url": "https://law.viento.me/cdn-cgi/challenge-platform/h/g/scripts/jsd/c787ce48cf6b/main.js?",
+          "cacheLifetimeMs": 14400000,
+          "totalBytes": 15818,
+          "wastedBytes": 10756.24
+        },
+        {
+          "url": "https://discord.com/cdn-cgi/challenge-platform/h/g/scripts/jsd/c787ce48cf6b/main.js?",
+          "cacheLifetimeMs": 14400000,
+          "totalBytes": 15634,
+          "wastedBytes": 10631.119999999999
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "cacheLifetimeMs": 86400000,
+          "totalBytes": 10478,
+          "wastedBytes": 4191.2
+        },
+        {
+          "url": "https://cdn.discordapp.com/widget-avatars/2k9Kk8SObgMJ2NhxsVEUSC-_l-MjrJbgpdZOi0pT-w8/fKDOqj1uHpUa5z32nA61z9dyQ3LSX-qyanHy4bWgulFGn-p6XXbvFYgsaBu5LCddGc3oPB65xA8HSm0anPw",
+          "cacheLifetimeMs": 14400000,
+          "totalBytes": 2338,
+          "wastedBytes": 1589.84
+        }
+      ]
+    },
+    {
+      "stage": "cloudflare-after",
+      "report": "_-mobile-2.json",
+      "url": "https://law.viento.me/",
+      "fetchTime": "2026-10-28T01:15:40.505Z",
+      "rocketRequests": 0,
+      "rocketTransferBytes": 0,
+      "deprecations": [
+        {
+          "value": "Fenced Frame API is deprecated and scheduled for removal.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 26843
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "type": "link",
+                "url": "https://chromestatus.com/feature/6366274495053824",
+                "text": "Check the feature status page for more details."
+              },
+              {
+                "type": "link",
+                "url": "https://chromiumdash.appspot.com/schedule",
+                "text": "This change will go into effect with milestone 156."
+              }
+            ]
+          }
+        },
+        {
+          "value": "StorageType.persistent is deprecated. Please use standardized navigator.storage instead.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 26843
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "type": "link",
+                "url": "https://chromestatus.com/feature/5176235376246784",
+                "text": "Check the feature status page for more details."
+              },
+              {
+                "type": "link",
+                "url": "https://chromiumdash.appspot.com/schedule",
+                "text": "This change will go into effect with milestone 106."
+              }
+            ]
+          }
+        },
+        {
+          "value": "The Protected Audience API is deprecated and will be removed in a future release.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 26843
+          }
+        }
+      ],
+      "bestPracticesScore": 0.58,
+      "rumBeaconRequests": 1,
+      "legacyWarnings": [
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "wastedBytes": 10483,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "signal": "Array.prototype.at",
+                "location": {
+                  "type": "source-location",
+                  "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+                  "urlProvider": "network",
+                  "line": 0,
+                  "column": 1118
+                }
+              },
+              {
+                "signal": "Array.prototype.findLast",
+                "location": {
+                  "type": "source-location",
+                  "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+                  "urlProvider": "network",
+                  "line": 0,
+                  "column": 888
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "cacheWarnings": [
+        {
+          "url": "https://discord.com/cdn-cgi/challenge-platform/h/g/scripts/jsd/c787ce48cf6b/main.js?",
+          "cacheLifetimeMs": 14400000,
+          "totalBytes": 16860,
+          "wastedBytes": 11464.8
+        },
+        {
+          "url": "https://law.viento.me/cdn-cgi/challenge-platform/h/g/scripts/jsd/c787ce48cf6b/main.js?",
+          "cacheLifetimeMs": 14400000,
+          "totalBytes": 15506,
+          "wastedBytes": 10544.08
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "cacheLifetimeMs": 86400000,
+          "totalBytes": 10478,
+          "wastedBytes": 4191.2
+        },
+        {
+          "url": "https://cdn.discordapp.com/widget-avatars/2k9Kk8SObgMJ2NhxsVEUSC-_l-MjrJbgpdZOi0pT-w8/fKDOqj1uHpUa5z32nA61z9dyQ3LSX-qyanHy4bWgulFGn-p6XXbvFYgsaBu5LCddGc3oPB65xA8HSm0anPw",
+          "cacheLifetimeMs": 14400000,
+          "totalBytes": 2335,
+          "wastedBytes": 1587.8
+        }
+      ]
+    },
+    {
+      "stage": "cloudflare-after",
+      "report": "_-mobile-3.json",
+      "url": "https://law.viento.me/",
+      "fetchTime": "2026-10-28T01:15:50.345Z",
+      "rocketRequests": 0,
+      "rocketTransferBytes": 0,
+      "deprecations": [
+        {
+          "value": "Fenced Frame API is deprecated and scheduled for removal.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 27517
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "type": "link",
+                "url": "https://chromestatus.com/feature/6366274495053824",
+                "text": "Check the feature status page for more details."
+              },
+              {
+                "type": "link",
+                "url": "https://chromiumdash.appspot.com/schedule",
+                "text": "This change will go into effect with milestone 156."
+              }
+            ]
+          }
+        },
+        {
+          "value": "StorageType.persistent is deprecated. Please use standardized navigator.storage instead.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 27517
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "type": "link",
+                "url": "https://chromestatus.com/feature/5176235376246784",
+                "text": "Check the feature status page for more details."
+              },
+              {
+                "type": "link",
+                "url": "https://chromiumdash.appspot.com/schedule",
+                "text": "This change will go into effect with milestone 106."
+              }
+            ]
+          }
+        },
+        {
+          "value": "The Protected Audience API is deprecated and will be removed in a future release.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 27517
+          }
+        }
+      ],
+      "bestPracticesScore": 0.58,
+      "rumBeaconRequests": 1,
+      "legacyWarnings": [
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "wastedBytes": 10483,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "signal": "Array.prototype.at",
+                "location": {
+                  "type": "source-location",
+                  "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+                  "urlProvider": "network",
+                  "line": 0,
+                  "column": 1118
+                }
+              },
+              {
+                "signal": "Array.prototype.findLast",
+                "location": {
+                  "type": "source-location",
+                  "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+                  "urlProvider": "network",
+                  "line": 0,
+                  "column": 888
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "cacheWarnings": [
+        {
+          "url": "https://discord.com/cdn-cgi/challenge-platform/h/g/scripts/jsd/c787ce48cf6b/main.js?",
+          "cacheLifetimeMs": 14400000,
+          "totalBytes": 16594,
+          "wastedBytes": 11283.919999999998
+        },
+        {
+          "url": "https://law.viento.me/cdn-cgi/challenge-platform/h/g/scripts/jsd/c787ce48cf6b/main.js?",
+          "cacheLifetimeMs": 14400000,
+          "totalBytes": 15573,
+          "wastedBytes": 10589.64
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "cacheLifetimeMs": 86400000,
+          "totalBytes": 10478,
+          "wastedBytes": 4191.2
+        },
+        {
+          "url": "https://cdn.discordapp.com/widget-avatars/2k9Kk8SObgMJ2NhxsVEUSC-_l-MjrJbgpdZOi0pT-w8/fKDOqj1uHpUa5z32nA61z9dyQ3LSX-qyanHy4bWgulFGn-p6XXbvFYgsaBu5LCddGc3oPB65xA8HSm0anPw",
+          "cacheLifetimeMs": 14400000,
+          "totalBytes": 2340,
+          "wastedBytes": 1591.1999999999998
+        }
+      ]
+    },
+    {
+      "stage": "cloudflare-after",
+      "report": "_crawling-transparency-mobile-1.json",
+      "url": "https://law.viento.me/crawling-transparency",
+      "fetchTime": "2026-10-28T01:16:26.056Z",
+      "rocketRequests": 0,
+      "rocketTransferBytes": 0,
+      "deprecations": [
+        {
+          "value": "Fenced Frame API is deprecated and scheduled for removal.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 27517
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "type": "link",
+                "url": "https://chromestatus.com/feature/6366274495053824",
+                "text": "Check the feature status page for more details."
+              },
+              {
+                "type": "link",
+                "url": "https://chromiumdash.appspot.com/schedule",
+                "text": "This change will go into effect with milestone 156."
+              }
+            ]
+          }
+        },
+        {
+          "value": "StorageType.persistent is deprecated. Please use standardized navigator.storage instead.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 27517
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "type": "link",
+                "url": "https://chromestatus.com/feature/5176235376246784",
+                "text": "Check the feature status page for more details."
+              },
+              {
+                "type": "link",
+                "url": "https://chromiumdash.appspot.com/schedule",
+                "text": "This change will go into effect with milestone 106."
+              }
+            ]
+          }
+        },
+        {
+          "value": "The Protected Audience API is deprecated and will be removed in a future release.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 27517
+          }
+        }
+      ],
+      "bestPracticesScore": 0.81,
+      "rumBeaconRequests": 1,
+      "legacyWarnings": [
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "wastedBytes": 10483,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "signal": "Array.prototype.at",
+                "location": {
+                  "type": "source-location",
+                  "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+                  "urlProvider": "network",
+                  "line": 0,
+                  "column": 1118
+                }
+              },
+              {
+                "signal": "Array.prototype.findLast",
+                "location": {
+                  "type": "source-location",
+                  "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+                  "urlProvider": "network",
+                  "line": 0,
+                  "column": 888
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "cacheWarnings": [
+        {
+          "url": "https://law.viento.me/cdn-cgi/challenge-platform/h/g/scripts/jsd/c787ce48cf6b/main.js?",
+          "cacheLifetimeMs": 14400000,
+          "totalBytes": 15573,
+          "wastedBytes": 10589.64
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "cacheLifetimeMs": 86400000,
+          "totalBytes": 10478,
+          "wastedBytes": 4191.2
+        }
+      ]
+    },
+    {
+      "stage": "cloudflare-after",
+      "report": "_crawling-transparency-mobile-2.json",
+      "url": "https://law.viento.me/crawling-transparency",
+      "fetchTime": "2026-10-28T01:16:34.974Z",
+      "rocketRequests": 0,
+      "rocketTransferBytes": 0,
+      "deprecations": [
+        {
+          "value": "Fenced Frame API is deprecated and scheduled for removal.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 32300
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "type": "link",
+                "url": "https://chromestatus.com/feature/6366274495053824",
+                "text": "Check the feature status page for more details."
+              },
+              {
+                "type": "link",
+                "url": "https://chromiumdash.appspot.com/schedule",
+                "text": "This change will go into effect with milestone 156."
+              }
+            ]
+          }
+        },
+        {
+          "value": "StorageType.persistent is deprecated. Please use standardized navigator.storage instead.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 32300
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "type": "link",
+                "url": "https://chromestatus.com/feature/5176235376246784",
+                "text": "Check the feature status page for more details."
+              },
+              {
+                "type": "link",
+                "url": "https://chromiumdash.appspot.com/schedule",
+                "text": "This change will go into effect with milestone 106."
+              }
+            ]
+          }
+        },
+        {
+          "value": "The Protected Audience API is deprecated and will be removed in a future release.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 32300
+          }
+        }
+      ],
+      "bestPracticesScore": 0.81,
+      "rumBeaconRequests": 1,
+      "legacyWarnings": [
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "wastedBytes": 10483,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "signal": "Array.prototype.at",
+                "location": {
+                  "type": "source-location",
+                  "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+                  "urlProvider": "network",
+                  "line": 0,
+                  "column": 1118
+                }
+              },
+              {
+                "signal": "Array.prototype.findLast",
+                "location": {
+                  "type": "source-location",
+                  "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+                  "urlProvider": "network",
+                  "line": 0,
+                  "column": 888
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "cacheWarnings": [
+        {
+          "url": "https://law.viento.me/cdn-cgi/challenge-platform/h/g/scripts/jsd/c787ce48cf6b/main.js?",
+          "cacheLifetimeMs": 14400000,
+          "totalBytes": 17428,
+          "wastedBytes": 11851.039999999999
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "cacheLifetimeMs": 86400000,
+          "totalBytes": 10478,
+          "wastedBytes": 4191.2
+        }
+      ]
+    },
+    {
+      "stage": "cloudflare-after",
+      "report": "_crawling-transparency-mobile-3.json",
+      "url": "https://law.viento.me/crawling-transparency",
+      "fetchTime": "2026-10-28T01:16:43.974Z",
+      "rocketRequests": 0,
+      "rocketTransferBytes": 0,
+      "deprecations": [
+        {
+          "value": "Fenced Frame API is deprecated and scheduled for removal.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 30781
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "type": "link",
+                "url": "https://chromestatus.com/feature/6366274495053824",
+                "text": "Check the feature status page for more details."
+              },
+              {
+                "type": "link",
+                "url": "https://chromiumdash.appspot.com/schedule",
+                "text": "This change will go into effect with milestone 156."
+              }
+            ]
+          }
+        },
+        {
+          "value": "StorageType.persistent is deprecated. Please use standardized navigator.storage instead.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 30781
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "type": "link",
+                "url": "https://chromestatus.com/feature/5176235376246784",
+                "text": "Check the feature status page for more details."
+              },
+              {
+                "type": "link",
+                "url": "https://chromiumdash.appspot.com/schedule",
+                "text": "This change will go into effect with milestone 106."
+              }
+            ]
+          }
+        },
+        {
+          "value": "The Protected Audience API is deprecated and will be removed in a future release.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 30781
+          }
+        }
+      ],
+      "bestPracticesScore": 0.81,
+      "rumBeaconRequests": 1,
+      "legacyWarnings": [
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "wastedBytes": 10483,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "signal": "Array.prototype.at",
+                "location": {
+                  "type": "source-location",
+                  "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+                  "urlProvider": "network",
+                  "line": 0,
+                  "column": 1118
+                }
+              },
+              {
+                "signal": "Array.prototype.findLast",
+                "location": {
+                  "type": "source-location",
+                  "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+                  "urlProvider": "network",
+                  "line": 0,
+                  "column": 888
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "cacheWarnings": [
+        {
+          "url": "https://law.viento.me/cdn-cgi/challenge-platform/h/g/scripts/jsd/c787ce48cf6b/main.js?",
+          "cacheLifetimeMs": 14400000,
+          "totalBytes": 16863,
+          "wastedBytes": 11466.839999999998
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "cacheLifetimeMs": 86400000,
+          "totalBytes": 10478,
+          "wastedBytes": 4191.2
+        }
+      ]
+    },
+    {
+      "stage": "cloudflare-after",
+      "report": "_webhook-mobile-1.json",
+      "url": "https://law.viento.me/webhook",
+      "fetchTime": "2026-10-28T01:15:59.925Z",
+      "rocketRequests": 0,
+      "rocketTransferBytes": 0,
+      "deprecations": [
+        {
+          "value": "Fenced Frame API is deprecated and scheduled for removal.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 32300
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "type": "link",
+                "url": "https://chromestatus.com/feature/6366274495053824",
+                "text": "Check the feature status page for more details."
+              },
+              {
+                "type": "link",
+                "url": "https://chromiumdash.appspot.com/schedule",
+                "text": "This change will go into effect with milestone 156."
+              }
+            ]
+          }
+        },
+        {
+          "value": "StorageType.persistent is deprecated. Please use standardized navigator.storage instead.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 32300
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "type": "link",
+                "url": "https://chromestatus.com/feature/5176235376246784",
+                "text": "Check the feature status page for more details."
+              },
+              {
+                "type": "link",
+                "url": "https://chromiumdash.appspot.com/schedule",
+                "text": "This change will go into effect with milestone 106."
+              }
+            ]
+          }
+        },
+        {
+          "value": "The Protected Audience API is deprecated and will be removed in a future release.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 32300
+          }
+        }
+      ],
+      "bestPracticesScore": 0.81,
+      "rumBeaconRequests": 1,
+      "legacyWarnings": [
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "wastedBytes": 10483,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "signal": "Array.prototype.at",
+                "location": {
+                  "type": "source-location",
+                  "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+                  "urlProvider": "network",
+                  "line": 0,
+                  "column": 1118
+                }
+              },
+              {
+                "signal": "Array.prototype.findLast",
+                "location": {
+                  "type": "source-location",
+                  "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+                  "urlProvider": "network",
+                  "line": 0,
+                  "column": 888
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "cacheWarnings": [
+        {
+          "url": "https://law.viento.me/cdn-cgi/challenge-platform/h/g/scripts/jsd/c787ce48cf6b/main.js?",
+          "cacheLifetimeMs": 14400000,
+          "totalBytes": 17428,
+          "wastedBytes": 11851.039999999999
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "cacheLifetimeMs": 86400000,
+          "totalBytes": 10478,
+          "wastedBytes": 4191.2
+        }
+      ]
+    },
+    {
+      "stage": "cloudflare-after",
+      "report": "_webhook-mobile-2.json",
+      "url": "https://law.viento.me/webhook",
+      "fetchTime": "2026-10-28T01:16:08.732Z",
+      "rocketRequests": 0,
+      "rocketTransferBytes": 0,
+      "deprecations": [
+        {
+          "value": "Fenced Frame API is deprecated and scheduled for removal.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 30168
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "type": "link",
+                "url": "https://chromestatus.com/feature/6366274495053824",
+                "text": "Check the feature status page for more details."
+              },
+              {
+                "type": "link",
+                "url": "https://chromiumdash.appspot.com/schedule",
+                "text": "This change will go into effect with milestone 156."
+              }
+            ]
+          }
+        },
+        {
+          "value": "StorageType.persistent is deprecated. Please use standardized navigator.storage instead.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 30168
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "type": "link",
+                "url": "https://chromestatus.com/feature/5176235376246784",
+                "text": "Check the feature status page for more details."
+              },
+              {
+                "type": "link",
+                "url": "https://chromiumdash.appspot.com/schedule",
+                "text": "This change will go into effect with milestone 106."
+              }
+            ]
+          }
+        },
+        {
+          "value": "The Protected Audience API is deprecated and will be removed in a future release.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 30168
+          }
+        }
+      ],
+      "bestPracticesScore": 0.81,
+      "rumBeaconRequests": 1,
+      "legacyWarnings": [
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "wastedBytes": 10483,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "signal": "Array.prototype.at",
+                "location": {
+                  "type": "source-location",
+                  "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+                  "urlProvider": "network",
+                  "line": 0,
+                  "column": 1118
+                }
+              },
+              {
+                "signal": "Array.prototype.findLast",
+                "location": {
+                  "type": "source-location",
+                  "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+                  "urlProvider": "network",
+                  "line": 0,
+                  "column": 888
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "cacheWarnings": [
+        {
+          "url": "https://law.viento.me/cdn-cgi/challenge-platform/h/g/scripts/jsd/c787ce48cf6b/main.js?",
+          "cacheLifetimeMs": 14400000,
+          "totalBytes": 16770,
+          "wastedBytes": 11403.599999999999
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "cacheLifetimeMs": 86400000,
+          "totalBytes": 10478,
+          "wastedBytes": 4191.2
+        }
+      ]
+    },
+    {
+      "stage": "cloudflare-after",
+      "report": "_webhook-mobile-3.json",
+      "url": "https://law.viento.me/webhook",
+      "fetchTime": "2026-10-28T01:16:17.374Z",
+      "rocketRequests": 0,
+      "rocketTransferBytes": 0,
+      "deprecations": [
+        {
+          "value": "Fenced Frame API is deprecated and scheduled for removal.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 30781
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "type": "link",
+                "url": "https://chromestatus.com/feature/6366274495053824",
+                "text": "Check the feature status page for more details."
+              },
+              {
+                "type": "link",
+                "url": "https://chromiumdash.appspot.com/schedule",
+                "text": "This change will go into effect with milestone 156."
+              }
+            ]
+          }
+        },
+        {
+          "value": "StorageType.persistent is deprecated. Please use standardized navigator.storage instead.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 30781
+          },
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "type": "link",
+                "url": "https://chromestatus.com/feature/5176235376246784",
+                "text": "Check the feature status page for more details."
+              },
+              {
+                "type": "link",
+                "url": "https://chromiumdash.appspot.com/schedule",
+                "text": "This change will go into effect with milestone 106."
+              }
+            ]
+          }
+        },
+        {
+          "value": "The Protected Audience API is deprecated and will be removed in a future release.",
+          "source": {
+            "type": "source-location",
+            "url": "https://law.viento.me/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 30781
+          }
+        }
+      ],
+      "bestPracticesScore": 0.81,
+      "rumBeaconRequests": 1,
+      "legacyWarnings": [
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "wastedBytes": 10483,
+          "subItems": {
+            "type": "subitems",
+            "items": [
+              {
+                "signal": "Array.prototype.at",
+                "location": {
+                  "type": "source-location",
+                  "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+                  "urlProvider": "network",
+                  "line": 0,
+                  "column": 1118
+                }
+              },
+              {
+                "signal": "Array.prototype.findLast",
+                "location": {
+                  "type": "source-location",
+                  "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+                  "urlProvider": "network",
+                  "line": 0,
+                  "column": 888
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "cacheWarnings": [
+        {
+          "url": "https://law.viento.me/cdn-cgi/challenge-platform/h/g/scripts/jsd/c787ce48cf6b/main.js?",
+          "cacheLifetimeMs": 14400000,
+          "totalBytes": 16863,
+          "wastedBytes": 11466.839999999998
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "cacheLifetimeMs": 86400000,
+          "totalBytes": 10478,
+          "wastedBytes": 4191.2
+        }
+      ]
+    }
+  ]
+}

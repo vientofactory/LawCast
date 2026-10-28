@@ -1,0 +1,104 @@
+{
+  "settings": {
+    "success": true,
+    "result": [
+      {
+        "id": "browser_cache_ttl",
+        "value": 2678400,
+        "modified_on": "2026-05-15T05:06:55.397321Z",
+        "editable": true
+      },
+      {
+        "id": "browser_check",
+        "value": "on",
+        "modified_on": null,
+        "editable": true
+      },
+      {
+        "id": "minify",
+        "value": {
+          "css": "off",
+          "html": "off",
+          "js": "off"
+        },
+        "modified_on": "2022-02-06T04:25:09.824988Z",
+        "editable": true
+      },
+      {
+        "id": "rocket_loader",
+        "value": "on",
+        "modified_on": "2024-08-02T05:23:43.355391Z",
+        "editable": true
+      },
+      {
+        "id": "security_level",
+        "value": "medium",
+        "modified_on": null,
+        "editable": true
+      },
+      {
+        "id": "ssl",
+        "value": "flexible",
+        "modified_on": "2026-07-27T11:04:27.459063Z",
+        "certificate_status": "active",
+        "validation_errors": [],
+        "editable": true
+      },
+      {
+        "id": "waf",
+        "value": "off",
+        "modified_on": null,
+        "editable": true
+      }
+    ]
+  },
+  "bots": {
+    "result": {
+      "enable_js": true,
+      "fight_mode": true,
+      "ai_bots_protection": "disabled",
+      "content_bots_protection": "disabled",
+      "crawler_protection": "disabled",
+      "ai_training": "disabled",
+      "ai_search": "disabled",
+      "ai_user": "disabled",
+      "is_robots_txt_managed": false,
+      "bot_preference_sync_enabled": false,
+      "cf_robots_variant": "off",
+      "ai_bots_migration_opt_out": false,
+      "using_latest_model": true
+    },
+    "success": true,
+    "errors": [],
+    "messages": [],
+    "status": 200
+  },
+  "firewall": {
+    "result": {
+      "description": "",
+      "id": "9134c2a971dc4868a8cc6f171d9d6534",
+      "kind": "zone",
+      "last_updated": "2026-08-15T10:42:51.785795Z",
+      "name": "default",
+      "phase": "http_request_firewall_custom",
+      "rules": [
+        {
+          "action": "managed_challenge",
+          "description": "LawCast Under Attack Challenge",
+          "enabled": false,
+          "expression": "(http.request.full_uri wildcard r\"https://law.viento.me/notices\") or (http.request.full_uri wildcard r\"https://law.viento.me/notices/*\")",
+          "id": "197e254522ca430992919e4015038f05",
+          "last_updated": "2026-08-15T10:42:51.785795Z",
+          "ref": "197e254522ca430992919e4015038f05",
+          "version": "4"
+        }
+      ],
+      "source": "firewall_custom",
+      "version": "4"
+    },
+    "success": true,
+    "errors": [],
+    "messages": [],
+    "status": 200
+  }
+}

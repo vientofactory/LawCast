@@ -1,0 +1,30 @@
+{
+  "result": {
+    "description": "",
+    "id": "41301b5f5d0840c2b07fd2bde8187953",
+    "kind": "zone",
+    "last_updated": "2026-10-28T01:14:51.691742Z",
+    "name": "LawCast configuration",
+    "phase": "http_config_settings",
+    "rules": [
+      {
+        "action": "set_config",
+        "action_parameters": {
+          "rocket_loader": false
+        },
+        "description": "LawCast: preserve native module and hydration timing",
+        "enabled": true,
+        "expression": "http.host eq \"law.viento.me\"",
+        "id": "e217a7b217fe4bd2bb875f3b37f1244e",
+        "last_updated": "2026-10-28T01:14:51.691742Z",
+        "ref": "lawcast_native_script_timing",
+        "version": "1"
+      }
+    ],
+    "version": "1"
+  },
+  "success": true,
+  "errors": [],
+  "messages": [],
+  "status": 200
+}

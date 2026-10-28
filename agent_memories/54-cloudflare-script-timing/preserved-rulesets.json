@@ -1,0 +1,29 @@
+[
+  {
+    "phase": "http_request_firewall_custom",
+    "status": 200,
+    "success": true,
+    "id": "9134c2a971dc4868a8cc6f171d9d6534",
+    "version": "4",
+    "last_updated": "2026-08-15T10:42:51.785795Z",
+    "ruleCount": 1
+  },
+  {
+    "phase": "http_request_cache_settings",
+    "status": 200,
+    "success": true,
+    "id": "511d814cdaa047b4b331cd92edc02220",
+    "version": "44",
+    "last_updated": "2026-10-18T11:28:58.225406Z",
+    "ruleCount": 7
+  },
+  {
+    "phase": "http_response_cache_settings",
+    "status": 200,
+    "success": true,
+    "id": "ab1652f797534e83b217b2350e6356b1",
+    "version": "4",
+    "last_updated": "2026-10-18T09:46:48.300661Z",
+    "ruleCount": 0
+  }
+]

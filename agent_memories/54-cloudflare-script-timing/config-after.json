@@ -1,0 +1,66 @@
+{
+  "config": {
+    "result": {
+      "description": "",
+      "id": "41301b5f5d0840c2b07fd2bde8187953",
+      "kind": "zone",
+      "last_updated": "2026-10-28T01:14:51.691742Z",
+      "name": "LawCast configuration",
+      "phase": "http_config_settings",
+      "rules": [
+        {
+          "action": "set_config",
+          "action_parameters": {
+            "rocket_loader": false
+          },
+          "description": "LawCast: preserve native module and hydration timing",
+          "enabled": true,
+          "expression": "http.host eq \"law.viento.me\"",
+          "id": "e217a7b217fe4bd2bb875f3b37f1244e",
+          "last_updated": "2026-10-28T01:14:51.691742Z",
+          "ref": "lawcast_native_script_timing",
+          "version": "1"
+        }
+      ],
+      "version": "1"
+    },
+    "success": true,
+    "errors": [],
+    "messages": [],
+    "status": 200
+  },
+  "bots": {
+    "result": {
+      "enable_js": true,
+      "fight_mode": true,
+      "ai_bots_protection": "disabled",
+      "content_bots_protection": "disabled",
+      "crawler_protection": "disabled",
+      "ai_training": "disabled",
+      "ai_search": "disabled",
+      "ai_user": "disabled",
+      "is_robots_txt_managed": false,
+      "bot_preference_sync_enabled": false,
+      "cf_robots_variant": "off",
+      "ai_bots_migration_opt_out": false,
+      "using_latest_model": true
+    },
+    "success": true,
+    "errors": [],
+    "messages": [],
+    "status": 200
+  },
+  "zoneRocketLoader": {
+    "result": {
+      "id": "rocket_loader",
+      "value": "on",
+      "modified_on": "2024-08-02T05:23:43.355391Z",
+      "editable": true
+    },
+    "success": true,
+    "errors": [],
+    "messages": [],
+    "result_info": {},
+    "status": 200
+  }
+}

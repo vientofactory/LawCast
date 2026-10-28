@@ -388,3 +388,7 @@ agent_memories/
 ## 53 — Frontend Web Vitals (2026-10-28)
 
 - [Audit and regression guards](53-frontend-web-vitals/audit-and-regressions.md): production Lighthouse baselines, bundled font declarations, explicit Discord widget loading, deferred-panel theme contrast, accessible labels/landmarks/headings, keyboard-scrollable tables, NProgress semantics, isolated Playwright and repeatable Lighthouse checks, external Cloudflare deductions and lab/field distinctions.
+
+## 54 — Cloudflare Script Timing (2026-10-28)
+
+- [Production verification](54-cloudflare-script-timing/verification.md): hostname-scoped Rocket Loader exception, saved API configuration and rollback, paired production Lighthouse measurements, real desktop/mobile smoke checks, and partial-remediation verdict with unchanged bot-defense/RUM warnings.
