@@ -1,0 +1,2490 @@
+{
+  "productionBefore": [
+    {
+      "report": "production-announcements-mobile.report.json",
+      "url": "https://law.viento.me/announcements",
+      "finalUrl": "https://law.viento.me/announcements",
+      "fetchTime": "2026-10-28T00:39:28.964Z",
+      "lighthouseVersion": "13.6.0",
+      "formFactor": "mobile",
+      "error": null,
+      "scores": {
+        "performance": 1,
+        "accessibility": 1,
+        "best-practices": 0.81,
+        "seo": 1,
+        "agentic-browsing": 1
+      },
+      "metrics": {
+        "first-contentful-paint": {
+          "value": 1531.7015000000001,
+          "displayValue": "1.5 s"
+        },
+        "largest-contentful-paint": {
+          "value": 1531.7015000000001,
+          "displayValue": "1.5 s"
+        },
+        "total-blocking-time": {
+          "value": 3,
+          "displayValue": "0 ms"
+        },
+        "cumulative-layout-shift": {
+          "value": 0.001090971451010879,
+          "displayValue": "0.001"
+        }
+      },
+      "failedAudits": [
+        {
+          "id": "first-contentful-paint",
+          "title": "First Contentful Paint",
+          "displayValue": "1.5 s"
+        },
+        {
+          "id": "interactive",
+          "title": "Time to Interactive",
+          "displayValue": "3.2 s"
+        },
+        {
+          "id": "deprecations",
+          "title": "Uses deprecated APIs",
+          "displayValue": "3 warnings found"
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "displayValue": "Est savings of 93 KiB"
+        },
+        {
+          "id": "cache-insight",
+          "title": "Use efficient cache lifetimes",
+          "displayValue": "Est savings of 17 KiB"
+        },
+        {
+          "id": "legacy-javascript-insight",
+          "title": "Legacy JavaScript",
+          "displayValue": "Est savings of 10 KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree",
+          "displayValue": null
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "displayValue": "Est savings of 740 ms"
+        }
+      ]
+    },
+    {
+      "report": "production-changes-mobile.report.json",
+      "url": "https://law.viento.me/notices/changes",
+      "finalUrl": "https://law.viento.me/notices/changes",
+      "fetchTime": "2026-10-28T00:38:25.068Z",
+      "lighthouseVersion": "13.6.0",
+      "formFactor": "mobile",
+      "error": null,
+      "scores": {
+        "performance": 0.99,
+        "accessibility": 1,
+        "best-practices": 0.81,
+        "seo": 1,
+        "agentic-browsing": 1
+      },
+      "metrics": {
+        "first-contentful-paint": {
+          "value": 1550.95,
+          "displayValue": "1.6 s"
+        },
+        "largest-contentful-paint": {
+          "value": 1550.95,
+          "displayValue": "1.6 s"
+        },
+        "total-blocking-time": {
+          "value": 54.5,
+          "displayValue": "50 ms"
+        },
+        "cumulative-layout-shift": {
+          "value": 0,
+          "displayValue": "0"
+        }
+      },
+      "failedAudits": [
+        {
+          "id": "first-contentful-paint",
+          "title": "First Contentful Paint",
+          "displayValue": "1.6 s"
+        },
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "displayValue": "1.6 s"
+        },
+        {
+          "id": "max-potential-fid",
+          "title": "Max Potential First Input Delay",
+          "displayValue": "90 ms"
+        },
+        {
+          "id": "interactive",
+          "title": "Time to Interactive",
+          "displayValue": "3.4 s"
+        },
+        {
+          "id": "deprecations",
+          "title": "Uses deprecated APIs",
+          "displayValue": "3 warnings found"
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "displayValue": "Est savings of 93 KiB"
+        },
+        {
+          "id": "cache-insight",
+          "title": "Use efficient cache lifetimes",
+          "displayValue": "Est savings of 16 KiB"
+        },
+        {
+          "id": "legacy-javascript-insight",
+          "title": "Legacy JavaScript",
+          "displayValue": "Est savings of 10 KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree",
+          "displayValue": null
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "displayValue": "Est savings of 680 ms"
+        }
+      ]
+    },
+    {
+      "report": "production-detail-mobile.report.json",
+      "url": "https://law.viento.me/notices/2221891",
+      "finalUrl": "https://law.viento.me/notices/2221891",
+      "fetchTime": "2026-10-28T00:42:10.111Z",
+      "lighthouseVersion": "13.6.0",
+      "formFactor": "mobile",
+      "error": null,
+      "scores": {
+        "performance": 0.92,
+        "accessibility": 1,
+        "best-practices": 0.81,
+        "seo": 1,
+        "agentic-browsing": 1
+      },
+      "metrics": {
+        "first-contentful-paint": {
+          "value": 2615.5135,
+          "displayValue": "2.6 s"
+        },
+        "largest-contentful-paint": {
+          "value": 2615.5135,
+          "displayValue": "2.6 s"
+        },
+        "total-blocking-time": {
+          "value": 2,
+          "displayValue": "0 ms"
+        },
+        "cumulative-layout-shift": {
+          "value": 0.002293990671840406,
+          "displayValue": "0.002"
+        }
+      },
+      "failedAudits": [
+        {
+          "id": "first-contentful-paint",
+          "title": "First Contentful Paint",
+          "displayValue": "2.6 s"
+        },
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "displayValue": "2.6 s"
+        },
+        {
+          "id": "speed-index",
+          "title": "Speed Index",
+          "displayValue": "3.4 s"
+        },
+        {
+          "id": "interactive",
+          "title": "Time to Interactive",
+          "displayValue": "3.8 s"
+        },
+        {
+          "id": "deprecations",
+          "title": "Uses deprecated APIs",
+          "displayValue": "3 warnings found"
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "displayValue": "Est savings of 93 KiB"
+        },
+        {
+          "id": "cache-insight",
+          "title": "Use efficient cache lifetimes",
+          "displayValue": "Est savings of 16 KiB"
+        },
+        {
+          "id": "legacy-javascript-insight",
+          "title": "Legacy JavaScript",
+          "displayValue": "Est savings of 10 KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree",
+          "displayValue": null
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "displayValue": "Est savings of 990 ms"
+        }
+      ]
+    },
+    {
+      "report": "production-discussions-mobile.report.json",
+      "url": "https://law.viento.me/discussions",
+      "finalUrl": "https://law.viento.me/discussions",
+      "fetchTime": "2026-10-28T00:38:37.325Z",
+      "lighthouseVersion": "13.6.0",
+      "formFactor": "mobile",
+      "error": null,
+      "scores": {
+        "performance": 1,
+        "accessibility": 1,
+        "best-practices": 0.81,
+        "seo": 1,
+        "agentic-browsing": 1
+      },
+      "metrics": {
+        "first-contentful-paint": {
+          "value": 1539.5674999999997,
+          "displayValue": "1.5 s"
+        },
+        "largest-contentful-paint": {
+          "value": 1539.5674999999997,
+          "displayValue": "1.5 s"
+        },
+        "total-blocking-time": {
+          "value": 6,
+          "displayValue": "10 ms"
+        },
+        "cumulative-layout-shift": {
+          "value": 0,
+          "displayValue": "0"
+        }
+      },
+      "failedAudits": [
+        {
+          "id": "first-contentful-paint",
+          "title": "First Contentful Paint",
+          "displayValue": "1.5 s"
+        },
+        {
+          "id": "interactive",
+          "title": "Time to Interactive",
+          "displayValue": "2.9 s"
+        },
+        {
+          "id": "deprecations",
+          "title": "Uses deprecated APIs",
+          "displayValue": "3 warnings found"
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "displayValue": "Est savings of 93 KiB"
+        },
+        {
+          "id": "cache-insight",
+          "title": "Use efficient cache lifetimes",
+          "displayValue": "Est savings of 17 KiB"
+        },
+        {
+          "id": "legacy-javascript-insight",
+          "title": "Legacy JavaScript",
+          "displayValue": "Est savings of 10 KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree",
+          "displayValue": null
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "displayValue": "Est savings of 730 ms"
+        }
+      ]
+    },
+    {
+      "report": "production-home-desktop.report.json",
+      "url": "https://law.viento.me/",
+      "finalUrl": "https://law.viento.me/",
+      "fetchTime": "2026-10-28T00:37:12.570Z",
+      "lighthouseVersion": "13.6.0",
+      "formFactor": "desktop",
+      "error": null,
+      "scores": {
+        "performance": 1,
+        "accessibility": 0.97,
+        "best-practices": 0.58,
+        "seo": 1,
+        "agentic-browsing": 0.5
+      },
+      "metrics": {
+        "first-contentful-paint": {
+          "value": 468.7190000000001,
+          "displayValue": "0.5 s"
+        },
+        "largest-contentful-paint": {
+          "value": 468.7190000000001,
+          "displayValue": "0.5 s"
+        },
+        "total-blocking-time": {
+          "value": 0,
+          "displayValue": "0 ms"
+        },
+        "cumulative-layout-shift": {
+          "value": 0,
+          "displayValue": "0"
+        }
+      },
+      "failedAudits": [
+        {
+          "id": "deprecations",
+          "title": "Uses deprecated APIs",
+          "displayValue": "3 warnings found"
+        },
+        {
+          "id": "third-party-cookies",
+          "title": "Uses third-party cookies",
+          "displayValue": "1 cookie found"
+        },
+        {
+          "id": "color-contrast",
+          "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+          "displayValue": null
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "title": "Elements with visible text labels do not have matching accessible names.",
+          "displayValue": null
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "displayValue": "Est savings of 93 KiB"
+        },
+        {
+          "id": "inspector-issues",
+          "title": "Issues were logged in the `Issues` panel in Chrome Devtools",
+          "displayValue": null
+        },
+        {
+          "id": "agent-accessibility-tree",
+          "title": "Accessibility tree is not well-formed",
+          "displayValue": null
+        },
+        {
+          "id": "cache-insight",
+          "title": "Use efficient cache lifetimes",
+          "displayValue": "Est savings of 29 KiB"
+        },
+        {
+          "id": "legacy-javascript-insight",
+          "title": "Legacy JavaScript",
+          "displayValue": "Est savings of 10 KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree",
+          "displayValue": null
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "displayValue": null
+        }
+      ]
+    },
+    {
+      "report": "production-home-mobile.report.json",
+      "url": "https://law.viento.me/",
+      "finalUrl": "https://law.viento.me/",
+      "fetchTime": "2026-10-28T00:36:48.289Z",
+      "lighthouseVersion": "13.6.0",
+      "formFactor": "mobile",
+      "error": null,
+      "scores": {
+        "performance": 0.95,
+        "accessibility": 1,
+        "best-practices": 0.58,
+        "seo": 1,
+        "agentic-browsing": 0.5
+      },
+      "metrics": {
+        "first-contentful-paint": {
+          "value": 2294.1679999999997,
+          "displayValue": "2.3 s"
+        },
+        "largest-contentful-paint": {
+          "value": 2294.1679999999997,
+          "displayValue": "2.3 s"
+        },
+        "total-blocking-time": {
+          "value": 19.5,
+          "displayValue": "20 ms"
+        },
+        "cumulative-layout-shift": {
+          "value": 0,
+          "displayValue": "0"
+        }
+      },
+      "failedAudits": [
+        {
+          "id": "first-contentful-paint",
+          "title": "First Contentful Paint",
+          "displayValue": "2.3 s"
+        },
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "displayValue": "2.3 s"
+        },
+        {
+          "id": "speed-index",
+          "title": "Speed Index",
+          "displayValue": "3.0 s"
+        },
+        {
+          "id": "max-potential-fid",
+          "title": "Max Potential First Input Delay",
+          "displayValue": "80 ms"
+        },
+        {
+          "id": "interactive",
+          "title": "Time to Interactive",
+          "displayValue": "4.3 s"
+        },
+        {
+          "id": "deprecations",
+          "title": "Uses deprecated APIs",
+          "displayValue": "3 warnings found"
+        },
+        {
+          "id": "third-party-cookies",
+          "title": "Uses third-party cookies",
+          "displayValue": "1 cookie found"
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "title": "Elements with visible text labels do not have matching accessible names.",
+          "displayValue": null
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "displayValue": "Est savings of 93 KiB"
+        },
+        {
+          "id": "inspector-issues",
+          "title": "Issues were logged in the `Issues` panel in Chrome Devtools",
+          "displayValue": null
+        },
+        {
+          "id": "agent-accessibility-tree",
+          "title": "Accessibility tree is not well-formed",
+          "displayValue": null
+        },
+        {
+          "id": "cache-insight",
+          "title": "Use efficient cache lifetimes",
+          "displayValue": "Est savings of 29 KiB"
+        },
+        {
+          "id": "legacy-javascript-insight",
+          "title": "Legacy JavaScript",
+          "displayValue": "Est savings of 10 KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree",
+          "displayValue": null
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "displayValue": null
+        }
+      ]
+    },
+    {
+      "report": "production-license-mobile.report.json",
+      "url": "https://law.viento.me/license",
+      "finalUrl": "https://law.viento.me/license",
+      "fetchTime": "2026-10-28T00:41:36.051Z",
+      "lighthouseVersion": "13.6.0",
+      "formFactor": "mobile",
+      "error": null,
+      "scores": {
+        "performance": 0.99,
+        "accessibility": 1,
+        "best-practices": 0.81,
+        "seo": 1,
+        "agentic-browsing": 1
+      },
+      "metrics": {
+        "first-contentful-paint": {
+          "value": 1551.7040000000002,
+          "displayValue": "1.6 s"
+        },
+        "largest-contentful-paint": {
+          "value": 1551.7040000000002,
+          "displayValue": "1.6 s"
+        },
+        "total-blocking-time": {
+          "value": 3,
+          "displayValue": "0 ms"
+        },
+        "cumulative-layout-shift": {
+          "value": 0,
+          "displayValue": "0"
+        }
+      },
+      "failedAudits": [
+        {
+          "id": "first-contentful-paint",
+          "title": "First Contentful Paint",
+          "displayValue": "1.6 s"
+        },
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "displayValue": "1.6 s"
+        },
+        {
+          "id": "interactive",
+          "title": "Time to Interactive",
+          "displayValue": "2.9 s"
+        },
+        {
+          "id": "deprecations",
+          "title": "Uses deprecated APIs",
+          "displayValue": "3 warnings found"
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "displayValue": "Est savings of 93 KiB"
+        },
+        {
+          "id": "cache-insight",
+          "title": "Use efficient cache lifetimes",
+          "displayValue": "Est savings of 16 KiB"
+        },
+        {
+          "id": "legacy-javascript-insight",
+          "title": "Legacy JavaScript",
+          "displayValue": "Est savings of 10 KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree",
+          "displayValue": null
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "displayValue": "Est savings of 750 ms"
+        }
+      ]
+    },
+    {
+      "report": "production-notices-mobile.report.json",
+      "url": "https://law.viento.me/notices",
+      "finalUrl": "https://law.viento.me/notices",
+      "fetchTime": "2026-10-28T00:37:29.684Z",
+      "lighthouseVersion": "13.6.0",
+      "formFactor": "mobile",
+      "error": null,
+      "scores": {
+        "performance": 0.98,
+        "accessibility": 1,
+        "best-practices": 0.81,
+        "seo": 1,
+        "agentic-browsing": 1
+      },
+      "metrics": {
+        "first-contentful-paint": {
+          "value": 1695.7889999999998,
+          "displayValue": "1.7 s"
+        },
+        "largest-contentful-paint": {
+          "value": 1695.7889999999998,
+          "displayValue": "1.7 s"
+        },
+        "total-blocking-time": {
+          "value": 11.5,
+          "displayValue": "10 ms"
+        },
+        "cumulative-layout-shift": {
+          "value": 0,
+          "displayValue": "0"
+        }
+      },
+      "failedAudits": [
+        {
+          "id": "first-contentful-paint",
+          "title": "First Contentful Paint",
+          "displayValue": "1.7 s"
+        },
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "displayValue": "1.7 s"
+        },
+        {
+          "id": "speed-index",
+          "title": "Speed Index",
+          "displayValue": "3.0 s"
+        },
+        {
+          "id": "interactive",
+          "title": "Time to Interactive",
+          "displayValue": "3.5 s"
+        },
+        {
+          "id": "deprecations",
+          "title": "Uses deprecated APIs",
+          "displayValue": "3 warnings found"
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "displayValue": "Est savings of 93 KiB"
+        },
+        {
+          "id": "cache-insight",
+          "title": "Use efficient cache lifetimes",
+          "displayValue": "Est savings of 17 KiB"
+        },
+        {
+          "id": "legacy-javascript-insight",
+          "title": "Legacy JavaScript",
+          "displayValue": "Est savings of 10 KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree",
+          "displayValue": null
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "displayValue": "Est savings of 740 ms"
+        }
+      ]
+    },
+    {
+      "report": "production-proposals-mobile.report.json",
+      "url": "https://law.viento.me/proposals",
+      "finalUrl": "https://law.viento.me/proposals",
+      "fetchTime": "2026-10-28T00:38:49.675Z",
+      "lighthouseVersion": "13.6.0",
+      "formFactor": "mobile",
+      "error": null,
+      "scores": {
+        "performance": 0.99,
+        "accessibility": 1,
+        "best-practices": 0.81,
+        "seo": 1,
+        "agentic-browsing": 1
+      },
+      "metrics": {
+        "first-contentful-paint": {
+          "value": 1550.358,
+          "displayValue": "1.6 s"
+        },
+        "largest-contentful-paint": {
+          "value": 1550.358,
+          "displayValue": "1.6 s"
+        },
+        "total-blocking-time": {
+          "value": 7.5,
+          "displayValue": "10 ms"
+        },
+        "cumulative-layout-shift": {
+          "value": 0,
+          "displayValue": "0"
+        }
+      },
+      "failedAudits": [
+        {
+          "id": "first-contentful-paint",
+          "title": "First Contentful Paint",
+          "displayValue": "1.6 s"
+        },
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "displayValue": "1.6 s"
+        },
+        {
+          "id": "interactive",
+          "title": "Time to Interactive",
+          "displayValue": "3.6 s"
+        },
+        {
+          "id": "deprecations",
+          "title": "Uses deprecated APIs",
+          "displayValue": "3 warnings found"
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "displayValue": "Est savings of 128 KiB"
+        },
+        {
+          "id": "cache-insight",
+          "title": "Use efficient cache lifetimes",
+          "displayValue": "Est savings of 17 KiB"
+        },
+        {
+          "id": "legacy-javascript-insight",
+          "title": "Legacy JavaScript",
+          "displayValue": "Est savings of 10 KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree",
+          "displayValue": null
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "displayValue": "Est savings of 710 ms"
+        }
+      ]
+    },
+    {
+      "report": "production-status-mobile.report.json",
+      "url": "https://law.viento.me/status",
+      "finalUrl": "https://law.viento.me/status",
+      "fetchTime": "2026-10-28T00:39:16.575Z",
+      "lighthouseVersion": "13.6.0",
+      "formFactor": "mobile",
+      "error": null,
+      "scores": {
+        "performance": 0.99,
+        "accessibility": 0.98,
+        "best-practices": 0.81,
+        "seo": 0.69,
+        "agentic-browsing": 1
+      },
+      "metrics": {
+        "first-contentful-paint": {
+          "value": 1685.681,
+          "displayValue": "1.7 s"
+        },
+        "largest-contentful-paint": {
+          "value": 1685.681,
+          "displayValue": "1.7 s"
+        },
+        "total-blocking-time": {
+          "value": 3,
+          "displayValue": "0 ms"
+        },
+        "cumulative-layout-shift": {
+          "value": 0,
+          "displayValue": "0"
+        }
+      },
+      "failedAudits": [
+        {
+          "id": "first-contentful-paint",
+          "title": "First Contentful Paint",
+          "displayValue": "1.7 s"
+        },
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "displayValue": "1.7 s"
+        },
+        {
+          "id": "interactive",
+          "title": "Time to Interactive",
+          "displayValue": "3.3 s"
+        },
+        {
+          "id": "deprecations",
+          "title": "Uses deprecated APIs",
+          "displayValue": "3 warnings found"
+        },
+        {
+          "id": "heading-order",
+          "title": "Heading elements are not in a sequentially-descending order",
+          "displayValue": null
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "displayValue": "Est savings of 93 KiB"
+        },
+        {
+          "id": "is-crawlable",
+          "title": "Page is blocked from indexing",
+          "displayValue": null
+        },
+        {
+          "id": "cache-insight",
+          "title": "Use efficient cache lifetimes",
+          "displayValue": "Est savings of 16 KiB"
+        },
+        {
+          "id": "legacy-javascript-insight",
+          "title": "Legacy JavaScript",
+          "displayValue": "Est savings of 10 KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree",
+          "displayValue": null
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "displayValue": "Est savings of 690 ms"
+        }
+      ]
+    },
+    {
+      "report": "production-webhook-mobile.report.json",
+      "url": "https://law.viento.me/webhook",
+      "finalUrl": "https://law.viento.me/webhook",
+      "fetchTime": "2026-10-28T00:39:03.530Z",
+      "lighthouseVersion": "13.6.0",
+      "formFactor": "mobile",
+      "error": null,
+      "scores": {
+        "performance": 0.93,
+        "accessibility": 1,
+        "best-practices": 0.81,
+        "seo": 0.69,
+        "agentic-browsing": 1
+      },
+      "metrics": {
+        "first-contentful-paint": {
+          "value": 1628.07,
+          "displayValue": "1.6 s"
+        },
+        "largest-contentful-paint": {
+          "value": 1628.07,
+          "displayValue": "1.6 s"
+        },
+        "total-blocking-time": {
+          "value": 276.5,
+          "displayValue": "280 ms"
+        },
+        "cumulative-layout-shift": {
+          "value": 0,
+          "displayValue": "0"
+        }
+      },
+      "failedAudits": [
+        {
+          "id": "first-contentful-paint",
+          "title": "First Contentful Paint",
+          "displayValue": "1.6 s"
+        },
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "displayValue": "1.6 s"
+        },
+        {
+          "id": "total-blocking-time",
+          "title": "Total Blocking Time",
+          "displayValue": "280 ms"
+        },
+        {
+          "id": "max-potential-fid",
+          "title": "Max Potential First Input Delay",
+          "displayValue": "280 ms"
+        },
+        {
+          "id": "interactive",
+          "title": "Time to Interactive",
+          "displayValue": "3.6 s"
+        },
+        {
+          "id": "deprecations",
+          "title": "Uses deprecated APIs",
+          "displayValue": "3 warnings found"
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "displayValue": "Est savings of 93 KiB"
+        },
+        {
+          "id": "is-crawlable",
+          "title": "Page is blocked from indexing",
+          "displayValue": null
+        },
+        {
+          "id": "cache-insight",
+          "title": "Use efficient cache lifetimes",
+          "displayValue": "Est savings of 16 KiB"
+        },
+        {
+          "id": "legacy-javascript-insight",
+          "title": "Legacy JavaScript",
+          "displayValue": "Est savings of 10 KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree",
+          "displayValue": null
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "displayValue": "Est savings of 770 ms"
+        }
+      ]
+    }
+  ],
+  "productionBeforeRetry": {
+    "results": [
+      {
+        "route": "/crawling-transparency",
+        "formFactor": "mobile",
+        "metrics": {
+          "first-contentful-paint": 1941.9750000000001,
+          "largest-contentful-paint": 1941.9750000000001,
+          "total-blocking-time": 7.5,
+          "cumulative-layout-shift": 0
+        },
+        "measurements": [
+          {
+            "url": "https://law.viento.me/crawling-transparency",
+            "fetchTime": "2026-10-28T01:09:06.066Z",
+            "lighthouseVersion": "13.6.0",
+            "scores": {
+              "performance": 0.88,
+              "accessibility": 1,
+              "best-practices": 0.81,
+              "seo": 1,
+              "agentic-browsing": 1
+            },
+            "metrics": {
+              "first-contentful-paint": 1941.9750000000001,
+              "largest-contentful-paint": 1941.9750000000001,
+              "total-blocking-time": 7.5,
+              "cumulative-layout-shift": 0
+            },
+            "warnings": [],
+            "failedAudits": [
+              {
+                "id": "first-contentful-paint",
+                "title": "First Contentful Paint",
+                "displayValue": "1.9 s"
+              },
+              {
+                "id": "largest-contentful-paint",
+                "title": "Largest Contentful Paint",
+                "displayValue": "1.9 s"
+              },
+              {
+                "id": "speed-index",
+                "title": "Speed Index",
+                "displayValue": "12.5 s"
+              },
+              {
+                "id": "interactive",
+                "title": "Time to Interactive",
+                "displayValue": "3.5 s"
+              },
+              {
+                "id": "deprecations",
+                "title": "Uses deprecated APIs",
+                "displayValue": "3 warnings found"
+              },
+              {
+                "id": "unused-javascript",
+                "title": "Reduce unused JavaScript",
+                "displayValue": "Est savings of 93 KiB"
+              },
+              {
+                "id": "cache-insight",
+                "title": "Use efficient cache lifetimes",
+                "displayValue": "Est savings of 17 KiB"
+              },
+              {
+                "id": "lcp-breakdown-insight",
+                "title": "LCP breakdown"
+              },
+              {
+                "id": "legacy-javascript-insight",
+                "title": "Legacy JavaScript",
+                "displayValue": "Est savings of 10 KiB"
+              },
+              {
+                "id": "network-dependency-tree-insight",
+                "title": "Network dependency tree"
+              },
+              {
+                "id": "render-blocking-insight",
+                "title": "Render-blocking requests",
+                "displayValue": "Est savings of 950 ms"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "failures": []
+  },
+  "controlledComparison": {
+    "baselineCommit": "b7d79b7f4dc23e636031b77d8a63072285288d5d",
+    "candidateCommit": "93242c9",
+    "environment": "Node production adapter, identical fixed mock data and real public GTM/Discord settings; sequential browser runs, no concurrent tests",
+    "baselineMobile": {
+      "results": [
+        {
+          "route": "/",
+          "formFactor": "mobile",
+          "metrics": {
+            "first-contentful-paint": 1969.6015000000002,
+            "largest-contentful-paint": 1969.6015000000002,
+            "total-blocking-time": 8.5,
+            "cumulative-layout-shift": 0
+          },
+          "measurements": [
+            {
+              "url": "http://127.0.0.1:4194/",
+              "fetchTime": "2026-10-28T01:05:48.905Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 0.92,
+                "accessibility": 1,
+                "best-practices": 0.77,
+                "seo": 1,
+                "agentic-browsing": 0.5
+              },
+              "metrics": {
+                "first-contentful-paint": 2487.6118,
+                "largest-contentful-paint": 2487.6118,
+                "total-blocking-time": 13.5,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "first-contentful-paint",
+                  "title": "First Contentful Paint",
+                  "displayValue": "2.5 s"
+                },
+                {
+                  "id": "largest-contentful-paint",
+                  "title": "Largest Contentful Paint",
+                  "displayValue": "2.5 s"
+                },
+                {
+                  "id": "speed-index",
+                  "title": "Speed Index",
+                  "displayValue": "4.4 s"
+                },
+                {
+                  "id": "max-potential-fid",
+                  "title": "Max Potential First Input Delay",
+                  "displayValue": "70 ms"
+                },
+                {
+                  "id": "interactive",
+                  "title": "Time to Interactive",
+                  "displayValue": "4.2 s"
+                },
+                {
+                  "id": "third-party-cookies",
+                  "title": "Uses third-party cookies",
+                  "displayValue": "1 cookie found"
+                },
+                {
+                  "id": "label-content-name-mismatch",
+                  "title": "Elements with visible text labels do not have matching accessible names."
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "inspector-issues",
+                  "title": "Issues were logged in the `Issues` panel in Chrome Devtools"
+                },
+                {
+                  "id": "agent-accessibility-tree",
+                  "title": "Accessibility tree is not well-formed"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 15 KiB"
+                },
+                {
+                  "id": "document-latency-insight",
+                  "title": "Document request latency",
+                  "displayValue": "Est savings of 42 KiB"
+                },
+                {
+                  "id": "lcp-breakdown-insight",
+                  "title": "LCP breakdown"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests"
+                }
+              ]
+            },
+            {
+              "url": "http://127.0.0.1:4194/",
+              "fetchTime": "2026-10-28T01:05:58.546Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 0.98,
+                "accessibility": 1,
+                "best-practices": 0.77,
+                "seo": 1,
+                "agentic-browsing": 0.5
+              },
+              "metrics": {
+                "first-contentful-paint": 1969.6015000000002,
+                "largest-contentful-paint": 1969.6015000000002,
+                "total-blocking-time": 8.5,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "first-contentful-paint",
+                  "title": "First Contentful Paint",
+                  "displayValue": "2.0 s"
+                },
+                {
+                  "id": "largest-contentful-paint",
+                  "title": "Largest Contentful Paint",
+                  "displayValue": "2.0 s"
+                },
+                {
+                  "id": "speed-index",
+                  "title": "Speed Index",
+                  "displayValue": "2.0 s"
+                },
+                {
+                  "id": "max-potential-fid",
+                  "title": "Max Potential First Input Delay",
+                  "displayValue": "70 ms"
+                },
+                {
+                  "id": "interactive",
+                  "title": "Time to Interactive",
+                  "displayValue": "3.7 s"
+                },
+                {
+                  "id": "third-party-cookies",
+                  "title": "Uses third-party cookies",
+                  "displayValue": "1 cookie found"
+                },
+                {
+                  "id": "label-content-name-mismatch",
+                  "title": "Elements with visible text labels do not have matching accessible names."
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "inspector-issues",
+                  "title": "Issues were logged in the `Issues` panel in Chrome Devtools"
+                },
+                {
+                  "id": "agent-accessibility-tree",
+                  "title": "Accessibility tree is not well-formed"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 16 KiB"
+                },
+                {
+                  "id": "document-latency-insight",
+                  "title": "Document request latency",
+                  "displayValue": "Est savings of 42 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 1,020 ms"
+                }
+              ]
+            },
+            {
+              "url": "http://127.0.0.1:4194/",
+              "fetchTime": "2026-10-28T01:06:06.704Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 0.98,
+                "accessibility": 1,
+                "best-practices": 0.77,
+                "seo": 1,
+                "agentic-browsing": 0.5
+              },
+              "metrics": {
+                "first-contentful-paint": 1940.2703,
+                "largest-contentful-paint": 1940.2703,
+                "total-blocking-time": 8.5,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "first-contentful-paint",
+                  "title": "First Contentful Paint",
+                  "displayValue": "1.9 s"
+                },
+                {
+                  "id": "largest-contentful-paint",
+                  "title": "Largest Contentful Paint",
+                  "displayValue": "1.9 s"
+                },
+                {
+                  "id": "max-potential-fid",
+                  "title": "Max Potential First Input Delay",
+                  "displayValue": "70 ms"
+                },
+                {
+                  "id": "interactive",
+                  "title": "Time to Interactive",
+                  "displayValue": "3.7 s"
+                },
+                {
+                  "id": "third-party-cookies",
+                  "title": "Uses third-party cookies",
+                  "displayValue": "1 cookie found"
+                },
+                {
+                  "id": "label-content-name-mismatch",
+                  "title": "Elements with visible text labels do not have matching accessible names."
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "inspector-issues",
+                  "title": "Issues were logged in the `Issues` panel in Chrome Devtools"
+                },
+                {
+                  "id": "agent-accessibility-tree",
+                  "title": "Accessibility tree is not well-formed"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 16 KiB"
+                },
+                {
+                  "id": "document-latency-insight",
+                  "title": "Document request latency",
+                  "displayValue": "Est savings of 42 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 990 ms"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "failures": []
+    },
+    "patchedMobile": {
+      "results": [
+        {
+          "route": "/",
+          "formFactor": "mobile",
+          "metrics": {
+            "first-contentful-paint": 945.641,
+            "largest-contentful-paint": 945.641,
+            "total-blocking-time": 4.5,
+            "cumulative-layout-shift": 0
+          },
+          "measurements": [
+            {
+              "url": "http://127.0.0.1:4197/",
+              "fetchTime": "2026-10-28T01:06:18.489Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 1,
+                "accessibility": 1,
+                "best-practices": 1,
+                "seo": 1,
+                "agentic-browsing": 1
+              },
+              "metrics": {
+                "first-contentful-paint": 947.18845,
+                "largest-contentful-paint": 947.18845,
+                "total-blocking-time": 3.5,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "interactive",
+                  "title": "Time to Interactive",
+                  "displayValue": "2.5 s"
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 3 KiB"
+                },
+                {
+                  "id": "document-latency-insight",
+                  "title": "Document request latency",
+                  "displayValue": "Est savings of 42 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 410 ms"
+                }
+              ]
+            },
+            {
+              "url": "http://127.0.0.1:4197/",
+              "fetchTime": "2026-10-28T01:06:25.735Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 1,
+                "accessibility": 1,
+                "best-practices": 1,
+                "seo": 1,
+                "agentic-browsing": 1
+              },
+              "metrics": {
+                "first-contentful-paint": 945.641,
+                "largest-contentful-paint": 945.641,
+                "total-blocking-time": 4.5,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "interactive",
+                  "title": "Time to Interactive",
+                  "displayValue": "2.4 s"
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 3 KiB"
+                },
+                {
+                  "id": "document-latency-insight",
+                  "title": "Document request latency",
+                  "displayValue": "Est savings of 42 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 410 ms"
+                }
+              ]
+            },
+            {
+              "url": "http://127.0.0.1:4197/",
+              "fetchTime": "2026-10-28T01:06:32.960Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 1,
+                "accessibility": 1,
+                "best-practices": 1,
+                "seo": 1,
+                "agentic-browsing": 1
+              },
+              "metrics": {
+                "first-contentful-paint": 942.87145,
+                "largest-contentful-paint": 942.87145,
+                "total-blocking-time": 11,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "max-potential-fid",
+                  "title": "Max Potential First Input Delay",
+                  "displayValue": "70 ms"
+                },
+                {
+                  "id": "interactive",
+                  "title": "Time to Interactive",
+                  "displayValue": "2.4 s"
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 3 KiB"
+                },
+                {
+                  "id": "document-latency-insight",
+                  "title": "Document request latency",
+                  "displayValue": "Est savings of 42 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 410 ms"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "failures": []
+    },
+    "patchedRoutesMobile": {
+      "results": [
+        {
+          "route": "/notices",
+          "formFactor": "mobile",
+          "metrics": {
+            "first-contentful-paint": 1418.62615,
+            "largest-contentful-paint": 1418.62615,
+            "total-blocking-time": 2.5,
+            "cumulative-layout-shift": 0
+          },
+          "measurements": [
+            {
+              "url": "http://127.0.0.1:4197/notices",
+              "fetchTime": "2026-10-28T01:06:43.784Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 1,
+                "accessibility": 1,
+                "best-practices": 1,
+                "seo": 1,
+                "agentic-browsing": 1
+              },
+              "metrics": {
+                "first-contentful-paint": 1418.62615,
+                "largest-contentful-paint": 1418.62615,
+                "total-blocking-time": 2.5,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "first-contentful-paint",
+                  "title": "First Contentful Paint",
+                  "displayValue": "1.4 s"
+                },
+                {
+                  "id": "interactive",
+                  "title": "Time to Interactive",
+                  "displayValue": "3.0 s"
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 3 KiB"
+                },
+                {
+                  "id": "document-latency-insight",
+                  "title": "Document request latency",
+                  "displayValue": "Est savings of 91 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 540 ms"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "route": "/notices/2210001",
+          "formFactor": "mobile",
+          "metrics": {
+            "first-contentful-paint": 951.17315,
+            "largest-contentful-paint": 951.17315,
+            "total-blocking-time": 8.5,
+            "cumulative-layout-shift": 0
+          },
+          "measurements": [
+            {
+              "url": "http://127.0.0.1:4197/notices/2210001",
+              "fetchTime": "2026-10-28T01:06:51.001Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 1,
+                "accessibility": 1,
+                "best-practices": 1,
+                "seo": 1,
+                "agentic-browsing": 1
+              },
+              "metrics": {
+                "first-contentful-paint": 951.17315,
+                "largest-contentful-paint": 951.17315,
+                "total-blocking-time": 8.5,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "max-potential-fid",
+                  "title": "Max Potential First Input Delay",
+                  "displayValue": "70 ms"
+                },
+                {
+                  "id": "interactive",
+                  "title": "Time to Interactive",
+                  "displayValue": "2.7 s"
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 3 KiB"
+                },
+                {
+                  "id": "document-latency-insight",
+                  "title": "Document request latency",
+                  "displayValue": "Est savings of 38 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 550 ms"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "route": "/notices/changes",
+          "formFactor": "mobile",
+          "metrics": {
+            "first-contentful-paint": 942.6095,
+            "largest-contentful-paint": 942.6095,
+            "total-blocking-time": 20,
+            "cumulative-layout-shift": 0
+          },
+          "measurements": [
+            {
+              "url": "http://127.0.0.1:4197/notices/changes",
+              "fetchTime": "2026-10-28T01:06:58.106Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 1,
+                "accessibility": 1,
+                "best-practices": 1,
+                "seo": 1,
+                "agentic-browsing": 1
+              },
+              "metrics": {
+                "first-contentful-paint": 942.6095,
+                "largest-contentful-paint": 942.6095,
+                "total-blocking-time": 20,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "max-potential-fid",
+                  "title": "Max Potential First Input Delay",
+                  "displayValue": "90 ms"
+                },
+                {
+                  "id": "interactive",
+                  "title": "Time to Interactive",
+                  "displayValue": "3.6 s"
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 3 KiB"
+                },
+                {
+                  "id": "document-latency-insight",
+                  "title": "Document request latency",
+                  "displayValue": "Est savings of 37 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 410 ms"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "route": "/discussions",
+          "formFactor": "mobile",
+          "metrics": {
+            "first-contentful-paint": 800.04715,
+            "largest-contentful-paint": 800.04715,
+            "total-blocking-time": 24.5,
+            "cumulative-layout-shift": 0
+          },
+          "measurements": [
+            {
+              "url": "http://127.0.0.1:4197/discussions",
+              "fetchTime": "2026-10-28T01:07:04.991Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 1,
+                "accessibility": 1,
+                "best-practices": 1,
+                "seo": 1,
+                "agentic-browsing": 1
+              },
+              "metrics": {
+                "first-contentful-paint": 800.04715,
+                "largest-contentful-paint": 800.04715,
+                "total-blocking-time": 24.5,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "max-potential-fid",
+                  "title": "Max Potential First Input Delay",
+                  "displayValue": "100 ms"
+                },
+                {
+                  "id": "interactive",
+                  "title": "Time to Interactive",
+                  "displayValue": "3.6 s"
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 3 KiB"
+                },
+                {
+                  "id": "document-latency-insight",
+                  "title": "Document request latency",
+                  "displayValue": "Est savings of 19 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 400 ms"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "route": "/proposals",
+          "formFactor": "mobile",
+          "metrics": {
+            "first-contentful-paint": 945.48775,
+            "largest-contentful-paint": 945.48775,
+            "total-blocking-time": 32.999999999999545,
+            "cumulative-layout-shift": 0
+          },
+          "measurements": [
+            {
+              "url": "http://127.0.0.1:4197/proposals",
+              "fetchTime": "2026-10-28T01:07:11.906Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 1,
+                "accessibility": 1,
+                "best-practices": 1,
+                "seo": 1,
+                "agentic-browsing": 1
+              },
+              "metrics": {
+                "first-contentful-paint": 945.48775,
+                "largest-contentful-paint": 945.48775,
+                "total-blocking-time": 32.999999999999545,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "max-potential-fid",
+                  "title": "Max Potential First Input Delay",
+                  "displayValue": "80 ms"
+                },
+                {
+                  "id": "interactive",
+                  "title": "Time to Interactive",
+                  "displayValue": "4.1 s"
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 123 KiB"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 3 KiB"
+                },
+                {
+                  "id": "document-latency-insight",
+                  "title": "Document request latency",
+                  "displayValue": "Est savings of 29 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 560 ms"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "route": "/webhook",
+          "formFactor": "mobile",
+          "metrics": {
+            "first-contentful-paint": 783.4617,
+            "largest-contentful-paint": 783.4617,
+            "total-blocking-time": 11,
+            "cumulative-layout-shift": 0
+          },
+          "measurements": [
+            {
+              "url": "http://127.0.0.1:4197/webhook",
+              "fetchTime": "2026-10-28T01:07:18.874Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 1,
+                "accessibility": 1,
+                "best-practices": 1,
+                "seo": 0.69,
+                "agentic-browsing": 1
+              },
+              "metrics": {
+                "first-contentful-paint": 783.4617,
+                "largest-contentful-paint": 783.4617,
+                "total-blocking-time": 11,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "max-potential-fid",
+                  "title": "Max Potential First Input Delay",
+                  "displayValue": "70 ms"
+                },
+                {
+                  "id": "interactive",
+                  "title": "Time to Interactive",
+                  "displayValue": "2.4 s"
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "is-crawlable",
+                  "title": "Page is blocked from indexing"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 3 KiB"
+                },
+                {
+                  "id": "document-latency-insight",
+                  "title": "Document request latency",
+                  "displayValue": "Est savings of 20 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 420 ms"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "route": "/status",
+          "formFactor": "mobile",
+          "metrics": {
+            "first-contentful-paint": 947.9325,
+            "largest-contentful-paint": 947.9325,
+            "total-blocking-time": 20,
+            "cumulative-layout-shift": 0
+          },
+          "measurements": [
+            {
+              "url": "http://127.0.0.1:4197/status",
+              "fetchTime": "2026-10-28T01:07:25.786Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 1,
+                "accessibility": 1,
+                "best-practices": 1,
+                "seo": 0.69,
+                "agentic-browsing": 1
+              },
+              "metrics": {
+                "first-contentful-paint": 947.9325,
+                "largest-contentful-paint": 947.9325,
+                "total-blocking-time": 20,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "max-potential-fid",
+                  "title": "Max Potential First Input Delay",
+                  "displayValue": "90 ms"
+                },
+                {
+                  "id": "interactive",
+                  "title": "Time to Interactive",
+                  "displayValue": "3.8 s"
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "is-crawlable",
+                  "title": "Page is blocked from indexing"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 3 KiB"
+                },
+                {
+                  "id": "document-latency-insight",
+                  "title": "Document request latency",
+                  "displayValue": "Est savings of 35 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 410 ms"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "route": "/announcements",
+          "formFactor": "mobile",
+          "metrics": {
+            "first-contentful-paint": 784.9563,
+            "largest-contentful-paint": 784.9563,
+            "total-blocking-time": 53,
+            "cumulative-layout-shift": 0
+          },
+          "measurements": [
+            {
+              "url": "http://127.0.0.1:4197/announcements",
+              "fetchTime": "2026-10-28T01:07:33.160Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 1,
+                "accessibility": 1,
+                "best-practices": 1,
+                "seo": 1,
+                "agentic-browsing": 1
+              },
+              "metrics": {
+                "first-contentful-paint": 784.9563,
+                "largest-contentful-paint": 784.9563,
+                "total-blocking-time": 53,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "max-potential-fid",
+                  "title": "Max Potential First Input Delay",
+                  "displayValue": "100 ms"
+                },
+                {
+                  "id": "interactive",
+                  "title": "Time to Interactive",
+                  "displayValue": "3.3 s"
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 3 KiB"
+                },
+                {
+                  "id": "document-latency-insight",
+                  "title": "Document request latency",
+                  "displayValue": "Est savings of 18 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 420 ms"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "route": "/crawling-transparency",
+          "formFactor": "mobile",
+          "metrics": {
+            "first-contentful-paint": 950.85775,
+            "largest-contentful-paint": 950.85775,
+            "total-blocking-time": 23,
+            "cumulative-layout-shift": 0
+          },
+          "measurements": [
+            {
+              "url": "http://127.0.0.1:4197/crawling-transparency",
+              "fetchTime": "2026-10-28T01:07:39.968Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 1,
+                "accessibility": 1,
+                "best-practices": 1,
+                "seo": 1,
+                "agentic-browsing": 1
+              },
+              "metrics": {
+                "first-contentful-paint": 950.85775,
+                "largest-contentful-paint": 950.85775,
+                "total-blocking-time": 23,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "max-potential-fid",
+                  "title": "Max Potential First Input Delay",
+                  "displayValue": "100 ms"
+                },
+                {
+                  "id": "interactive",
+                  "title": "Time to Interactive",
+                  "displayValue": "3.6 s"
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 3 KiB"
+                },
+                {
+                  "id": "document-latency-insight",
+                  "title": "Document request latency",
+                  "displayValue": "Est savings of 28 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 400 ms"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "route": "/license",
+          "formFactor": "mobile",
+          "metrics": {
+            "first-contentful-paint": 961.84325,
+            "largest-contentful-paint": 961.84325,
+            "total-blocking-time": 36,
+            "cumulative-layout-shift": 0
+          },
+          "measurements": [
+            {
+              "url": "http://127.0.0.1:4197/license",
+              "fetchTime": "2026-10-28T01:07:47.542Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 1,
+                "accessibility": 1,
+                "best-practices": 1,
+                "seo": 1,
+                "agentic-browsing": 1
+              },
+              "metrics": {
+                "first-contentful-paint": 961.84325,
+                "largest-contentful-paint": 961.84325,
+                "total-blocking-time": 36,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "max-potential-fid",
+                  "title": "Max Potential First Input Delay",
+                  "displayValue": "90 ms"
+                },
+                {
+                  "id": "interactive",
+                  "title": "Time to Interactive",
+                  "displayValue": "3.7 s"
+                },
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 3 KiB"
+                },
+                {
+                  "id": "document-latency-insight",
+                  "title": "Document request latency",
+                  "displayValue": "Est savings of 32 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 390 ms"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "failures": []
+    },
+    "patchedDesktop": {
+      "results": [
+        {
+          "route": "/",
+          "formFactor": "desktop",
+          "metrics": {
+            "first-contentful-paint": 254.90385,
+            "largest-contentful-paint": 254.90385,
+            "total-blocking-time": 0,
+            "cumulative-layout-shift": 0
+          },
+          "measurements": [
+            {
+              "url": "http://127.0.0.1:4197/",
+              "fetchTime": "2026-10-28T01:07:58.767Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 1,
+                "accessibility": 1,
+                "best-practices": 1,
+                "seo": 1,
+                "agentic-browsing": 1
+              },
+              "metrics": {
+                "first-contentful-paint": 254.90385,
+                "largest-contentful-paint": 254.90385,
+                "total-blocking-time": 0,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 3 KiB"
+                },
+                {
+                  "id": "document-latency-insight",
+                  "title": "Document request latency",
+                  "displayValue": "Est savings of 42 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 110 ms"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "route": "/notices",
+          "formFactor": "desktop",
+          "metrics": {
+            "first-contentful-paint": 295.6422,
+            "largest-contentful-paint": 295.6422,
+            "total-blocking-time": 0,
+            "cumulative-layout-shift": 0
+          },
+          "measurements": [
+            {
+              "url": "http://127.0.0.1:4197/notices",
+              "fetchTime": "2026-10-28T01:08:06.453Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 1,
+                "accessibility": 1,
+                "best-practices": 1,
+                "seo": 1,
+                "agentic-browsing": 1
+              },
+              "metrics": {
+                "first-contentful-paint": 295.6422,
+                "largest-contentful-paint": 295.6422,
+                "total-blocking-time": 0,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 3 KiB"
+                },
+                {
+                  "id": "document-latency-insight",
+                  "title": "Document request latency",
+                  "displayValue": "Est savings of 91 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 110 ms"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "route": "/notices/2210001",
+          "formFactor": "desktop",
+          "metrics": {
+            "first-contentful-paint": 249.56135,
+            "largest-contentful-paint": 249.56135,
+            "total-blocking-time": 0,
+            "cumulative-layout-shift": 0
+          },
+          "measurements": [
+            {
+              "url": "http://127.0.0.1:4197/notices/2210001",
+              "fetchTime": "2026-10-28T01:08:14.017Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 1,
+                "accessibility": 1,
+                "best-practices": 1,
+                "seo": 1,
+                "agentic-browsing": 1
+              },
+              "metrics": {
+                "first-contentful-paint": 249.56135,
+                "largest-contentful-paint": 249.56135,
+                "total-blocking-time": 0,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 3 KiB"
+                },
+                {
+                  "id": "document-latency-insight",
+                  "title": "Document request latency",
+                  "displayValue": "Est savings of 38 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 110 ms"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "route": "/status",
+          "formFactor": "desktop",
+          "metrics": {
+            "first-contentful-paint": 245.4523,
+            "largest-contentful-paint": 245.4523,
+            "total-blocking-time": 0,
+            "cumulative-layout-shift": 0.01120424948194846
+          },
+          "measurements": [
+            {
+              "url": "http://127.0.0.1:4197/status",
+              "fetchTime": "2026-10-28T01:08:21.118Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 1,
+                "accessibility": 1,
+                "best-practices": 1,
+                "seo": 0.69,
+                "agentic-browsing": 1
+              },
+              "metrics": {
+                "first-contentful-paint": 245.4523,
+                "largest-contentful-paint": 245.4523,
+                "total-blocking-time": 0,
+                "cumulative-layout-shift": 0.01120424948194846
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "is-crawlable",
+                  "title": "Page is blocked from indexing"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 3 KiB"
+                },
+                {
+                  "id": "document-latency-insight",
+                  "title": "Document request latency",
+                  "displayValue": "Est savings of 35 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 120 ms"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "route": "/webhook",
+          "formFactor": "desktop",
+          "metrics": {
+            "first-contentful-paint": 211.6822,
+            "largest-contentful-paint": 211.6822,
+            "total-blocking-time": 0,
+            "cumulative-layout-shift": 0
+          },
+          "measurements": [
+            {
+              "url": "http://127.0.0.1:4197/webhook",
+              "fetchTime": "2026-10-28T01:08:28.476Z",
+              "lighthouseVersion": "13.6.0",
+              "scores": {
+                "performance": 1,
+                "accessibility": 1,
+                "best-practices": 1,
+                "seo": 0.69,
+                "agentic-browsing": 1
+              },
+              "metrics": {
+                "first-contentful-paint": 211.6822,
+                "largest-contentful-paint": 211.6822,
+                "total-blocking-time": 0,
+                "cumulative-layout-shift": 0
+              },
+              "warnings": [],
+              "failedAudits": [
+                {
+                  "id": "unused-javascript",
+                  "title": "Reduce unused JavaScript",
+                  "displayValue": "Est savings of 93 KiB"
+                },
+                {
+                  "id": "is-crawlable",
+                  "title": "Page is blocked from indexing"
+                },
+                {
+                  "id": "cache-insight",
+                  "title": "Use efficient cache lifetimes",
+                  "displayValue": "Est savings of 3 KiB"
+                },
+                {
+                  "id": "document-latency-insight",
+                  "title": "Document request latency",
+                  "displayValue": "Est savings of 20 KiB"
+                },
+                {
+                  "id": "network-dependency-tree-insight",
+                  "title": "Network dependency tree"
+                },
+                {
+                  "id": "render-blocking-insight",
+                  "title": "Render-blocking requests",
+                  "displayValue": "Est savings of 70 ms"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "failures": []
+    }
+  }
+}

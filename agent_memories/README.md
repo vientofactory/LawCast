@@ -384,3 +384,7 @@ agent_memories/
 ## 52 — Pages Production Actions (2026-10-28)
 
 - [Migration and verification](52-pages-production-actions/migration.md): native disabled previews still create skipped records; main-only GitHub Actions replacement, encrypted binding preservation, credential scope, cutover order and real push verification.
+
+## 53 — Frontend Web Vitals (2026-10-28)
+
+- [Audit and regression guards](53-frontend-web-vitals/audit-and-regressions.md): production Lighthouse baselines, bundled font declarations, explicit Discord widget loading, deferred-panel theme contrast, accessible labels/landmarks/headings, keyboard-scrollable tables, NProgress semantics, isolated Playwright and repeatable Lighthouse checks, external Cloudflare deductions and lab/field distinctions.
