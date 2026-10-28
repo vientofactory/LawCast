@@ -396,3 +396,7 @@ agent_memories/
 ## 55 — LCP Outlier Diagnostics (2026-10-28)
 
 - [Production investigation](55-lcp-outlier-diagnostics/investigation.md): 24 new cold Lighthouse runs, single-feature browser isolation, application Paint versus presentation and Cloudflare response timing, simulated versus actual-throttled LCP, preserved outliers and audit/Playwright regression guards.
+
+## 56 — Local Stats Bottlenecks (2026-10-28)
+
+- [Local patch and verification](56-local-stats-bottlenecks/verification.md): shared stats/list snapshot, coalesced cold loads and invalidation races, independent bounded Ollama health checks with unchanged generation timeout, 1254 backend tests, isolated Redis/HTTP comparisons and digest-timer teardown with verified Jest process exit, followed by the explicitly authorized backend 1.19.4 release.

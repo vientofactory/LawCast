@@ -1,0 +1,26 @@
+{
+  "before": {
+    "suitesPassed": 85,
+    "testsPassed": 1253,
+    "exitCode": 0,
+    "afterSummaryMs": 7692,
+    "exitWarning": true,
+    "detectedHandle": "Timeout: NotificationDigestBuffer.enqueue from notifier fault-isolation test"
+  },
+  "targetedDetectOpenHandles": {
+    "suitesPassed": 2,
+    "testsPassed": 53,
+    "exitCode": 0,
+    "openHandleReport": false
+  },
+  "after": {
+    "suitesPassed": 85,
+    "testsPassed": 1254,
+    "exitCode": 0,
+    "afterSummaryMs": 158,
+    "totalMs": 39320,
+    "exitWarning": false,
+    "forceExit": false
+  },
+  "scope": "Local test-module lifecycle fix only; production unchanged"
+}
