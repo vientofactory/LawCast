@@ -1,0 +1,4896 @@
+[
+  {
+    "device": "desktop",
+    "path": "/",
+    "run": 1,
+    "status": 200,
+    "cache": "MISS",
+    "serverTiming": "cfCacheStatus;desc=\"MISS\", cfEdge;dur=19,cfOrigin;dur=135, cfExtPri",
+    "before": {
+      "nav": {
+        "name": "https://law.viento.me/?__vitals_probe=4b4e65bc-0844-4807-9051-ea555ce7b153",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1011.9000000059605,
+        "navigationId": 3224,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h3",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "br",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.5,
+        "domainLookupStart": 1.2000000029802322,
+        "domainLookupEnd": 1.2000000029802322,
+        "connectStart": 1.2000000029802322,
+        "secureConnectionStart": 1.2000000029802322,
+        "connectEnd": 79.5,
+        "requestStart": 79.6000000089407,
+        "responseStart": 181.79999999701977,
+        "firstInterimResponseStart": 181.79999999701977,
+        "finalResponseHeadersStart": 329.29999999701977,
+        "responseEnd": 337.90000000596046,
+        "transferSize": 15513,
+        "encodedBodySize": 15213,
+        "decodedBodySize": 63149,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "cfCacheStatus",
+            "duration": 0,
+            "description": "MISS"
+          },
+          {
+            "name": "cfEdge",
+            "duration": 19,
+            "description": ""
+          },
+          {
+            "name": "cfOrigin",
+            "duration": 135,
+            "description": ""
+          },
+          {
+            "name": "cfExtPri",
+            "duration": 0,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 578.7999999970198,
+        "domContentLoadedEventStart": 613.9000000059605,
+        "domContentLoadedEventEnd": 614.4000000059605,
+        "domComplete": 1011.9000000059605,
+        "loadEventStart": 1011.9000000059605,
+        "loadEventEnd": 1011.9000000059605,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "low"
+        }
+      },
+      "probe": {
+        "lcp": [
+          {
+            "at": 600,
+            "size": 31631,
+            "tag": "P",
+            "text": "LawCast는 입법예고 원문을 처음 수집한 모습 그대로 저장하고, 나중에 내용이 바뀌거나\n\t\t\t\t\t\t\t\t사라져도 이전 기록과 비교해 확인할 수 있도록 남겨 둡니"
+          }
+        ],
+        "shifts": [],
+        "longTasks": [],
+        "events": []
+      },
+      "resources": [
+        {
+          "url": "https://law.viento.me/cdn-cgi/speculation",
+          "type": "other",
+          "start": 335.90000000596046,
+          "end": 539.2999999970198,
+          "size": 451
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/index.B-MlTbZI.css",
+          "type": "link",
+          "start": 336.20000000298023,
+          "end": 553.9000000059605,
+          "size": 1038
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/0.BCy5vXI0.css",
+          "type": "link",
+          "start": 336.29999999701977,
+          "end": 537.6000000089407,
+          "size": 16816
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/SeoHead.Cv3Itgoy.css",
+          "type": "link",
+          "start": 336.40000000596046,
+          "end": 546.5,
+          "size": 784
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/2.BUiiziPY.css",
+          "type": "link",
+          "start": 336.5,
+          "end": 546.6000000089407,
+          "size": 440
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/entry/start.DQqZcAk7.js",
+          "type": "script",
+          "start": 339.40000000596046,
+          "end": 539.2000000029802,
+          "size": 389
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/D5T8szD7.js",
+          "type": "script",
+          "start": 339.6000000089407,
+          "end": 539.7000000029802,
+          "size": 4392
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BFq8BJmn.js",
+          "type": "script",
+          "start": 339.6000000089407,
+          "end": 577.7000000029802,
+          "size": 11966
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/o9ZWkxNg.js",
+          "type": "script",
+          "start": 339.70000000298023,
+          "end": 553.7000000029802,
+          "size": 2947
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/a2NkhThR.js",
+          "type": "script",
+          "start": 339.70000000298023,
+          "end": 571,
+          "size": 11588
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/entry/app.EkctmiiP.js",
+          "type": "script",
+          "start": 339.79999999701977,
+          "end": 547,
+          "size": 3304
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/PPVm8Dsz.js",
+          "type": "script",
+          "start": 339.79999999701977,
+          "end": 558.4000000059605,
+          "size": 966
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/Ds9AtpU9.js",
+          "type": "script",
+          "start": 339.90000000596046,
+          "end": 547,
+          "size": 548
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DsnmJJEf.js",
+          "type": "script",
+          "start": 339.90000000596046,
+          "end": 558.7000000029802,
+          "size": 366
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CJsSH5f6.js",
+          "type": "script",
+          "start": 339.90000000596046,
+          "end": 560.6000000089407,
+          "size": 2697
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/nodes/0.DBu3TJEu.js",
+          "type": "script",
+          "start": 340,
+          "end": 560.7000000029802,
+          "size": 6840
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BApDRbnU.js",
+          "type": "script",
+          "start": 340.1000000089407,
+          "end": 552,
+          "size": 357
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BUcW8W4v.js",
+          "type": "script",
+          "start": 340.1000000089407,
+          "end": 552,
+          "size": 339
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DZhUsC3v.js",
+          "type": "script",
+          "start": 340.1000000089407,
+          "end": 554.2999999970198,
+          "size": 448
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CzcdBQaD.js",
+          "type": "script",
+          "start": 340.1000000089407,
+          "end": 611.7000000029802,
+          "size": 41195
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BrahRP-X.js",
+          "type": "script",
+          "start": 340.20000000298023,
+          "end": 546.7999999970198,
+          "size": 1203
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/nodes/2.rO38NPh6.js",
+          "type": "script",
+          "start": 340.20000000298023,
+          "end": 549.5,
+          "size": 9325
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BUQfcWdt.js",
+          "type": "script",
+          "start": 340.20000000298023,
+          "end": 552,
+          "size": 554
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CeDOxkPw.js",
+          "type": "script",
+          "start": 340.20000000298023,
+          "end": 553.7999999970198,
+          "size": 2063
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/_j3l3poy.js",
+          "type": "script",
+          "start": 340.29999999701977,
+          "end": 565.4000000059605,
+          "size": 8713
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DVC3G1Ew.js",
+          "type": "script",
+          "start": 340.5,
+          "end": 546.9000000059605,
+          "size": 1450
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/Cr5l5_Hh.js",
+          "type": "script",
+          "start": 340.5,
+          "end": 560.9000000059605,
+          "size": 427
+        },
+        {
+          "url": "https://law.viento.me/brand/v2/wordmark-light.svg",
+          "type": "img",
+          "start": 341.90000000596046,
+          "end": 544,
+          "size": 1587
+        },
+        {
+          "url": "https://law.viento.me/brand/v2/wordmark-dark.svg",
+          "type": "img",
+          "start": 342,
+          "end": 611.9000000059605,
+          "size": 1585
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "type": "script",
+          "start": 342.1000000089407,
+          "end": 611.6000000089407,
+          "size": 0
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtm.js?id=GTM-N82SX8WB",
+          "type": "script",
+          "start": 345.90000000596046,
+          "end": 984,
+          "size": 0
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/nodes/1.B21rzO2b.js",
+          "type": "script",
+          "start": 581.2000000029802,
+          "end": 665.7000000029802,
+          "size": 2738
+        },
+        {
+          "url": "https://law.viento.me/cdn-cgi/rum?",
+          "type": "xmlhttprequest",
+          "start": 1013,
+          "end": 1097.5,
+          "size": 300
+        },
+        {
+          "url": "https://law.viento.me/brand/v2/favicon.svg",
+          "type": "other",
+          "start": 1013.2999999970198,
+          "end": 1128.2000000029802,
+          "size": 517
+        }
+      ]
+    },
+    "events": [
+      {
+        "name": "pointerdown",
+        "at": 1939.9000000059605,
+        "duration": 72,
+        "interactionId": 5728
+      },
+      {
+        "name": "pointerup",
+        "at": 1940.2000000029802,
+        "duration": 72,
+        "interactionId": 5728
+      },
+      {
+        "name": "click",
+        "at": 1940.2000000029802,
+        "duration": 72,
+        "interactionId": 5728
+      }
+    ],
+    "errors": [],
+    "browserApiRequests": [],
+    "rocketLoader": []
+  },
+  {
+    "device": "desktop",
+    "path": "/",
+    "run": 2,
+    "status": 200,
+    "cache": "MISS",
+    "serverTiming": "cfCacheStatus;desc=\"MISS\", cfEdge;dur=8,cfOrigin;dur=82",
+    "before": {
+      "nav": {
+        "name": "https://law.viento.me/?__vitals_probe=d171a292-7156-42ff-9167-65f984d80e34",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 927.0999999940395,
+        "navigationId": 5928,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "br",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.29999999701976776,
+        "domainLookupStart": 0.7000000029802322,
+        "domainLookupEnd": 0.7000000029802322,
+        "connectStart": 0.7000000029802322,
+        "secureConnectionStart": 69.70000000298023,
+        "connectEnd": 145.3999999910593,
+        "requestStart": 145.5,
+        "responseStart": 243.79999999701977,
+        "firstInterimResponseStart": 243.79999999701977,
+        "finalResponseHeadersStart": 328.20000000298023,
+        "responseEnd": 330.5,
+        "transferSize": 15532,
+        "encodedBodySize": 15232,
+        "decodedBodySize": 63149,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "cfCacheStatus",
+            "duration": 0,
+            "description": "MISS"
+          },
+          {
+            "name": "cfEdge",
+            "duration": 8,
+            "description": ""
+          },
+          {
+            "name": "cfOrigin",
+            "duration": 82,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 857.8999999910593,
+        "domContentLoadedEventStart": 859.3999999910593,
+        "domContentLoadedEventEnd": 859.8999999910593,
+        "domComplete": 927.0999999940395,
+        "loadEventStart": 927.0999999940395,
+        "loadEventEnd": 927.0999999940395,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "probe": {
+        "lcp": [
+          {
+            "at": 868,
+            "size": 31631,
+            "tag": "P",
+            "text": "LawCast는 입법예고 원문을 처음 수집한 모습 그대로 저장하고, 나중에 내용이 바뀌거나\n\t\t\t\t\t\t\t\t사라져도 이전 기록과 비교해 확인할 수 있도록 남겨 둡니"
+          }
+        ],
+        "shifts": [],
+        "longTasks": [],
+        "events": []
+      },
+      "resources": [
+        {
+          "url": "https://law.viento.me/cdn-cgi/speculation",
+          "type": "other",
+          "start": 335.3999999910593,
+          "end": 549,
+          "size": 451
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/index.B-MlTbZI.css",
+          "type": "link",
+          "start": 335.59999999403954,
+          "end": 548.5,
+          "size": 1038
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/0.BCy5vXI0.css",
+          "type": "link",
+          "start": 335.70000000298023,
+          "end": 823.5,
+          "size": 16813
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/SeoHead.Cv3Itgoy.css",
+          "type": "link",
+          "start": 335.79999999701977,
+          "end": 577.0999999940395,
+          "size": 784
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/2.BUiiziPY.css",
+          "type": "link",
+          "start": 335.8999999910593,
+          "end": 556.5999999940395,
+          "size": 440
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/entry/start.DQqZcAk7.js",
+          "type": "script",
+          "start": 338.79999999701977,
+          "end": 553.2000000029802,
+          "size": 389
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/D5T8szD7.js",
+          "type": "script",
+          "start": 338.8999999910593,
+          "end": 758.2999999970198,
+          "size": 4392
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BFq8BJmn.js",
+          "type": "script",
+          "start": 338.8999999910593,
+          "end": 801.5,
+          "size": 11964
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/a2NkhThR.js",
+          "type": "script",
+          "start": 339,
+          "end": 811.5999999940395,
+          "size": 11588
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/entry/app.EkctmiiP.js",
+          "type": "script",
+          "start": 339.09999999403954,
+          "end": 641.7999999970198,
+          "size": 3304
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/o9ZWkxNg.js",
+          "type": "script",
+          "start": 339.09999999403954,
+          "end": 648.8999999910593,
+          "size": 2947
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/Ds9AtpU9.js",
+          "type": "script",
+          "start": 339.20000000298023,
+          "end": 570.5999999940395,
+          "size": 548
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DsnmJJEf.js",
+          "type": "script",
+          "start": 339.20000000298023,
+          "end": 588.2999999970198,
+          "size": 366
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/PPVm8Dsz.js",
+          "type": "script",
+          "start": 339.20000000298023,
+          "end": 625.3999999910593,
+          "size": 966
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CJsSH5f6.js",
+          "type": "script",
+          "start": 339.20000000298023,
+          "end": 648.2000000029802,
+          "size": 2697
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DZhUsC3v.js",
+          "type": "script",
+          "start": 339.29999999701977,
+          "end": 570.3999999910593,
+          "size": 448
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/nodes/0.DBu3TJEu.js",
+          "type": "script",
+          "start": 339.29999999701977,
+          "end": 796.2000000029802,
+          "size": 6840
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BUcW8W4v.js",
+          "type": "script",
+          "start": 339.3999999910593,
+          "end": 586.0999999940395,
+          "size": 339
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BApDRbnU.js",
+          "type": "script",
+          "start": 339.3999999910593,
+          "end": 766.5999999940395,
+          "size": 357
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CzcdBQaD.js",
+          "type": "script",
+          "start": 339.3999999910593,
+          "end": 867.0999999940395,
+          "size": 40908
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BUQfcWdt.js",
+          "type": "script",
+          "start": 339.5,
+          "end": 573,
+          "size": 554
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CeDOxkPw.js",
+          "type": "script",
+          "start": 339.5,
+          "end": 631.5999999940395,
+          "size": 2063
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BrahRP-X.js",
+          "type": "script",
+          "start": 339.5,
+          "end": 767.0999999940395,
+          "size": 1203
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/_j3l3poy.js",
+          "type": "script",
+          "start": 339.59999999403954,
+          "end": 641.3999999910593,
+          "size": 8708
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/nodes/2.rO38NPh6.js",
+          "type": "script",
+          "start": 339.59999999403954,
+          "end": 778.7000000029802,
+          "size": 9328
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/Cr5l5_Hh.js",
+          "type": "script",
+          "start": 339.70000000298023,
+          "end": 553.5999999940395,
+          "size": 427
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DVC3G1Ew.js",
+          "type": "script",
+          "start": 339.70000000298023,
+          "end": 585.2000000029802,
+          "size": 1450
+        },
+        {
+          "url": "https://law.viento.me/brand/v2/wordmark-light.svg",
+          "type": "img",
+          "start": 341.09999999403954,
+          "end": 768.8999999910593,
+          "size": 1587
+        },
+        {
+          "url": "https://law.viento.me/brand/v2/wordmark-dark.svg",
+          "type": "img",
+          "start": 341.09999999403954,
+          "end": 774.5999999940395,
+          "size": 1585
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "type": "script",
+          "start": 341.20000000298023,
+          "end": 595.2000000029802,
+          "size": 0
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtm.js?id=GTM-N82SX8WB",
+          "type": "script",
+          "start": 345.29999999701977,
+          "end": 892.3999999910593,
+          "size": 0
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/nodes/1.B21rzO2b.js",
+          "type": "script",
+          "start": 863.5,
+          "end": 1154.7999999970198,
+          "size": 2738
+        },
+        {
+          "url": "https://law.viento.me/cdn-cgi/rum?",
+          "type": "xmlhttprequest",
+          "start": 928.7999999970198,
+          "end": 1127.5,
+          "size": 300
+        },
+        {
+          "url": "https://law.viento.me/brand/v2/favicon.svg",
+          "type": "other",
+          "start": 929.0999999940395,
+          "end": 1213.3999999910593,
+          "size": 517
+        }
+      ]
+    },
+    "events": [
+      {
+        "name": "pointerdown",
+        "at": 2185.8999999910593,
+        "duration": 80,
+        "interactionId": 5489
+      },
+      {
+        "name": "pointerup",
+        "at": 2185.8999999910593,
+        "duration": 80,
+        "interactionId": 5489
+      },
+      {
+        "name": "click",
+        "at": 2185.8999999910593,
+        "duration": 80,
+        "interactionId": 5489
+      }
+    ],
+    "errors": [],
+    "browserApiRequests": [],
+    "rocketLoader": []
+  },
+  {
+    "device": "desktop",
+    "path": "/status",
+    "run": 1,
+    "status": 200,
+    "cache": "DYNAMIC",
+    "serverTiming": "cfCacheStatus;desc=\"DYNAMIC\", cfEdge;dur=30,cfOrigin;dur=87, cfExtPri",
+    "before": {
+      "nav": {
+        "name": "https://law.viento.me/status?__vitals_probe=02b5e24f-3e7e-4b10-9cd7-1385e7c68f2e",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1081.4000000059605,
+        "navigationId": 7905,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h3",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "br",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.4000000059604645,
+        "domainLookupStart": 1,
+        "domainLookupEnd": 1,
+        "connectStart": 1,
+        "secureConnectionStart": 1,
+        "connectEnd": 134.30000001192093,
+        "requestStart": 134.30000001192093,
+        "responseStart": 308.5,
+        "firstInterimResponseStart": 308.5,
+        "finalResponseHeadersStart": 348.6000000089407,
+        "responseEnd": 350.5,
+        "transferSize": 12470,
+        "encodedBodySize": 12170,
+        "decodedBodySize": 53524,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "cfCacheStatus",
+            "duration": 0,
+            "description": "DYNAMIC"
+          },
+          {
+            "name": "cfEdge",
+            "duration": 30,
+            "description": ""
+          },
+          {
+            "name": "cfOrigin",
+            "duration": 87,
+            "description": ""
+          },
+          {
+            "name": "cfExtPri",
+            "duration": 0,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 531.6000000089407,
+        "domContentLoadedEventStart": 1080.6000000089407,
+        "domContentLoadedEventEnd": 1081.1000000089407,
+        "domComplete": 1081.300000011921,
+        "loadEventStart": 1081.300000011921,
+        "loadEventEnd": 1081.4000000059605,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "low"
+        }
+      },
+      "probe": {
+        "lcp": [
+          {
+            "at": 544,
+            "size": 6206,
+            "tag": "H1",
+            "text": "LawCast 시스템 상태"
+          }
+        ],
+        "shifts": [
+          {
+            "at": 526.1000000089407,
+            "value": 0.012784333018765253
+          }
+        ],
+        "longTasks": [],
+        "events": []
+      },
+      "resources": [
+        {
+          "url": "https://law.viento.me/cdn-cgi/speculation",
+          "type": "other",
+          "start": 355.70000000298023,
+          "end": 439.70000000298023,
+          "size": 451
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/index.B-MlTbZI.css",
+          "type": "link",
+          "start": 356,
+          "end": 457.5,
+          "size": 1038
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/SeoHead.Cv3Itgoy.css",
+          "type": "link",
+          "start": 356.1000000089407,
+          "end": 457.1000000089407,
+          "size": 784
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/0.BCy5vXI0.css",
+          "type": "link",
+          "start": 356.1000000089407,
+          "end": 494.30000001192093,
+          "size": 16816
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/RateLimitOverlay.BDt73HsL.css",
+          "type": "link",
+          "start": 356.20000000298023,
+          "end": 478,
+          "size": 974
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/entry/start.DQqZcAk7.js",
+          "type": "script",
+          "start": 359.1000000089407,
+          "end": 445.40000000596046,
+          "size": 389
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BFq8BJmn.js",
+          "type": "script",
+          "start": 359.20000000298023,
+          "end": 451,
+          "size": 11966
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/D5T8szD7.js",
+          "type": "script",
+          "start": 359.30000001192093,
+          "end": 465.1000000089407,
+          "size": 4392
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/o9ZWkxNg.js",
+          "type": "script",
+          "start": 359.40000000596046,
+          "end": 469.80000001192093,
+          "size": 2947
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/a2NkhThR.js",
+          "type": "script",
+          "start": 359.40000000596046,
+          "end": 485.5,
+          "size": 11588
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DsnmJJEf.js",
+          "type": "script",
+          "start": 359.5,
+          "end": 445.30000001192093,
+          "size": 366
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/PPVm8Dsz.js",
+          "type": "script",
+          "start": 359.5,
+          "end": 445.5,
+          "size": 966
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/entry/app.EkctmiiP.js",
+          "type": "script",
+          "start": 359.5,
+          "end": 456.90000000596046,
+          "size": 3304
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CJsSH5f6.js",
+          "type": "script",
+          "start": 359.5,
+          "end": 458.6000000089407,
+          "size": 2697
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/Ds9AtpU9.js",
+          "type": "script",
+          "start": 359.5,
+          "end": 486.30000001192093,
+          "size": 548
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DZhUsC3v.js",
+          "type": "script",
+          "start": 359.6000000089407,
+          "end": 459.30000001192093,
+          "size": 448
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/nodes/0.DBu3TJEu.js",
+          "type": "script",
+          "start": 359.6000000089407,
+          "end": 461.20000000298023,
+          "size": 6840
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CzcdBQaD.js",
+          "type": "script",
+          "start": 359.6000000089407,
+          "end": 507.5,
+          "size": 41195
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BUcW8W4v.js",
+          "type": "script",
+          "start": 359.70000000298023,
+          "end": 471.80000001192093,
+          "size": 339
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BUQfcWdt.js",
+          "type": "script",
+          "start": 359.80000001192093,
+          "end": 458.1000000089407,
+          "size": 554
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BApDRbnU.js",
+          "type": "script",
+          "start": 359.80000001192093,
+          "end": 466.90000000596046,
+          "size": 357
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CeDOxkPw.js",
+          "type": "script",
+          "start": 359.80000001192093,
+          "end": 467.20000000298023,
+          "size": 2063
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BrahRP-X.js",
+          "type": "script",
+          "start": 359.80000001192093,
+          "end": 467.30000001192093,
+          "size": 1203
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/nodes/15.DYluUIgr.js",
+          "type": "script",
+          "start": 359.80000001192093,
+          "end": 483.5,
+          "size": 8039
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/C0JAUOAu.js",
+          "type": "script",
+          "start": 359.90000000596046,
+          "end": 458.20000000298023,
+          "size": 505
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BQw9e6ZQ.js",
+          "type": "script",
+          "start": 359.90000000596046,
+          "end": 459.40000000596046,
+          "size": 1768
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/_j3l3poy.js",
+          "type": "script",
+          "start": 359.90000000596046,
+          "end": 485.80000001192093,
+          "size": 8713
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/D2GXiqb-.js",
+          "type": "script",
+          "start": 359.90000000596046,
+          "end": 490.1000000089407,
+          "size": 1264
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DVC3G1Ew.js",
+          "type": "script",
+          "start": 360,
+          "end": 465.90000000596046,
+          "size": 1450
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CAnBEM3Z.js",
+          "type": "script",
+          "start": 360,
+          "end": 467,
+          "size": 617
+        },
+        {
+          "url": "https://law.viento.me/brand/v2/wordmark-dark.svg",
+          "type": "img",
+          "start": 361.30000001192093,
+          "end": 477.80000001192093,
+          "size": 1585
+        },
+        {
+          "url": "https://law.viento.me/brand/v2/wordmark-light.svg",
+          "type": "img",
+          "start": 361.30000001192093,
+          "end": 478.30000001192093,
+          "size": 1587
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "type": "script",
+          "start": 361.5,
+          "end": 1078,
+          "size": 0
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtm.js?id=GTM-N82SX8WB",
+          "type": "script",
+          "start": 365.20000000298023,
+          "end": 940.7000000029802,
+          "size": 0
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/nodes/1.B21rzO2b.js",
+          "type": "script",
+          "start": 533.7000000029802,
+          "end": 616.8000000119209,
+          "size": 2738
+        },
+        {
+          "url": "https://law.viento.me/cdn-cgi/rum?",
+          "type": "xmlhttprequest",
+          "start": 1084,
+          "end": 1256.5,
+          "size": 300
+        },
+        {
+          "url": "https://law.viento.me/brand/v2/favicon.svg",
+          "type": "other",
+          "start": 1084.5,
+          "end": 1256.800000011921,
+          "size": 517
+        },
+        {
+          "url": "https://law.viento.me/status/__data.json?__vitals_probe=02b5e24f-3e7e-4b10-9cd7-1385e7c68f2e&x-sveltekit-invalidated=11",
+          "type": "fetch",
+          "start": 1556.4000000059605,
+          "end": 1736.6000000089407,
+          "size": 2151
+        }
+      ]
+    },
+    "events": [
+      {
+        "name": "pointerdown",
+        "at": 2361.2000000029802,
+        "duration": 64,
+        "interactionId": 1869
+      },
+      {
+        "name": "pointerup",
+        "at": 2361.2000000029802,
+        "duration": 64,
+        "interactionId": 1869
+      },
+      {
+        "name": "click",
+        "at": 2361.2000000029802,
+        "duration": 64,
+        "interactionId": 1869
+      }
+    ],
+    "errors": [],
+    "browserApiRequests": [],
+    "rocketLoader": []
+  },
+  {
+    "device": "desktop",
+    "path": "/status",
+    "run": 2,
+    "status": 200,
+    "cache": "DYNAMIC",
+    "serverTiming": "cfCacheStatus;desc=\"DYNAMIC\", cfEdge;dur=13,cfOrigin;dur=70, cfExtPri",
+    "before": {
+      "nav": {
+        "name": "https://law.viento.me/status?__vitals_probe=4f4d602e-a880-473e-81e8-fe4ce8664921",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 881.2000000029802,
+        "navigationId": 8675,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h3",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "br",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 2.2000000029802322,
+        "domainLookupStart": 2.5999999940395355,
+        "domainLookupEnd": 2.5999999940395355,
+        "connectStart": 2.5999999940395355,
+        "secureConnectionStart": 2.5999999940395355,
+        "connectEnd": 81.70000000298023,
+        "requestStart": 81.70000000298023,
+        "responseStart": 176,
+        "firstInterimResponseStart": 176,
+        "finalResponseHeadersStart": 254.79999999701977,
+        "responseEnd": 255.79999999701977,
+        "transferSize": 12479,
+        "encodedBodySize": 12179,
+        "decodedBodySize": 53524,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "cfCacheStatus",
+            "duration": 0,
+            "description": "DYNAMIC"
+          },
+          {
+            "name": "cfEdge",
+            "duration": 13,
+            "description": ""
+          },
+          {
+            "name": "cfOrigin",
+            "duration": 70,
+            "description": ""
+          },
+          {
+            "name": "cfExtPri",
+            "duration": 0,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 415.79999999701977,
+        "domContentLoadedEventStart": 515.7999999970198,
+        "domContentLoadedEventEnd": 516.2000000029802,
+        "domComplete": 881.0999999940395,
+        "loadEventStart": 881.0999999940395,
+        "loadEventEnd": 881.2000000029802,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "probe": {
+        "lcp": [
+          {
+            "at": 424,
+            "size": 6206,
+            "tag": "H1",
+            "text": "LawCast 시스템 상태"
+          }
+        ],
+        "shifts": [
+          {
+            "at": 410.20000000298023,
+            "value": 0.012784333018765253
+          }
+        ],
+        "longTasks": [],
+        "events": []
+      },
+      "resources": [
+        {
+          "url": "https://law.viento.me/cdn-cgi/speculation",
+          "type": "other",
+          "start": 261.8999999910593,
+          "end": 346.29999999701977,
+          "size": 451
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/index.B-MlTbZI.css",
+          "type": "link",
+          "start": 262.20000000298023,
+          "end": 348,
+          "size": 1038
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/0.BCy5vXI0.css",
+          "type": "link",
+          "start": 262.20000000298023,
+          "end": 381,
+          "size": 16816
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/SeoHead.Cv3Itgoy.css",
+          "type": "link",
+          "start": 262.29999999701977,
+          "end": 369.29999999701977,
+          "size": 784
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/RateLimitOverlay.BDt73HsL.css",
+          "type": "link",
+          "start": 262.3999999910593,
+          "end": 371.29999999701977,
+          "size": 974
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/entry/start.DQqZcAk7.js",
+          "type": "script",
+          "start": 265.09999999403954,
+          "end": 363.29999999701977,
+          "size": 389
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BFq8BJmn.js",
+          "type": "script",
+          "start": 265.09999999403954,
+          "end": 379,
+          "size": 11966
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/D5T8szD7.js",
+          "type": "script",
+          "start": 265.20000000298023,
+          "end": 354.59999999403954,
+          "size": 4392
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/entry/app.EkctmiiP.js",
+          "type": "script",
+          "start": 265.29999999701977,
+          "end": 364.3999999910593,
+          "size": 3304
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/o9ZWkxNg.js",
+          "type": "script",
+          "start": 265.29999999701977,
+          "end": 365,
+          "size": 2947
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/PPVm8Dsz.js",
+          "type": "script",
+          "start": 265.29999999701977,
+          "end": 366.70000000298023,
+          "size": 966
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/a2NkhThR.js",
+          "type": "script",
+          "start": 265.29999999701977,
+          "end": 368.20000000298023,
+          "size": 11588
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DsnmJJEf.js",
+          "type": "script",
+          "start": 265.3999999910593,
+          "end": 370.3999999910593,
+          "size": 366
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/Ds9AtpU9.js",
+          "type": "script",
+          "start": 265.5,
+          "end": 363.09999999403954,
+          "size": 548
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/nodes/0.DBu3TJEu.js",
+          "type": "script",
+          "start": 265.5,
+          "end": 368,
+          "size": 6840
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DZhUsC3v.js",
+          "type": "script",
+          "start": 265.5,
+          "end": 370.20000000298023,
+          "size": 448
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CJsSH5f6.js",
+          "type": "script",
+          "start": 265.5,
+          "end": 371.20000000298023,
+          "size": 2697
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BUcW8W4v.js",
+          "type": "script",
+          "start": 265.59999999403954,
+          "end": 356.20000000298023,
+          "size": 339
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CzcdBQaD.js",
+          "type": "script",
+          "start": 265.59999999403954,
+          "end": 385.29999999701977,
+          "size": 41195
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BUQfcWdt.js",
+          "type": "script",
+          "start": 265.70000000298023,
+          "end": 356.3999999910593,
+          "size": 554
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CeDOxkPw.js",
+          "type": "script",
+          "start": 265.70000000298023,
+          "end": 356.59999999403954,
+          "size": 2063
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BrahRP-X.js",
+          "type": "script",
+          "start": 265.70000000298023,
+          "end": 362.79999999701977,
+          "size": 1203
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BApDRbnU.js",
+          "type": "script",
+          "start": 265.70000000298023,
+          "end": 370.09999999403954,
+          "size": 357
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/C0JAUOAu.js",
+          "type": "script",
+          "start": 265.70000000298023,
+          "end": 370.29999999701977,
+          "size": 505
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/nodes/15.DYluUIgr.js",
+          "type": "script",
+          "start": 265.70000000298023,
+          "end": 376.79999999701977,
+          "size": 8039
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/_j3l3poy.js",
+          "type": "script",
+          "start": 265.79999999701977,
+          "end": 376.3999999910593,
+          "size": 8713
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BQw9e6ZQ.js",
+          "type": "script",
+          "start": 265.8999999910593,
+          "end": 364.79999999701977,
+          "size": 1768
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CAnBEM3Z.js",
+          "type": "script",
+          "start": 266,
+          "end": 356,
+          "size": 617
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/D2GXiqb-.js",
+          "type": "script",
+          "start": 266,
+          "end": 371.09999999403954,
+          "size": 1264
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DVC3G1Ew.js",
+          "type": "script",
+          "start": 266.09999999403954,
+          "end": 370.79999999701977,
+          "size": 1450
+        },
+        {
+          "url": "https://law.viento.me/brand/v2/wordmark-dark.svg",
+          "type": "img",
+          "start": 267,
+          "end": 377.20000000298023,
+          "size": 1585
+        },
+        {
+          "url": "https://law.viento.me/brand/v2/wordmark-light.svg",
+          "type": "img",
+          "start": 267,
+          "end": 385.79999999701977,
+          "size": 1589
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "type": "script",
+          "start": 267.09999999403954,
+          "end": 513.3999999910593,
+          "size": 0
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtm.js?id=GTM-N82SX8WB",
+          "type": "script",
+          "start": 269.3999999910593,
+          "end": 844.3999999910593,
+          "size": 0
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/nodes/1.B21rzO2b.js",
+          "type": "script",
+          "start": 418.20000000298023,
+          "end": 502.79999999701977,
+          "size": 2738
+        },
+        {
+          "url": "https://law.viento.me/cdn-cgi/rum?",
+          "type": "xmlhttprequest",
+          "start": 882.7999999970198,
+          "end": 951.2999999970198,
+          "size": 300
+        },
+        {
+          "url": "https://law.viento.me/brand/v2/favicon.svg",
+          "type": "other",
+          "start": 883.2000000029802,
+          "end": 980.5999999940395,
+          "size": 517
+        }
+      ]
+    },
+    "events": [
+      {
+        "name": "pointerdown",
+        "at": 1801.2999999970198,
+        "duration": 72,
+        "interactionId": 1719
+      },
+      {
+        "name": "pointerup",
+        "at": 1801.3999999910593,
+        "duration": 72,
+        "interactionId": 1719
+      },
+      {
+        "name": "click",
+        "at": 1801.3999999910593,
+        "duration": 72,
+        "interactionId": 1719
+      }
+    ],
+    "errors": [],
+    "browserApiRequests": [],
+    "rocketLoader": []
+  },
+  {
+    "device": "desktop",
+    "path": "/notices",
+    "run": 1,
+    "status": 200,
+    "cache": "DYNAMIC",
+    "serverTiming": "cfCacheStatus;desc=\"DYNAMIC\", cfEdge;dur=6,cfOrigin;dur=249, cfExtPri",
+    "before": {
+      "nav": {
+        "name": "https://law.viento.me/notices?__vitals_probe=1902f2ff-58ed-462b-bd8c-07f82164cdd1",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1225.7999999970198,
+        "navigationId": 4361,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h3",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "br",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.3999999910593033,
+        "domainLookupStart": 0.7999999970197678,
+        "domainLookupEnd": 0.7999999970197678,
+        "connectStart": 0.7999999970197678,
+        "secureConnectionStart": 0.7999999970197678,
+        "connectEnd": 83.20000000298023,
+        "requestStart": 83.29999999701977,
+        "responseStart": 179.5,
+        "firstInterimResponseStart": 179.5,
+        "finalResponseHeadersStart": 433.3999999910593,
+        "responseEnd": 437.09999999403954,
+        "transferSize": 17076,
+        "encodedBodySize": 16776,
+        "decodedBodySize": 158584,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "cfCacheStatus",
+            "duration": 0,
+            "description": "DYNAMIC"
+          },
+          {
+            "name": "cfEdge",
+            "duration": 6,
+            "description": ""
+          },
+          {
+            "name": "cfOrigin",
+            "duration": 249,
+            "description": ""
+          },
+          {
+            "name": "cfExtPri",
+            "duration": 0,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 669,
+        "domContentLoadedEventStart": 830.5999999940395,
+        "domContentLoadedEventEnd": 831,
+        "domComplete": 1225.7000000029802,
+        "loadEventStart": 1225.7999999970198,
+        "loadEventEnd": 1225.7999999970198,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "low"
+        }
+      },
+      "probe": {
+        "lcp": [
+          {
+            "at": 680,
+            "size": 12784,
+            "tag": "P",
+            "text": "AI 요약은 참고용으로 제공되며 해석상 오류가 있을 수 있습니다. 중요 판단 전 반드시 각\n\t\t\t\t\t\t\t법률안의 원문(제안이유 및 주요내용)을 함께 확인해주세요."
+          }
+        ],
+        "shifts": [
+          {
+            "at": 706.5,
+            "value": 0.0005830750446135061
+          }
+        ],
+        "longTasks": [],
+        "events": []
+      },
+      "resources": [
+        {
+          "url": "https://law.viento.me/cdn-cgi/speculation",
+          "type": "other",
+          "start": 438.5,
+          "end": 623.0999999940395,
+          "size": 451
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/0.BCy5vXI0.css",
+          "type": "link",
+          "start": 438.59999999403954,
+          "end": 624.8999999910593,
+          "size": 16816
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/SeoHead.Cv3Itgoy.css",
+          "type": "link",
+          "start": 438.59999999403954,
+          "end": 631.7000000029802,
+          "size": 784
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/index.B-MlTbZI.css",
+          "type": "link",
+          "start": 438.59999999403954,
+          "end": 636.5,
+          "size": 1038
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/notice-deadline.NoYO6OG2.css",
+          "type": "link",
+          "start": 438.70000000298023,
+          "end": 631.8999999910593,
+          "size": 353
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/RateLimitOverlay.BDt73HsL.css",
+          "type": "link",
+          "start": 438.70000000298023,
+          "end": 632,
+          "size": 974
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/9.DJNxZ2Ym.css",
+          "type": "link",
+          "start": 438.70000000298023,
+          "end": 633.8999999910593,
+          "size": 347
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/entry/start.DQqZcAk7.js",
+          "type": "script",
+          "start": 440.20000000298023,
+          "end": 623.2000000029802,
+          "size": 389
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BFq8BJmn.js",
+          "type": "script",
+          "start": 440.20000000298023,
+          "end": 623.5999999940395,
+          "size": 11966
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/D5T8szD7.js",
+          "type": "script",
+          "start": 440.20000000298023,
+          "end": 635.0999999940395,
+          "size": 4392
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/entry/app.EkctmiiP.js",
+          "type": "script",
+          "start": 440.29999999701977,
+          "end": 623.2999999970198,
+          "size": 3304
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/a2NkhThR.js",
+          "type": "script",
+          "start": 440.29999999701977,
+          "end": 630.2999999970198,
+          "size": 11588
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/o9ZWkxNg.js",
+          "type": "script",
+          "start": 440.29999999701977,
+          "end": 638,
+          "size": 2947
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CJsSH5f6.js",
+          "type": "script",
+          "start": 440.3999999910593,
+          "end": 623.3999999910593,
+          "size": 2697
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DsnmJJEf.js",
+          "type": "script",
+          "start": 440.3999999910593,
+          "end": 635.7000000029802,
+          "size": 366
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/PPVm8Dsz.js",
+          "type": "script",
+          "start": 440.3999999910593,
+          "end": 637.8999999910593,
+          "size": 966
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/Ds9AtpU9.js",
+          "type": "script",
+          "start": 440.5,
+          "end": 636,
+          "size": 548
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/nodes/0.DBu3TJEu.js",
+          "type": "script",
+          "start": 440.5,
+          "end": 637.7999999970198,
+          "size": 6840
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DZhUsC3v.js",
+          "type": "script",
+          "start": 440.59999999403954,
+          "end": 632.7000000029802,
+          "size": 448
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BUcW8W4v.js",
+          "type": "script",
+          "start": 440.59999999403954,
+          "end": 633.2000000029802,
+          "size": 339
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CzcdBQaD.js",
+          "type": "script",
+          "start": 440.59999999403954,
+          "end": 637.3999999910593,
+          "size": 41195
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BrahRP-X.js",
+          "type": "script",
+          "start": 440.70000000298023,
+          "end": 627.3999999910593,
+          "size": 1203
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CeDOxkPw.js",
+          "type": "script",
+          "start": 440.70000000298023,
+          "end": 627.7999999970198,
+          "size": 2063
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BUQfcWdt.js",
+          "type": "script",
+          "start": 440.70000000298023,
+          "end": 629.2999999970198,
+          "size": 554
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BApDRbnU.js",
+          "type": "script",
+          "start": 440.70000000298023,
+          "end": 635.2999999970198,
+          "size": 357
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/nodes/9.B62et36w.js",
+          "type": "script",
+          "start": 440.70000000298023,
+          "end": 637.5,
+          "size": 13458
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/_j3l3poy.js",
+          "type": "script",
+          "start": 440.79999999701977,
+          "end": 629.5,
+          "size": 8713
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CLaZxUgp.js",
+          "type": "script",
+          "start": 440.79999999701977,
+          "end": 630.0999999940395,
+          "size": 1754
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DoP0eRxL.js",
+          "type": "script",
+          "start": 440.79999999701977,
+          "end": 633,
+          "size": 964
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BINvxRnZ.js",
+          "type": "script",
+          "start": 440.8999999910593,
+          "end": 629.5999999940395,
+          "size": 3121
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BeiTd52H.js",
+          "type": "script",
+          "start": 440.8999999910593,
+          "end": 632.8999999910593,
+          "size": 2052
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/D2GXiqb-.js",
+          "type": "script",
+          "start": 440.8999999910593,
+          "end": 635.2000000029802,
+          "size": 1264
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CFuDw1Z9.js",
+          "type": "script",
+          "start": 441,
+          "end": 630,
+          "size": 702
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/Dx3veJiu.js",
+          "type": "script",
+          "start": 441,
+          "end": 630.0999999940395,
+          "size": 789
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DVC3G1Ew.js",
+          "type": "script",
+          "start": 441,
+          "end": 632.7999999970198,
+          "size": 1450
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/Chh7LKYU.js",
+          "type": "script",
+          "start": 441,
+          "end": 635.5999999940395,
+          "size": 3632
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CAnBEM3Z.js",
+          "type": "script",
+          "start": 441,
+          "end": 635.8999999910593,
+          "size": 617
+        },
+        {
+          "url": "https://law.viento.me/brand/v2/wordmark-light.svg",
+          "type": "img",
+          "start": 443.3999999910593,
+          "end": 638.0999999940395,
+          "size": 1587
+        },
+        {
+          "url": "https://law.viento.me/brand/v2/wordmark-dark.svg",
+          "type": "img",
+          "start": 443.5,
+          "end": 638.0999999940395,
+          "size": 1585
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "type": "script",
+          "start": 443.5,
+          "end": 828.5,
+          "size": 0
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtm.js?id=GTM-N82SX8WB",
+          "type": "script",
+          "start": 445.70000000298023,
+          "end": 1189.2000000029802,
+          "size": 0
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/nodes/1.B21rzO2b.js",
+          "type": "script",
+          "start": 672.7999999970198,
+          "end": 787,
+          "size": 2738
+        },
+        {
+          "url": "https://law.viento.me/api/notices/semantic-search/health",
+          "type": "fetch",
+          "start": 698.2000000029802,
+          "end": 834.3999999910593,
+          "size": 425
+        },
+        {
+          "url": "https://law.viento.me/cdn-cgi/rum?",
+          "type": "xmlhttprequest",
+          "start": 1227.2000000029802,
+          "end": 1327.0999999940395,
+          "size": 300
+        },
+        {
+          "url": "https://law.viento.me/brand/v2/favicon.svg",
+          "type": "other",
+          "start": 1228.2000000029802,
+          "end": 1359.5999999940395,
+          "size": 517
+        }
+      ]
+    },
+    "events": [
+      {
+        "name": "pointerdown",
+        "at": 2112.3999999910593,
+        "duration": 64,
+        "interactionId": 5891
+      },
+      {
+        "name": "pointerup",
+        "at": 2112.5,
+        "duration": 64,
+        "interactionId": 5891
+      },
+      {
+        "name": "click",
+        "at": 2112.5,
+        "duration": 64,
+        "interactionId": 5891
+      }
+    ],
+    "errors": [],
+    "browserApiRequests": [
+      {
+        "url": "https://law.viento.me/api/notices/semantic-search/health",
+        "type": "fetch"
+      }
+    ],
+    "rocketLoader": []
+  },
+  {
+    "device": "desktop",
+    "path": "/notices",
+    "run": 2,
+    "status": 200,
+    "cache": "DYNAMIC",
+    "serverTiming": "cfCacheStatus;desc=\"DYNAMIC\", cfEdge;dur=17,cfOrigin;dur=146, cfExtPri",
+    "before": {
+      "nav": {
+        "name": "https://law.viento.me/notices?__vitals_probe=224fa749-287e-4c51-a0f5-c80ac1c2cc5e",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1048.8999999910593,
+        "navigationId": 3803,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h3",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "br",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.29999999701976776,
+        "domainLookupStart": 0.5,
+        "domainLookupEnd": 0.5,
+        "connectStart": 0.5,
+        "secureConnectionStart": 0.5,
+        "connectEnd": 82.3999999910593,
+        "requestStart": 82.5,
+        "responseStart": 176.3999999910593,
+        "firstInterimResponseStart": 176.3999999910593,
+        "finalResponseHeadersStart": 329.70000000298023,
+        "responseEnd": 330.59999999403954,
+        "transferSize": 17071,
+        "encodedBodySize": 16771,
+        "decodedBodySize": 158584,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "cfCacheStatus",
+            "duration": 0,
+            "description": "DYNAMIC"
+          },
+          {
+            "name": "cfEdge",
+            "duration": 17,
+            "description": ""
+          },
+          {
+            "name": "cfOrigin",
+            "duration": 146,
+            "description": ""
+          },
+          {
+            "name": "cfExtPri",
+            "duration": 0,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 586.0999999940395,
+        "domContentLoadedEventStart": 700.5999999940395,
+        "domContentLoadedEventEnd": 701.0999999940395,
+        "domComplete": 1048.7999999970198,
+        "loadEventStart": 1048.7999999970198,
+        "loadEventEnd": 1048.8999999910593,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "probe": {
+        "lcp": [
+          {
+            "at": 592,
+            "size": 12784,
+            "tag": "P",
+            "text": "AI 요약은 참고용으로 제공되며 해석상 오류가 있을 수 있습니다. 중요 판단 전 반드시 각\n\t\t\t\t\t\t\t법률안의 원문(제안이유 및 주요내용)을 함께 확인해주세요."
+          }
+        ],
+        "shifts": [
+          {
+            "at": 620.7000000029802,
+            "value": 0.0005830750446135061
+          }
+        ],
+        "longTasks": [],
+        "events": []
+      },
+      "resources": [
+        {
+          "url": "https://law.viento.me/cdn-cgi/speculation",
+          "type": "other",
+          "start": 336,
+          "end": 531.8999999910593,
+          "size": 451
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/index.B-MlTbZI.css",
+          "type": "link",
+          "start": 336.20000000298023,
+          "end": 544.7000000029802,
+          "size": 1038
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/notice-deadline.NoYO6OG2.css",
+          "type": "link",
+          "start": 336.5,
+          "end": 528.7000000029802,
+          "size": 353
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/SeoHead.Cv3Itgoy.css",
+          "type": "link",
+          "start": 336.5,
+          "end": 535.5,
+          "size": 784
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/RateLimitOverlay.BDt73HsL.css",
+          "type": "link",
+          "start": 336.5,
+          "end": 544.3999999910593,
+          "size": 974
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/0.BCy5vXI0.css",
+          "type": "link",
+          "start": 336.5,
+          "end": 547.7999999970198,
+          "size": 16816
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/9.DJNxZ2Ym.css",
+          "type": "link",
+          "start": 336.59999999403954,
+          "end": 529.5,
+          "size": 347
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/entry/start.DQqZcAk7.js",
+          "type": "script",
+          "start": 339,
+          "end": 541.2000000029802,
+          "size": 389
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BFq8BJmn.js",
+          "type": "script",
+          "start": 339,
+          "end": 548,
+          "size": 11966
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/D5T8szD7.js",
+          "type": "script",
+          "start": 339.09999999403954,
+          "end": 539.2999999970198,
+          "size": 4392
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/a2NkhThR.js",
+          "type": "script",
+          "start": 339.09999999403954,
+          "end": 548.2000000029802,
+          "size": 11588
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/entry/app.EkctmiiP.js",
+          "type": "script",
+          "start": 339.20000000298023,
+          "end": 532.0999999940395,
+          "size": 3304
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/o9ZWkxNg.js",
+          "type": "script",
+          "start": 339.20000000298023,
+          "end": 548.2999999970198,
+          "size": 2947
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/PPVm8Dsz.js",
+          "type": "script",
+          "start": 339.29999999701977,
+          "end": 543.3999999910593,
+          "size": 966
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DsnmJJEf.js",
+          "type": "script",
+          "start": 339.29999999701977,
+          "end": 546.8999999910593,
+          "size": 366
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CJsSH5f6.js",
+          "type": "script",
+          "start": 339.3999999910593,
+          "end": 532.2999999970198,
+          "size": 2697
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/nodes/0.DBu3TJEu.js",
+          "type": "script",
+          "start": 339.3999999910593,
+          "end": 532.5,
+          "size": 6840
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DZhUsC3v.js",
+          "type": "script",
+          "start": 339.3999999910593,
+          "end": 537.0999999940395,
+          "size": 448
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/Ds9AtpU9.js",
+          "type": "script",
+          "start": 339.3999999910593,
+          "end": 537.3999999910593,
+          "size": 548
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CzcdBQaD.js",
+          "type": "script",
+          "start": 339.3999999910593,
+          "end": 549.2000000029802,
+          "size": 41195
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BUcW8W4v.js",
+          "type": "script",
+          "start": 339.5,
+          "end": 537.2000000029802,
+          "size": 339
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BUQfcWdt.js",
+          "type": "script",
+          "start": 339.5,
+          "end": 543.7999999970198,
+          "size": 554
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BApDRbnU.js",
+          "type": "script",
+          "start": 339.5,
+          "end": 547.0999999940395,
+          "size": 357
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BrahRP-X.js",
+          "type": "script",
+          "start": 339.59999999403954,
+          "end": 536.7999999970198,
+          "size": 1203
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CeDOxkPw.js",
+          "type": "script",
+          "start": 339.59999999403954,
+          "end": 547.2000000029802,
+          "size": 2063
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/nodes/9.B62et36w.js",
+          "type": "script",
+          "start": 339.70000000298023,
+          "end": 536.5999999940395,
+          "size": 13458
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CLaZxUgp.js",
+          "type": "script",
+          "start": 339.70000000298023,
+          "end": 538,
+          "size": 1754
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/_j3l3poy.js",
+          "type": "script",
+          "start": 339.70000000298023,
+          "end": 539,
+          "size": 8713
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BeiTd52H.js",
+          "type": "script",
+          "start": 339.79999999701977,
+          "end": 546.5999999940395,
+          "size": 2052
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/D2GXiqb-.js",
+          "type": "script",
+          "start": 339.79999999701977,
+          "end": 547.2000000029802,
+          "size": 1264
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DoP0eRxL.js",
+          "type": "script",
+          "start": 339.79999999701977,
+          "end": 548.3999999910593,
+          "size": 964
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BINvxRnZ.js",
+          "type": "script",
+          "start": 339.8999999910593,
+          "end": 532.7999999970198,
+          "size": 3121
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DVC3G1Ew.js",
+          "type": "script",
+          "start": 339.8999999910593,
+          "end": 537.8999999910593,
+          "size": 1450
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/Chh7LKYU.js",
+          "type": "script",
+          "start": 339.8999999910593,
+          "end": 539.5,
+          "size": 3632
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CFuDw1Z9.js",
+          "type": "script",
+          "start": 340,
+          "end": 537.5,
+          "size": 702
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CAnBEM3Z.js",
+          "type": "script",
+          "start": 340,
+          "end": 537.7000000029802,
+          "size": 617
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/Dx3veJiu.js",
+          "type": "script",
+          "start": 340.20000000298023,
+          "end": 543.7000000029802,
+          "size": 789
+        },
+        {
+          "url": "https://law.viento.me/brand/v2/wordmark-light.svg",
+          "type": "img",
+          "start": 342.29999999701977,
+          "end": 549.0999999940395,
+          "size": 1587
+        },
+        {
+          "url": "https://law.viento.me/brand/v2/wordmark-dark.svg",
+          "type": "img",
+          "start": 342.3999999910593,
+          "end": 543.2000000029802,
+          "size": 1585
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "type": "script",
+          "start": 342.59999999403954,
+          "end": 698.2000000029802,
+          "size": 0
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtm.js?id=GTM-N82SX8WB",
+          "type": "script",
+          "start": 347.8999999910593,
+          "end": 1012.0999999940395,
+          "size": 0
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/nodes/1.B21rzO2b.js",
+          "type": "script",
+          "start": 588.7000000029802,
+          "end": 670,
+          "size": 2738
+        },
+        {
+          "url": "https://law.viento.me/api/notices/semantic-search/health",
+          "type": "fetch",
+          "start": 613.8999999910593,
+          "end": 729.7999999970198,
+          "size": 425
+        },
+        {
+          "url": "https://law.viento.me/cdn-cgi/rum?",
+          "type": "xmlhttprequest",
+          "start": 1051.0999999940395,
+          "end": 1141.5,
+          "size": 300
+        },
+        {
+          "url": "https://law.viento.me/brand/v2/favicon.svg",
+          "type": "other",
+          "start": 1051.7000000029802,
+          "end": 1163,
+          "size": 517
+        }
+      ]
+    },
+    "events": [
+      {
+        "name": "pointerdown",
+        "at": 1966.7000000029802,
+        "duration": 80,
+        "interactionId": 2857
+      },
+      {
+        "name": "pointerup",
+        "at": 1966.7999999970198,
+        "duration": 80,
+        "interactionId": 2857
+      },
+      {
+        "name": "click",
+        "at": 1966.7999999970198,
+        "duration": 80,
+        "interactionId": 2857
+      }
+    ],
+    "errors": [],
+    "browserApiRequests": [
+      {
+        "url": "https://law.viento.me/api/notices/semantic-search/health",
+        "type": "fetch"
+      }
+    ],
+    "rocketLoader": []
+  },
+  {
+    "device": "mobile",
+    "path": "/",
+    "run": 1,
+    "status": 200,
+    "cache": "MISS",
+    "serverTiming": "cfCacheStatus;desc=\"MISS\", cfEdge;dur=27,cfOrigin;dur=75, cfExtPri",
+    "before": {
+      "nav": {
+        "name": "https://law.viento.me/?__vitals_probe=6dc35251-3cd7-4d3f-baae-d1f59a82e43c",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 916.9000000059605,
+        "navigationId": 3954,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h3",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "br",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.5,
+        "domainLookupStart": 0.7999999970197678,
+        "domainLookupEnd": 0.7999999970197678,
+        "connectStart": 0.7999999970197678,
+        "secureConnectionStart": 0.7999999970197678,
+        "connectEnd": 133.40000000596046,
+        "requestStart": 133.5,
+        "responseStart": 233.6000000089407,
+        "firstInterimResponseStart": 233.6000000089407,
+        "finalResponseHeadersStart": 321.79999999701977,
+        "responseEnd": 324.40000000596046,
+        "transferSize": 15512,
+        "encodedBodySize": 15212,
+        "decodedBodySize": 63149,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "cfCacheStatus",
+            "duration": 0,
+            "description": "MISS"
+          },
+          {
+            "name": "cfEdge",
+            "duration": 27,
+            "description": ""
+          },
+          {
+            "name": "cfOrigin",
+            "duration": 75,
+            "description": ""
+          },
+          {
+            "name": "cfExtPri",
+            "duration": 0,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 483.40000000596046,
+        "domContentLoadedEventStart": 580.7999999970198,
+        "domContentLoadedEventEnd": 581.2999999970198,
+        "domComplete": 916.7999999970198,
+        "loadEventStart": 916.9000000059605,
+        "loadEventEnd": 916.9000000059605,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "probe": {
+        "lcp": [
+          {
+            "at": 500,
+            "size": 27216,
+            "tag": "P",
+            "text": "LawCast는 입법예고 원문을 처음 수집한 모습 그대로 저장하고, 나중에 내용이 바뀌거나\n\t\t\t\t\t\t\t\t사라져도 이전 기록과 비교해 확인할 수 있도록 남겨 둡니"
+          }
+        ],
+        "shifts": [],
+        "longTasks": [],
+        "events": []
+      },
+      "resources": [
+        {
+          "url": "https://law.viento.me/cdn-cgi/speculation",
+          "type": "other",
+          "start": 329,
+          "end": 429.79999999701977,
+          "size": 451
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/index.B-MlTbZI.css",
+          "type": "link",
+          "start": 329.40000000596046,
+          "end": 442.29999999701977,
+          "size": 1038
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/0.BCy5vXI0.css",
+          "type": "link",
+          "start": 329.40000000596046,
+          "end": 457.29999999701977,
+          "size": 16816
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/SeoHead.Cv3Itgoy.css",
+          "type": "link",
+          "start": 329.5,
+          "end": 441.29999999701977,
+          "size": 784
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/2.BUiiziPY.css",
+          "type": "link",
+          "start": 329.6000000089407,
+          "end": 432.20000000298023,
+          "size": 440
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/entry/start.DQqZcAk7.js",
+          "type": "script",
+          "start": 332,
+          "end": 436.29999999701977,
+          "size": 389
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BFq8BJmn.js",
+          "type": "script",
+          "start": 332.1000000089407,
+          "end": 437.20000000298023,
+          "size": 11966
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/o9ZWkxNg.js",
+          "type": "script",
+          "start": 332.20000000298023,
+          "end": 425.1000000089407,
+          "size": 2947
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/D5T8szD7.js",
+          "type": "script",
+          "start": 332.20000000298023,
+          "end": 442.5,
+          "size": 4392
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/a2NkhThR.js",
+          "type": "script",
+          "start": 332.20000000298023,
+          "end": 454.90000000596046,
+          "size": 11588
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/entry/app.EkctmiiP.js",
+          "type": "script",
+          "start": 332.20000000298023,
+          "end": 455.5,
+          "size": 3304
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/PPVm8Dsz.js",
+          "type": "script",
+          "start": 332.29999999701977,
+          "end": 432.90000000596046,
+          "size": 966
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/nodes/0.DBu3TJEu.js",
+          "type": "script",
+          "start": 332.40000000596046,
+          "end": 424,
+          "size": 6840
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DsnmJJEf.js",
+          "type": "script",
+          "start": 332.40000000596046,
+          "end": 433.29999999701977,
+          "size": 366
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/Ds9AtpU9.js",
+          "type": "script",
+          "start": 332.40000000596046,
+          "end": 440.6000000089407,
+          "size": 548
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CJsSH5f6.js",
+          "type": "script",
+          "start": 332.40000000596046,
+          "end": 441.6000000089407,
+          "size": 2697
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DZhUsC3v.js",
+          "type": "script",
+          "start": 332.5,
+          "end": 440.6000000089407,
+          "size": 448
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BUcW8W4v.js",
+          "type": "script",
+          "start": 332.6000000089407,
+          "end": 426.70000000298023,
+          "size": 339
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BApDRbnU.js",
+          "type": "script",
+          "start": 332.6000000089407,
+          "end": 440.40000000596046,
+          "size": 357
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CzcdBQaD.js",
+          "type": "script",
+          "start": 332.6000000089407,
+          "end": 459.70000000298023,
+          "size": 41195
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BUQfcWdt.js",
+          "type": "script",
+          "start": 332.70000000298023,
+          "end": 427.40000000596046,
+          "size": 554
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/nodes/2.rO38NPh6.js",
+          "type": "script",
+          "start": 332.70000000298023,
+          "end": 435.5,
+          "size": 9325
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BrahRP-X.js",
+          "type": "script",
+          "start": 332.70000000298023,
+          "end": 442.29999999701977,
+          "size": 1203
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CeDOxkPw.js",
+          "type": "script",
+          "start": 332.70000000298023,
+          "end": 451.79999999701977,
+          "size": 2063
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/_j3l3poy.js",
+          "type": "script",
+          "start": 332.79999999701977,
+          "end": 454.70000000298023,
+          "size": 8713
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/Cr5l5_Hh.js",
+          "type": "script",
+          "start": 332.90000000596046,
+          "end": 441.70000000298023,
+          "size": 427
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DVC3G1Ew.js",
+          "type": "script",
+          "start": 332.90000000596046,
+          "end": 442.1000000089407,
+          "size": 1450
+        },
+        {
+          "url": "https://law.viento.me/brand/v2/wordmark-light.svg",
+          "type": "img",
+          "start": 334.6000000089407,
+          "end": 447.20000000298023,
+          "size": 1587
+        },
+        {
+          "url": "https://law.viento.me/brand/v2/wordmark-dark.svg",
+          "type": "img",
+          "start": 334.70000000298023,
+          "end": 429.5,
+          "size": 1585
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "type": "script",
+          "start": 334.70000000298023,
+          "end": 578.5,
+          "size": 0
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtm.js?id=GTM-N82SX8WB",
+          "type": "script",
+          "start": 339.20000000298023,
+          "end": 889.1000000089407,
+          "size": 0
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/nodes/1.B21rzO2b.js",
+          "type": "script",
+          "start": 485.90000000596046,
+          "end": 572.2999999970198,
+          "size": 2738
+        },
+        {
+          "url": "https://law.viento.me/cdn-cgi/rum?",
+          "type": "xmlhttprequest",
+          "start": 924.7999999970198,
+          "end": 1002.6000000089407,
+          "size": 300
+        },
+        {
+          "url": "https://law.viento.me/brand/v2/favicon.svg",
+          "type": "other",
+          "start": 926.2999999970198,
+          "end": 1030.9000000059605,
+          "size": 517
+        }
+      ]
+    },
+    "events": [
+      {
+        "name": "pointerdown",
+        "at": 1874.1000000089407,
+        "duration": 40,
+        "interactionId": 6792
+      },
+      {
+        "name": "pointerup",
+        "at": 1874.2000000029802,
+        "duration": 40,
+        "interactionId": 6792
+      },
+      {
+        "name": "click",
+        "at": 1874.2000000029802,
+        "duration": 40,
+        "interactionId": 6792
+      },
+      {
+        "name": "pointerdown",
+        "at": 2159.2000000029802,
+        "duration": 32,
+        "interactionId": 6799
+      },
+      {
+        "name": "pointerup",
+        "at": 2159.2000000029802,
+        "duration": 32,
+        "interactionId": 6799
+      },
+      {
+        "name": "click",
+        "at": 2159.2000000029802,
+        "duration": 32,
+        "interactionId": 6799
+      }
+    ],
+    "errors": [],
+    "browserApiRequests": [],
+    "rocketLoader": []
+  },
+  {
+    "device": "mobile",
+    "path": "/",
+    "run": 2,
+    "status": 200,
+    "cache": "MISS",
+    "serverTiming": "cfCacheStatus;desc=\"MISS\", cfEdge;dur=21,cfOrigin;dur=61, cfExtPri",
+    "before": {
+      "nav": {
+        "name": "https://law.viento.me/?__vitals_probe=ae16af46-3b2d-4ee8-9bb1-bdb331d5ec2f",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 858.1000000089407,
+        "navigationId": 7957,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h3",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "br",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 2,
+        "domainLookupStart": 2.4000000059604645,
+        "domainLookupEnd": 2.4000000059604645,
+        "connectStart": 2.4000000059604645,
+        "secureConnectionStart": 2.4000000059604645,
+        "connectEnd": 85.29999999701977,
+        "requestStart": 85.29999999701977,
+        "responseStart": 251.79999999701977,
+        "firstInterimResponseStart": 251.79999999701977,
+        "finalResponseHeadersStart": 252.1000000089407,
+        "responseEnd": 254.70000000298023,
+        "transferSize": 15533,
+        "encodedBodySize": 15233,
+        "decodedBodySize": 63149,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "cfCacheStatus",
+            "duration": 0,
+            "description": "MISS"
+          },
+          {
+            "name": "cfEdge",
+            "duration": 21,
+            "description": ""
+          },
+          {
+            "name": "cfOrigin",
+            "duration": 61,
+            "description": ""
+          },
+          {
+            "name": "cfExtPri",
+            "duration": 0,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 416.79999999701977,
+        "domContentLoadedEventStart": 508.1000000089407,
+        "domContentLoadedEventEnd": 508.79999999701977,
+        "domComplete": 858,
+        "loadEventStart": 858.1000000089407,
+        "loadEventEnd": 858.1000000089407,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "probe": {
+        "lcp": [
+          {
+            "at": 432,
+            "size": 27216,
+            "tag": "P",
+            "text": "LawCast는 입법예고 원문을 처음 수집한 모습 그대로 저장하고, 나중에 내용이 바뀌거나\n\t\t\t\t\t\t\t\t사라져도 이전 기록과 비교해 확인할 수 있도록 남겨 둡니"
+          }
+        ],
+        "shifts": [],
+        "longTasks": [],
+        "events": []
+      },
+      "resources": [
+        {
+          "url": "https://law.viento.me/cdn-cgi/speculation",
+          "type": "other",
+          "start": 257,
+          "end": 356.40000000596046,
+          "size": 451
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/index.B-MlTbZI.css",
+          "type": "link",
+          "start": 257.20000000298023,
+          "end": 346.6000000089407,
+          "size": 1038
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/SeoHead.Cv3Itgoy.css",
+          "type": "link",
+          "start": 257.29999999701977,
+          "end": 366.1000000089407,
+          "size": 784
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/0.BCy5vXI0.css",
+          "type": "link",
+          "start": 257.29999999701977,
+          "end": 389.1000000089407,
+          "size": 16816
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/2.BUiiziPY.css",
+          "type": "link",
+          "start": 257.40000000596046,
+          "end": 346.90000000596046,
+          "size": 440
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/entry/start.DQqZcAk7.js",
+          "type": "script",
+          "start": 259.20000000298023,
+          "end": 390.70000000298023,
+          "size": 389
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/o9ZWkxNg.js",
+          "type": "script",
+          "start": 259.29999999701977,
+          "end": 347.90000000596046,
+          "size": 2947
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/D5T8szD7.js",
+          "type": "script",
+          "start": 259.29999999701977,
+          "end": 348.40000000596046,
+          "size": 4392
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/a2NkhThR.js",
+          "type": "script",
+          "start": 259.29999999701977,
+          "end": 353.20000000298023,
+          "size": 11588
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/entry/app.EkctmiiP.js",
+          "type": "script",
+          "start": 259.29999999701977,
+          "end": 356.1000000089407,
+          "size": 3304
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BFq8BJmn.js",
+          "type": "script",
+          "start": 259.29999999701977,
+          "end": 390.6000000089407,
+          "size": 11966
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/PPVm8Dsz.js",
+          "type": "script",
+          "start": 259.40000000596046,
+          "end": 366.70000000298023,
+          "size": 966
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DsnmJJEf.js",
+          "type": "script",
+          "start": 259.5,
+          "end": 349,
+          "size": 366
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/nodes/0.DBu3TJEu.js",
+          "type": "script",
+          "start": 259.5,
+          "end": 351.6000000089407,
+          "size": 6840
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CJsSH5f6.js",
+          "type": "script",
+          "start": 259.5,
+          "end": 353.6000000089407,
+          "size": 2697
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/Ds9AtpU9.js",
+          "type": "script",
+          "start": 259.5,
+          "end": 369.79999999701977,
+          "size": 548
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DZhUsC3v.js",
+          "type": "script",
+          "start": 259.6000000089407,
+          "end": 347.90000000596046,
+          "size": 448
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BrahRP-X.js",
+          "type": "script",
+          "start": 259.6000000089407,
+          "end": 352.5,
+          "size": 1203
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BUQfcWdt.js",
+          "type": "script",
+          "start": 259.6000000089407,
+          "end": 352.6000000089407,
+          "size": 554
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CzcdBQaD.js",
+          "type": "script",
+          "start": 259.6000000089407,
+          "end": 386.70000000298023,
+          "size": 41195
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BUcW8W4v.js",
+          "type": "script",
+          "start": 259.6000000089407,
+          "end": 389.70000000298023,
+          "size": 339
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BApDRbnU.js",
+          "type": "script",
+          "start": 259.6000000089407,
+          "end": 390.1000000089407,
+          "size": 357
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DVC3G1Ew.js",
+          "type": "script",
+          "start": 259.79999999701977,
+          "end": 349.1000000089407,
+          "size": 1450
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CeDOxkPw.js",
+          "type": "script",
+          "start": 259.79999999701977,
+          "end": 352.40000000596046,
+          "size": 2063
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/Cr5l5_Hh.js",
+          "type": "script",
+          "start": 259.79999999701977,
+          "end": 353.6000000089407,
+          "size": 427
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/nodes/2.rO38NPh6.js",
+          "type": "script",
+          "start": 259.79999999701977,
+          "end": 388.20000000298023,
+          "size": 9325
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/_j3l3poy.js",
+          "type": "script",
+          "start": 259.79999999701977,
+          "end": 389.79999999701977,
+          "size": 8713
+        },
+        {
+          "url": "https://law.viento.me/brand/v2/wordmark-light.svg",
+          "type": "img",
+          "start": 261.20000000298023,
+          "end": 369.6000000089407,
+          "size": 1587
+        },
+        {
+          "url": "https://law.viento.me/brand/v2/wordmark-dark.svg",
+          "type": "img",
+          "start": 261.20000000298023,
+          "end": 389.90000000596046,
+          "size": 1585
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "type": "script",
+          "start": 261.20000000298023,
+          "end": 506,
+          "size": 0
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtm.js?id=GTM-N82SX8WB",
+          "type": "script",
+          "start": 264,
+          "end": 824.9000000059605,
+          "size": 0
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/nodes/1.B21rzO2b.js",
+          "type": "script",
+          "start": 419.5,
+          "end": 499.1000000089407,
+          "size": 2738
+        },
+        {
+          "url": "https://law.viento.me/cdn-cgi/rum?",
+          "type": "xmlhttprequest",
+          "start": 859.2999999970198,
+          "end": 951.7000000029802,
+          "size": 300
+        },
+        {
+          "url": "https://law.viento.me/brand/v2/favicon.svg",
+          "type": "other",
+          "start": 860,
+          "end": 973.1000000089407,
+          "size": 517
+        }
+      ]
+    },
+    "events": [
+      {
+        "name": "pointerdown",
+        "at": 1782.4000000059605,
+        "duration": 56,
+        "interactionId": 3163
+      },
+      {
+        "name": "pointerup",
+        "at": 1782.4000000059605,
+        "duration": 56,
+        "interactionId": 3163
+      },
+      {
+        "name": "click",
+        "at": 1782.4000000059605,
+        "duration": 56,
+        "interactionId": 3163
+      },
+      {
+        "name": "pointerdown",
+        "at": 1837.6000000089407,
+        "duration": 32,
+        "interactionId": 3170
+      },
+      {
+        "name": "pointerup",
+        "at": 1837.6000000089407,
+        "duration": 32,
+        "interactionId": 3170
+      },
+      {
+        "name": "click",
+        "at": 1837.6000000089407,
+        "duration": 32,
+        "interactionId": 3170
+      }
+    ],
+    "errors": [],
+    "browserApiRequests": [],
+    "rocketLoader": []
+  },
+  {
+    "device": "mobile",
+    "path": "/status",
+    "run": 1,
+    "status": 200,
+    "cache": "DYNAMIC",
+    "serverTiming": "cfCacheStatus;desc=\"DYNAMIC\", cfEdge;dur=6,cfOrigin;dur=96, cfExtPri",
+    "before": {
+      "nav": {
+        "name": "https://law.viento.me/status?__vitals_probe=0c2b3e88-d315-4f74-b0ff-3a7c8ce80b2b",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 948.0999999940395,
+        "navigationId": 5968,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h3",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "br",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.29999999701976776,
+        "domainLookupStart": 0.5,
+        "domainLookupEnd": 0.5,
+        "connectStart": 0.5,
+        "secureConnectionStart": 0.5,
+        "connectEnd": 143.8999999910593,
+        "requestStart": 144,
+        "responseStart": 324.79999999701977,
+        "firstInterimResponseStart": 324.79999999701977,
+        "finalResponseHeadersStart": 328.09999999403954,
+        "responseEnd": 332.3999999910593,
+        "transferSize": 12478,
+        "encodedBodySize": 12178,
+        "decodedBodySize": 53524,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "cfCacheStatus",
+            "duration": 0,
+            "description": "DYNAMIC"
+          },
+          {
+            "name": "cfEdge",
+            "duration": 6,
+            "description": ""
+          },
+          {
+            "name": "cfOrigin",
+            "duration": 96,
+            "description": ""
+          },
+          {
+            "name": "cfExtPri",
+            "duration": 0,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 531.2000000029802,
+        "domContentLoadedEventStart": 626.0999999940395,
+        "domContentLoadedEventEnd": 626.5999999940395,
+        "domComplete": 948,
+        "loadEventStart": 948,
+        "loadEventEnd": 948.0999999940395,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "low"
+        }
+      },
+      "probe": {
+        "lcp": [
+          {
+            "at": 536,
+            "size": 6206,
+            "tag": "H1",
+            "text": "LawCast 시스템 상태"
+          }
+        ],
+        "shifts": [],
+        "longTasks": [],
+        "events": []
+      },
+      "resources": [
+        {
+          "url": "https://law.viento.me/cdn-cgi/speculation",
+          "type": "other",
+          "start": 335.59999999403954,
+          "end": 444.09999999403954,
+          "size": 451
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/index.B-MlTbZI.css",
+          "type": "link",
+          "start": 335.8999999910593,
+          "end": 457.8999999910593,
+          "size": 1038
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/0.BCy5vXI0.css",
+          "type": "link",
+          "start": 336,
+          "end": 493.70000000298023,
+          "size": 16816
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/RateLimitOverlay.BDt73HsL.css",
+          "type": "link",
+          "start": 336.09999999403954,
+          "end": 440.79999999701977,
+          "size": 974
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/SeoHead.Cv3Itgoy.css",
+          "type": "link",
+          "start": 336.09999999403954,
+          "end": 456.09999999403954,
+          "size": 784
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/entry/start.DQqZcAk7.js",
+          "type": "script",
+          "start": 338.70000000298023,
+          "end": 438.70000000298023,
+          "size": 389
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BFq8BJmn.js",
+          "type": "script",
+          "start": 338.79999999701977,
+          "end": 474.59999999403954,
+          "size": 11966
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/D5T8szD7.js",
+          "type": "script",
+          "start": 338.8999999910593,
+          "end": 440.09999999403954,
+          "size": 4392
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/o9ZWkxNg.js",
+          "type": "script",
+          "start": 338.8999999910593,
+          "end": 457.29999999701977,
+          "size": 2947
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/a2NkhThR.js",
+          "type": "script",
+          "start": 338.8999999910593,
+          "end": 487.59999999403954,
+          "size": 11588
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/entry/app.EkctmiiP.js",
+          "type": "script",
+          "start": 339,
+          "end": 456.20000000298023,
+          "size": 3304
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CJsSH5f6.js",
+          "type": "script",
+          "start": 339.09999999403954,
+          "end": 440.3999999910593,
+          "size": 2697
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/Ds9AtpU9.js",
+          "type": "script",
+          "start": 339.09999999403954,
+          "end": 445.29999999701977,
+          "size": 548
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DsnmJJEf.js",
+          "type": "script",
+          "start": 339.09999999403954,
+          "end": 446.5,
+          "size": 366
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/PPVm8Dsz.js",
+          "type": "script",
+          "start": 339.09999999403954,
+          "end": 457.5,
+          "size": 966
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DZhUsC3v.js",
+          "type": "script",
+          "start": 339.20000000298023,
+          "end": 446.5,
+          "size": 448
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/nodes/0.DBu3TJEu.js",
+          "type": "script",
+          "start": 339.20000000298023,
+          "end": 450.59999999403954,
+          "size": 6840
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CzcdBQaD.js",
+          "type": "script",
+          "start": 339.20000000298023,
+          "end": 499.70000000298023,
+          "size": 41195
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BUcW8W4v.js",
+          "type": "script",
+          "start": 339.29999999701977,
+          "end": 443.3999999910593,
+          "size": 339
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BUQfcWdt.js",
+          "type": "script",
+          "start": 339.29999999701977,
+          "end": 456.29999999701977,
+          "size": 554
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CeDOxkPw.js",
+          "type": "script",
+          "start": 339.29999999701977,
+          "end": 459.8999999910593,
+          "size": 2063
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BrahRP-X.js",
+          "type": "script",
+          "start": 339.29999999701977,
+          "end": 460.29999999701977,
+          "size": 1203
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BApDRbnU.js",
+          "type": "script",
+          "start": 339.29999999701977,
+          "end": 468.20000000298023,
+          "size": 357
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/C0JAUOAu.js",
+          "type": "script",
+          "start": 339.3999999910593,
+          "end": 443.59999999403954,
+          "size": 505
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/nodes/15.DYluUIgr.js",
+          "type": "script",
+          "start": 339.3999999910593,
+          "end": 460.20000000298023,
+          "size": 8039
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/_j3l3poy.js",
+          "type": "script",
+          "start": 339.5,
+          "end": 463.70000000298023,
+          "size": 8713
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CAnBEM3Z.js",
+          "type": "script",
+          "start": 339.59999999403954,
+          "end": 443.8999999910593,
+          "size": 617
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/D2GXiqb-.js",
+          "type": "script",
+          "start": 339.59999999403954,
+          "end": 445,
+          "size": 1264
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BQw9e6ZQ.js",
+          "type": "script",
+          "start": 339.59999999403954,
+          "end": 450.79999999701977,
+          "size": 1768
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DVC3G1Ew.js",
+          "type": "script",
+          "start": 339.70000000298023,
+          "end": 461.20000000298023,
+          "size": 1450
+        },
+        {
+          "url": "https://law.viento.me/brand/v2/wordmark-dark.svg",
+          "type": "img",
+          "start": 341.09999999403954,
+          "end": 467.8999999910593,
+          "size": 1585
+        },
+        {
+          "url": "https://law.viento.me/brand/v2/wordmark-light.svg",
+          "type": "img",
+          "start": 341.09999999403954,
+          "end": 500.3999999910593,
+          "size": 1587
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "type": "script",
+          "start": 341.20000000298023,
+          "end": 623.8999999910593,
+          "size": 0
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtm.js?id=GTM-N82SX8WB",
+          "type": "script",
+          "start": 345,
+          "end": 914.2999999970198,
+          "size": 0
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/nodes/1.B21rzO2b.js",
+          "type": "script",
+          "start": 533.5999999940395,
+          "end": 623.5999999940395,
+          "size": 2738
+        },
+        {
+          "url": "https://law.viento.me/cdn-cgi/rum?",
+          "type": "xmlhttprequest",
+          "start": 949.8999999910593,
+          "end": 1030.5,
+          "size": 300
+        },
+        {
+          "url": "https://law.viento.me/brand/v2/favicon.svg",
+          "type": "other",
+          "start": 950.2999999970198,
+          "end": 1075.2999999970198,
+          "size": 517
+        },
+        {
+          "url": "https://law.viento.me/status/__data.json?__vitals_probe=0c2b3e88-d315-4f74-b0ff-3a7c8ce80b2b&x-sveltekit-invalidated=11",
+          "type": "fetch",
+          "start": 1556.2999999970198,
+          "end": 1796.5,
+          "size": 2157
+        }
+      ]
+    },
+    "events": [
+      {
+        "name": "pointerdown",
+        "at": 1893.3999999910593,
+        "duration": 80,
+        "interactionId": 5592
+      },
+      {
+        "name": "pointerup",
+        "at": 1893.3999999910593,
+        "duration": 80,
+        "interactionId": 5592
+      },
+      {
+        "name": "click",
+        "at": 1893.3999999910593,
+        "duration": 80,
+        "interactionId": 5592
+      },
+      {
+        "name": "pointerdown",
+        "at": 1964,
+        "duration": 40,
+        "interactionId": 5599
+      },
+      {
+        "name": "pointerup",
+        "at": 1964,
+        "duration": 40,
+        "interactionId": 5599
+      },
+      {
+        "name": "click",
+        "at": 1964,
+        "duration": 40,
+        "interactionId": 5599
+      }
+    ],
+    "errors": [],
+    "browserApiRequests": [],
+    "rocketLoader": []
+  },
+  {
+    "device": "mobile",
+    "path": "/status",
+    "run": 2,
+    "status": 200,
+    "cache": "DYNAMIC",
+    "serverTiming": "cfCacheStatus;desc=\"DYNAMIC\", cfEdge;dur=19,cfOrigin;dur=80, cfExtPri",
+    "before": {
+      "nav": {
+        "name": "https://law.viento.me/status?__vitals_probe=c54db274-97f4-44b4-9842-fd168316fbc7",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 889,
+        "navigationId": 2963,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h3",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "br",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.5,
+        "domainLookupStart": 1.2000000029802322,
+        "domainLookupEnd": 1.2000000029802322,
+        "connectStart": 1.2000000029802322,
+        "secureConnectionStart": 1.2000000029802322,
+        "connectEnd": 85.79999999701977,
+        "requestStart": 85.8999999910593,
+        "responseStart": 178.70000000298023,
+        "firstInterimResponseStart": 178.70000000298023,
+        "finalResponseHeadersStart": 271.09999999403954,
+        "responseEnd": 272.09999999403954,
+        "transferSize": 12480,
+        "encodedBodySize": 12180,
+        "decodedBodySize": 53524,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "cfCacheStatus",
+            "duration": 0,
+            "description": "DYNAMIC"
+          },
+          {
+            "name": "cfEdge",
+            "duration": 19,
+            "description": ""
+          },
+          {
+            "name": "cfOrigin",
+            "duration": 80,
+            "description": ""
+          },
+          {
+            "name": "cfExtPri",
+            "duration": 0,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 418.59999999403954,
+        "domContentLoadedEventStart": 538.5999999940395,
+        "domContentLoadedEventEnd": 539.5,
+        "domComplete": 888.7999999970198,
+        "loadEventStart": 888.7999999970198,
+        "loadEventEnd": 889,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "low"
+        }
+      },
+      "probe": {
+        "lcp": [
+          {
+            "at": 424,
+            "size": 6206,
+            "tag": "H1",
+            "text": "LawCast 시스템 상태"
+          }
+        ],
+        "shifts": [],
+        "longTasks": [],
+        "events": []
+      },
+      "resources": [
+        {
+          "url": "https://law.viento.me/cdn-cgi/speculation",
+          "type": "other",
+          "start": 276.5,
+          "end": 381.5,
+          "size": 451
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/index.B-MlTbZI.css",
+          "type": "link",
+          "start": 276.70000000298023,
+          "end": 364.09999999403954,
+          "size": 1038
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/0.BCy5vXI0.css",
+          "type": "link",
+          "start": 276.79999999701977,
+          "end": 381.20000000298023,
+          "size": 16816
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/SeoHead.Cv3Itgoy.css",
+          "type": "link",
+          "start": 276.8999999910593,
+          "end": 375.79999999701977,
+          "size": 784
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/RateLimitOverlay.BDt73HsL.css",
+          "type": "link",
+          "start": 276.8999999910593,
+          "end": 383.70000000298023,
+          "size": 974
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/entry/start.DQqZcAk7.js",
+          "type": "script",
+          "start": 278.59999999403954,
+          "end": 372.70000000298023,
+          "size": 389
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BFq8BJmn.js",
+          "type": "script",
+          "start": 278.59999999403954,
+          "end": 377.8999999910593,
+          "size": 11966
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/D5T8szD7.js",
+          "type": "script",
+          "start": 278.70000000298023,
+          "end": 378,
+          "size": 4392
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/a2NkhThR.js",
+          "type": "script",
+          "start": 278.70000000298023,
+          "end": 391.20000000298023,
+          "size": 11588
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/o9ZWkxNg.js",
+          "type": "script",
+          "start": 278.70000000298023,
+          "end": 394.79999999701977,
+          "size": 2947
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/entry/app.EkctmiiP.js",
+          "type": "script",
+          "start": 278.79999999701977,
+          "end": 379.29999999701977,
+          "size": 3304
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/PPVm8Dsz.js",
+          "type": "script",
+          "start": 278.79999999701977,
+          "end": 379.3999999910593,
+          "size": 966
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DsnmJJEf.js",
+          "type": "script",
+          "start": 278.79999999701977,
+          "end": 391.8999999910593,
+          "size": 366
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/Ds9AtpU9.js",
+          "type": "script",
+          "start": 278.8999999910593,
+          "end": 378.20000000298023,
+          "size": 548
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/nodes/0.DBu3TJEu.js",
+          "type": "script",
+          "start": 278.8999999910593,
+          "end": 384.29999999701977,
+          "size": 6840
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DZhUsC3v.js",
+          "type": "script",
+          "start": 278.8999999910593,
+          "end": 387.09999999403954,
+          "size": 448
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CJsSH5f6.js",
+          "type": "script",
+          "start": 278.8999999910593,
+          "end": 394.59999999403954,
+          "size": 2697
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BApDRbnU.js",
+          "type": "script",
+          "start": 279,
+          "end": 378.29999999701977,
+          "size": 357
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BUcW8W4v.js",
+          "type": "script",
+          "start": 279,
+          "end": 379.5,
+          "size": 339
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CzcdBQaD.js",
+          "type": "script",
+          "start": 279,
+          "end": 402.3999999910593,
+          "size": 41195
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BrahRP-X.js",
+          "type": "script",
+          "start": 279.09999999403954,
+          "end": 379.5,
+          "size": 1203
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BUQfcWdt.js",
+          "type": "script",
+          "start": 279.09999999403954,
+          "end": 384.70000000298023,
+          "size": 554
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CeDOxkPw.js",
+          "type": "script",
+          "start": 279.09999999403954,
+          "end": 392.5,
+          "size": 2063
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/C0JAUOAu.js",
+          "type": "script",
+          "start": 279.20000000298023,
+          "end": 378.29999999701977,
+          "size": 505
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BQw9e6ZQ.js",
+          "type": "script",
+          "start": 279.20000000298023,
+          "end": 379.3999999910593,
+          "size": 1768
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/nodes/15.DYluUIgr.js",
+          "type": "script",
+          "start": 279.20000000298023,
+          "end": 386.5,
+          "size": 8039
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/_j3l3poy.js",
+          "type": "script",
+          "start": 279.20000000298023,
+          "end": 402.09999999403954,
+          "size": 8713
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CAnBEM3Z.js",
+          "type": "script",
+          "start": 279.29999999701977,
+          "end": 379.59999999403954,
+          "size": 617
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/D2GXiqb-.js",
+          "type": "script",
+          "start": 279.29999999701977,
+          "end": 396.3999999910593,
+          "size": 1264
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DVC3G1Ew.js",
+          "type": "script",
+          "start": 279.29999999701977,
+          "end": 396.5,
+          "size": 1450
+        },
+        {
+          "url": "https://law.viento.me/brand/v2/wordmark-light.svg",
+          "type": "img",
+          "start": 280.3999999910593,
+          "end": 384.59999999403954,
+          "size": 1587
+        },
+        {
+          "url": "https://law.viento.me/brand/v2/wordmark-dark.svg",
+          "type": "img",
+          "start": 280.3999999910593,
+          "end": 417.59999999403954,
+          "size": 1585
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "type": "script",
+          "start": 280.3999999910593,
+          "end": 535.7999999970198,
+          "size": 0
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtm.js?id=GTM-N82SX8WB",
+          "type": "script",
+          "start": 282.70000000298023,
+          "end": 852.2999999970198,
+          "size": 0
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/nodes/1.B21rzO2b.js",
+          "type": "script",
+          "start": 422,
+          "end": 506.8999999910593,
+          "size": 2738
+        },
+        {
+          "url": "https://law.viento.me/cdn-cgi/rum?",
+          "type": "xmlhttprequest",
+          "start": 890.5,
+          "end": 983.5,
+          "size": 300
+        },
+        {
+          "url": "https://law.viento.me/brand/v2/favicon.svg",
+          "type": "other",
+          "start": 891,
+          "end": 1006.5999999940395,
+          "size": 517
+        },
+        {
+          "url": "https://law.viento.me/status/__data.json?__vitals_probe=c54db274-97f4-44b4-9842-fd168316fbc7&x-sveltekit-invalidated=11",
+          "type": "fetch",
+          "start": 1444.2999999970198,
+          "end": 1694.5999999940395,
+          "size": 2156
+        }
+      ]
+    },
+    "events": [
+      {
+        "name": "pointerdown",
+        "at": 1810,
+        "duration": 80,
+        "interactionId": 3101
+      },
+      {
+        "name": "pointerup",
+        "at": 1810.0999999940395,
+        "duration": 80,
+        "interactionId": 3101
+      },
+      {
+        "name": "click",
+        "at": 1810.0999999940395,
+        "duration": 80,
+        "interactionId": 3101
+      },
+      {
+        "name": "pointerdown",
+        "at": 2125.0999999940395,
+        "duration": 48,
+        "interactionId": 3108
+      },
+      {
+        "name": "pointerup",
+        "at": 2125.2000000029802,
+        "duration": 48,
+        "interactionId": 3108
+      },
+      {
+        "name": "click",
+        "at": 2125.2000000029802,
+        "duration": 48,
+        "interactionId": 3108
+      }
+    ],
+    "errors": [],
+    "browserApiRequests": [],
+    "rocketLoader": []
+  },
+  {
+    "device": "mobile",
+    "path": "/notices",
+    "run": 1,
+    "status": 200,
+    "cache": "DYNAMIC",
+    "serverTiming": "cfCacheStatus;desc=\"DYNAMIC\", cfEdge;dur=6,cfOrigin;dur=130, cfExtPri",
+    "before": {
+      "nav": {
+        "name": "https://law.viento.me/notices?__vitals_probe=fc91f274-f7b3-464d-8e08-73e4620071a5",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 956,
+        "navigationId": 7677,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h3",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "br",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.19999998807907104,
+        "domainLookupStart": 0.5,
+        "domainLookupEnd": 0.5,
+        "connectStart": 0.5,
+        "secureConnectionStart": 0.5,
+        "connectEnd": 81,
+        "requestStart": 81.09999999403954,
+        "responseStart": 245.79999999701977,
+        "firstInterimResponseStart": 245.79999999701977,
+        "finalResponseHeadersStart": 314.69999998807907,
+        "responseEnd": 321.29999999701977,
+        "transferSize": 17046,
+        "encodedBodySize": 16746,
+        "decodedBodySize": 158539,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "cfCacheStatus",
+            "duration": 0,
+            "description": "DYNAMIC"
+          },
+          {
+            "name": "cfEdge",
+            "duration": 6,
+            "description": ""
+          },
+          {
+            "name": "cfOrigin",
+            "duration": 130,
+            "description": ""
+          },
+          {
+            "name": "cfExtPri",
+            "duration": 0,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 571.2999999970198,
+        "domContentLoadedEventStart": 647.2999999970198,
+        "domContentLoadedEventEnd": 647.6999999880791,
+        "domComplete": 955.7999999970198,
+        "loadEventStart": 956,
+        "loadEventEnd": 956,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "low"
+        }
+      },
+      "probe": {
+        "lcp": [
+          {
+            "at": 584,
+            "size": 18600,
+            "tag": "P",
+            "text": "AI 요약은 참고용으로 제공되며 해석상 오류가 있을 수 있습니다. 중요 판단 전 반드시 각\n\t\t\t\t\t\t\t법률안의 원문(제안이유 및 주요내용)을 함께 확인해주세요."
+          }
+        ],
+        "shifts": [],
+        "longTasks": [],
+        "events": []
+      },
+      "resources": [
+        {
+          "url": "https://law.viento.me/cdn-cgi/speculation",
+          "type": "other",
+          "start": 322.69999998807907,
+          "end": 456.3999999910593,
+          "size": 451
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/index.B-MlTbZI.css",
+          "type": "link",
+          "start": 323.19999998807907,
+          "end": 464.3999999910593,
+          "size": 1038
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/0.BCy5vXI0.css",
+          "type": "link",
+          "start": 323.29999999701977,
+          "end": 538.5999999940395,
+          "size": 16816
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/RateLimitOverlay.BDt73HsL.css",
+          "type": "link",
+          "start": 323.3999999910593,
+          "end": 477.8999999910593,
+          "size": 974
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/notice-deadline.NoYO6OG2.css",
+          "type": "link",
+          "start": 323.3999999910593,
+          "end": 486.59999999403954,
+          "size": 353
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/SeoHead.Cv3Itgoy.css",
+          "type": "link",
+          "start": 323.3999999910593,
+          "end": 488.09999999403954,
+          "size": 784
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/9.DJNxZ2Ym.css",
+          "type": "link",
+          "start": 323.5,
+          "end": 464.8999999910593,
+          "size": 347
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/entry/start.DQqZcAk7.js",
+          "type": "script",
+          "start": 326,
+          "end": 484.29999999701977,
+          "size": 389
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/D5T8szD7.js",
+          "type": "script",
+          "start": 326.09999999403954,
+          "end": 498.69999998807907,
+          "size": 4392
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BFq8BJmn.js",
+          "type": "script",
+          "start": 326.09999999403954,
+          "end": 544.0999999940395,
+          "size": 11966
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/o9ZWkxNg.js",
+          "type": "script",
+          "start": 326.19999998807907,
+          "end": 459.5,
+          "size": 2947
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/entry/app.EkctmiiP.js",
+          "type": "script",
+          "start": 326.19999998807907,
+          "end": 500.09999999403954,
+          "size": 3304
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/a2NkhThR.js",
+          "type": "script",
+          "start": 326.19999998807907,
+          "end": 540.3999999910593,
+          "size": 11588
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/PPVm8Dsz.js",
+          "type": "script",
+          "start": 326.29999999701977,
+          "end": 461.5,
+          "size": 966
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DsnmJJEf.js",
+          "type": "script",
+          "start": 326.29999999701977,
+          "end": 484.29999999701977,
+          "size": 366
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CJsSH5f6.js",
+          "type": "script",
+          "start": 326.29999999701977,
+          "end": 490,
+          "size": 2697
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/Ds9AtpU9.js",
+          "type": "script",
+          "start": 326.3999999910593,
+          "end": 466.59999999403954,
+          "size": 548
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/nodes/0.DBu3TJEu.js",
+          "type": "script",
+          "start": 326.3999999910593,
+          "end": 525.7999999970198,
+          "size": 6840
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BUcW8W4v.js",
+          "type": "script",
+          "start": 326.5,
+          "end": 471.3999999910593,
+          "size": 339
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BApDRbnU.js",
+          "type": "script",
+          "start": 326.5,
+          "end": 486.69999998807907,
+          "size": 357
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DZhUsC3v.js",
+          "type": "script",
+          "start": 326.5,
+          "end": 488.5,
+          "size": 448
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CzcdBQaD.js",
+          "type": "script",
+          "start": 326.5,
+          "end": 559,
+          "size": 41195
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BUQfcWdt.js",
+          "type": "script",
+          "start": 326.59999999403954,
+          "end": 485.59999999403954,
+          "size": 554
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BrahRP-X.js",
+          "type": "script",
+          "start": 326.59999999403954,
+          "end": 495,
+          "size": 1203
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CeDOxkPw.js",
+          "type": "script",
+          "start": 326.69999998807907,
+          "end": 483.69999998807907,
+          "size": 2063
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/nodes/9.B62et36w.js",
+          "type": "script",
+          "start": 326.69999998807907,
+          "end": 548.3999999910593,
+          "size": 13458
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DoP0eRxL.js",
+          "type": "script",
+          "start": 326.79999999701977,
+          "end": 483.19999998807907,
+          "size": 964
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CLaZxUgp.js",
+          "type": "script",
+          "start": 326.79999999701977,
+          "end": 483.5,
+          "size": 1754
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BeiTd52H.js",
+          "type": "script",
+          "start": 326.79999999701977,
+          "end": 493,
+          "size": 2052
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/_j3l3poy.js",
+          "type": "script",
+          "start": 326.79999999701977,
+          "end": 538.2999999970198,
+          "size": 8713
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/D2GXiqb-.js",
+          "type": "script",
+          "start": 326.8999999910593,
+          "end": 488.29999999701977,
+          "size": 1264
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BINvxRnZ.js",
+          "type": "script",
+          "start": 326.8999999910593,
+          "end": 502.09999999403954,
+          "size": 3121
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/Chh7LKYU.js",
+          "type": "script",
+          "start": 326.8999999910593,
+          "end": 502.29999999701977,
+          "size": 3632
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DVC3G1Ew.js",
+          "type": "script",
+          "start": 327,
+          "end": 495.59999999403954,
+          "size": 1450
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CFuDw1Z9.js",
+          "type": "script",
+          "start": 327.09999999403954,
+          "end": 473.29999999701977,
+          "size": 702
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/Dx3veJiu.js",
+          "type": "script",
+          "start": 327.09999999403954,
+          "end": 473.5,
+          "size": 789
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CAnBEM3Z.js",
+          "type": "script",
+          "start": 327.09999999403954,
+          "end": 479.79999999701977,
+          "size": 617
+        },
+        {
+          "url": "https://law.viento.me/brand/v2/wordmark-light.svg",
+          "type": "img",
+          "start": 330,
+          "end": 494.79999999701977,
+          "size": 1587
+        },
+        {
+          "url": "https://law.viento.me/brand/v2/wordmark-dark.svg",
+          "type": "img",
+          "start": 330.09999999403954,
+          "end": 507.09999999403954,
+          "size": 1585
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "type": "script",
+          "start": 330.29999999701977,
+          "end": 645.5,
+          "size": 0
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtm.js?id=GTM-N82SX8WB",
+          "type": "script",
+          "start": 334.3999999910593,
+          "end": 925.1999999880791,
+          "size": 0
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/nodes/1.B21rzO2b.js",
+          "type": "script",
+          "start": 573.6999999880791,
+          "end": 655,
+          "size": 2738
+        },
+        {
+          "url": "https://law.viento.me/api/notices/semantic-search/health",
+          "type": "fetch",
+          "start": 599.7999999970198,
+          "end": 740.7999999970198,
+          "size": 425
+        },
+        {
+          "url": "https://law.viento.me/cdn-cgi/rum?",
+          "type": "xmlhttprequest",
+          "start": 963.2999999970198,
+          "end": 1051.5,
+          "size": 300
+        },
+        {
+          "url": "https://law.viento.me/brand/v2/favicon.svg",
+          "type": "other",
+          "start": 964.6999999880791,
+          "end": 1075.699999988079,
+          "size": 517
+        }
+      ]
+    },
+    "events": [
+      {
+        "name": "pointerdown",
+        "at": 1933.5999999940395,
+        "duration": 80,
+        "interactionId": 2037
+      },
+      {
+        "name": "pointerup",
+        "at": 1933.699999988079,
+        "duration": 80,
+        "interactionId": 2037
+      },
+      {
+        "name": "click",
+        "at": 1933.699999988079,
+        "duration": 80,
+        "interactionId": 2037
+      },
+      {
+        "name": "pointerdown",
+        "at": 1997.8999999910593,
+        "duration": 48,
+        "interactionId": 2044
+      },
+      {
+        "name": "pointerup",
+        "at": 1997.8999999910593,
+        "duration": 48,
+        "interactionId": 2044
+      },
+      {
+        "name": "click",
+        "at": 1997.8999999910593,
+        "duration": 48,
+        "interactionId": 2044
+      }
+    ],
+    "errors": [],
+    "browserApiRequests": [
+      {
+        "url": "https://law.viento.me/api/notices/semantic-search/health",
+        "type": "fetch"
+      }
+    ],
+    "rocketLoader": []
+  },
+  {
+    "device": "mobile",
+    "path": "/notices",
+    "run": 2,
+    "status": 200,
+    "cache": "DYNAMIC",
+    "serverTiming": "cfCacheStatus;desc=\"DYNAMIC\", cfEdge;dur=17,cfOrigin;dur=180, cfExtPri",
+    "before": {
+      "nav": {
+        "name": "https://law.viento.me/notices?__vitals_probe=27f9292c-16d4-4a51-a786-44c86a1dbdfe",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1067.2999999970198,
+        "navigationId": 3087,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h3",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "br",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 1.4000000059604645,
+        "domainLookupStart": 2.0999999940395355,
+        "domainLookupEnd": 2.0999999940395355,
+        "connectStart": 2.0999999940395355,
+        "secureConnectionStart": 2.0999999940395355,
+        "connectEnd": 80.20000000298023,
+        "requestStart": 80.20000000298023,
+        "responseStart": 187.20000000298023,
+        "firstInterimResponseStart": 187.20000000298023,
+        "finalResponseHeadersStart": 472.29999999701977,
+        "responseEnd": 473.79999999701977,
+        "transferSize": 17038,
+        "encodedBodySize": 16738,
+        "decodedBodySize": 158539,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "cfCacheStatus",
+            "duration": 0,
+            "description": "DYNAMIC"
+          },
+          {
+            "name": "cfEdge",
+            "duration": 17,
+            "description": ""
+          },
+          {
+            "name": "cfOrigin",
+            "duration": 180,
+            "description": ""
+          },
+          {
+            "name": "cfExtPri",
+            "duration": 0,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 635.7000000029802,
+        "domContentLoadedEventStart": 752.2000000029802,
+        "domContentLoadedEventEnd": 752.7000000029802,
+        "domComplete": 1067.0999999940395,
+        "loadEventStart": 1067.2000000029802,
+        "loadEventEnd": 1067.2999999970198,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "probe": {
+        "lcp": [
+          {
+            "at": 648,
+            "size": 18600,
+            "tag": "P",
+            "text": "AI 요약은 참고용으로 제공되며 해석상 오류가 있을 수 있습니다. 중요 판단 전 반드시 각\n\t\t\t\t\t\t\t법률안의 원문(제안이유 및 주요내용)을 함께 확인해주세요."
+          }
+        ],
+        "shifts": [],
+        "longTasks": [],
+        "events": []
+      },
+      "resources": [
+        {
+          "url": "https://law.viento.me/cdn-cgi/speculation",
+          "type": "other",
+          "start": 480.29999999701977,
+          "end": 586,
+          "size": 451
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/index.B-MlTbZI.css",
+          "type": "link",
+          "start": 480.59999999403954,
+          "end": 585.2999999970198,
+          "size": 1038
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/0.BCy5vXI0.css",
+          "type": "link",
+          "start": 480.70000000298023,
+          "end": 577.2000000029802,
+          "size": 16816
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/SeoHead.Cv3Itgoy.css",
+          "type": "link",
+          "start": 480.79999999701977,
+          "end": 599.7000000029802,
+          "size": 784
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/notice-deadline.NoYO6OG2.css",
+          "type": "link",
+          "start": 480.79999999701977,
+          "end": 603.0999999940395,
+          "size": 353
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/RateLimitOverlay.BDt73HsL.css",
+          "type": "link",
+          "start": 480.79999999701977,
+          "end": 606.5999999940395,
+          "size": 974
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/assets/9.DJNxZ2Ym.css",
+          "type": "link",
+          "start": 480.90000000596046,
+          "end": 603.5999999940395,
+          "size": 347
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/entry/start.DQqZcAk7.js",
+          "type": "script",
+          "start": 484,
+          "end": 578.2999999970198,
+          "size": 389
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BFq8BJmn.js",
+          "type": "script",
+          "start": 484.09999999403954,
+          "end": 595.5999999940395,
+          "size": 11966
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/D5T8szD7.js",
+          "type": "script",
+          "start": 484.20000000298023,
+          "end": 579.4000000059605,
+          "size": 4392
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/a2NkhThR.js",
+          "type": "script",
+          "start": 484.20000000298023,
+          "end": 604.7999999970198,
+          "size": 11588
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/o9ZWkxNg.js",
+          "type": "script",
+          "start": 484.20000000298023,
+          "end": 606.2999999970198,
+          "size": 2947
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/PPVm8Dsz.js",
+          "type": "script",
+          "start": 484.29999999701977,
+          "end": 581.4000000059605,
+          "size": 966
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/entry/app.EkctmiiP.js",
+          "type": "script",
+          "start": 484.29999999701977,
+          "end": 600.9000000059605,
+          "size": 3304
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DsnmJJEf.js",
+          "type": "script",
+          "start": 484.40000000596046,
+          "end": 602.4000000059605,
+          "size": 366
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CJsSH5f6.js",
+          "type": "script",
+          "start": 484.40000000596046,
+          "end": 605.9000000059605,
+          "size": 2697
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DZhUsC3v.js",
+          "type": "script",
+          "start": 484.5,
+          "end": 581.0999999940395,
+          "size": 448
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/nodes/0.DBu3TJEu.js",
+          "type": "script",
+          "start": 484.5,
+          "end": 597.5999999940395,
+          "size": 6840
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/Ds9AtpU9.js",
+          "type": "script",
+          "start": 484.5,
+          "end": 604,
+          "size": 548
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BApDRbnU.js",
+          "type": "script",
+          "start": 484.59999999403954,
+          "end": 581.9000000059605,
+          "size": 357
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BUQfcWdt.js",
+          "type": "script",
+          "start": 484.59999999403954,
+          "end": 597.7999999970198,
+          "size": 554
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BUcW8W4v.js",
+          "type": "script",
+          "start": 484.59999999403954,
+          "end": 602.0999999940395,
+          "size": 339
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CzcdBQaD.js",
+          "type": "script",
+          "start": 484.59999999403954,
+          "end": 604.5999999940395,
+          "size": 41195
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BrahRP-X.js",
+          "type": "script",
+          "start": 484.70000000298023,
+          "end": 581.7000000029802,
+          "size": 1203
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/nodes/9.B62et36w.js",
+          "type": "script",
+          "start": 484.70000000298023,
+          "end": 598.2000000029802,
+          "size": 13458
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CeDOxkPw.js",
+          "type": "script",
+          "start": 484.70000000298023,
+          "end": 605.7999999970198,
+          "size": 2063
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/_j3l3poy.js",
+          "type": "script",
+          "start": 484.79999999701977,
+          "end": 584.0999999940395,
+          "size": 8713
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DoP0eRxL.js",
+          "type": "script",
+          "start": 484.79999999701977,
+          "end": 602.5,
+          "size": 964
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CLaZxUgp.js",
+          "type": "script",
+          "start": 484.79999999701977,
+          "end": 603.9000000059605,
+          "size": 1754
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BeiTd52H.js",
+          "type": "script",
+          "start": 484.90000000596046,
+          "end": 601.9000000059605,
+          "size": 2052
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/D2GXiqb-.js",
+          "type": "script",
+          "start": 484.90000000596046,
+          "end": 606.7999999970198,
+          "size": 1264
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/Chh7LKYU.js",
+          "type": "script",
+          "start": 485,
+          "end": 586.2999999970198,
+          "size": 3632
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/BINvxRnZ.js",
+          "type": "script",
+          "start": 485,
+          "end": 601.5999999940395,
+          "size": 3121
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/DVC3G1Ew.js",
+          "type": "script",
+          "start": 485,
+          "end": 602,
+          "size": 1450
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CAnBEM3Z.js",
+          "type": "script",
+          "start": 485,
+          "end": 602.2000000029802,
+          "size": 617
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/CFuDw1Z9.js",
+          "type": "script",
+          "start": 485.09999999403954,
+          "end": 586.2000000029802,
+          "size": 702
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/chunks/Dx3veJiu.js",
+          "type": "script",
+          "start": 485.09999999403954,
+          "end": 586.4000000059605,
+          "size": 789
+        },
+        {
+          "url": "https://law.viento.me/brand/v2/wordmark-light.svg",
+          "type": "img",
+          "start": 487.5,
+          "end": 600.7000000029802,
+          "size": 1587
+        },
+        {
+          "url": "https://law.viento.me/brand/v2/wordmark-dark.svg",
+          "type": "img",
+          "start": 487.59999999403954,
+          "end": 604.0999999940395,
+          "size": 1585
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "type": "script",
+          "start": 487.59999999403954,
+          "end": 750.2999999970198,
+          "size": 0
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtm.js?id=GTM-N82SX8WB",
+          "type": "script",
+          "start": 490.79999999701977,
+          "end": 1032.5,
+          "size": 0
+        },
+        {
+          "url": "https://law.viento.me/_app/immutable/nodes/1.B21rzO2b.js",
+          "type": "script",
+          "start": 638.7000000029802,
+          "end": 733,
+          "size": 2738
+        },
+        {
+          "url": "https://law.viento.me/api/notices/semantic-search/health",
+          "type": "fetch",
+          "start": 664.7000000029802,
+          "end": 776.7000000029802,
+          "size": 425
+        },
+        {
+          "url": "https://law.viento.me/cdn-cgi/rum?",
+          "type": "xmlhttprequest",
+          "start": 1070.2000000029802,
+          "end": 1148.0999999940395,
+          "size": 300
+        },
+        {
+          "url": "https://law.viento.me/brand/v2/favicon.svg",
+          "type": "other",
+          "start": 1070.9000000059605,
+          "end": 1192.4000000059605,
+          "size": 517
+        }
+      ]
+    },
+    "events": [
+      {
+        "name": "pointerdown",
+        "at": 2027.5999999940395,
+        "duration": 80,
+        "interactionId": 7155
+      },
+      {
+        "name": "pointerup",
+        "at": 2027.5999999940395,
+        "duration": 80,
+        "interactionId": 7155
+      },
+      {
+        "name": "click",
+        "at": 2027.5999999940395,
+        "duration": 80,
+        "interactionId": 7155
+      },
+      {
+        "name": "pointerdown",
+        "at": 2094.2999999970198,
+        "duration": 48,
+        "interactionId": 7162
+      },
+      {
+        "name": "pointerup",
+        "at": 2094.2999999970198,
+        "duration": 48,
+        "interactionId": 7162
+      },
+      {
+        "name": "click",
+        "at": 2094.2999999970198,
+        "duration": 48,
+        "interactionId": 7162
+      }
+    ],
+    "errors": [],
+    "browserApiRequests": [
+      {
+        "url": "https://law.viento.me/api/notices/semantic-search/health",
+        "type": "fetch"
+      }
+    ],
+    "rocketLoader": []
+  },
+  {
+    "kind": "SSR-with-pending-hydration",
+    "path": "/",
+    "status": 200,
+    "pending": 23,
+    "lcp": 508,
+    "load": 0,
+    "heading": "국회 입법예고 증거 수집 플랫폼"
+  },
+  {
+    "kind": "SSR-with-pending-hydration",
+    "path": "/status",
+    "status": 200,
+    "pending": 26,
+    "lcp": 516,
+    "load": 0,
+    "heading": "LawCast 시스템 상태"
+  }
+]

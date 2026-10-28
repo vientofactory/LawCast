@@ -2,6 +2,8 @@
 
 ## Verdict
 
+**Latest release result: backend 1.19.5 deployed successfully and the candidate query is faster, but production API tails remain during pending sync. [Postdeployment verification](release-verification.md) supersedes any pipeline-wide interpretation of the local result.**
+
 **The reproduced multi-second tail is inside the origin application, primarily a slow retry-candidate SQL statement monopolizing its shared SQLite connection. It is not principally a Cloudflare delay, a global database read lock, or a stopped JavaScript event loop.** A local SQL rewrite removes the reproduced queue bottleneck. The initial local phase had not deployed it; the later owner-authorized release phase is recorded below.
 
 This conclusion combines same-request passive wire timings, concurrent origin controls, independent read-only DB queries, the existing cron logs, the production query plan, and a controlled local reproduction using the real TypeORM/sqlite3 implementation. It does not assign a cause to every historical outlier for which no trace exists.

@@ -1,0 +1,1039 @@
+{
+  "results": [
+    {
+      "route": "/",
+      "formFactor": "mobile",
+      "metrics": {
+        "first-contentful-paint": 2306.846,
+        "largest-contentful-paint": 2306.846,
+        "total-blocking-time": 52.968999984741004,
+        "cumulative-layout-shift": 0
+      },
+      "distributions": {
+        "first-contentful-paint": {
+          "count": 3,
+          "median": 2306.846,
+          "p75": 2541.585,
+          "max": 2541.585,
+          "overBudget": 0
+        },
+        "largest-contentful-paint": {
+          "count": 3,
+          "median": 2306.846,
+          "p75": 2541.585,
+          "max": 2541.585,
+          "overBudget": 1
+        },
+        "total-blocking-time": {
+          "count": 3,
+          "median": 52.968999984741004,
+          "p75": 128.53099999999995,
+          "max": 128.53099999999995,
+          "overBudget": 0
+        },
+        "cumulative-layout-shift": {
+          "count": 3,
+          "median": 0,
+          "p75": 0,
+          "max": 0,
+          "overBudget": 0
+        }
+      },
+      "measurements": [
+        {
+          "url": "https://law.viento.me/?__vitals_probe=7ae1c382-a95e-41de-adec-e708c7ed4387",
+          "fetchTime": "2026-10-28T08:19:10.271Z",
+          "lighthouseVersion": "13.6.0",
+          "browserUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+          "browserProfile": "render-document",
+          "throttlingMethod": "devtools",
+          "observed": {
+            "firstContentfulPaint": 2542,
+            "firstContentfulPaintTs": 80292129539,
+            "firstContentfulPaintAllFrames": 2542,
+            "firstContentfulPaintAllFramesTs": 80292129539,
+            "largestContentfulPaint": 2542,
+            "largestContentfulPaintTs": 80292129539,
+            "largestContentfulPaintAllFrames": 2542,
+            "largestContentfulPaintAllFramesTs": 80292129539,
+            "interactive": 3984,
+            "interactiveTs": 80293572117,
+            "speedIndex": 2425,
+            "speedIndexTs": 80292012954,
+            "totalBlockingTime": 129,
+            "maxPotentialFID": 143,
+            "cumulativeLayoutShift": 0,
+            "cumulativeLayoutShiftMainFrame": 0,
+            "lcpRenderDelay": 2201,
+            "timeToFirstByte": 341,
+            "timeToFirstByteTs": 80289929012,
+            "observedTimeOrigin": 0,
+            "observedTimeOriginTs": 80289587954,
+            "observedNavigationStart": 0,
+            "observedNavigationStartTs": 80289587954,
+            "observedFirstPaint": 2542,
+            "observedFirstPaintTs": 80292129539,
+            "observedFirstContentfulPaint": 2542,
+            "observedFirstContentfulPaintTs": 80292129539,
+            "observedFirstContentfulPaintAllFrames": 2542,
+            "observedFirstContentfulPaintAllFramesTs": 80292129539,
+            "observedLargestContentfulPaint": 2542,
+            "observedLargestContentfulPaintTs": 80292129539,
+            "observedLargestContentfulPaintAllFrames": 2542,
+            "observedLargestContentfulPaintAllFramesTs": 80292129539,
+            "observedTraceEnd": 14984,
+            "observedTraceEndTs": 80304572387,
+            "observedLoad": 3572,
+            "observedLoadTs": 80293159790,
+            "observedDomContentLoaded": 3,
+            "observedDomContentLoadedTs": 80289591403,
+            "observedCumulativeLayoutShift": 0,
+            "observedCumulativeLayoutShiftMainFrame": 0,
+            "observedFirstVisualChange": 12,
+            "observedFirstVisualChangeTs": 80289599954,
+            "observedLastVisualChange": 4661,
+            "observedLastVisualChangeTs": 80294248954,
+            "observedSpeedIndex": 2425,
+            "observedSpeedIndexTs": 80292013355
+          },
+          "document": {
+            "status": 200,
+            "protocol": "h2",
+            "requestTiming": {
+              "requestTime": 80289.589919,
+              "proxyStart": -1,
+              "proxyEnd": -1,
+              "dnsStart": 0,
+              "dnsEnd": 3.459,
+              "connectStart": 3.504,
+              "connectEnd": 249.329,
+              "sslStart": 76.55,
+              "sslEnd": 249.326,
+              "workerStart": -1,
+              "workerReady": -1,
+              "workerFetchStart": -1,
+              "workerRespondWithSettled": -1,
+              "sendStart": 249.477,
+              "sendEnd": 249.53,
+              "pushStart": 0,
+              "pushEnd": 0,
+              "receiveHeadersStart": 339.093,
+              "receiveHeadersEnd": 978.371
+            },
+            "serverResponseTime": 90,
+            "serverTiming": "cfCacheStatus;desc=\"MISS\"\ncfEdge;dur=22,cfOrigin;dur=609",
+            "cfCacheStatus": "MISS",
+            "cfRay": "a51883993d68d3f5-KIX"
+          },
+          "scores": {
+            "performance": 0.92,
+            "accessibility": 1,
+            "best-practices": 0.81,
+            "seo": 1,
+            "agentic-browsing": 1
+          },
+          "metrics": {
+            "first-contentful-paint": 2541.585,
+            "largest-contentful-paint": 2541.585,
+            "total-blocking-time": 128.53099999999995,
+            "cumulative-layout-shift": 0
+          },
+          "warnings": [],
+          "failedAudits": [
+            {
+              "id": "first-contentful-paint",
+              "title": "First Contentful Paint",
+              "displayValue": "2.5 s"
+            },
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "displayValue": "2.5 s"
+            },
+            {
+              "id": "speed-index",
+              "title": "Speed Index",
+              "displayValue": "2.4 s"
+            },
+            {
+              "id": "total-blocking-time",
+              "title": "Total Blocking Time",
+              "displayValue": "130 ms"
+            },
+            {
+              "id": "max-potential-fid",
+              "title": "Max Potential First Input Delay",
+              "displayValue": "140 ms"
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "displayValue": "4.0 s"
+            },
+            {
+              "id": "deprecations",
+              "title": "Uses deprecated APIs",
+              "displayValue": "3 warnings found"
+            },
+            {
+              "id": "cache-insight",
+              "title": "Use efficient cache lifetimes",
+              "displayValue": "Est savings of 16 KiB"
+            },
+            {
+              "id": "forced-reflow-insight",
+              "title": "Forced reflow"
+            },
+            {
+              "id": "lcp-breakdown-insight",
+              "title": "LCP breakdown"
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "displayValue": "Est savings of 10 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree"
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests"
+            }
+          ]
+        },
+        {
+          "url": "https://law.viento.me/?__vitals_probe=aaac5ad8-ae24-404e-8a04-0342d251a86a",
+          "fetchTime": "2026-10-28T08:19:32.050Z",
+          "lighthouseVersion": "13.6.0",
+          "browserUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+          "browserProfile": "render-document",
+          "throttlingMethod": "devtools",
+          "observed": {
+            "firstContentfulPaint": 2307,
+            "firstContentfulPaintTs": 80313710027,
+            "firstContentfulPaintAllFrames": 2307,
+            "firstContentfulPaintAllFramesTs": 80313710027,
+            "largestContentfulPaint": 2307,
+            "largestContentfulPaintTs": 80313710027,
+            "largestContentfulPaintAllFrames": 2307,
+            "largestContentfulPaintAllFramesTs": 80313710027,
+            "interactive": 3639,
+            "interactiveTs": 80315042311,
+            "speedIndex": 2222,
+            "speedIndexTs": 80313625181,
+            "totalBlockingTime": 53,
+            "maxPotentialFID": 86,
+            "cumulativeLayoutShift": 0,
+            "cumulativeLayoutShiftMainFrame": 0,
+            "lcpRenderDelay": 1928,
+            "timeToFirstByte": 379,
+            "timeToFirstByteTs": 80311782041,
+            "observedTimeOrigin": 0,
+            "observedTimeOriginTs": 80311403181,
+            "observedNavigationStart": 0,
+            "observedNavigationStartTs": 80311403181,
+            "observedFirstPaint": 2307,
+            "observedFirstPaintTs": 80313710027,
+            "observedFirstContentfulPaint": 2307,
+            "observedFirstContentfulPaintTs": 80313710027,
+            "observedFirstContentfulPaintAllFrames": 2307,
+            "observedFirstContentfulPaintAllFramesTs": 80313710027,
+            "observedLargestContentfulPaint": 2307,
+            "observedLargestContentfulPaintTs": 80313710027,
+            "observedLargestContentfulPaintAllFrames": 2307,
+            "observedLargestContentfulPaintAllFramesTs": 80313710027,
+            "observedTraceEnd": 14803,
+            "observedTraceEndTs": 80326206523,
+            "observedLoad": 3395,
+            "observedLoadTs": 80314798511,
+            "observedDomContentLoaded": 1,
+            "observedDomContentLoadedTs": 80311404431,
+            "observedCumulativeLayoutShift": 0,
+            "observedCumulativeLayoutShiftMainFrame": 0,
+            "observedFirstVisualChange": 5,
+            "observedFirstVisualChangeTs": 80311408181,
+            "observedLastVisualChange": 4415,
+            "observedLastVisualChangeTs": 80315818181,
+            "observedSpeedIndex": 2222,
+            "observedSpeedIndexTs": 80313625001
+          },
+          "document": {
+            "status": 200,
+            "protocol": "h3",
+            "requestTiming": {
+              "requestTime": 80311.404087,
+              "proxyStart": -1,
+              "proxyEnd": -1,
+              "dnsStart": 0,
+              "dnsEnd": 0,
+              "connectStart": 0,
+              "connectEnd": 190.818,
+              "sslStart": 0,
+              "sslEnd": 190.818,
+              "workerStart": -1,
+              "workerReady": -1,
+              "workerFetchStart": -1,
+              "workerRespondWithSettled": -1,
+              "sendStart": 190.859,
+              "sendEnd": 190.907,
+              "pushStart": 0,
+              "pushEnd": 0,
+              "receiveHeadersStart": 377.954,
+              "receiveHeadersEnd": 771.843
+            },
+            "serverResponseTime": 187,
+            "serverTiming": "cfCacheStatus;desc=\"MISS\"\ncfEdge;dur=22,cfOrigin;dur=261\ncfExtPri",
+            "cfCacheStatus": "MISS",
+            "cfRay": "a51884216f29d002-KIX"
+          },
+          "scores": {
+            "performance": 0.96,
+            "accessibility": 1,
+            "best-practices": 0.81,
+            "seo": 1,
+            "agentic-browsing": 1
+          },
+          "metrics": {
+            "first-contentful-paint": 2306.846,
+            "largest-contentful-paint": 2306.846,
+            "total-blocking-time": 52.968999984741004,
+            "cumulative-layout-shift": 0
+          },
+          "warnings": [],
+          "failedAudits": [
+            {
+              "id": "first-contentful-paint",
+              "title": "First Contentful Paint",
+              "displayValue": "2.3 s"
+            },
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "displayValue": "2.3 s"
+            },
+            {
+              "id": "speed-index",
+              "title": "Speed Index",
+              "displayValue": "2.2 s"
+            },
+            {
+              "id": "max-potential-fid",
+              "title": "Max Potential First Input Delay",
+              "displayValue": "90 ms"
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "displayValue": "3.6 s"
+            },
+            {
+              "id": "deprecations",
+              "title": "Uses deprecated APIs",
+              "displayValue": "3 warnings found"
+            },
+            {
+              "id": "cache-insight",
+              "title": "Use efficient cache lifetimes",
+              "displayValue": "Est savings of 14 KiB"
+            },
+            {
+              "id": "forced-reflow-insight",
+              "title": "Forced reflow"
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "displayValue": "Est savings of 10 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree"
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests"
+            }
+          ]
+        },
+        {
+          "url": "https://law.viento.me/?__vitals_probe=13097ea7-29e3-4873-a7b7-438e0c48be0b",
+          "fetchTime": "2026-10-28T08:19:53.462Z",
+          "lighthouseVersion": "13.6.0",
+          "browserUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+          "browserProfile": "render-document",
+          "throttlingMethod": "devtools",
+          "observed": {
+            "firstContentfulPaint": 2212,
+            "firstContentfulPaintTs": 80335008527,
+            "firstContentfulPaintAllFrames": 2212,
+            "firstContentfulPaintAllFramesTs": 80335008527,
+            "largestContentfulPaint": 2212,
+            "largestContentfulPaintTs": 80335008527,
+            "largestContentfulPaintAllFrames": 2212,
+            "largestContentfulPaintAllFramesTs": 80335008527,
+            "interactive": 3552,
+            "interactiveTs": 80336348148,
+            "speedIndex": 2139,
+            "speedIndexTs": 80334935412,
+            "totalBlockingTime": 52,
+            "maxPotentialFID": 87,
+            "cumulativeLayoutShift": 0,
+            "cumulativeLayoutShiftMainFrame": 0,
+            "lcpRenderDelay": 1945,
+            "timeToFirstByte": 267,
+            "timeToFirstByteTs": 80333063714,
+            "observedTimeOrigin": 0,
+            "observedTimeOriginTs": 80332796412,
+            "observedNavigationStart": 0,
+            "observedNavigationStartTs": 80332796412,
+            "observedFirstPaint": 2212,
+            "observedFirstPaintTs": 80335008527,
+            "observedFirstContentfulPaint": 2212,
+            "observedFirstContentfulPaintTs": 80335008527,
+            "observedFirstContentfulPaintAllFrames": 2212,
+            "observedFirstContentfulPaintAllFramesTs": 80335008527,
+            "observedLargestContentfulPaint": 2212,
+            "observedLargestContentfulPaintTs": 80335008527,
+            "observedLargestContentfulPaintAllFrames": 2212,
+            "observedLargestContentfulPaintAllFramesTs": 80335008527,
+            "observedTraceEnd": 14729,
+            "observedTraceEndTs": 80347525011,
+            "observedLoad": 3306,
+            "observedLoadTs": 80336102230,
+            "observedDomContentLoaded": 1,
+            "observedDomContentLoadedTs": 80332797567,
+            "observedCumulativeLayoutShift": 0,
+            "observedCumulativeLayoutShiftMainFrame": 0,
+            "observedFirstVisualChange": 6,
+            "observedFirstVisualChangeTs": 80332802412,
+            "observedLastVisualChange": 4323,
+            "observedLastVisualChangeTs": 80337119412,
+            "observedSpeedIndex": 2139,
+            "observedSpeedIndexTs": 80334935584
+          },
+          "document": {
+            "status": 200,
+            "protocol": "h3",
+            "requestTiming": {
+              "requestTime": 80332.797167,
+              "proxyStart": -1,
+              "proxyEnd": -1,
+              "dnsStart": 0,
+              "dnsEnd": 0,
+              "connectStart": 0,
+              "connectEnd": 96.189,
+              "sslStart": 0,
+              "sslEnd": 96.189,
+              "workerStart": -1,
+              "workerReady": -1,
+              "workerFetchStart": -1,
+              "workerRespondWithSettled": -1,
+              "sendStart": 96.229,
+              "sendEnd": 96.273,
+              "pushStart": 0,
+              "pushEnd": 0,
+              "receiveHeadersStart": 266.547,
+              "receiveHeadersEnd": 686.904
+            },
+            "serverResponseTime": 170,
+            "serverTiming": "cfCacheStatus;desc=\"MISS\"\ncfEdge;dur=21,cfOrigin;dur=224\ncfExtPri",
+            "cfCacheStatus": "MISS",
+            "cfRay": "a51884a64c27832f-KIX"
+          },
+          "scores": {
+            "performance": 0.96,
+            "accessibility": 1,
+            "best-practices": 0.81,
+            "seo": 1,
+            "agentic-browsing": 1
+          },
+          "metrics": {
+            "first-contentful-paint": 2212.115,
+            "largest-contentful-paint": 2212.115,
+            "total-blocking-time": 52.36599999999953,
+            "cumulative-layout-shift": 0
+          },
+          "warnings": [],
+          "failedAudits": [
+            {
+              "id": "first-contentful-paint",
+              "title": "First Contentful Paint",
+              "displayValue": "2.2 s"
+            },
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "displayValue": "2.2 s"
+            },
+            {
+              "id": "speed-index",
+              "title": "Speed Index",
+              "displayValue": "2.1 s"
+            },
+            {
+              "id": "max-potential-fid",
+              "title": "Max Potential First Input Delay",
+              "displayValue": "90 ms"
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "displayValue": "3.6 s"
+            },
+            {
+              "id": "deprecations",
+              "title": "Uses deprecated APIs",
+              "displayValue": "3 warnings found"
+            },
+            {
+              "id": "cache-insight",
+              "title": "Use efficient cache lifetimes",
+              "displayValue": "Est savings of 16 KiB"
+            },
+            {
+              "id": "forced-reflow-insight",
+              "title": "Forced reflow"
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "displayValue": "Est savings of 10 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree"
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "route": "/status",
+      "formFactor": "mobile",
+      "metrics": {
+        "first-contentful-paint": 2386.562,
+        "largest-contentful-paint": 2386.562,
+        "total-blocking-time": 46.485999999999876,
+        "cumulative-layout-shift": 0
+      },
+      "distributions": {
+        "first-contentful-paint": {
+          "count": 3,
+          "median": 2386.562,
+          "p75": 2440.951,
+          "max": 2440.951,
+          "overBudget": 0
+        },
+        "largest-contentful-paint": {
+          "count": 3,
+          "median": 2386.562,
+          "p75": 2440.951,
+          "max": 2440.951,
+          "overBudget": 0
+        },
+        "total-blocking-time": {
+          "count": 3,
+          "median": 46.485999999999876,
+          "p75": 57.91000000000031,
+          "max": 57.91000000000031,
+          "overBudget": 0
+        },
+        "cumulative-layout-shift": {
+          "count": 3,
+          "median": 0,
+          "p75": 0,
+          "max": 0,
+          "overBudget": 0
+        }
+      },
+      "measurements": [
+        {
+          "url": "https://law.viento.me/status?__vitals_probe=17bc7f50-c253-4695-bffa-477ee3f20d41",
+          "fetchTime": "2026-10-28T08:20:15.008Z",
+          "lighthouseVersion": "13.6.0",
+          "browserUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+          "browserProfile": "render-document",
+          "throttlingMethod": "devtools",
+          "observed": {
+            "firstContentfulPaint": 2333,
+            "firstContentfulPaintTs": 80356647233,
+            "firstContentfulPaintAllFrames": 2333,
+            "firstContentfulPaintAllFramesTs": 80356647233,
+            "largestContentfulPaint": 2333,
+            "largestContentfulPaintTs": 80356647233,
+            "largestContentfulPaintAllFrames": 2333,
+            "largestContentfulPaintAllFramesTs": 80356647233,
+            "interactive": 3681,
+            "interactiveTs": 80357994890,
+            "speedIndex": 2342,
+            "speedIndexTs": 80356655938,
+            "totalBlockingTime": 45,
+            "maxPotentialFID": 85,
+            "cumulativeLayoutShift": 0,
+            "cumulativeLayoutShiftMainFrame": 0,
+            "lcpRenderDelay": 2021,
+            "timeToFirstByte": 313,
+            "timeToFirstByteTs": 80354626528,
+            "observedTimeOrigin": 0,
+            "observedTimeOriginTs": 80354313938,
+            "observedNavigationStart": 0,
+            "observedNavigationStartTs": 80354313938,
+            "observedFirstPaint": 2333,
+            "observedFirstPaintTs": 80356647233,
+            "observedFirstContentfulPaint": 2333,
+            "observedFirstContentfulPaintTs": 80356647233,
+            "observedFirstContentfulPaintAllFrames": 2333,
+            "observedFirstContentfulPaintAllFramesTs": 80356647233,
+            "observedLargestContentfulPaint": 2333,
+            "observedLargestContentfulPaintTs": 80356647233,
+            "observedLargestContentfulPaintAllFrames": 2333,
+            "observedLargestContentfulPaintAllFramesTs": 80356647233,
+            "observedTraceEnd": 14933,
+            "observedTraceEndTs": 80369246457,
+            "observedLoad": 3366,
+            "observedLoadTs": 80357679620,
+            "observedDomContentLoaded": 1,
+            "observedDomContentLoadedTs": 80354315009,
+            "observedCumulativeLayoutShift": 0,
+            "observedCumulativeLayoutShiftMainFrame": 0,
+            "observedFirstVisualChange": 6,
+            "observedFirstVisualChangeTs": 80354319938,
+            "observedLastVisualChange": 4448,
+            "observedLastVisualChangeTs": 80358761938,
+            "observedSpeedIndex": 2342,
+            "observedSpeedIndexTs": 80356655499
+          },
+          "document": {
+            "status": 200,
+            "protocol": "h3",
+            "requestTiming": {
+              "requestTime": 80354.314831,
+              "proxyStart": -1,
+              "proxyEnd": -1,
+              "dnsStart": 0,
+              "dnsEnd": 0,
+              "connectStart": 0,
+              "connectEnd": 144.403,
+              "sslStart": 0,
+              "sslEnd": 144.403,
+              "workerStart": -1,
+              "workerReady": -1,
+              "workerFetchStart": -1,
+              "workerRespondWithSettled": -1,
+              "sendStart": 144.448,
+              "sendEnd": 144.495,
+              "pushStart": 0,
+              "pushEnd": 0,
+              "receiveHeadersStart": 311.697,
+              "receiveHeadersEnd": 735.746
+            },
+            "serverResponseTime": 167,
+            "serverTiming": "cfCacheStatus;desc=\"DYNAMIC\"\ncfEdge;dur=14,cfOrigin;dur=80\ncfExtPri",
+            "cfCacheStatus": "DYNAMIC",
+            "cfRay": "a518852d2f4800bc-KIX"
+          },
+          "scores": {
+            "performance": 0.95,
+            "accessibility": 1,
+            "best-practices": 0.81,
+            "seo": 0.69,
+            "agentic-browsing": 1
+          },
+          "metrics": {
+            "first-contentful-paint": 2333.295,
+            "largest-contentful-paint": 2333.295,
+            "total-blocking-time": 44.64400000000069,
+            "cumulative-layout-shift": 0
+          },
+          "warnings": [],
+          "failedAudits": [
+            {
+              "id": "first-contentful-paint",
+              "title": "First Contentful Paint",
+              "displayValue": "2.3 s"
+            },
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "displayValue": "2.3 s"
+            },
+            {
+              "id": "speed-index",
+              "title": "Speed Index",
+              "displayValue": "2.3 s"
+            },
+            {
+              "id": "max-potential-fid",
+              "title": "Max Potential First Input Delay",
+              "displayValue": "90 ms"
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "displayValue": "3.7 s"
+            },
+            {
+              "id": "deprecations",
+              "title": "Uses deprecated APIs",
+              "displayValue": "3 warnings found"
+            },
+            {
+              "id": "is-crawlable",
+              "title": "Page is blocked from indexing"
+            },
+            {
+              "id": "cache-insight",
+              "title": "Use efficient cache lifetimes",
+              "displayValue": "Est savings of 16 KiB"
+            },
+            {
+              "id": "forced-reflow-insight",
+              "title": "Forced reflow"
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "displayValue": "Est savings of 10 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree"
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests"
+            }
+          ]
+        },
+        {
+          "url": "https://law.viento.me/status?__vitals_probe=9ca598e3-8554-4494-8f8d-d5b9663330fa",
+          "fetchTime": "2026-10-28T08:20:35.940Z",
+          "lighthouseVersion": "13.6.0",
+          "browserUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+          "browserProfile": "render-document",
+          "throttlingMethod": "devtools",
+          "observed": {
+            "firstContentfulPaint": 2387,
+            "firstContentfulPaintTs": 80377629088,
+            "firstContentfulPaintAllFrames": 2387,
+            "firstContentfulPaintAllFramesTs": 80377629088,
+            "largestContentfulPaint": 2387,
+            "largestContentfulPaintTs": 80377629088,
+            "largestContentfulPaintAllFrames": 2387,
+            "largestContentfulPaintAllFramesTs": 80377629088,
+            "interactive": 3734,
+            "interactiveTs": 80378976137,
+            "speedIndex": 2402,
+            "speedIndexTs": 80377644526,
+            "totalBlockingTime": 58,
+            "maxPotentialFID": 94,
+            "cumulativeLayoutShift": 0,
+            "cumulativeLayoutShiftMainFrame": 0,
+            "lcpRenderDelay": 1983,
+            "timeToFirstByte": 403,
+            "timeToFirstByteTs": 80375645846,
+            "observedTimeOrigin": 0,
+            "observedTimeOriginTs": 80375242526,
+            "observedNavigationStart": 0,
+            "observedNavigationStartTs": 80375242526,
+            "observedFirstPaint": 2387,
+            "observedFirstPaintTs": 80377629088,
+            "observedFirstContentfulPaint": 2387,
+            "observedFirstContentfulPaintTs": 80377629088,
+            "observedFirstContentfulPaintAllFrames": 2387,
+            "observedFirstContentfulPaintAllFramesTs": 80377629088,
+            "observedLargestContentfulPaint": 2387,
+            "observedLargestContentfulPaintTs": 80377629088,
+            "observedLargestContentfulPaintAllFrames": 2387,
+            "observedLargestContentfulPaintAllFramesTs": 80377629088,
+            "observedTraceEnd": 15027,
+            "observedTraceEndTs": 80390269895,
+            "observedLoad": 3462,
+            "observedLoadTs": 80378704955,
+            "observedDomContentLoaded": 1,
+            "observedDomContentLoadedTs": 80375243285,
+            "observedCumulativeLayoutShift": 0,
+            "observedCumulativeLayoutShiftMainFrame": 0,
+            "observedFirstVisualChange": 6,
+            "observedFirstVisualChangeTs": 80375248526,
+            "observedLastVisualChange": 4501,
+            "observedLastVisualChangeTs": 80379743526,
+            "observedSpeedIndex": 2402,
+            "observedSpeedIndexTs": 80377644499
+          },
+          "document": {
+            "status": 200,
+            "protocol": "h3",
+            "requestTiming": {
+              "requestTime": 80375.243204,
+              "proxyStart": -1,
+              "proxyEnd": -1,
+              "dnsStart": 0,
+              "dnsEnd": 0,
+              "connectStart": 0,
+              "connectEnd": 236.832,
+              "sslStart": 0,
+              "sslEnd": 236.832,
+              "workerStart": -1,
+              "workerReady": -1,
+              "workerFetchStart": -1,
+              "workerRespondWithSettled": -1,
+              "sendStart": 236.872,
+              "sendEnd": 236.916,
+              "pushStart": 0,
+              "pushEnd": 0,
+              "receiveHeadersStart": 402.642,
+              "receiveHeadersEnd": 829.843
+            },
+            "serverResponseTime": 166,
+            "serverTiming": "cfCacheStatus;desc=\"DYNAMIC\"\ncfEdge;dur=31,cfOrigin;dur=107\ncfExtPri",
+            "cfCacheStatus": "DYNAMIC",
+            "cfRay": "a51885b07a941a36-KIX"
+          },
+          "scores": {
+            "performance": 0.95,
+            "accessibility": 1,
+            "best-practices": 0.81,
+            "seo": 0.69,
+            "agentic-browsing": 1
+          },
+          "metrics": {
+            "first-contentful-paint": 2386.562,
+            "largest-contentful-paint": 2386.562,
+            "total-blocking-time": 57.91000000000031,
+            "cumulative-layout-shift": 0
+          },
+          "warnings": [],
+          "failedAudits": [
+            {
+              "id": "first-contentful-paint",
+              "title": "First Contentful Paint",
+              "displayValue": "2.4 s"
+            },
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "displayValue": "2.4 s"
+            },
+            {
+              "id": "speed-index",
+              "title": "Speed Index",
+              "displayValue": "2.4 s"
+            },
+            {
+              "id": "max-potential-fid",
+              "title": "Max Potential First Input Delay",
+              "displayValue": "90 ms"
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "displayValue": "3.7 s"
+            },
+            {
+              "id": "deprecations",
+              "title": "Uses deprecated APIs",
+              "displayValue": "3 warnings found"
+            },
+            {
+              "id": "is-crawlable",
+              "title": "Page is blocked from indexing"
+            },
+            {
+              "id": "cache-insight",
+              "title": "Use efficient cache lifetimes",
+              "displayValue": "Est savings of 15 KiB"
+            },
+            {
+              "id": "forced-reflow-insight",
+              "title": "Forced reflow"
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "displayValue": "Est savings of 10 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree"
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests"
+            }
+          ]
+        },
+        {
+          "url": "https://law.viento.me/status?__vitals_probe=1bf445d8-f1c8-47d7-92ab-8b33d90bd356",
+          "fetchTime": "2026-10-28T08:20:56.645Z",
+          "lighthouseVersion": "13.6.0",
+          "browserUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+          "browserProfile": "render-document",
+          "throttlingMethod": "devtools",
+          "observed": {
+            "firstContentfulPaint": 2441,
+            "firstContentfulPaintTs": 80398455890,
+            "firstContentfulPaintAllFrames": 2441,
+            "firstContentfulPaintAllFramesTs": 80398455890,
+            "largestContentfulPaint": 2441,
+            "largestContentfulPaintTs": 80398455890,
+            "largestContentfulPaintAllFrames": 2441,
+            "largestContentfulPaintAllFramesTs": 80398455890,
+            "interactive": 3765,
+            "interactiveTs": 80399779659,
+            "speedIndex": 2454,
+            "speedIndexTs": 80398468939,
+            "totalBlockingTime": 46,
+            "maxPotentialFID": 79,
+            "cumulativeLayoutShift": 0,
+            "cumulativeLayoutShiftMainFrame": 0,
+            "lcpRenderDelay": 1912,
+            "timeToFirstByte": 529,
+            "timeToFirstByteTs": 80396544364,
+            "observedTimeOrigin": 0,
+            "observedTimeOriginTs": 80396014939,
+            "observedNavigationStart": 0,
+            "observedNavigationStartTs": 80396014939,
+            "observedFirstPaint": 2441,
+            "observedFirstPaintTs": 80398455890,
+            "observedFirstContentfulPaint": 2441,
+            "observedFirstContentfulPaintTs": 80398455890,
+            "observedFirstContentfulPaintAllFrames": 2441,
+            "observedFirstContentfulPaintAllFramesTs": 80398455890,
+            "observedLargestContentfulPaint": 2441,
+            "observedLargestContentfulPaintTs": 80398455890,
+            "observedLargestContentfulPaintAllFrames": 2441,
+            "observedLargestContentfulPaintAllFramesTs": 80398455890,
+            "observedTraceEnd": 15079,
+            "observedTraceEndTs": 80411093909,
+            "observedLoad": 3518,
+            "observedLoadTs": 80399532968,
+            "observedDomContentLoaded": 1,
+            "observedDomContentLoadedTs": 80396015448,
+            "observedCumulativeLayoutShift": 0,
+            "observedCumulativeLayoutShiftMainFrame": 0,
+            "observedFirstVisualChange": 5,
+            "observedFirstVisualChangeTs": 80396019939,
+            "observedLastVisualChange": 4559,
+            "observedLastVisualChangeTs": 80400573939,
+            "observedSpeedIndex": 2454,
+            "observedSpeedIndexTs": 80398468744
+          },
+          "document": {
+            "status": 200,
+            "protocol": "h3",
+            "requestTiming": {
+              "requestTime": 80396.015844,
+              "proxyStart": -1,
+              "proxyEnd": -1,
+              "dnsStart": 0,
+              "dnsEnd": 0,
+              "connectStart": 0,
+              "connectEnd": 269.205,
+              "sslStart": 0,
+              "sslEnd": 269.205,
+              "workerStart": -1,
+              "workerReady": -1,
+              "workerFetchStart": -1,
+              "workerRespondWithSettled": -1,
+              "sendStart": 269.254,
+              "sendEnd": 269.301,
+              "pushStart": 0,
+              "pushEnd": 0,
+              "receiveHeadersStart": 528.52,
+              "receiveHeadersEnd": 859.872
+            },
+            "serverResponseTime": 259,
+            "serverTiming": "cfCacheStatus;desc=\"DYNAMIC\"\ncfEdge;dur=16,cfOrigin;dur=67\ncfExtPri",
+            "cfCacheStatus": "DYNAMIC",
+            "cfRay": "a51886330af300f4-KIX"
+          },
+          "scores": {
+            "performance": 0.94,
+            "accessibility": 1,
+            "best-practices": 0.81,
+            "seo": 0.69,
+            "agentic-browsing": 1
+          },
+          "metrics": {
+            "first-contentful-paint": 2440.951,
+            "largest-contentful-paint": 2440.951,
+            "total-blocking-time": 46.485999999999876,
+            "cumulative-layout-shift": 0
+          },
+          "warnings": [],
+          "failedAudits": [
+            {
+              "id": "first-contentful-paint",
+              "title": "First Contentful Paint",
+              "displayValue": "2.4 s"
+            },
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "displayValue": "2.4 s"
+            },
+            {
+              "id": "speed-index",
+              "title": "Speed Index",
+              "displayValue": "2.5 s"
+            },
+            {
+              "id": "max-potential-fid",
+              "title": "Max Potential First Input Delay",
+              "displayValue": "80 ms"
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "displayValue": "3.8 s"
+            },
+            {
+              "id": "deprecations",
+              "title": "Uses deprecated APIs",
+              "displayValue": "3 warnings found"
+            },
+            {
+              "id": "is-crawlable",
+              "title": "Page is blocked from indexing"
+            },
+            {
+              "id": "cache-insight",
+              "title": "Use efficient cache lifetimes",
+              "displayValue": "Est savings of 14 KiB"
+            },
+            {
+              "id": "forced-reflow-insight",
+              "title": "Forced reflow"
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "displayValue": "Est savings of 10 KiB"
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree"
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "failures": [
+    {
+      "url": "https://law.viento.me/",
+      "error": "Individual lab performance budget exceeded"
+    }
+  ]
+}

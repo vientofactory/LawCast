@@ -1,0 +1,121 @@
+2026-10-28T08:22:00.765032826Z [Nest] 7  - 10/28/2026, 5:22:00 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 103/163: pageItems=100, uniqueAccum=10221, pendingCandidates=142
+2026-10-28T08:22:02.902668946Z [Nest] 7  - 10/28/2026, 5:22:02 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 104/163: pageItems=100, uniqueAccum=10321, pendingCandidates=143
+2026-10-28T08:22:05.046615909Z [Nest] 7  - 10/28/2026, 5:22:05 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 105/163: pageItems=100, uniqueAccum=10420, pendingCandidates=143
+2026-10-28T08:22:07.267606736Z [Nest] 7  - 10/28/2026, 5:22:07 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 106/163: pageItems=100, uniqueAccum=10520, pendingCandidates=143
+2026-10-28T08:22:09.356188102Z [Nest] 7  - 10/28/2026, 5:22:09 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 107/163: pageItems=100, uniqueAccum=10620, pendingCandidates=143
+2026-10-28T08:22:11.552352186Z [Nest] 7  - 10/28/2026, 5:22:11 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 108/163: pageItems=100, uniqueAccum=10720, pendingCandidates=145
+2026-10-28T08:22:13.783727256Z [Nest] 7  - 10/28/2026, 5:22:13 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 109/163: pageItems=100, uniqueAccum=10819, pendingCandidates=145
+2026-10-28T08:22:15.971751607Z [Nest] 7  - 10/28/2026, 5:22:15 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 110/163: pageItems=100, uniqueAccum=10919, pendingCandidates=145
+2026-10-28T08:22:18.221949301Z [Nest] 7  - 10/28/2026, 5:22:18 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 111/163: pageItems=100, uniqueAccum=11019, pendingCandidates=146
+2026-10-28T08:22:20.343892174Z [Nest] 7  - 10/28/2026, 5:22:20 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 112/163: pageItems=100, uniqueAccum=11119, pendingCandidates=147
+2026-10-28T08:22:22.446202756Z [Nest] 7  - 10/28/2026, 5:22:22 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 113/163: pageItems=100, uniqueAccum=11219, pendingCandidates=148
+2026-10-28T08:22:24.601589629Z [Nest] 7  - 10/28/2026, 5:22:24 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 114/163: pageItems=100, uniqueAccum=11319, pendingCandidates=148
+2026-10-28T08:22:26.763329541Z [Nest] 7  - 10/28/2026, 5:22:26 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 115/163: pageItems=100, uniqueAccum=11419, pendingCandidates=148
+2026-10-28T08:22:28.952746040Z [Nest] 7  - 10/28/2026, 5:22:28 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 116/163: pageItems=100, uniqueAccum=11519, pendingCandidates=149
+2026-10-28T08:22:31.097737129Z [Nest] 7  - 10/28/2026, 5:22:31 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 117/163: pageItems=100, uniqueAccum=11619, pendingCandidates=149
+2026-10-28T08:22:33.297463000Z [Nest] 7  - 10/28/2026, 5:22:33 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 118/163: pageItems=100, uniqueAccum=11718, pendingCandidates=149
+2026-10-28T08:22:35.423552527Z [Nest] 7  - 10/28/2026, 5:22:35 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 119/163: pageItems=100, uniqueAccum=11818, pendingCandidates=150
+2026-10-28T08:22:37.699265925Z [Nest] 7  - 10/28/2026, 5:22:37 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 120/163: pageItems=100, uniqueAccum=11918, pendingCandidates=151
+2026-10-28T08:22:39.888762745Z [Nest] 7  - 10/28/2026, 5:22:39 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 121/163: pageItems=100, uniqueAccum=12018, pendingCandidates=151
+2026-10-28T08:22:42.079016939Z [Nest] 7  - 10/28/2026, 5:22:42 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 122/163: pageItems=100, uniqueAccum=12118, pendingCandidates=152
+2026-10-28T08:22:44.210005909Z [Nest] 7  - 10/28/2026, 5:22:44 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 123/163: pageItems=100, uniqueAccum=12218, pendingCandidates=153
+2026-10-28T08:22:46.563607908Z [Nest] 7  - 10/28/2026, 5:22:46 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 124/163: pageItems=100, uniqueAccum=12318, pendingCandidates=153
+2026-10-28T08:22:48.706994983Z [Nest] 7  - 10/28/2026, 5:22:48 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 125/163: pageItems=100, uniqueAccum=12418, pendingCandidates=153
+2026-10-28T08:22:50.888148160Z [Nest] 7  - 10/28/2026, 5:22:50 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 126/163: pageItems=100, uniqueAccum=12517, pendingCandidates=153
+2026-10-28T08:22:53.255746328Z [Nest] 7  - 10/28/2026, 5:22:53 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 127/163: pageItems=100, uniqueAccum=12617, pendingCandidates=155
+2026-10-28T08:22:55.343917088Z [Nest] 7  - 10/28/2026, 5:22:55 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 128/163: pageItems=100, uniqueAccum=12717, pendingCandidates=155
+2026-10-28T08:22:57.727047414Z [Nest] 7  - 10/28/2026, 5:22:57 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 129/163: pageItems=100, uniqueAccum=12817, pendingCandidates=158
+2026-10-28T08:22:59.944866847Z [Nest] 7  - 10/28/2026, 5:22:59 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 130/163: pageItems=100, uniqueAccum=12917, pendingCandidates=158
+2026-10-28T08:23:02.209263870Z [Nest] 7  - 10/28/2026, 5:23:02 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 131/163: pageItems=100, uniqueAccum=13017, pendingCandidates=158
+2026-10-28T08:23:04.450726557Z [Nest] 7  - 10/28/2026, 5:23:04 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 132/163: pageItems=100, uniqueAccum=13117, pendingCandidates=158
+2026-10-28T08:23:06.741416458Z [Nest] 7  - 10/28/2026, 5:23:06 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 133/163: pageItems=100, uniqueAccum=13217, pendingCandidates=161
+2026-10-28T08:23:08.993290187Z [Nest] 7  - 10/28/2026, 5:23:08 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 134/163: pageItems=100, uniqueAccum=13317, pendingCandidates=162
+2026-10-28T08:23:11.127874830Z [Nest] 7  - 10/28/2026, 5:23:11 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 135/163: pageItems=100, uniqueAccum=13417, pendingCandidates=162
+2026-10-28T08:23:13.314098538Z [Nest] 7  - 10/28/2026, 5:23:13 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 136/163: pageItems=100, uniqueAccum=13513, pendingCandidates=162
+2026-10-28T08:23:15.431941617Z [Nest] 7  - 10/28/2026, 5:23:15 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 137/163: pageItems=100, uniqueAccum=13611, pendingCandidates=162
+2026-10-28T08:23:17.534154686Z [Nest] 7  - 10/28/2026, 5:23:17 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 138/163: pageItems=100, uniqueAccum=13711, pendingCandidates=162
+2026-10-28T08:23:19.647708146Z [Nest] 7  - 10/28/2026, 5:23:19 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 139/163: pageItems=100, uniqueAccum=13808, pendingCandidates=162
+2026-10-28T08:23:21.847048018Z [Nest] 7  - 10/28/2026, 5:23:21 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 140/163: pageItems=100, uniqueAccum=13908, pendingCandidates=162
+2026-10-28T08:23:24.020591634Z [Nest] 7  - 10/28/2026, 5:23:24 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 141/163: pageItems=100, uniqueAccum=14007, pendingCandidates=162
+2026-10-28T08:23:26.100733441Z [Nest] 7  - 10/28/2026, 5:23:26 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 142/163: pageItems=100, uniqueAccum=14107, pendingCandidates=162
+2026-10-28T08:23:28.224658993Z [Nest] 7  - 10/28/2026, 5:23:28 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 143/163: pageItems=100, uniqueAccum=14206, pendingCandidates=162
+2026-10-28T08:23:30.677203065Z [Nest] 7  - 10/28/2026, 5:23:30 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 144/163: pageItems=100, uniqueAccum=14305, pendingCandidates=162
+2026-10-28T08:23:33.041981217Z [Nest] 7  - 10/28/2026, 5:23:33 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 145/163: pageItems=100, uniqueAccum=14405, pendingCandidates=162
+2026-10-28T08:23:35.240365239Z [Nest] 7  - 10/28/2026, 5:23:35 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 146/163: pageItems=100, uniqueAccum=14505, pendingCandidates=162
+2026-10-28T08:23:37.325448752Z [Nest] 7  - 10/28/2026, 5:23:37 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 147/163: pageItems=100, uniqueAccum=14605, pendingCandidates=162
+2026-10-28T08:23:39.520733208Z [Nest] 7  - 10/28/2026, 5:23:39 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 148/163: pageItems=100, uniqueAccum=14702, pendingCandidates=164
+2026-10-28T08:23:41.641376842Z [Nest] 7  - 10/28/2026, 5:23:41 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 149/163: pageItems=100, uniqueAccum=14800, pendingCandidates=164
+2026-10-28T08:23:43.762174332Z [Nest] 7  - 10/28/2026, 5:23:43 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 150/163: pageItems=100, uniqueAccum=14900, pendingCandidates=166
+2026-10-28T08:23:45.979005694Z [Nest] 7  - 10/28/2026, 5:23:45 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 151/163: pageItems=100, uniqueAccum=15000, pendingCandidates=167
+2026-10-28T08:23:48.092508892Z [Nest] 7  - 10/28/2026, 5:23:48 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 152/163: pageItems=100, uniqueAccum=15100, pendingCandidates=167
+2026-10-28T08:23:50.224959632Z [Nest] 7  - 10/28/2026, 5:23:50 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 153/163: pageItems=100, uniqueAccum=15199, pendingCandidates=167
+2026-10-28T08:23:52.452897177Z [Nest] 7  - 10/28/2026, 5:23:52 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 154/163: pageItems=100, uniqueAccum=15298, pendingCandidates=167
+2026-10-28T08:23:54.677722216Z [Nest] 7  - 10/28/2026, 5:23:54 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 155/163: pageItems=100, uniqueAccum=15398, pendingCandidates=167
+2026-10-28T08:23:56.780476944Z [Nest] 7  - 10/28/2026, 5:23:56 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 156/163: pageItems=100, uniqueAccum=15459, pendingCandidates=167
+2026-10-28T08:23:59.013406230Z [Nest] 7  - 10/28/2026, 5:23:59 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 157/163: pageItems=100, uniqueAccum=15459, pendingCandidates=167
+2026-10-28T08:24:00.008652715Z [Nest] 7  - 10/28/2026, 5:24:00 PM     LOG [CronJobsService] proposalReason NSM reason drain skipped - archive sync write-heavy phase is currently running (runningWriteHeavyPhases=pending sync)
+2026-10-28T08:24:00.009397854Z [Nest] 7  - 10/28/2026, 5:24:00 PM     LOG [CronJobsService] summary backfill (proposalReason cron) skipped - archive sync write-heavy activity is currently running (runningWriteHeavyActivities=pending sync)
+2026-10-28T08:24:01.000073200Z [Nest] 7  - 10/28/2026, 5:24:00 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 158/163: pageItems=100, uniqueAccum=15459, pendingCandidates=167
+2026-10-28T08:24:03.332702246Z [Nest] 7  - 10/28/2026, 5:24:03 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 159/163: pageItems=100, uniqueAccum=15459, pendingCandidates=167
+2026-10-28T08:24:05.408889501Z [Nest] 7  - 10/28/2026, 5:24:05 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 160/163: pageItems=100, uniqueAccum=15459, pendingCandidates=167
+2026-10-28T08:24:07.488142040Z [Nest] 7  - 10/28/2026, 5:24:07 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 161/163: pageItems=100, uniqueAccum=15459, pendingCandidates=167
+2026-10-28T08:24:09.586635413Z [Nest] 7  - 10/28/2026, 5:24:09 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 162/163: pageItems=100, uniqueAccum=15459, pendingCandidates=167
+2026-10-28T08:24:11.552445933Z [Nest] 7  - 10/28/2026, 5:24:11 PM     LOG [ArchiveSyncService] Pending sync NSM(all) page 163/163: pageItems=88, uniqueAccum=15492, pendingCandidates=167
+2026-10-28T08:24:11.552895486Z [Nest] 7  - 10/28/2026, 5:24:11 PM     LOG [ArchiveSyncService] Pending sync NSM(pending) stream skipped: the active source classifies pending bills from the all-bills scan
+2026-10-28T08:24:11.552925482Z [Nest] 7  - 10/28/2026, 5:24:11 PM     LOG [ArchiveSyncService] Pending sync scan done: allPages=163, pendingPages=0, allItems=16288, pendingItems=0, unique=15492, scanMs=358064
+2026-10-28T08:25:33.267241621Z [Nest] 7  - 10/28/2026, 5:25:33 PM     LOG [ArchiveSyncService] Pending sync done - scanned=15492 new=1 newPending=1 syncOnly=0 sourceDeleted=0
+2026-10-28T08:25:33.317680325Z [Nest] 7  - 10/28/2026, 5:25:33 PM     LOG [ArchiveSyncService] Full archive sync started
+2026-10-28T08:25:36.737443181Z [Nest] 7  - 10/28/2026, 5:25:36 PM     LOG [ArchiveSyncService] Page 1/3: total=100 new=0
+2026-10-28T08:25:38.735786669Z [Nest] 7  - 10/28/2026, 5:25:38 PM     LOG [ArchiveSyncService] Page 2/3: total=100 new=0
+2026-10-28T08:25:38.826398456Z [Nest] 7  - 10/28/2026, 5:25:38 PM     LOG [ArchiveSyncService] Page 3/3: total=3 new=0
+2026-10-28T08:25:38.827366045Z [Nest] 7  - 10/28/2026, 5:25:38 PM     LOG [ArchiveSyncService] Full sync progress done: pages=3, scanned=203, newlyArchived=0, stagedApply=0, stagedUpgrade=0, applyQueue=0, palSeen=203
+2026-10-28T08:25:38.859074104Z [Nest] 7  - 10/28/2026, 5:25:38 PM     LOG [ArchiveSyncService] Summary backfill staged batch 1: batchSize=1, scannedAccum=1, stagedAccum=1
+2026-10-28T08:25:44.739131941Z [Nest] 7  - 10/28/2026, 5:25:44 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=1, unchanged=4, queueRemaining=234
+2026-10-28T08:25:45.096099683Z [Nest] 7  - 10/28/2026, 5:25:45 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=229
+2026-10-28T08:25:45.449724703Z [Nest] 7  - 10/28/2026, 5:25:45 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=224
+2026-10-28T08:25:45.803321581Z [Nest] 7  - 10/28/2026, 5:25:45 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=219
+2026-10-28T08:25:46.150416139Z [Nest] 7  - 10/28/2026, 5:25:46 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=214
+2026-10-28T08:25:46.516572078Z [Nest] 7  - 10/28/2026, 5:25:46 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=209
+2026-10-28T08:25:46.866794194Z [Nest] 7  - 10/28/2026, 5:25:46 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=204
+2026-10-28T08:25:47.215081168Z [Nest] 7  - 10/28/2026, 5:25:47 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=199
+2026-10-28T08:25:47.562143722Z [Nest] 7  - 10/28/2026, 5:25:47 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=194
+2026-10-28T08:25:47.908624969Z [Nest] 7  - 10/28/2026, 5:25:47 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=189
+2026-10-28T08:25:48.263246048Z [Nest] 7  - 10/28/2026, 5:25:48 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=184
+2026-10-28T08:25:48.609249088Z [Nest] 7  - 10/28/2026, 5:25:48 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=179
+2026-10-28T08:25:48.950598714Z [Nest] 7  - 10/28/2026, 5:25:48 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=174
+2026-10-28T08:25:49.296126611Z [Nest] 7  - 10/28/2026, 5:25:49 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=169
+2026-10-28T08:25:49.652862018Z [Nest] 7  - 10/28/2026, 5:25:49 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=164
+2026-10-28T08:25:49.999327810Z [Nest] 7  - 10/28/2026, 5:25:49 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=159
+2026-10-28T08:25:50.340646522Z [Nest] 7  - 10/28/2026, 5:25:50 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=154
+2026-10-28T08:25:50.683858979Z [Nest] 7  - 10/28/2026, 5:25:50 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=149
+2026-10-28T08:25:51.030181299Z [Nest] 7  - 10/28/2026, 5:25:51 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=144
+2026-10-28T08:25:51.374934563Z [Nest] 7  - 10/28/2026, 5:25:51 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=139
+2026-10-28T08:25:51.721751846Z [Nest] 7  - 10/28/2026, 5:25:51 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=134
+2026-10-28T08:25:52.071960709Z [Nest] 7  - 10/28/2026, 5:25:52 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=129
+2026-10-28T08:25:52.420663283Z [Nest] 7  - 10/28/2026, 5:25:52 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=124
+2026-10-28T08:25:52.758691005Z [Nest] 7  - 10/28/2026, 5:25:52 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=119
+2026-10-28T08:25:53.096302479Z [Nest] 7  - 10/28/2026, 5:25:53 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=114
+2026-10-28T08:25:53.430604405Z [Nest] 7  - 10/28/2026, 5:25:53 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=109
+2026-10-28T08:25:53.773036293Z [Nest] 7  - 10/28/2026, 5:25:53 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=104
+2026-10-28T08:25:54.108697721Z [Nest] 7  - 10/28/2026, 5:25:54 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=99
+2026-10-28T08:25:54.446255493Z [Nest] 7  - 10/28/2026, 5:25:54 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=94
+2026-10-28T08:25:54.779452362Z [Nest] 7  - 10/28/2026, 5:25:54 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=89
+2026-10-28T08:25:55.119482032Z [Nest] 7  - 10/28/2026, 5:25:55 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=84
+2026-10-28T08:25:55.455762369Z [Nest] 7  - 10/28/2026, 5:25:55 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=79
+2026-10-28T08:25:55.790988609Z [Nest] 7  - 10/28/2026, 5:25:55 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=74
+2026-10-28T08:25:56.127022388Z [Nest] 7  - 10/28/2026, 5:25:56 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=69
+2026-10-28T08:25:56.469380702Z [Nest] 7  - 10/28/2026, 5:25:56 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=64
+2026-10-28T08:25:56.806983664Z [Nest] 7  - 10/28/2026, 5:25:56 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=59
+2026-10-28T08:25:57.141220619Z [Nest] 7  - 10/28/2026, 5:25:57 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=54
+2026-10-28T08:25:57.502341213Z [Nest] 7  - 10/28/2026, 5:25:57 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=49
+2026-10-28T08:25:57.829955756Z [Nest] 7  - 10/28/2026, 5:25:57 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=44
+2026-10-28T08:25:58.160461706Z [Nest] 7  - 10/28/2026, 5:25:58 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=39
+2026-10-28T08:25:58.491386156Z [Nest] 7  - 10/28/2026, 5:25:58 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=34
+2026-10-28T08:25:58.823041852Z [Nest] 7  - 10/28/2026, 5:25:58 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=29
+2026-10-28T08:25:59.156592573Z [Nest] 7  - 10/28/2026, 5:25:59 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=24
+2026-10-28T08:26:01.053860650Z [Nest] 7  - 10/28/2026, 5:26:01 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=19
+2026-10-28T08:26:01.393335532Z [Nest] 7  - 10/28/2026, 5:26:01 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=14
+2026-10-28T08:26:01.742653566Z [Nest] 7  - 10/28/2026, 5:26:01 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=9
+2026-10-28T08:26:02.072130763Z [Nest] 7  - 10/28/2026, 5:26:02 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=5, removed=5, failed=0, rewritten=0, unchanged=5, queueRemaining=4
+2026-10-28T08:26:02.383790686Z [Nest] 7  - 10/28/2026, 5:26:02 PM     LOG [ArchiveSyncService] Summary backfill apply batch done: requested=4, removed=4, failed=0, rewritten=0, unchanged=4, queueRemaining=0
+2026-10-28T08:26:02.636187023Z [Nest] 7  - 10/28/2026, 5:26:02 PM     LOG [ArchiveSyncService] Summary backfill staged - scanned=242 stagedPending=239 retryScanned=0 stagedRetry=0 queue=0
