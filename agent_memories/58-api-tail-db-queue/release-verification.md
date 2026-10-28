@@ -45,7 +45,7 @@ A bounded four-minute passive capture started at server epoch `1793175822.200296
 
 For example, direct backend request `lc195-external-0bda4a3bbf1541` spent **5579.966 ms externally and 5305.394 ms inside the origin**. The cached Ollama metric for that response came from a 5 ms check before the request. Later matched responses still had origin waits of 3–5 seconds. These samples do not support a Cloudflare-dominant explanation.
 
-[Existing cron logs](release-1.19.5/cron-observation.log) explicitly show that the minute-24 proposal-reason drain and summary-backfill cron **skipped** because `pending sync` was write-heavy. Therefore this series must not be claimed as a successful natural retry-candidate cron run. The direct read-only native helper validation above is the query-specific production evidence.
+[Existing cron logs](release-1.19.5/cron-observation.txt) explicitly show that the minute-24 proposal-reason drain and summary-backfill cron **skipped** because `pending sync` was write-heavy. Therefore this series must not be claimed as a successful natural retry-candidate cron run. The direct read-only native helper validation above is the query-specific production evidence.
 
 [Write-phase logs](release-1.19.5/write-phase-log.txt) place pending sync at NSM page 163/163 at **08:24:11.552Z**, overlapping the onset of the new stalls. Returned Node telemetry reported event-loop maxima around **1.8–2.3 seconds**, and DB-free origin version probes also stalled intermittently. Later in the same observation, requests returned to subsecond external latency as the workload moved on to summary apply batches.
 

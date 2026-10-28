@@ -1,0 +1,2 @@
+2026-10-28T08:24:00.008652715Z [Nest] 7  - 10/28/2026, 5:24:00 PM     LOG [CronJobsService] proposalReason NSM reason drain skipped - archive sync write-heavy phase is currently running (runningWriteHeavyPhases=pending sync)
+2026-10-28T08:24:00.009397854Z [Nest] 7  - 10/28/2026, 5:24:00 PM     LOG [CronJobsService] summary backfill (proposalReason cron) skipped - archive sync write-heavy activity is currently running (runningWriteHeavyActivities=pending sync)
