@@ -1,0 +1,49 @@
+{
+  "origin": "https://law.viento.me",
+  "release": "frontend-v1.25.8",
+  "cache": "lawcast-pwa-v7",
+  "conditions": {
+    "offline": false,
+    "latency": 8000,
+    "downloadThroughput": 51200,
+    "uploadThroughput": 25600,
+    "connectionType": "cellular3g"
+  },
+  "http_cache_disabled": true,
+  "samples": [
+    {
+      "elapsed": 0.41680154200003017,
+      "url": "https://law.viento.me/pwa-start",
+      "visibility": "hidden",
+      "symbol": [
+        154.9921875,
+        341,
+        80,
+        80
+      ]
+    },
+    {
+      "elapsed": 14.508948959002737,
+      "url": "https://law.viento.me/pwa-start",
+      "visibility": "hidden",
+      "symbol": [
+        154.9921875,
+        341,
+        80,
+        80
+      ]
+    },
+    {
+      "elapsed": 15.306826375002856,
+      "url": "https://law.viento.me/pwa-start",
+      "visibility": "visible",
+      "symbol": [
+        154.9921875,
+        341,
+        80,
+        80
+      ]
+    }
+  ],
+  "home_paint_observed_seconds": 17.0029093750054
+}

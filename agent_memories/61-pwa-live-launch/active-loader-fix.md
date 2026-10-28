@@ -46,3 +46,17 @@ See [sanitized fixed measurements](fixed-measurements.json), [loader just before
 ## Repository synchronization
 
 Frontend `dev`, `origin/dev`, `origin/main` and `frontend-v1.25.7` all resolve to `5ecc2b504718f9b18304a71a0cb784920a8bdf72`. Dependencies were reinstalled after fast-forwarding with no lockfile diff. Backend remained on its unchanged `dev` commit and semantic-search on its unchanged `main` commit. The root release records the exact frontend release pointer along with this sanitized investigation and verification evidence.
+
+## Delayed retry visibility follow-up
+
+Frontend 1.25.8 hides the retry control for the first 15 seconds of the launch document. A zero-duration CSS animation reveals it afterward, including with reduced motion or JavaScript disabled. `visibility` preserves its layout space and removes the hidden link from focus/accessibility navigation, so the symbol does not move when the control appears. A fast home transition removes the launch document before the control is revealed; retry after a preparation failure follows the same delay.
+
+Static asset cache v7 refreshes this document without changing the v6 preparation protocol. This supersedes the earlier always-visible retry guidance now that preparation keeps the launch document active.
+
+Validation: lint, type check and agent-guideline checks passed; all 28 PWA tests passed on both Node and Cloudflare Pages. Coverage verifies the 14,999/15,000 ms boundary with reduced motion, stable symbol position, no visible/accessibility link before the threshold, real delayed reveal and absence after a faster home transition. The proxy records `Sec-Fetch-Mode` so document reload assertions distinguish navigation from auxiliary browser `no-cors` requests.
+
+[PR 178](https://github.com/vientofactory/LawCast-Frontend/pull/178) contains explicitly GPG-signed feature commit `76ca1d0029b09be7c87c31bc6c200ce0f4a24257`, verified locally and by GitHub. Its [Web Vitals CI](https://github.com/vientofactory/LawCast-Frontend/actions/runs/40757240956) and GitGuardian passed. Squash merge `0f402df446e208a8387cfd5794d6b3170f687ea5` is the target of [release frontend-v1.25.8](https://github.com/vientofactory/LawCast-Frontend/releases/tag/frontend-v1.25.8), frontend `dev`, `origin/dev` and the root release pointer. `npm install` after fast-forwarding left the lockfile unchanged.
+
+[Production deployment](https://github.com/vientofactory/LawCast-Frontend/actions/runs/40758033721) and [post-merge Web Vitals](https://github.com/vientofactory/LawCast-Frontend/actions/runs/40758033843) passed. Cloudflare deployment `34fa8049-0761-46f6-9c37-d0e6192e69ee` reports the same release commit.
+
+The actual production origin was checked in visible Chrome on port 9222 with 8,000 ms latency, 51,200 bytes/s download, 25,600 bytes/s upload and HTTP cache disabled on the page and v7 worker. The retry link was hidden at 0.417 and 14.509 seconds, then visible at 15.307 seconds while still at `/pwa-start`. The symbol bounding box remained exactly `[154.9921875, 341, 80, 80]` before and after reveal. Home first paint was observed at approximately 17 seconds, and the home document subsequently reached `readyState: complete`. Test overrides were removed and the original browser tab restored. See [sanitized retry visibility measurements](retry-visibility-measurements.json).
