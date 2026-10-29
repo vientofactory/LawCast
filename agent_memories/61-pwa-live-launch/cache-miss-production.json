@@ -1,0 +1,95 @@
+{
+  "checkedAt": "2026-10-29T13:40:07.605Z",
+  "origin": "https://law.viento.me",
+  "cacheName": "lawcast-pwa-v8",
+  "results": [
+    {
+      "missingLaunchCache": false,
+      "start": "/pwa-start",
+      "repeat": 1,
+      "status": 200,
+      "fromServiceWorker": true,
+      "finalUrl": "https://law.viento.me/",
+      "elapsedMs": 527
+    },
+    {
+      "missingLaunchCache": false,
+      "start": "/pwa-start",
+      "repeat": 2,
+      "status": 200,
+      "fromServiceWorker": true,
+      "finalUrl": "https://law.viento.me/",
+      "elapsedMs": 1428
+    },
+    {
+      "missingLaunchCache": false,
+      "start": "/pwa-start.html",
+      "repeat": 1,
+      "status": 200,
+      "fromServiceWorker": true,
+      "finalUrl": "https://law.viento.me/",
+      "elapsedMs": 1946
+    },
+    {
+      "missingLaunchCache": false,
+      "start": "/pwa-start.html",
+      "repeat": 2,
+      "status": 200,
+      "fromServiceWorker": true,
+      "finalUrl": "https://law.viento.me/",
+      "elapsedMs": 1173
+    },
+    {
+      "missingLaunchCache": true,
+      "start": "/pwa-start",
+      "repeat": 1,
+      "status": 200,
+      "fromServiceWorker": true,
+      "finalUrl": "https://law.viento.me/",
+      "elapsedMs": 1317
+    },
+    {
+      "missingLaunchCache": true,
+      "start": "/pwa-start",
+      "repeat": 2,
+      "status": 200,
+      "fromServiceWorker": true,
+      "finalUrl": "https://law.viento.me/",
+      "elapsedMs": 929
+    },
+    {
+      "missingLaunchCache": true,
+      "start": "/pwa-start.html",
+      "repeat": 1,
+      "status": 200,
+      "fromServiceWorker": true,
+      "finalUrl": "https://law.viento.me/",
+      "elapsedMs": 725
+    },
+    {
+      "missingLaunchCache": true,
+      "start": "/pwa-start.html",
+      "repeat": 2,
+      "status": 200,
+      "fromServiceWorker": true,
+      "finalUrl": "https://law.viento.me/",
+      "elapsedMs": 1129
+    },
+    {
+      "scenario": "cached launch offline",
+      "offlinePageVisible": true
+    },
+    {
+      "scenario": "offline retry online",
+      "homeVisible": true
+    }
+  ],
+  "navigationFailures": [],
+  "cachePaths": [
+    "/brand/v2/badge-96.png",
+    "/brand/v2/icon-192.png",
+    "/brand/v2/icon-512.png",
+    "/offline.html",
+    "/pwa-start.html"
+  ]
+}
