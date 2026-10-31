@@ -414,7 +414,7 @@ agent_memories/
 
 ## 59 — Frontend API and SQLite Audit (2026-10-28)
 
-- [Local audit and verification](59-frontend-api-sqlite-audit/verification.md): SSR endpoint dependency tracing, lightweight home stats, health-free detail flags, targeted status invalidation, coalesced aggregate reads, metadata trigger protection and fairer SQLite write batches. Includes immutable-snapshot regressions, isolated browser checks and reproducible local-copy measurements. No production access or deployment.
+- [Local audit and verification](59-frontend-api-sqlite-audit/verification.md): SSR endpoint dependency tracing, lightweight home stats, health-free detail flags, targeted status invalidation, coalesced aggregate reads, metadata trigger protection and fairer SQLite write batches. Includes immutable-snapshot regressions, isolated browser checks and reproducible local-copy measurements. The initial audit was local only; the owner subsequently authorized [release and production comparison](59-frontend-api-sqlite-audit/release-verification.md), which confirms deployment but retains origin tails and status Lighthouse failures.
 
 
 ## 60 — Search and Prompt UX (2026-10-28)
@@ -430,3 +430,7 @@ agent_memories/
 ## 62 — Revision History UX (2026-11-01)
 
 - [Implementation and verification](62-revision-history-ux/implementation-and-verification.md): record-viewing/comparison UX redesign, direct comparison entry, editable dated selections, scroll/focus preservation, missing-before-value reconstruction fix, bounded text diff, accessible mobile/dark rendering and SSR history-error retry. Includes the existing 20-event window limitation and frontend 1.26.0 release evidence.
+
+## 63 — Progressive Revision History (2026-11-01)
+
+- [Implementation and verification](63-progressive-revision-history/implementation-and-verification.md): notice-scoped cursor API and incremental history loading, append-only skeleton states, request cancellation and retry, comparison across page boundaries and 125-record regressions. [Backend 1.20.0 / frontend 1.27.0 release verification](63-progressive-revision-history/release-verification.md) records backend-first deployment, CI, actual production checks and retained intermittent positioning observations.

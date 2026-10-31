@@ -1,0 +1,37 @@
+{
+  "target": "https://law.viento.me",
+  "device": "Pixel 7",
+  "results": [
+    {
+      "query": "timeline=true",
+      "scrollY": 2242,
+      "top": 160.25,
+      "margin": 160,
+      "offset": 0.25,
+      "viewport": 839,
+      "scrollHeight": 4548,
+      "historyOpen": true
+    },
+    {
+      "query": "cmpFrom=1&cmpTo=4",
+      "scrollY": 2811,
+      "top": 160,
+      "margin": 160,
+      "offset": 0,
+      "viewport": 839,
+      "scrollHeight": 7220,
+      "historyOpen": true
+    },
+    {
+      "query": "cmpFrom=1&cmpTo=4",
+      "scrollY": 2811,
+      "top": 160,
+      "margin": 160,
+      "offset": 0,
+      "viewport": 839,
+      "scrollHeight": 7220,
+      "historyOpen": true
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,57 @@
+{
+  "at": "2026-10-31T18:52:48Z",
+  "target": "https://law.viento.me/api",
+  "version": {
+    "version": "1.20.0",
+    "buildEnv": "env"
+  },
+  "health": {
+    "success": true,
+    "message": "LawCast API is healthy",
+    "data": {
+      "timestamp": "2026-10-31T18:52:48.523Z",
+      "status": "healthy",
+      "dependencies": {
+        "redis": "up",
+        "ollama": "healthy"
+      },
+      "version": "1.20.0"
+    }
+  },
+  "noticeNum": 2222317,
+  "pages": [
+    {
+      "heights": [
+        4
+      ],
+      "hasMore": true,
+      "nextBeforeHeight": 4
+    },
+    {
+      "heights": [
+        3
+      ],
+      "hasMore": true,
+      "nextBeforeHeight": 3
+    },
+    {
+      "heights": [
+        2
+      ],
+      "hasMore": true,
+      "nextBeforeHeight": 2
+    },
+    {
+      "heights": [
+        1
+      ],
+      "hasMore": false,
+      "nextBeforeHeight": null
+    }
+  ],
+  "invalidCursorStatuses": [
+    400,
+    400
+  ],
+  "passed": true
+}

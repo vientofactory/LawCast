@@ -1,0 +1,566 @@
+[
+  {
+    "round": 0,
+    "path": "version",
+    "at": 1793180558.274167,
+    "ms": 101.78584884852171,
+    "status": 200,
+    "keys": [
+      "version",
+      "buildEnv"
+    ]
+  },
+  {
+    "round": 0,
+    "path": "stats",
+    "at": 1793180558.3253326,
+    "ms": 51.15630500949919,
+    "status": 200,
+    "keys": [
+      "webhooks",
+      "cache",
+      "archive",
+      "webPush",
+      "changeTracking",
+      "ollama",
+      "aiSummaryEnabled",
+      "nodeRuntime",
+      "crawlers"
+    ]
+  },
+  {
+    "round": 0,
+    "path": "stats?view=home",
+    "at": 1793180558.34773,
+    "ms": 22.390672005712986,
+    "status": 200,
+    "keys": [
+      "webhooks",
+      "cache",
+      "archive",
+      "webPush",
+      "changeTracking",
+      "ollama",
+      "aiSummaryEnabled",
+      "nodeRuntime",
+      "crawlers"
+    ]
+  },
+  {
+    "round": 1,
+    "path": "version",
+    "at": 1793180562.3691587,
+    "ms": 20.68131696432829,
+    "status": 200,
+    "keys": [
+      "version",
+      "buildEnv"
+    ]
+  },
+  {
+    "round": 1,
+    "path": "stats",
+    "at": 1793180562.5435824,
+    "ms": 174.4144910480827,
+    "status": 200,
+    "keys": [
+      "webhooks",
+      "cache",
+      "archive",
+      "webPush",
+      "changeTracking",
+      "ollama",
+      "aiSummaryEnabled",
+      "nodeRuntime",
+      "crawlers"
+    ]
+  },
+  {
+    "round": 1,
+    "path": "stats?view=home",
+    "at": 1793180562.5854912,
+    "ms": 41.8995819054544,
+    "status": 200,
+    "keys": [
+      "webhooks",
+      "cache",
+      "archive",
+      "webPush",
+      "changeTracking",
+      "ollama",
+      "aiSummaryEnabled",
+      "nodeRuntime",
+      "crawlers"
+    ]
+  },
+  {
+    "round": 2,
+    "path": "version",
+    "at": 1793180566.5897799,
+    "ms": 4.146907944232225,
+    "status": 200,
+    "keys": [
+      "version",
+      "buildEnv"
+    ]
+  },
+  {
+    "round": 2,
+    "path": "stats",
+    "at": 1793180566.6137161,
+    "ms": 23.92745902761817,
+    "status": 200,
+    "keys": [
+      "webhooks",
+      "cache",
+      "archive",
+      "webPush",
+      "changeTracking",
+      "ollama",
+      "aiSummaryEnabled",
+      "nodeRuntime",
+      "crawlers"
+    ]
+  },
+  {
+    "round": 2,
+    "path": "stats?view=home",
+    "at": 1793180566.6369672,
+    "ms": 23.24275695718825,
+    "status": 200,
+    "keys": [
+      "webhooks",
+      "cache",
+      "archive",
+      "webPush",
+      "changeTracking",
+      "ollama",
+      "aiSummaryEnabled",
+      "nodeRuntime",
+      "crawlers"
+    ]
+  },
+  {
+    "round": 3,
+    "path": "version",
+    "at": 1793180570.6403496,
+    "ms": 3.2076730858534575,
+    "status": 200,
+    "keys": [
+      "version",
+      "buildEnv"
+    ]
+  },
+  {
+    "round": 3,
+    "path": "stats",
+    "at": 1793180570.6628866,
+    "ms": 22.529534995555878,
+    "status": 200,
+    "keys": [
+      "webhooks",
+      "cache",
+      "archive",
+      "webPush",
+      "changeTracking",
+      "ollama",
+      "aiSummaryEnabled",
+      "nodeRuntime",
+      "crawlers"
+    ]
+  },
+  {
+    "round": 3,
+    "path": "stats?view=home",
+    "at": 1793180570.6903763,
+    "ms": 27.480556862428784,
+    "status": 200,
+    "keys": [
+      "webhooks",
+      "cache",
+      "archive",
+      "webPush",
+      "changeTracking",
+      "ollama",
+      "aiSummaryEnabled",
+      "nodeRuntime",
+      "crawlers"
+    ]
+  },
+  {
+    "round": 4,
+    "path": "version",
+    "at": 1793180574.693614,
+    "ms": 3.045900957658887,
+    "status": 200,
+    "keys": [
+      "version",
+      "buildEnv"
+    ]
+  },
+  {
+    "round": 4,
+    "path": "stats",
+    "at": 1793180574.7172863,
+    "ms": 23.664641892537475,
+    "status": 200,
+    "keys": [
+      "webhooks",
+      "cache",
+      "archive",
+      "webPush",
+      "changeTracking",
+      "ollama",
+      "aiSummaryEnabled",
+      "nodeRuntime",
+      "crawlers"
+    ]
+  },
+  {
+    "round": 4,
+    "path": "stats?view=home",
+    "at": 1793180574.7438586,
+    "ms": 26.564453961327672,
+    "status": 200,
+    "keys": [
+      "webhooks",
+      "cache",
+      "archive",
+      "webPush",
+      "changeTracking",
+      "ollama",
+      "aiSummaryEnabled",
+      "nodeRuntime",
+      "crawlers"
+    ]
+  },
+  {
+    "round": 5,
+    "path": "version",
+    "at": 1793180578.7469819,
+    "ms": 3.0041360296308994,
+    "status": 200,
+    "keys": [
+      "version",
+      "buildEnv"
+    ]
+  },
+  {
+    "round": 5,
+    "path": "stats",
+    "at": 1793180578.771414,
+    "ms": 24.426582967862487,
+    "status": 200,
+    "keys": [
+      "webhooks",
+      "cache",
+      "archive",
+      "webPush",
+      "changeTracking",
+      "ollama",
+      "aiSummaryEnabled",
+      "nodeRuntime",
+      "crawlers"
+    ]
+  },
+  {
+    "round": 5,
+    "path": "stats?view=home",
+    "at": 1793180578.7957013,
+    "ms": 24.278898956254125,
+    "status": 200,
+    "keys": [
+      "webhooks",
+      "cache",
+      "archive",
+      "webPush",
+      "changeTracking",
+      "ollama",
+      "aiSummaryEnabled",
+      "nodeRuntime",
+      "crawlers"
+    ]
+  },
+  {
+    "round": 6,
+    "path": "version",
+    "at": 1793180582.8361135,
+    "ms": 40.2761441655457,
+    "status": 200,
+    "keys": [
+      "version",
+      "buildEnv"
+    ]
+  },
+  {
+    "round": 6,
+    "path": "stats",
+    "at": 1793180582.8633058,
+    "ms": 27.184462174773216,
+    "status": 200,
+    "keys": [
+      "webhooks",
+      "cache",
+      "archive",
+      "webPush",
+      "changeTracking",
+      "ollama",
+      "aiSummaryEnabled",
+      "nodeRuntime",
+      "crawlers"
+    ]
+  },
+  {
+    "round": 6,
+    "path": "stats?view=home",
+    "at": 1793180582.8946254,
+    "ms": 31.31313296034932,
+    "status": 200,
+    "keys": [
+      "webhooks",
+      "cache",
+      "archive",
+      "webPush",
+      "changeTracking",
+      "ollama",
+      "aiSummaryEnabled",
+      "nodeRuntime",
+      "crawlers"
+    ]
+  },
+  {
+    "round": 7,
+    "path": "version",
+    "at": 1793180586.8983583,
+    "ms": 3.5842829383909702,
+    "status": 200,
+    "keys": [
+      "version",
+      "buildEnv"
+    ]
+  },
+  {
+    "round": 7,
+    "path": "stats",
+    "at": 1793180586.9234905,
+    "ms": 25.12596291489899,
+    "status": 200,
+    "keys": [
+      "webhooks",
+      "cache",
+      "archive",
+      "webPush",
+      "changeTracking",
+      "ollama",
+      "aiSummaryEnabled",
+      "nodeRuntime",
+      "crawlers"
+    ]
+  },
+  {
+    "round": 7,
+    "path": "stats?view=home",
+    "at": 1793180586.951818,
+    "ms": 28.318561846390367,
+    "status": 200,
+    "keys": [
+      "webhooks",
+      "cache",
+      "archive",
+      "webPush",
+      "changeTracking",
+      "ollama",
+      "aiSummaryEnabled",
+      "nodeRuntime",
+      "crawlers"
+    ]
+  },
+  {
+    "round": 8,
+    "path": "version",
+    "at": 1793180590.9550457,
+    "ms": 3.0423288699239492,
+    "status": 200,
+    "keys": [
+      "version",
+      "buildEnv"
+    ]
+  },
+  {
+    "round": 8,
+    "path": "stats",
+    "at": 1793180590.9769323,
+    "ms": 21.879845997318625,
+    "status": 200,
+    "keys": [
+      "webhooks",
+      "cache",
+      "archive",
+      "webPush",
+      "changeTracking",
+      "ollama",
+      "aiSummaryEnabled",
+      "nodeRuntime",
+      "crawlers"
+    ]
+  },
+  {
+    "round": 8,
+    "path": "stats?view=home",
+    "at": 1793180591.0063615,
+    "ms": 29.418919002637267,
+    "status": 200,
+    "keys": [
+      "webhooks",
+      "cache",
+      "archive",
+      "webPush",
+      "changeTracking",
+      "ollama",
+      "aiSummaryEnabled",
+      "nodeRuntime",
+      "crawlers"
+    ]
+  },
+  {
+    "round": 9,
+    "path": "version",
+    "at": 1793180595.0097334,
+    "ms": 3.1726579181849957,
+    "status": 200,
+    "keys": [
+      "version",
+      "buildEnv"
+    ]
+  },
+  {
+    "round": 9,
+    "path": "stats",
+    "at": 1793180595.0625808,
+    "ms": 52.83939209766686,
+    "status": 200,
+    "keys": [
+      "webhooks",
+      "cache",
+      "archive",
+      "webPush",
+      "changeTracking",
+      "ollama",
+      "aiSummaryEnabled",
+      "nodeRuntime",
+      "crawlers"
+    ]
+  },
+  {
+    "round": 9,
+    "path": "stats?view=home",
+    "at": 1793180595.0859487,
+    "ms": 23.36036693304777,
+    "status": 200,
+    "keys": [
+      "webhooks",
+      "cache",
+      "archive",
+      "webPush",
+      "changeTracking",
+      "ollama",
+      "aiSummaryEnabled",
+      "nodeRuntime",
+      "crawlers"
+    ]
+  },
+  {
+    "round": 10,
+    "path": "version",
+    "at": 1793180599.0898387,
+    "ms": 3.755786921828985,
+    "status": 200,
+    "keys": [
+      "version",
+      "buildEnv"
+    ]
+  },
+  {
+    "round": 10,
+    "path": "stats",
+    "at": 1793180599.1107452,
+    "ms": 20.897967973724008,
+    "status": 200,
+    "keys": [
+      "webhooks",
+      "cache",
+      "archive",
+      "webPush",
+      "changeTracking",
+      "ollama",
+      "aiSummaryEnabled",
+      "nodeRuntime",
+      "crawlers"
+    ]
+  },
+  {
+    "round": 10,
+    "path": "stats?view=home",
+    "at": 1793180599.1391356,
+    "ms": 28.38138397783041,
+    "status": 200,
+    "keys": [
+      "webhooks",
+      "cache",
+      "archive",
+      "webPush",
+      "changeTracking",
+      "ollama",
+      "aiSummaryEnabled",
+      "nodeRuntime",
+      "crawlers"
+    ]
+  },
+  {
+    "round": 11,
+    "path": "version",
+    "at": 1793180603.2759676,
+    "ms": 136.58991106785834,
+    "status": 200,
+    "keys": [
+      "version",
+      "buildEnv"
+    ]
+  },
+  {
+    "round": 11,
+    "path": "stats",
+    "at": 1793180603.3029041,
+    "ms": 26.929506799206138,
+    "status": 200,
+    "keys": [
+      "webhooks",
+      "cache",
+      "archive",
+      "webPush",
+      "changeTracking",
+      "ollama",
+      "aiSummaryEnabled",
+      "nodeRuntime",
+      "crawlers"
+    ]
+  },
+  {
+    "round": 11,
+    "path": "stats?view=home",
+    "at": 1793180603.341766,
+    "ms": 38.85414102114737,
+    "status": 200,
+    "keys": [
+      "webhooks",
+      "cache",
+      "archive",
+      "webPush",
+      "changeTracking",
+      "ollama",
+      "aiSummaryEnabled",
+      "nodeRuntime",
+      "crawlers"
+    ]
+  }
+]

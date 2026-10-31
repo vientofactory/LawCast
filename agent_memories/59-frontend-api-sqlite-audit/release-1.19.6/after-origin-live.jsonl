@@ -1,0 +1,120 @@
+{"round": 0, "path": "version", "at": 1793181341.3145146, "ms": 99.96239701285958, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 0, "path": "stats", "at": 1793181341.3401203, "ms": 25.485457852482796, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 0, "path": "stats?view=home", "at": 1793181341.3588352, "ms": 18.626971170306206, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 1, "path": "version", "at": 1793181345.479238, "ms": 120.15894195064902, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 1, "path": "stats", "at": 1793181345.5073886, "ms": 28.061246033757925, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 1, "path": "stats?view=home", "at": 1793181345.5279682, "ms": 20.493186078965664, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 2, "path": "version", "at": 1793181349.53147, "ms": 3.2517490908503532, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 2, "path": "stats", "at": 1793181349.559646, "ms": 28.085767989978194, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 2, "path": "stats?view=home", "at": 1793181349.5810142, "ms": 21.269875112921, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 3, "path": "version", "at": 1793181353.5846245, "ms": 3.3446429297327995, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 3, "path": "stats", "at": 1793181353.6215909, "ms": 36.88301891088486, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 3, "path": "stats?view=home", "at": 1793181353.6456838, "ms": 24.02577013708651, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 4, "path": "version", "at": 1793181357.6490836, "ms": 3.175885882228613, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 4, "path": "stats", "at": 1793181357.6773214, "ms": 28.12804700806737, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 4, "path": "stats?view=home", "at": 1793181357.7071378, "ms": 29.679634142667055, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 5, "path": "version", "at": 1793181361.7106814, "ms": 3.3327629789710045, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 5, "path": "stats", "at": 1793181361.7400813, "ms": 29.318478889763355, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 5, "path": "stats?view=home", "at": 1793181361.7621207, "ms": 21.9551301561296, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 6, "path": "version", "at": 1793181365.7654076, "ms": 3.02421604283154, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 6, "path": "stats", "at": 1793181365.792758, "ms": 27.22237096168101, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 6, "path": "stats?view=home", "at": 1793181365.816341, "ms": 23.498129099607468, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 7, "path": "version", "at": 1793181369.8201163, "ms": 3.540216013789177, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 7, "path": "stats", "at": 1793181369.8441155, "ms": 23.91796582378447, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 7, "path": "stats?view=home", "at": 1793181369.8659308, "ms": 21.735376911237836, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 8, "path": "version", "at": 1793181373.8693578, "ms": 3.2165059819817543, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 8, "path": "stats", "at": 1793181373.8920307, "ms": 22.589505882933736, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 8, "path": "stats?view=home", "at": 1793181373.914856, "ms": 22.755176993086934, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 9, "path": "version", "at": 1793181377.9180422, "ms": 3.009956097230315, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 9, "path": "stats", "at": 1793181377.9459524, "ms": 27.83248294144869, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 9, "path": "stats?view=home", "at": 1793181377.9666047, "ms": 20.587076200172305, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 10, "path": "version", "at": 1793181381.9696443, "ms": 2.8555409517139196, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 10, "path": "stats", "at": 1793181381.9986544, "ms": 28.944235993549228, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 10, "path": "stats?view=home", "at": 1793181382.0227814, "ms": 24.039048934355378, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 11, "path": "version", "at": 1793181386.066294, "ms": 43.276060139760375, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 11, "path": "stats", "at": 1793181386.7924802, "ms": 726.1071288958192, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 11, "path": "stats?view=home", "at": 1793181387.435386, "ms": 642.8032121621072, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 12, "path": "version", "at": 1793181391.4387116, "ms": 3.1197129283100367, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 12, "path": "stats", "at": 1793181391.9183466, "ms": 479.55786995589733, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 12, "path": "stats?view=home", "at": 1793181392.6759171, "ms": 757.4605860281736, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 13, "path": "version", "at": 1793181396.678856, "ms": 2.757327863946557, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 13, "path": "stats", "at": 1793181397.166247, "ms": 487.31407104060054, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 13, "path": "stats?view=home", "at": 1793181397.9392192, "ms": 772.8758191224188, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 14, "path": "version", "at": 1793181401.9423022, "ms": 2.8696691151708364, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 14, "path": "stats", "at": 1793181403.22419, "ms": 1281.8169728852808, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 14, "path": "stats?view=home", "at": 1793181404.1970172, "ms": 972.7546400390565, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 15, "path": "version", "at": 1793181408.2002442, "ms": 3.0537149868905544, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 15, "path": "stats", "at": 1793181408.9570735, "ms": 756.7507079802454, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 15, "path": "stats?view=home", "at": 1793181409.3824203, "ms": 425.2703420352191, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 16, "path": "version", "at": 1793181413.3859487, "ms": 3.291230881586671, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 16, "path": "stats", "at": 1793181413.5611491, "ms": 175.1236889977008, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 16, "path": "stats?view=home", "at": 1793181414.3186083, "ms": 757.3779309168458, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 17, "path": "version", "at": 1793181418.321846, "ms": 3.031234024092555, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 17, "path": "stats", "at": 1793181418.9985487, "ms": 676.6394069418311, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 17, "path": "stats?view=home", "at": 1793181419.6645482, "ms": 665.9139450639486, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 18, "path": "version", "at": 1793181423.6675854, "ms": 2.827326999977231, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 18, "path": "stats", "at": 1793181424.4186997, "ms": 751.0486401151866, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 18, "path": "stats?view=home", "at": 1793181425.3369439, "ms": 918.1502310093492, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 19, "path": "version", "at": 1793181429.3403943, "ms": 3.2512869220227003, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 19, "path": "stats", "at": 1793181429.9726233, "ms": 632.0680768694729, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 19, "path": "stats?view=home", "at": 1793181430.897293, "ms": 924.5799218770117, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 20, "path": "version", "at": 1793181434.9015062, "ms": 3.9620769675821066, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 20, "path": "stats", "at": 1793181435.5892978, "ms": 687.6803140621632, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 20, "path": "stats?view=home", "at": 1793181436.699188, "ms": 1109.8007699474692, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 21, "path": "version", "at": 1793181440.7026403, "ms": 3.135654143989086, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 21, "path": "stats", "at": 1793181442.123473, "ms": 1420.7659198436886, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 21, "path": "stats?view=home", "at": 1793181443.1218202, "ms": 998.2391449157149, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 22, "path": "version", "at": 1793181447.1291327, "ms": 7.112459046766162, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 22, "path": "stats", "at": 1793181447.4240227, "ms": 294.7934209369123, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 22, "path": "stats?view=home", "at": 1793181447.4937508, "ms": 69.6314089000225, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 23, "path": "version", "at": 1793181451.4972296, "ms": 3.2737019937485456, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 23, "path": "stats", "at": 1793181451.608901, "ms": 111.58660100772977, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 23, "path": "stats?view=home", "at": 1793181451.6329296, "ms": 23.948917165398598, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 24, "path": "version", "at": 1793181455.636173, "ms": 3.0279899947345257, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 24, "path": "stats", "at": 1793181455.708875, "ms": 72.62256112881005, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 24, "path": "stats?view=home", "at": 1793181455.846769, "ms": 137.80323485843837, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 25, "path": "version", "at": 1793181459.8506312, "ms": 3.5758179146796465, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 25, "path": "stats", "at": 1793181459.8853126, "ms": 34.60247698239982, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 25, "path": "stats?view=home", "at": 1793181459.909038, "ms": 23.626107955351472, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 26, "path": "version", "at": 1793181463.9136608, "ms": 4.072783049196005, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 26, "path": "stats", "at": 1793181463.9414897, "ms": 27.741580037400126, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 26, "path": "stats?view=home", "at": 1793181463.9650192, "ms": 23.410181049257517, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 27, "path": "version", "at": 1793181467.9683704, "ms": 3.153393976390362, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 27, "path": "stats", "at": 1793181467.9939847, "ms": 25.523418094962835, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 27, "path": "stats?view=home", "at": 1793181468.0180976, "ms": 24.023158941417933, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 28, "path": "version", "at": 1793181472.0210571, "ms": 2.6935411151498556, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 28, "path": "stats", "at": 1793181472.059427, "ms": 38.309254916384816, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 28, "path": "stats?view=home", "at": 1793181472.0915844, "ms": 32.038037898018956, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 29, "path": "version", "at": 1793181476.09483, "ms": 3.073883941397071, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 29, "path": "stats", "at": 1793181476.1226437, "ms": 27.7365620713681, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 29, "path": "stats?view=home", "at": 1793181476.145311, "ms": 22.577391006052494, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 30, "path": "version", "at": 1793181480.1500134, "ms": 4.477489972487092, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 30, "path": "stats", "at": 1793181480.177138, "ms": 27.03256206586957, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 30, "path": "stats?view=home", "at": 1793181480.2051435, "ms": 27.898929081857204, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 31, "path": "version", "at": 1793181484.2089272, "ms": 3.568242071196437, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 31, "path": "stats", "at": 1793181484.2338965, "ms": 24.88177688792348, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 31, "path": "stats?view=home", "at": 1793181484.2563894, "ms": 22.422847105190158, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 32, "path": "version", "at": 1793181488.2602282, "ms": 3.6560879088938236, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 32, "path": "stats", "at": 1793181488.2895646, "ms": 29.27308203652501, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 32, "path": "stats?view=home", "at": 1793181488.3141632, "ms": 24.529739981517196, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 33, "path": "version", "at": 1793181492.3173912, "ms": 3.0462618451565504, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 33, "path": "stats", "at": 1793181492.504087, "ms": 186.60366302356124, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 33, "path": "stats?view=home", "at": 1793181492.5256107, "ms": 21.43368311226368, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 34, "path": "version", "at": 1793181496.5300572, "ms": 4.256085027009249, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 34, "path": "stats", "at": 1793181496.557935, "ms": 27.799444971606135, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 34, "path": "stats?view=home", "at": 1793181496.5811853, "ms": 23.180175106972456, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 35, "path": "version", "at": 1793181500.5846052, "ms": 3.221438964828849, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 35, "path": "stats", "at": 1793181500.6148758, "ms": 30.188452918082476, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 35, "path": "stats?view=home", "at": 1793181500.6394446, "ms": 24.420606903731823, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 36, "path": "version", "at": 1793181504.6456542, "ms": 5.563702899962664, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 36, "path": "stats", "at": 1793181504.670599, "ms": 24.81419895775616, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 36, "path": "stats?view=home", "at": 1793181504.6918404, "ms": 21.174143068492413, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 37, "path": "version", "at": 1793181508.695284, "ms": 3.17233894020319, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 37, "path": "stats", "at": 1793181508.7228022, "ms": 27.394030010327697, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 37, "path": "stats?view=home", "at": 1793181508.745239, "ms": 22.368072997778654, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 38, "path": "version", "at": 1793181512.7488935, "ms": 3.473412012681365, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 38, "path": "stats", "at": 1793181512.7788901, "ms": 29.92119500413537, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 38, "path": "stats?view=home", "at": 1793181512.8052626, "ms": 26.27915795892477, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}
+{"round": 39, "path": "version", "at": 1793181516.808974, "ms": 3.4954501315951347, "status": 200, "keys": ["version", "buildEnv"]}
+{"round": 39, "path": "stats", "at": 1793181516.8392024, "ms": 30.08124907501042, "status": 200, "keys": ["webhooks", "cache", "archive", "webPush", "changeTracking", "ollama", "aiSummaryEnabled", "nodeRuntime", "crawlers"]}
+{"round": 39, "path": "stats?view=home", "at": 1793181516.8656826, "ms": 26.379873044788837, "status": 200, "keys": ["archive", "cache", "changeTracking", "aiSummaryEnabled"]}

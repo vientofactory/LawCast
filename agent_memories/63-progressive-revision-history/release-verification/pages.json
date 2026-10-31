@@ -1,0 +1,34 @@
+{
+  "name": "lawcast-frontend",
+  "domains": [
+    "lawcast-frontend.pages.dev",
+    "law.viento.me"
+  ],
+  "production_branch": "main",
+  "canonical": {
+    "id": "e6a0b64e-50ab-4fb4-8baa-9812035dc654",
+    "stage": {
+      "name": "deploy",
+      "started_on": null,
+      "ended_on": "2026-10-31T18:51:28.448675Z",
+      "status": "success"
+    },
+    "metadata": {
+      "branch": "main",
+      "commit_hash": "184eb73f5d9d489ff3d94dca463da8893278fb10",
+      "commit_message": "feat: progressively load revision history and scroll deep links (#182)",
+      "commit_dirty": false
+    },
+    "url": "https://e6a0b64e.lawcast-frontend.pages.dev",
+    "environment": "production"
+  },
+  "runtimeBindings": {
+    "API_BASE_URL": "secret_text",
+    "PUBLIC_CF_UNDER_ATTACK_RELOAD_ENABLED": "secret_text",
+    "PUBLIC_DISCORD_SERVER_ID": "secret_text",
+    "PUBLIC_DISCORD_SERVER_URL": "secret_text",
+    "PUBLIC_GTM_CONTAINER_ID": "secret_text",
+    "PUBLIC_HASHGUARD_URL": "secret_text",
+    "PUBLIC_SEMANTIC_SEARCH_ENABLED": "secret_text"
+  }
+}

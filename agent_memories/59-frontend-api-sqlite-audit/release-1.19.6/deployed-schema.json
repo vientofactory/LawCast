@@ -1,0 +1,16 @@
+{
+  "at": "2026-10-28T09:51:32.025Z",
+  "version": "1.19.6",
+  "node": "v24.22.1",
+  "readOnly": true,
+  "triggerHeader": "CREATE TRIGGER \"trg_notice_archives_prevent_update\"\n      BEFORE UPDATE OF \"id\", \"noticeNum\", \"subject\", \"proposerCategory\", \"committee\", \"assemblyLink\", \"contentId\", \"proposalReason\", \"sourceTitle\", \"content_bill_number\", \"content_proposer\", \"content_proposal_date\", \"content_committee\", \"content_referral_date\", \"content_notice_period\", \"content_proposal_session\", \"attachmentPdfFile\", \"attachmentHwpFile\", \"archived_at\", \"integrity_verified_at\", \"integrity_check_passed\", \"archive_started_at\", \"source_html\", \"source_html_sha256\", \"http_metadata_json\", \"http_fetched_at\", \"http_status_code\", \"http_content_type\", \"http_etag\", \"http_last_modified\", \"screenshot_blob\", \"screenshot_format\", \"lifecycle_status\", \"source_deleted_at\", \"rowid\", \"_rowid_\", \"oid\" ON \"notice_archives\"\n      ",
+  "metadataTriggerProgram": false,
+  "migrations": [
+    {
+      "name": "OptimizeArchiveMetadataUpdates1793145601000"
+    },
+    {
+      "name": "AddProposalReasonRetryTracking1760486401000"
+    }
+  ]
+}
