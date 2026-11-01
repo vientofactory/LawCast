@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "name": "lawcast-frontend",
+  "domains": [
+    "lawcast-frontend.pages.dev",
+    "law.viento.me"
+  ],
+  "production_branch": "main",
+  "deployment": {
+    "id": "7834b580-868a-4a8b-a485-08956aedbec0",
+    "url": "https://7834b580.lawcast-frontend.pages.dev",
+    "stage": {
+      "name": "deploy",
+      "started_on": null,
+      "ended_on": "2026-11-01T20:20:12.469281Z",
+      "status": "success"
+    },
+    "trigger": {
+      "type": "ad_hoc",
+      "metadata": {
+        "branch": "main",
+        "commit_hash": "ffb4c5349150d6f563211b575dcea385ff80d637",
+        "commit_message": "fix: sync PWA chrome with app theme and simplify recent notice metadata (#183)",
+        "commit_dirty": false
+      }
+    }
+  },
+  "bindings": {
+    "API_BASE_URL": "secret_text",
+    "PUBLIC_CF_UNDER_ATTACK_RELOAD_ENABLED": "secret_text",
+    "PUBLIC_DISCORD_SERVER_ID": "secret_text",
+    "PUBLIC_DISCORD_SERVER_URL": "secret_text",
+    "PUBLIC_GTM_CONTAINER_ID": "secret_text",
+    "PUBLIC_HASHGUARD_URL": "secret_text",
+    "PUBLIC_SEMANTIC_SEARCH_ENABLED": "secret_text"
+  }
+}

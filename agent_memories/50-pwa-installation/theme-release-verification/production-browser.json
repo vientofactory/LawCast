@@ -1,0 +1,103 @@
+{
+  "origin": "https://law.viento.me",
+  "expectedVersion": "1.27.1",
+  "checkedAt": "2026-11-01T20:20:58.084Z",
+  "scenarios": [
+    {
+      "savedTheme": "light",
+      "systemTheme": "dark",
+      "initialChrome": "#fafafb",
+      "toggledTheme": "dark",
+      "reloadPersisted": true,
+      "offlineMatched": true,
+      "caches": [
+        "lawcast-pwa-v9"
+      ],
+      "cards": [
+        {
+          "title": "지방주도성장을 위한 초광역권전략산업특구 지정 및 운영에 관한 특별법안",
+          "metadata": "(소관위원회 미정)"
+        },
+        {
+          "title": "건축법 일부개정법률안",
+          "metadata": "(소관위원회 미정)"
+        },
+        {
+          "title": "교육환경 보호에 관한 법률 일부개정법률안",
+          "metadata": "(소관위원회 미정)"
+        },
+        {
+          "title": "분산에너지 활성화 특별법 일부개정법률안",
+          "metadata": "(소관위원회 미정)"
+        },
+        {
+          "title": "인공지능 데이터센터 산업 진흥에 관한 특별법 일부개정법률안",
+          "metadata": "(소관위원회 미정)"
+        }
+      ],
+      "assets": {
+        "/pwa-start": {
+          "status": 200,
+          "url": "https://law.viento.me/pwa-start"
+        },
+        "/offline": {
+          "status": 200,
+          "url": "https://law.viento.me/offline"
+        },
+        "/sw.js": {
+          "status": 200,
+          "url": "https://law.viento.me/sw.js"
+        }
+      },
+      "pageErrors": []
+    },
+    {
+      "savedTheme": "dark",
+      "systemTheme": "light",
+      "initialChrome": "#0b1117",
+      "toggledTheme": "light",
+      "reloadPersisted": true,
+      "offlineMatched": true,
+      "caches": [
+        "lawcast-pwa-v9"
+      ],
+      "cards": [
+        {
+          "title": "지방주도성장을 위한 초광역권전략산업특구 지정 및 운영에 관한 특별법안",
+          "metadata": "(소관위원회 미정)"
+        },
+        {
+          "title": "건축법 일부개정법률안",
+          "metadata": "(소관위원회 미정)"
+        },
+        {
+          "title": "교육환경 보호에 관한 법률 일부개정법률안",
+          "metadata": "(소관위원회 미정)"
+        },
+        {
+          "title": "분산에너지 활성화 특별법 일부개정법률안",
+          "metadata": "(소관위원회 미정)"
+        },
+        {
+          "title": "인공지능 데이터센터 산업 진흥에 관한 특별법 일부개정법률안",
+          "metadata": "(소관위원회 미정)"
+        }
+      ],
+      "assets": {
+        "/pwa-start": {
+          "status": 200,
+          "url": "https://law.viento.me/pwa-start"
+        },
+        "/offline": {
+          "status": 200,
+          "url": "https://law.viento.me/offline"
+        },
+        "/sw.js": {
+          "status": 200,
+          "url": "https://law.viento.me/sw.js"
+        }
+      },
+      "pageErrors": []
+    }
+  ]
+}
