@@ -1,5 +1,9 @@
 # Agent Memories
 
+## Compact revision comparison
+
+- [Implementation and verification](64-compact-revision-diff/implementation-and-verification.md): compact changed-sentence hunks, responsive unified/split layouts, folded unchanged context, bounded long-text matching, and local regression/rollback verification.
+
 이 폴더는 코딩 에이전트(GitHub Copilot, Claude Code, Codebuff 등)가 프로젝트를 이해하고 작업하면서 남긴 탐색 기록, 조사 결과, 구현 계획 등을 보관합니다.
 
 ## 폴더 구조
