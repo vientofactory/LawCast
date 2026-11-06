@@ -481,10 +481,14 @@ agent_memories/
 
 - [Frontend 1.28.0 release verification](65-ui-layout-redesign/release-verification.md): PR 184 merge, exact Pages release deployment, root pointer PR 24, fast-forward branch/install synchronization and real production interaction checks.
 
-## 66 — Dependency Refresh (2026-11-07)
+## 67 — Dependency Refresh (2026-11-07)
 
-- [Dependency verification](66-dependency-refresh/verification.md): all backend/frontend Renovate PRs and npm outdated inventories, compatible updates, audit remediation and residual advisories, before/after tests and independent rollback. Includes the Satori/HarfBuzz workerd regression that Node-only image checks miss, and npm 12 direct-tarball installation behavior.
+- [Dependency verification](67-dependency-refresh/verification.md): all backend/frontend Renovate PRs and npm outdated inventories, compatible updates, audit remediation and residual advisories, before/after tests and independent rollback. Includes the Satori/HarfBuzz workerd regression that Node-only image checks miss, and npm 12 direct-tarball installation behavior.
 
-## 67 — Major Dependency Migration (2026-11-07)
+## 68 — Major Dependency Migration (2026-11-07)
 
-- [Migration and verification](67-major-dependency-migration/verification.md): NestJS 12/TypeORM 1/Keyv 6 and SvelteKit 3/Vite 8 migrations, TypeScript 7 native/API separation, local deepmerge security patch, static HarfBuzz WASM bridges for Cloudflare, baseline E2E failure fixes, cache identity/raw-read regression, clean npm 11 installs and independent rollback evidence.
+- [Migration and verification](68-major-dependency-migration/verification.md): NestJS 12/TypeORM 1/Keyv 6 and SvelteKit 3/Vite 8 migrations, TypeScript 7 native/API separation, local deepmerge security patch, static HarfBuzz WASM bridges for Cloudflare, baseline E2E failure fixes, cache identity/raw-read regression, clean npm 11 installs and independent rollback evidence.
+
+## 66 — Cross-browser CI caches (2026-11-06)
+
+- [Implementation and verification](66-cross-browser-ci-cache/implementation-and-verification.md): shared Playwright installer, platform/version/engine-scoped package and binary caches, cache warming before matrix consumers, unconditional installation/test execution and separate frontend PR 185.
