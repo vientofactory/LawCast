@@ -2,6 +2,8 @@
 
 ## UI layout redesign proposal
 
+- [Mobile pagination spacing](65-ui-layout-redesign/mobile-pagination-spacing.md): real-device spacing fix, 48px targets, four-digit SSR fixtures, touch/enlarged-text regressions and release verification.
+
 - [Common notifications](65-ui-layout-redesign/common-notifications.md): shared timed/dismissible stacks, modal scopes, transient-feedback migration and isolated cross-engine tests.
 
 - [Readability and action priority](65-ui-layout-redesign/readability-action-priority.md): opaque tagline contrast, 14px supporting type/chart labels, ranked labelled actions, 130 passing regression cases and explicit WebKit native-push fixture evidence.
