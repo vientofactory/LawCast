@@ -1,5 +1,31 @@
 # Agent Memories
 
+## UI layout redesign proposal
+
+- [Common notifications](65-ui-layout-redesign/common-notifications.md): shared timed/dismissible stacks, modal scopes, transient-feedback migration and isolated cross-engine tests.
+
+- [Readability and action priority](65-ui-layout-redesign/readability-action-priority.md): opaque tagline contrast, 14px supporting type/chart labels, ranked labelled actions, 130 passing regression cases and explicit WebKit native-push fixture evidence.
+
+- [Site hierarchy audit](65-ui-layout-redesign/site-hierarchy-audit.md): page/section/list typography and wrapping, all-template screenshot evidence and explicit regression limitations.
+
+- [Responsive and accessibility audit](65-ui-layout-redesign/responsive-accessibility-audit.md): read-only three-engine audit with 1,584 viewport/route combinations, 2,160 axe scans, nine prioritized findings and screenshot-backed cross-engine triage.
+
+- [Landing rhythm and typography](65-ui-layout-redesign/landing-rhythm-and-typography.md): measured eyebrow/title separation, readable type, responsive search controls and tablet status layout, with browser evidence.
+
+- [Home scroll cue](65-ui-layout-redesign/home-scroll-cue.md): centered destination-labelled anchor, unboxed static chevron and native/keyboard destination focus, verified with browser screenshots.
+
+- [Straight vertical status dividers](65-ui-layout-redesign/straight-vertical-dividers.md): independent gap rules remove inherited card-radius curves, with responsive/theme screenshot regression evidence.
+
+- [Disclosure motion](65-ui-layout-redesign/disclosure-motion.md): native/lazy disclosure height transitions, keyboard/reduced-motion behavior, interruption handling and screenshot/browser evidence.
+
+- [Modal close icons and motion](65-ui-layout-redesign/modal-close-and-motion.md): shared FontAwesome close controls, reduced-motion-aware native/custom dialog transitions and closing-lifetime/focus regressions.
+
+- [Single-owner section dividers](65-ui-layout-redesign/single-divider-ownership.md): screenshot-driven removal of duplicate section rules, default/expanded boundary regressions and independent rollback evidence.
+
+- [Neutral palette and hierarchy refinement](65-ui-layout-redesign/palette-and-hierarchy-refinement.md): reference-based correction of non-brand colors, header breathing room and section boundaries, with fresh screenshot and regression evidence.
+
+- [Screenshot-based analysis and plan](65-ui-layout-redesign/analysis-and-plan.md), followed by [implementation and verification](65-ui-layout-redesign/implementation-and-verification.md): open layouts, native filter dialogs, responsive reading/comparison surfaces, production accessibility/screenshots, regression repair and rollback evidence.
+
 ## Compact revision comparison
 
 - [Implementation and verification](64-compact-revision-diff/implementation-and-verification.md): compact changed-sentence hunks, responsive unified/split layouts, folded unchanged context, bounded long-text matching, and local regression/rollback verification.
@@ -438,3 +464,27 @@ agent_memories/
 ## 63 — Progressive Revision History (2026-11-01)
 
 - [Implementation and verification](63-progressive-revision-history/implementation-and-verification.md): notice-scoped cursor API and incremental history loading, append-only skeleton states, request cancellation and retry, comparison across page boundaries and 125-record regressions. [Backend 1.20.0 / frontend 1.27.0 release verification](63-progressive-revision-history/release-verification.md) records backend-first deployment, CI, actual production checks and retained intermittent positioning observations.
+
+## 65 — UI Layout Redesign (2026-11-03)
+
+- [Responsive/accessibility fixes](65-ui-layout-redesign/responsive-accessibility-fixes.md): nine audit findings, cross-engine focus/rounding/contrast corrections, WebKit deferred-details pointer fix, immutable-build browser verification and hash-guarded rollback evidence.
+- [Disclosure header affordance](65-ui-layout-redesign/disclosure-affordance.md): consistent full-row feedback and decorative chevrons on five native disclosure headers, 44px indicators, narrow/enlarged text checks and three-engine regressions.
+- [Interaction consistency and initial motion](65-ui-layout-redesign/interaction-consistency.md): supersedes boxed indicators with bare chevrons, unifies nested/conditional disclosures, improves mobile action cues and links, and removes initial/breakpoint rotation through explicit user-only animation; includes 252 visual cases and 246 cross-engine regressions.
+
+- [Logo animation and filter restoration](65-ui-layout-redesign/logo-filter-restoration.md): historical tagline sequencing restored without replacing current navigation; status labels centered with 44px targets, 12 cross-engine cases and separate-copy rollback verification.
+
+- [Revision comparison workspace](65-ui-layout-redesign/revision-comparison-workspace.md): desktop master/detail layout, mobile pane navigation and reading-position restoration, sticky accessible actions, enlarged-text handling and final browser evidence.
+
+- [Request failure states](65-ui-layout-redesign/request-failure-states.md): status-authoritative HTTP 429 handling, distinct transport/server feedback, bounded requests, partial discussion failures and recovery regressions.
+
+- [CI installation caches and intentional errors](65-ui-layout-redesign/ci-install-cache.md): OS-package mirror latency, compatible download caches, 429 injection provenance and negative failure controls.
+
+- [Frontend 1.28.0 release verification](65-ui-layout-redesign/release-verification.md): PR 184 merge, exact Pages release deployment, root pointer PR 24, fast-forward branch/install synchronization and real production interaction checks.
+
+## 66 — Dependency Refresh (2026-11-07)
+
+- [Dependency verification](66-dependency-refresh/verification.md): all backend/frontend Renovate PRs and npm outdated inventories, compatible updates, audit remediation and residual advisories, before/after tests and independent rollback. Includes the Satori/HarfBuzz workerd regression that Node-only image checks miss, and npm 12 direct-tarball installation behavior.
+
+## 67 — Major Dependency Migration (2026-11-07)
+
+- [Migration and verification](67-major-dependency-migration/verification.md): NestJS 12/TypeORM 1/Keyv 6 and SvelteKit 3/Vite 8 migrations, TypeScript 7 native/API separation, local deepmerge security patch, static HarfBuzz WASM bridges for Cloudflare, baseline E2E failure fixes, cache identity/raw-read regression, clean npm 11 installs and independent rollback evidence.
