@@ -148,3 +148,9 @@ All pending dependency, compatibility, vendored-source and verification changes 
 - Merge the frontend release only after backend deployment and real API verification are green. Pages deploys automatically from frontend main.
 - Publish all agent memories and final pointers; synchronize service branches with fast-forward-only operations, then verify every registered worktree with porcelain status.
 - Baseline snapshots/hashes and executable independent-fixture rollback are retained under `/private/tmp/lawcast-major-release-20261107/`. No production rollback is performed during successful validation.
+
+## CI compatibility follow-up
+
+The first candidate CI exposed Jest's synchronous ESM VM boundary on Node 22. Production dependencies support Node 22, so support and assertions are retained: `jest.config.cjs` uses native ESM on Node 24.9+ and a test-only Babel CommonJS/import.meta bridge on older supported runtimes. Added development packages are `@babel/core` (`^7.29.13`), `babel-jest` (`^30.5.2`) and `@babel/plugin-transform-modules-commonjs` (`^7.29.7`). Application output/production dependencies are unaffected. Actual isolated Node 22 and normal Node 24 runs each pass 89 suites/1,284 tests. See the [official Jest ESM boundary](https://jestjs.io/docs/next/ecmascript-modules).
+
+A full frontend run also exposed reuse of an already-running historical dev server. The default config now starts its own strict-port server with reuse disabled, and the pagination regression uses its current accessible label. The fresh isolated run passes all 413 default cases (74 existing feature-gated skips) plus the explicit 14 analytics cases. Actual workerd framework/PNG and PWA suites pass 17 and 36 cases respectively. No assertion was removed or relaxed to obtain these results.
