@@ -55,6 +55,13 @@ jobs:
       - name: Unit tests
         run: npm test -- --coverage
 
+      - name: Verify Redis migration compatibility
+        if: matrix.node-version == '24.22.1'
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq redis-server
+          npm run test:redis-migration
+
   frontend:
     name: Frontend — type-check & build
     runs-on: ubuntu-latest
