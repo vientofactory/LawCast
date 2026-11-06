@@ -134,7 +134,7 @@ All pending dependency, compatibility, vendored-source and verification changes 
 - SvelteKit configuration, declared environment variables, readonly URLs and navigation option names migrate together; form/error/query behavior remains covered.
 - The local HarfBuzz loader uses statically imported WASM/callback modules on workerd and the upstream loader on Node. Real Cloudflare PNG rendering validates this boundary.
 - The default suite owns analytics-disabled fixtures; analytics/floating tests run explicitly. PWA/classic-worker behavior and comparison reading-position preservation have real workerd coverage.
-- CI retains all previous browser suites and adds framework/PNG, analytics and Cloudflare PWA checks, with a budget increase instead of removing cases.
+- CI retains all previous browser suites and adds framework/PNG, analytics and Cloudflare PWA checks, as independent matrix entries while retaining the existing job budgets.
 
 ## Shared audit and licensing
 
