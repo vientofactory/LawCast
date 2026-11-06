@@ -434,3 +434,7 @@ agent_memories/
 ## 63 — Progressive Revision History (2026-11-01)
 
 - [Implementation and verification](63-progressive-revision-history/implementation-and-verification.md): notice-scoped cursor API and incremental history loading, append-only skeleton states, request cancellation and retry, comparison across page boundaries and 125-record regressions. [Backend 1.20.0 / frontend 1.27.0 release verification](63-progressive-revision-history/release-verification.md) records backend-first deployment, CI, actual production checks and retained intermittent positioning observations.
+
+## 66 — Cross-browser CI caches (2026-11-06)
+
+- [Implementation and verification](66-cross-browser-ci-cache/implementation-and-verification.md): shared Playwright installer, platform/version/engine-scoped package and binary caches, cache warming before matrix consumers, unconditional installation/test execution and separate frontend PR 185.
