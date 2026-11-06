@@ -13,8 +13,8 @@ LawCast is a self-hosted platform that collects Korean National Assembly legisla
 
 | Layer          | Technology                                                   |
 | -------------- | ------------------------------------------------------------ |
-| Backend        | NestJS 11.x, TypeORM 0.3.x, SQLite 3, Redis (Keyv), Jest     |
-| Frontend       | SvelteKit 2.x, Svelte 5.x, Tailwind CSS v4, FontAwesome v7   |
+| Backend        | NestJS 12.x, TypeORM 1.x, SQLite (better-sqlite3), Redis (Keyv 6), Jest     |
+| Frontend       | SvelteKit 3.x, Svelte 5.x, Tailwind CSS v4, FontAwesome v7   |
 | Infrastructure | Docker Compose, Cloudflare (frontend), Ollama (AI summaries) |
 
 ### Repository Structure
@@ -145,7 +145,7 @@ Session folders follow this pattern:
 ### Code Style
 - **Module system**: CommonJS (`require`/`module.exports`)
 - **Prettier**: `singleQuote: true`, `trailingComma: "all"`, 2-space indent
-- **TypeScript**: `strictNullChecks: false`, `noImplicitAny: false`, ES2021 target
+- **TypeScript**: `strictNullChecks: false`, `noImplicitAny: false`, ES2023 target
 - **Decorators**: NestJS standard (`@Injectable()`, `@InjectRepository()`, etc.)
 - **DI pattern**: Constructor injection with `@InjectRepository()` for TypeORM
 - **Error handling**: NestJS exceptions (`NotFoundException`, `BadRequestException`, `UnauthorizedException`)
@@ -210,9 +210,11 @@ Right: `` // `proposalReason` (`제안이유`) is matched through the FTS index,
 
 ### Testing
 
+- Jest configuration lives in `backend/jest.config.cjs`. Node 24 uses native ESM VM loading; Node 22 uses the test-only Babel compatibility transform. Do not remove either runtime's tests to hide an ESM loading failure.
+- TypeScript 6 remains the compiler API for Nest/ts-jest; TypeScript 7 is installed as `typescript-native` for the explicit native check. Keep both checks.
 - Framework: Jest (run with `cd backend && npm test`)
 - Mock pattern: `jest.fn()` with explicit method names matching the real service
-- Run specific tests: `npm test -- --testPathPattern=discussions`
+- Run specific tests: `npm test -- --testPathPatterns=discussions`
 - Run in band: `npm test -- --runInBand`
 - **Test descriptions in English ONLY**: `describe(...)` / `it(...)` titles MUST be English; cite Korean
   domain values only as quoted literals, e.g. `it('treats both NSM `발의` and LIKMS `접수` as pending-like')`.
@@ -406,6 +408,8 @@ cd semantic-search && .venv/bin/python scripts/07_capability_report.py --db ../b
 - Agent guidelines MUST be clean (see §4/§5/§6): `python3 tools/check-agent-guidelines.py` from the repo root exits 0 (C1 comments, T1 test titles, E1 emojis in comments)
 - **NEVER commit without running these first** — unformatted code will cause CI failures and unnecessary version bumps
 - If lint or check produces changes, include those changes in the same commit as the feature/fix
+
+**CI-matched package tooling:** use npm 11.13.0 for reproducible installs/lockfile updates (`npx --yes npm@11.13.0 install` when the global npm differs). Both services use local `vendor/deepmerge`; frontend also uses `vendor/harfbuzz-edge`. Preserve vendor files/licenses in Git and Docker install/runtime stages. Public API envelopes and archived SQLite schema are unchanged by the 2.0 migrations.
 
 **CRITICAL: Lockfile sync after any package change**
 If ANY package-related file was modified (`package.json`, overrides, resolutions, dependency additions/removals), agents MUST run `npm install` in the affected submodule and verify no `package-lock.json` diff remains **before committing**:
