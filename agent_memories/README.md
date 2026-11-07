@@ -494,3 +494,23 @@ agent_memories/
 ## 66 — Cross-browser CI caches (2026-11-06)
 
 - [Implementation and verification](66-cross-browser-ci-cache/implementation-and-verification.md): shared Playwright installer, platform/version/engine-scoped package and binary caches, cache warming before matrix consumers, unconditional installation/test execution and separate frontend PR 185.
+
+## 69 — Search Priority Bake-off (2026-11-07)
+
+- [Evaluation](69-search-priority-bakeoff/evaluation.md): auto-mode exact identifiers, strict law names and correction suggestions; 140-query replay and real FAISS SQ8 trade-offs. FP32 remains the default.
+
+## 70 — Production Search Shadow (2026-11-07)
+
+- [Production evaluation](70-production-search-shadow/evaluation.md): exact identifier lookup, additive typo guidance, live FP32 capability gate, released-image BGE20 paired Docker logs, and separate backend HTTP/reranker timings.
+
+## 71 — Zipge Gap Follow-up (2026-11-08)
+
+- [Evaluation](71-zipge-gap-followup/evaluation.md): live state recheck, page-scoped archive enrichment with response parity, and an offline FTS fusion rejection.
+
+## 72 — GPU Search Evaluation (2026-11-08)
+
+- [Evaluation](72-gpu-search-evaluation/evaluation.md): page-scoped production release, retained CPU baseline, local MPS replay, and independent Garu gate ablation.
+
+## 73 — Full Worktree Rollout (2026-11-08)
+
+- [Evaluation](73-full-worktree-rollout/evaluation.md): full input reconciliation, public search guide checks, and a same-index evaluation of 47 Korean legal aliases.
