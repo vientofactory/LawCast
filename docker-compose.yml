@@ -88,6 +88,8 @@ services:
       # shrink-guard override (keep false unless an operator has checked the DB).
       - LAWCAST_SEMANTIC_DB_PATH=/data/lawcast.db
       - LAWCAST_SEMANTIC_ALLOW_LARGE_DELETE=false
+      # Serving stays off even if an optional env file contains the replay opt-in.
+      - LAWCAST_SEMANTIC_DISTILLATION_SHADOW_ENABLED=0
       # LAWCAST_SEMANTIC_UPDATE_CRON is intentionally NOT set here. Compose
       # `environment` outranks `env_file`, so a hardcoded expression silently
       # swallowed semantic-search/.env: production ticked hourly (`0 * * * *`)
