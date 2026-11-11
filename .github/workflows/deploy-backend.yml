@@ -161,6 +161,27 @@ jobs:
                 echo "ERROR: Backend Node.js runtime does not match the patched release"
                 exit 1
               fi
+              # Verify the running release and both compiled worker entrypoints before recording success.
+              docker compose exec -T backend node -e '
+                const assert = require("node:assert/strict");
+                const fs = require("node:fs");
+                const path = require("node:path");
+                const { resolveChildEntrypoint, isolatedChildOptions } = require("./dist/utils/child-process-entrypoint.util");
+                (async () => {
+                  for (const worker of ["db-mirror/database-dump-child", "change-tracking/chain-audit-child"]) {
+                    const file = path.resolve("dist/modules", worker + ".js");
+                    fs.accessSync(file, fs.constants.R_OK);
+                    assert.equal(resolveChildEntrypoint(path.dirname(file), path.basename(worker)), file);
+                    assert.deepEqual(isolatedChildOptions(file, 128).execArgv, ["--max-old-space-size=128"]);
+                  }
+                  const response = await fetch("http://127.0.0.1:3001/api/version", { signal: AbortSignal.timeout(10000) });
+                  assert.equal(response.status, 200);
+                  const body = await response.json();
+                  assert.equal(body.success, true);
+                  assert.equal(body.data.version, process.argv[1]);
+                  console.log("Backend release verified: version=" + body.data.version + " compiled_workers=2 no_ts_loader=true");
+                })().catch((error) => { console.error(error.message); process.exitCode = 1; });
+              ' "$APP_VERSION"
               # Record only after the health check passed, so a failed deploy
               # is retried on the next run.
               .github/scripts/deploy-change-guard.sh record backend
