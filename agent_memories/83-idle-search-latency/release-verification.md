@@ -111,3 +111,19 @@ and resolve both `wg` and `wg-quick` BEFORE another main deployment is allowed.
 This extends the CI gate; it does not bypass any existing test or capability
 check. Runner-specific repository metadata is signed by the installed Ubuntu
 keyring. The main run failure and both earlier Redis DNS failures are retained.
+
+The required bootstrap preflight caught a broader runner outage too: even
+`archive.ubuntu.com` DNS resolution failed. The signed-APT alternative was not
+merged or deployed. The active installer now builds the official WireGuard
+`v1.0.20250521` source with the runner's existing C toolchain, pins and verifies
+commit `e2ecaaa739144997ccff89d6ad6ec81698ea6ced` BEFORE build execution, and
+installs only `wg` and the upstream Linux `wg-quick` script. TLS verification
+and immutable source identity are retained; no unsigned prebuilt binary or
+Ubuntu mirror is used. systemd's documented `resolvconf` compatibility entry
+point is linked only when needed and already available as `resolvectl`.
+
+The fixture checks the exact upstream pin, build/install, preinstalled fast
+path, and rejects a mismatched commit before invoking make. The required real
+Ubuntu CI preflight remains the acceptance gate. Primary implementation
+references: upstream WireGuard `src/Makefile` and systemd's `man/resolvectl.xml`
+compatibility section, both from their official GitHub repositories.

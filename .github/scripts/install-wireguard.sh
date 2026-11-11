@@ -1,32 +1,24 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if command -v wg >/dev/null && command -v wg-quick >/dev/null; then
-  wg --version
-  exit 0
+PREFIX=${LAWCAST_TOOL_PREFIX:-/usr/local}
+if ! command -v wg >/dev/null || ! command -v wg-quick >/dev/null; then
+  [[ $(uname -s) == Linux ]]
+  WORK=$(mktemp -d "${RUNNER_TEMP:-${TMPDIR:-/tmp}}/lawcast-wireguard.XXXXXX")
+  # Build the official release with the hosted image's existing C toolchain.
+  # Verify the immutable commit before executing its build instructions.
+  git -c advice.detachedHead=false clone --depth 1 --branch v1.0.20250521 \
+    https://github.com/WireGuard/wireguard-tools.git "$WORK/source"
+  test "$(git -C "$WORK/source" rev-parse HEAD)" = e2ecaaa739144997ccff89d6ad6ec81698ea6ced
+  make -C "$WORK/source/src" -j2
+  sudo install -d -m 755 "$PREFIX/bin"
+  sudo install -m 755 "$WORK/source/src/wg" "$PREFIX/bin/wg"
+  sudo install -m 755 "$WORK/source/src/wg-quick/linux.bash" "$PREFIX/bin/wg-quick"
 fi
 
-# Isolate signed Ubuntu sources from a broken hosted-runner mirror list.
-# The override is useful for fixture tests; deployment uses /etc/os-release.
-source "${LAWCAST_OS_RELEASE_FILE:-/etc/os-release}"
-: "${VERSION_CODENAME:?Ubuntu codename is required}"
-WORK=$(mktemp -d "${RUNNER_TEMP:-${TMPDIR:-/tmp}}/lawcast-wireguard.XXXXXX")
-chmod 755 "$WORK"
-mkdir "$WORK/lists"
-for SUITE in "$VERSION_CODENAME" "$VERSION_CODENAME-updates" "$VERSION_CODENAME-security"; do
-  printf 'deb [signed-by=/usr/share/keyrings/ubuntu-archive-keyring.gpg] https://archive.ubuntu.com/ubuntu/ %s main restricted universe multiverse\n' "$SUITE"
-done > "$WORK/ubuntu.list"
-
-APT_OPTIONS=(
-  -o "Dir::Etc::sourcelist=$WORK/ubuntu.list"
-  -o 'Dir::Etc::sourceparts=-'
-  -o "Dir::State::lists=$WORK/lists"
-  -o 'APT::Update::Error-Mode=any'
-  -o 'Acquire::Retries=1'
-  -o 'Acquire::http::Timeout=20'
-  -o 'Acquire::https::Timeout=20'
-)
-sudo apt-get "${APT_OPTIONS[@]}" update -qq
-sudo apt-get "${APT_OPTIONS[@]}" install -y -qq wireguard-tools
+# systemd supports the resolvconf invocation used by wg-quick for DNS settings.
+if ! command -v resolvconf >/dev/null && command -v resolvectl >/dev/null; then
+  sudo ln -s "$(command -v resolvectl)" "$PREFIX/bin/resolvconf"
+fi
 wg --version
 command -v wg-quick
