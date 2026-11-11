@@ -558,3 +558,5 @@ agent_memories/
 - [Production diagnosis](83-idle-search-latency/diagnosis.md): engine-side multi-second outliers, actual Python worker swap and major faults, cache-hit versus uncached inference controls, hourly update memory overlap, and evidence-qualified mitigation priorities. No runtime changes.
 - [Local improvement](83-idle-search-latency/local-improvement.md): bounded FlatIP scratch, early input-buffer release, real document-update memory comparison, cache-bypassing ONNX/FAISS idle upkeep, process fault diagnostics and local-only verification.
 - [Release verification](83-idle-search-latency/release-verification.md): signed 3.1.1 release, mandatory CI/deployment gates, hosted-runner mirror corrections, retained rollback and paired production idle measurements.
+
+- [Warmup logging](83-idle-search-latency/warmup-logging.md): explicit development-only routine completion logs, unchanged native upkeep and production failure warnings, regression coverage and operational verification.

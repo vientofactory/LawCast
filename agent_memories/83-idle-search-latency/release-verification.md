@@ -86,44 +86,106 @@ skipping Redis verification. Local shell syntax, YAML/probe-preservation and
 exact-argument/empty-save-value fixture checks pass; canonical CI validates the
 real Redis server before deployment.
 
-## Deployment bootstrap mirror isolation
+## Deployment bootstrap and release outcome
 
-The first main deployment reached WireGuard setup, which still used the same
-runner APT mirror list. The release adds a common installer for both deployment
-workflows: use already installed tools when present; otherwise install from
-isolated HTTPS `archive.ubuntu.com` sources for the runner's base, updates and
-security suites. Ubuntu's installed archive keyring still verifies repository
-signatures and package hashes; no authentication or TLS check is disabled.
-Acquisition retries/timeouts are bounded, and the runner's global APT sources
-are not rewritten. The VPN configuration remains private and the original
-interface-up/ping/SSH checks remain mandatory.
+The initial root main deployment failed before any SSH/container replacement:
+the Ubuntu runner could not resolve `security.ubuntu.com` while installing
+WireGuard. An isolated signed Ubuntu archive alternative also failed its new
+required PR preflight because `archive.ubuntu.com` DNS failed. That attempted
+APT implementation was never deployed.
 
-Local tests cover shell syntax, source/suite/keyring selection, bounded APT
-options and the already-installed fast path with recording shims. Actual
-package installation, VPN connectivity and deployment are verified by the
-subsequent main workflow, not claimed from these fixtures. Application commits
-and semantic-search version remain unchanged.
+Root PR 49 uses a shared installer for both deploy workflows. It builds the
+official WireGuard `v1.0.20250521` source with the runner's existing C toolchain,
+verifies immutable commit `e2ecaaa739144997ccff89d6ad6ec81698ea6ced` before
+build execution, and installs only `wg` and upstream Linux `wg-quick`.
+TLS verification and immutable source identity remain enabled. No unsigned
+prebuilt binary or Ubuntu mirror is used. systemd's documented `resolvconf`
+compatibility entry point is linked only when necessary and available as
+`resolvectl`. The VPN profile stays private; ping/SSH checks remain mandatory.
 
-The subsequent main job `130579971542` confirms the same DNS failure fetching
-WireGuard before any SSH/container replacement. The deployment-tool installer
-therefore has its own required PR CI job; it must perform a real installation
-and resolve both `wg` and `wg-quick` BEFORE another main deployment is allowed.
-This extends the CI gate; it does not bypass any existing test or capability
-check. Runner-specific repository metadata is signed by the installed Ubuntu
-keyring. The main run failure and both earlier Redis DNS failures are retained.
+The required deployment-tools PR job performs the REAL source build on Ubuntu,
+checks `wg`/`wg-quick`, and compiles the finite measurement script. CI gate
+requires this job in addition to all existing backend, frontend and sidecar
+checks. Local fixtures also reject a mismatched source revision before make.
+No application assertions or index-capability checks were bypassed.
 
-The required bootstrap preflight caught a broader runner outage too: even
-`archive.ubuntu.com` DNS resolution failed. The signed-APT alternative was not
-merged or deployed. The active installer now builds the official WireGuard
-`v1.0.20250521` source with the runner's existing C toolchain, pins and verifies
-commit `e2ecaaa739144997ccff89d6ad6ec81698ea6ced` BEFORE build execution, and
-installs only `wg` and the upstream Linux `wg-quick` script. TLS verification
-and immutable source identity are retained; no unsigned prebuilt binary or
-Ubuntu mirror is used. systemd's documented `resolvconf` compatibility entry
-point is linked only when needed and already available as `resolvectl`.
+- Sidecar PR 25: release `semantic-search-v3.1.1`, commit
+  `ce9346aa1697748a9ccde158c6a2d232264014b3`.
+- Root PR 48: records released sidecar pointer and real Redis migration CI.
+- Root PR 49: deployment bootstrap and finite manual idle measurement transport.
+- Root main commit `3e64ddd328edc8a5b02c59fa6771126553b1f596`.
+- Required PR CI run `43042490806`: all gates pass, including Node 22 and 24.
+- Main CI/deploy run `43043350946`: all checks and BOTH deploy jobs pass.
+- Semantic HTTP ready at `2026-11-11T15:01:10Z`; gRPC ready, maxK 20.
+- Capability guard baseline/candidate: 121546 chunks, 22294 indexed notices;
+  literal `capability deltas   : none`, `release check       : OK — no capability class lost`.
+  The break-glass input remains false.
+- Backend and frontend source versions unchanged at 3.1.2 and 3.1.1.
+- Local backend/frontend remain on clean dev, sidecar on clean main; released
+  sidecar tag and root gitlinks match these exact source commits.
 
-The fixture checks the exact upstream pin, build/install, preinstalled fast
-path, and rejects a mismatched commit before invoking make. The required real
-Ubuntu CI preflight remains the acceptance gate. Primary implementation
-references: upstream WireGuard `src/Makefile` and systemd's `man/resolvectl.xml`
-compatibility section, both from their official GitHub repositories.
+## Production idle measurement method
+
+Before deployment, the old container completed both real quiet windows.
+The first requests reached the loopback BACKEND origin API, not the CDN or a
+standalone embedding benchmark. Each query was previously unseen in that
+process. HTTP 200 and semantic mode were required. Sidecar timing logs, actual
+major faults/read bytes, image/start/restart identity, index generation and
+foreground search interruptions were recorded. Health/log polling performs no
+inference. No public traffic was blocked and no cache/swap was flushed.
+
+The finite manual `measure-idle-search.yml` workflow uses the existing deploy
+VPN because local private-host SSH began timing out. It shares the deploy
+concurrency group, starts only from main, and stops after 180/600 second windows.
+It is NOT a scheduled automation. Public search traffic resets the quiet timer;
+a bounded timeout fails rather than describing an interrupted window as idle.
+A repeat/cache-hit and an extra novel warm-control request occur AFTER each
+first request. The warm control was added for postdeploy diagnostics and is not
+part of the paired baseline comparison.
+
+Raw evidence: `_workspace/idle-search-release-20261111/production-baseline.json`,
+`production-deploy-log.txt`, `backend-deploy-log.txt`, and manual measurement
+run `43044601474`. The paired baseline first-request values are 382.501438ms
+(180s) and 750.936258ms (600s); seed/startup traffic is not a fixed-idle sample.
+
+## Paired production results
+
+The manual run `43044601474` succeeded. New image:
+`sha256:358b54a548bf28afd21060b276065d54902cb87143d5f7ddb4388a0eb58de338`,
+started `2026-11-11T15:00:22.645575742Z`, restart count 0 throughout measurement.
+All five compose/env hashes exactly match the predeploy backup. Both first
+requests had positive model execution, HTTP 200, semantic mode, identical
+ordered notice IDs to baseline, unchanged indexed chunks/lastUpdateAt, and no
+index update during either measured window.
+
+- 180 seconds: origin API **382.501 → 462.663 ms (+20.96%, NOT improved)**.
+  Sidecar total 356.6 → 344.7 ms (-3.34%). Major faults 186 → 14.
+  17 native warmups occurred, with no intervening public search.
+- 600 seconds: origin API **750.936 → 315.249 ms (-58.02%)**.
+  Sidecar total 445.9 → 286.8 ms (-35.68%). Major faults 164 → 10.
+  68 native warmups occurred during the complete wait. Six public requests
+  initially interrupted this interval; the probe RESET its quiet timer and
+  then observed a full final 600 seconds without a foreground search.
+  Total wait was 738.45 seconds, not a falsely labelled interrupted 600s gap.
+- Fresh, different warm-control origin requests after the two first samples
+  took 594.731 and 965.053 ms (sidecar totals 368.5 and 282.2 ms). This exposes
+  substantial variation OUTSIDE the sidecar timed section. It does not isolate
+  whether backend DB hydration, transport or scheduling is responsible.
+- Repeat requests used the embedding cache and are NOT comparable fresh-model
+  controls; the first samples above did not use cached embeddings.
+
+**The production improvement is partial, not a two-window success.** There is
+one paired observation per window, not a distribution or p95 claim. The two
+arms are time-separated, not concurrent randomized runs. The 3-minute origin
+latency regressed despite slightly lower engine time, and first requests still
+incur major faults. The next diagnostic priority is request-correlated backend
+phase/DB/transport timing plus repeated novel-query quiet windows; do not label
+this release as eliminating all perceived first-request delay.
+
+Raw final result: `_workspace/idle-search-release-20261111/production-deployed.json`.
+Full command/result, original/modified hashes, operational rollback fixture,
+and four artifact paths are recorded in the adjacent `VERIFICATION.txt`.
+The operational rollback script was tested on an INDEPENDENT recording-Docker
+fixture: old image arguments, deploy marker and compose preservation passed.
+Production was NOT rolled back; it remains on the new image. Earlier independent
+source rollback restored 94 original hashes and 387 passed / 3 skipped tests.
