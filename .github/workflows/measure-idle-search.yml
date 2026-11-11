@@ -1,0 +1,89 @@
+name: Measure Production Idle Search
+
+on:
+  workflow_dispatch:
+    inputs:
+      arm:
+        description: Measurement label for the deployed image
+        required: true
+        default: deployed
+        type: choice
+        options: [baseline, deployed]
+
+concurrency:
+  group: deploy-backend
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  DEPLOY_HOST: 10.20.0.1
+  REPO_PATH: /root/lawcast
+
+jobs:
+  measure:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Connect deployment VPN and SSH
+        env:
+          VULTR_WIREGUARD: ${{ secrets.VULTR_WIREGUARD }}
+          VULTR_SSH_SECRET: ${{ secrets.VULTR_SSH_SECRET }}
+          SSH_USER: ${{ vars.VULTR_SSH_USER }}
+        run: |
+          bash .github/scripts/install-wireguard.sh
+          umask 077
+          printenv VULTR_WIREGUARD > /tmp/wg0.conf
+          sudo install -d -m 700 /etc/wireguard
+          sudo cp /tmp/wg0.conf /etc/wireguard/wg0.conf
+          sudo wg-quick up wg0
+          ping -c 1 -W 5 "$DEPLOY_HOST"
+          mkdir -p ~/.ssh
+          printenv VULTR_SSH_SECRET > ~/.ssh/deploy_key
+          cat > ~/.ssh/config <<EOF
+          Host deploy-target
+              HostName $DEPLOY_HOST
+              User $SSH_USER
+              IdentityFile ~/.ssh/deploy_key
+              StrictHostKeyChecking no
+              UserKnownHostsFile /dev/null
+              ConnectTimeout 10
+              ServerAliveInterval 10
+              ServerAliveCountMax 2
+          EOF
+          ssh deploy-target 'echo "Measurement transport ready"'
+
+      - name: Capture deployment identity
+        run: |
+          ssh deploy-target 'cd /root/lawcast; git rev-parse HEAD; git submodule status; docker inspect --format "{{.Name}} {{.Image}} {{.State.StartedAt}} {{.RestartCount}}" lawcast-semantic-search; sha256sum docker-compose.yml .env semantic-search/.env backend/.env frontend/.env'
+
+      - name: Run finite 180 and 600 second origin measurement
+        env:
+          ARM: ${{ inputs.arm }}
+        run: |
+          case "$ARM" in baseline|deployed) ;; *) exit 1 ;; esac
+          D="$REPO_PATH/_workspace/production-idle-probes/$GITHUB_RUN_ID"
+          ssh deploy-target "mkdir -p '$D'"
+          scp -q .github/scripts/measure-production-idle.py "deploy-target:$D/probe.py"
+          ssh deploy-target "cd '$REPO_PATH'; nohup python3 '$D/probe.py' --arm '$ARM' --out '$D/results.json' > '$D/progress.log' 2>&1 < /dev/null & echo \$! > '$D/pid'"
+          for attempt in $(seq 1 170); do
+            scp -q "deploy-target:$D/results.json" results.json 2>/dev/null || true
+            if python3 -c 'import json; assert json.load(open("results.json"))[-1]["event"] == "finish"' 2>/dev/null; then
+              python3 -c 'import json; print("IDLE_RESULT_JSON " + json.dumps(json.load(open("results.json")), ensure_ascii=False))'
+              exit 0
+            fi
+            sleep 15
+          done
+          ssh deploy-target "tail -40 '$D/progress.log'" || true
+          exit 1
+
+      - name: Clean up measurement transport
+        if: always()
+        run: |
+          rm -f ~/.ssh/deploy_key /tmp/wg0.conf
+          sudo wg-quick down wg0 || true

@@ -85,3 +85,45 @@ server. This avoids the unrelated Ubuntu package mirror dependency rather than
 skipping Redis verification. Local shell syntax, YAML/probe-preservation and
 exact-argument/empty-save-value fixture checks pass; canonical CI validates the
 real Redis server before deployment.
+
+## Deployment bootstrap mirror isolation
+
+The first main deployment reached WireGuard setup, which still used the same
+runner APT mirror list. The release adds a common installer for both deployment
+workflows: use already installed tools when present; otherwise install from
+isolated HTTPS `archive.ubuntu.com` sources for the runner's base, updates and
+security suites. Ubuntu's installed archive keyring still verifies repository
+signatures and package hashes; no authentication or TLS check is disabled.
+Acquisition retries/timeouts are bounded, and the runner's global APT sources
+are not rewritten. The VPN configuration remains private and the original
+interface-up/ping/SSH checks remain mandatory.
+
+Local tests cover shell syntax, source/suite/keyring selection, bounded APT
+options and the already-installed fast path with recording shims. Actual
+package installation, VPN connectivity and deployment are verified by the
+subsequent main workflow, not claimed from these fixtures. Application commits
+and semantic-search version remain unchanged.
+
+The subsequent main job `130579971542` confirms the same DNS failure fetching
+WireGuard before any SSH/container replacement. The deployment-tool installer
+therefore has its own required PR CI job; it must perform a real installation
+and resolve both `wg` and `wg-quick` BEFORE another main deployment is allowed.
+This extends the CI gate; it does not bypass any existing test or capability
+check. Runner-specific repository metadata is signed by the installed Ubuntu
+keyring. The main run failure and both earlier Redis DNS failures are retained.
+
+The required bootstrap preflight caught a broader runner outage too: even
+`archive.ubuntu.com` DNS resolution failed. The signed-APT alternative was not
+merged or deployed. The active installer now builds the official WireGuard
+`v1.0.20250521` source with the runner's existing C toolchain, pins and verifies
+commit `e2ecaaa739144997ccff89d6ad6ec81698ea6ced` BEFORE build execution, and
+installs only `wg` and the upstream Linux `wg-quick` script. TLS verification
+and immutable source identity are retained; no unsigned prebuilt binary or
+Ubuntu mirror is used. systemd's documented `resolvconf` compatibility entry
+point is linked only when needed and already available as `resolvectl`.
+
+The fixture checks the exact upstream pin, build/install, preinstalled fast
+path, and rejects a mismatched commit before invoking make. The required real
+Ubuntu CI preflight remains the acceptance gate. Primary implementation
+references: upstream WireGuard `src/Makefile` and systemd's `man/resolvectl.xml`
+compatibility section, both from their official GitHub repositories.
