@@ -85,3 +85,21 @@ server. This avoids the unrelated Ubuntu package mirror dependency rather than
 skipping Redis verification. Local shell syntax, YAML/probe-preservation and
 exact-argument/empty-save-value fixture checks pass; canonical CI validates the
 real Redis server before deployment.
+
+## Deployment bootstrap mirror isolation
+
+The first main deployment reached WireGuard setup, which still used the same
+runner APT mirror list. The release adds a common installer for both deployment
+workflows: use already installed tools when present; otherwise install from
+isolated HTTPS `archive.ubuntu.com` sources for the runner's base, updates and
+security suites. Ubuntu's installed archive keyring still verifies repository
+signatures and package hashes; no authentication or TLS check is disabled.
+Acquisition retries/timeouts are bounded, and the runner's global APT sources
+are not rewritten. The VPN configuration remains private and the original
+interface-up/ping/SSH checks remain mandatory.
+
+Local tests cover shell syntax, source/suite/keyring selection, bounded APT
+options and the already-installed fast path with recording shims. Actual
+package installation, VPN connectivity and deployment are verified by the
+subsequent main workflow, not claimed from these fixtures. Application commits
+and semantic-search version remain unchanged.

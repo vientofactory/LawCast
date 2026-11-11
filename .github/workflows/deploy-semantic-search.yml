@@ -57,11 +57,11 @@ jobs:
         env:
           VULTR_WIREGUARD: ${{ secrets.VULTR_WIREGUARD }}
         run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq wireguard-tools
+          bash .github/scripts/install-wireguard.sh
 
           # Write WireGuard profile from secret (use printenv to avoid shell argument exposure)
           printenv VULTR_WIREGUARD > /tmp/wg0.conf
+          sudo install -d -m 700 /etc/wireguard
           sudo cp /tmp/wg0.conf /etc/wireguard/wg0.conf
           sudo chmod 600 /etc/wireguard/wg0.conf
 
