@@ -71,3 +71,53 @@ It is superseded for this rollout by `backend-v3.1.2`, PR 240, commit
 is `2e858fe`; local/origin dev and the release tag are synchronized. The
 initial root deployment PR is updated to this exact 3.1.2 commit before
 merging. Frontend PR 204 is still the 3.1.1 frontend patch release.
+
+## Observed production rollout
+
+- Root PR 46 merged as `4f9f2cda5d21f9a84f990c2ce6f764e9c18ec656`.
+  [Deployment 42994508065](https://github.com/vientofactory/LawCast/actions/runs/42994508065)
+  passed both Node matrices, Python tests and backend deployment. The sidecar
+  guard skipped rebuilding/restarting the unchanged engine. Backend health
+  reports 3.1.2 and the expected Node v24.22.1.
+- The post-deploy native probe in the real backend container confirms isolated
+  gRPC UNAVAILABLE -> real read-only keyword API rows `[2222654, 2222405]`.
+  Controlled repository rows verify strong `[1]`, weak `[2]`, cache-only `[99]`
+  on page 2 and duplicate `[1]` exclusion. These fixture IDs are not production
+  inserts. A separate direct live gRPC request preserves the known five-notice
+  order, and the live mixed query retains the six primary notices and seven
+  weak notices with no cross-tier duplicate.
+- `semantic-search.service.ts:215-226` centralizes the cosine response's
+  notice-level deduplication before slicing the weak band. The independent
+  modified backend copy passes 57 focused HTTP/gRPC tests; restoring the
+  original runtime hash brings back four failures (53 others still pass).
+- Compose and all three project env files remain byte-identical to preflight.
+  Sidecar image ID and exact container start timestamp also match preflight.
+  gRPC `semantic-search:8301`, ONNX, cache 256 and host-port isolation remain.
+
+## Frontend production verification
+
+Only after backend verification, frontend PR 204 merged as
+`df0e5bdb0078f85d2f749cfff0c35bb469cebb3b`, tagged `frontend-v3.1.1`.
+Its [PR CI 42992259202](https://github.com/vientofactory/LawCast-Frontend/actions/runs/42992259202)
+passes all 585 browser cases across eleven suites. The separate 59-case
+search UI run remains green. Frontend dev was fast-forwarded and a real npm
+11.13.0 install left the lockfile clean before pushing origin/dev.
+
+[Pages deployment 42996013905](https://github.com/vientofactory/LawCast-Frontend/actions/runs/42996013905)
+succeeded. Canonical Cloudflare production deployment
+`1b922dd7-3465-41e6-8a14-bf03a356aa4f` reports success at that exact release
+SHA. Both existing domains and all seven runtime binding names are preserved;
+the native Git source remains disconnected. No secret values were exported.
+
+On the public site, browser-only health failure injection reproduces the old
+`inert=true, focused=false` state before deployment and confirms
+`inert=false, focused=true` afterwards. The actual live mixed query keeps six
+primary results and appends seven unique weak results. Form submission still
+works while health is failed. A 390px dark-mode run confirms the notice,
+weak-tail interaction and no horizontal overflow. These browser intercepts
+do not alter the production engine or server responses for other users.
+
+Exact deployed frontend postmerge regression run:
+[42996013830](https://github.com/vientofactory/LawCast-Frontend/actions/runs/42996013830).
+The final root pointer update records the released frontend SHA, not its
+feature commit, after these origin and Pages checks.
