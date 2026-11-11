@@ -132,3 +132,14 @@
   Root rerun attempt 2 passed all 88 suites/1,282 tests on Node 24 with no source/test changes. Both unchanged-service deployment guards then exited normally; the frontend release remained live. The original failed assertion and final successful logs are retained separately.
 
 - **2.0 runtime/cache migration (2026-11-07):** backend-v2.0.0 fixes the immediate-start clock flake above with a locally restored `Date.now` spy, not a scheduler behavior change. Nest 12 ESM dependencies require the test-only Babel CommonJS bridge on Node 22; Node 24 keeps native VM loading. Keep both runtime matrices and TypeScript 6 API/TypeScript 7 native checks. Keyv 6 needs the explicit Nest identity/raw-read compatibility bridge; the real Redis probe verifies legacy envelopes, TTL, cache hits and namespace-isolated clear. TypeORM 1 uses better-sqlite3 without changing archived schema or enabling automatic synchronization/migrations. Root CI runs the Redis probe on Node 24. See [migration release review](../68-major-dependency-migration/release-analysis.md) and [verification](../68-major-dependency-migration/verification.md).
+
+- **Semantic Top-K limits cover distinct units (2026-11-09).** Sidecar `maxK`
+  counts chunks; backend public `MAX_K` counts notices; the hybrid board
+  candidate pool is separate from its page size. In production the sidecar
+  already had `LAWCAST_SEMANTIC_MAX_K=20` but the backend accepted `k=21`
+  until the public validator was aligned. Use
+  `SEMANTIC_SEARCH_CHUNK_CAP_CEILING=20` for the backend's first-window
+  fallback and its negotiated cap, and
+  `SEMANTIC_SEARCH_HYBRID_MAX_NOTICES=20` for the merged board candidate
+  window. Verify the upper boundary directly: 20 succeeds, 21 returns
+  422 from the sidecar and 400 from the backend/frontend API.

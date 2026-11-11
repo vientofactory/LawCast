@@ -514,3 +514,35 @@ agent_memories/
 ## 73 — Full Worktree Rollout (2026-11-08)
 
 - [Evaluation](73-full-worktree-rollout/evaluation.md): full input reconciliation, public search guide checks, and a same-index evaluation of 47 Korean legal aliases.
+
+## 74 — Search Relevance Rollback (2026-11-10)
+
+- [Verification](74-search-relevance-rollback/verification.md): scoped rollback of request-time relevance calibration and weak recovery, with cosine-tier parity on the same FAISS generation.
+
+## 75 — Search Sidecar gRPC (2026-11-10)
+
+- [Migration and measurement](75-search-sidecar-grpc/verification.md): shared engine admission, gRPC deadlines, HTTP rollback, search parity, and real CPU/FAISS transport measurements.
+
+## 76 — Query Embedding Profile (2026-11-10)
+
+- [Verification](76-query-embedding-profile/verification.md): gRPC phase attribution, exact vector LRU, cold and widened-query controls, response parity and rollback.
+
+## 77 — Cold Query ONNX (2026-11-10)
+
+- [Verification](77-cold-query-onnx/verification.md): query-only FP32 ONNX backend, true-cache-miss gRPC ABBA, rank parity, and memory cost.
+
+## 78 — Lazy Query PyTorch (2026-11-10)
+
+- [Verification](78-lazy-query-pytorch/verification.md): offline ONNX parity bundle, document-only weight lease, lazy fallback, RSS and cold gRPC replay, and real index update readback.
+
+## 79 — gRPC Search Timing (2026-11-10)
+
+- [Audit and verification](79-grpc-search-timing/verification.md): native RPC outcomes, transport-aware waterfall/comparison, worker waits, trace correlation, and real browser-to-sidecar verification.
+
+## 80 — Search Timing Hydration (2026-11-11)
+
+- [Root causes and verification](80-search-timing-hydration/verification.md): SSR history readiness, reconciliation of pre-hydration system theme changes, and transport regression checks.
+
+## 81 — gRPC Production Release (2026-11-11)
+
+- [Release verification](81-grpc-production-release/verification.md): ordered three-service release, project-local operational state, and production gRPC/ONNX gates.

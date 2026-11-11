@@ -163,7 +163,8 @@ jobs:
   deploy-backend:
     name: Deploy backend
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    needs: [ci-gate]
+    # The gRPC listener must be healthy before the backend switches transports.
+    needs: [ci-gate, deploy-semantic-search]
     uses: ./.github/workflows/deploy-backend.yml
     secrets:
       VULTR_SSH_SECRET: ${{ secrets.VULTR_SSH_SECRET }}

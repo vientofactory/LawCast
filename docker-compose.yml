@@ -26,6 +26,7 @@ services:
       # No depends_on on purpose: the API degrades to keyword search when the
       # sidecar is down (see semantic-search module contract).
       - SEMANTIC_SEARCH_API_URL=http://semantic-search:8300
+      - SEMANTIC_SEARCH_GRPC_TARGET=${SEMANTIC_SEARCH_GRPC_TARGET-semantic-search:8301}
     volumes:
       # Mount SQLite database to persist data
       - lawcast_db:/app/data
@@ -81,6 +82,7 @@ services:
     environment:
       - TZ=Asia/Seoul
       - HF_HOME=/cache/huggingface
+      - LAWCAST_SEMANTIC_GRPC_BIND=0.0.0.0:8301
       - LAWCAST_SEMANTIC_ARTIFACTS_DIR=/app/artifacts
       # Scheduled refresh gates (design §4.2): shared-lawcast_db volume is the
       # corpus source; empty DB_PATH or an empty cron expression turns
