@@ -103,3 +103,11 @@ options and the already-installed fast path with recording shims. Actual
 package installation, VPN connectivity and deployment are verified by the
 subsequent main workflow, not claimed from these fixtures. Application commits
 and semantic-search version remain unchanged.
+
+The subsequent main job `130579971542` confirms the same DNS failure fetching
+WireGuard before any SSH/container replacement. The deployment-tool installer
+therefore has its own required PR CI job; it must perform a real installation
+and resolve both `wg` and `wg-quick` BEFORE another main deployment is allowed.
+This extends the CI gate; it does not bypass any existing test or capability
+check. Runner-specific repository metadata is signed by the installed Ubuntu
+keyring. The main run failure and both earlier Redis DNS failures are retained.

@@ -145,19 +145,33 @@ jobs:
       - name: Unit tests
         run: python -m pytest tests/ -q
 
+  deployment_tools:
+    name: Deployment tools — install & validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Validate deployment bootstrap before main
+        run: |
+          bash -n .github/scripts/install-wireguard.sh
+          bash .github/scripts/install-wireguard.sh
+          wg --version
+          command -v wg-quick
+
   ci-gate:
     name: CI gate
     if: always()
-    needs: [backend, frontend, sidecar]
+    needs: [backend, frontend, sidecar, deployment_tools]
     runs-on: ubuntu-latest
     steps:
       - name: Check all jobs passed
         run: |
-          if [ "${{ needs.backend.result }}" != "success" ] || [ "${{ needs.frontend.result }}" != "success" ] || [ "${{ needs.sidecar.result }}" != "success" ]; then
-            echo "❌ One or more jobs failed."
+          if [ "${{ needs.backend.result }}" != "success" ] || [ "${{ needs.frontend.result }}" != "success" ] || [ "${{ needs.sidecar.result }}" != "success" ] || [ "${{ needs.deployment_tools.result }}" != "success" ]; then
+            echo "One or more jobs failed."
             exit 1
           fi
-          echo "✅ All checks passed."
+          echo "All checks passed."
 
   deploy-backend:
     name: Deploy backend
