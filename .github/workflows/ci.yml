@@ -61,9 +61,8 @@ jobs:
       - name: Verify Redis migration compatibility
         if: matrix.node-version == '24.22.1'
         run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq redis-server
-          npm run test:redis-migration
+          docker pull redis:8.8.0
+          REDIS_SERVER="$GITHUB_WORKSPACE/.github/scripts/ci-redis-server.sh" npm run test:redis-migration
 
   frontend:
     name: Frontend — type-check & build

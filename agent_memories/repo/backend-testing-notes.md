@@ -143,3 +143,12 @@
   `SEMANTIC_SEARCH_HYBRID_MAX_NOTICES=20` for the merged board candidate
   window. Verify the upper boundary directly: 20 succeeds, 21 returns
   422 from the sidecar and 400 from the backend/frontend API.
+
+- **Redis migration CI server lifecycle:** the root Node 24 job uses
+  `.github/scripts/ci-redis-server.sh` through the existing `REDIS_SERVER`
+  interface in `backend/scripts/verify-redis-migration.cjs`. Preserve the
+  foreground process, readiness stdout, signal forwarding, dynamically reserved
+  loopback port and empty `--save` argument. The official Redis image pin must
+  stay aligned with `docker-compose.yml`. Repeated Ubuntu mirror DNS failures
+  blocked the 3.1.1 sidecar release even after backend assertions passed; see
+  [release correction](../83-idle-search-latency/release-verification.md#ci-infrastructure-correction).
