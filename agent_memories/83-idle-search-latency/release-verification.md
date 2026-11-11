@@ -66,3 +66,22 @@ Before release, uncontaminated 180/600-second windows returned origin first
 requests in **382.50/750.94 ms**. The old image/start identity is unchanged
 throughout, with zero native upkeep passes. These are contemporary paired
 baseline samples, not a reinterpretation of the historical 9–11-second tails.
+
+## CI infrastructure correction
+
+Root PR 48's initial CI run `43032859603` and its unchanged-code retry both
+passed application unit tests but failed Redis installation: Ubuntu's
+`security.ubuntu.com` could not be resolved during APT update/package fetch.
+Logs from both attempts are preserved in the release workspace. No failed
+application assertion was deleted or changed.
+
+The root CI now uses `.github/scripts/ci-redis-server.sh` via the migration
+probe's existing `REDIS_SERVER` interface. It runs the official `redis:8.8.0`
+image, matching production, in foreground with host networking, loopback binding
+and the dynamically reserved test port. The original Node migration command
+and every legacy-envelope/namespace/TTL/wrap/clear assertion remain unchanged.
+Docker forwards readiness output and shutdown, and `--rm` removes the isolated
+server. This avoids the unrelated Ubuntu package mirror dependency rather than
+skipping Redis verification. Local shell syntax, YAML/probe-preservation and
+exact-argument/empty-save-value fixture checks pass; canonical CI validates the
+real Redis server before deployment.
