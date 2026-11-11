@@ -154,6 +154,7 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Validate deployment bootstrap before main
         run: |
+          python3 -m py_compile .github/scripts/measure-production-idle.py
           bash -n .github/scripts/install-wireguard.sh
           bash .github/scripts/install-wireguard.sh
           wg --version
