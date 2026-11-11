@@ -546,3 +546,9 @@ agent_memories/
 ## 81 — gRPC Production Release (2026-11-11)
 
 - [Release verification](81-grpc-production-release/verification.md): ordered three-service release, project-local operational state, and production gRPC/ONNX gates.
+
+## Search degradation and continuation
+
+- [Root cause and verification](82-grpc-search-degradation/verification.md): distinguish weak semantic tails from cache-only keyword continuation; preserve keyword fallback and result interaction when a separate engine health request fails.
+
+- [Search degradation patch release](82-grpc-search-degradation/release-verification.md): ordered patch rollout, unchanged gRPC/ONNX/cache configuration, deployed-code fault probes and public browser verification.
