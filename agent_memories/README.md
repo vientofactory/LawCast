@@ -552,3 +552,8 @@ agent_memories/
 - [Root cause and verification](82-grpc-search-degradation/verification.md): distinguish weak semantic tails from cache-only keyword continuation; preserve keyword fallback and result interaction when a separate engine health request fails.
 
 - [Search degradation patch release](82-grpc-search-degradation/release-verification.md): ordered patch rollout, unchanged gRPC/ONNX/cache configuration, deployed-code fault probes and public browser verification.
+
+## 83 — Idle Search Latency
+
+- [Production diagnosis](83-idle-search-latency/diagnosis.md): engine-side multi-second outliers, actual Python worker swap and major faults, cache-hit versus uncached inference controls, hourly update memory overlap, and evidence-qualified mitigation priorities. No runtime changes.
+- [Local improvement](83-idle-search-latency/local-improvement.md): bounded FlatIP scratch, early input-buffer release, real document-update memory comparison, cache-bypassing ONNX/FAISS idle upkeep, process fault diagnostics and local-only verification.
