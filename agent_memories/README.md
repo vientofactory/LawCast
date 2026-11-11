@@ -551,4 +551,4 @@ agent_memories/
 
 - [Root cause and verification](82-grpc-search-degradation/verification.md): distinguish weak semantic tails from cache-only keyword continuation; preserve keyword fallback and result interaction when a separate engine health request fails.
 
-- [Search degradation 3.1.1 release](82-grpc-search-degradation/release-verification.md): ordered patch rollout, unchanged gRPC/ONNX/cache configuration, deployed-code fault probes and public browser verification.
+- [Search degradation patch release](82-grpc-search-degradation/release-verification.md): ordered patch rollout, unchanged gRPC/ONNX/cache configuration, deployed-code fault probes and public browser verification.

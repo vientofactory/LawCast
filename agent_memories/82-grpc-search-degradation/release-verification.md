@@ -44,3 +44,30 @@ Operational failures are simulated only in an isolated native gRPC listener;
 real production traffic is never redirected to that listener. Cache-only
 repository rows in that isolated probe are controlled fixtures, not inserted
 production records. Public-site smoke tests are separate live evidence.
+
+## Additional production finding before rollout
+
+A bounded read-only live sample found query `게임 과몰입 방지` returning six
+clear notices and eight weak notices, including `2212617` in both bands.
+The sidecar tiers chunks, so different chunks of the same notice can land
+in different bands. The calibrated backend path already removed this
+cross-tier notice overlap; the legacy cosine path did not.
+
+Backend PR 240 fixes the cosine response assembly for off/shadow/enforced
+lexical gates. It excludes notices present in the *served* clear set before
+limiting the weak band, so duplicates do not consume continuation slots.
+A weak candidate remains valid when its clear candidate was rejected by the
+lexical gate. Ranking, thresholds, Top-K, gRPC and the engine are unchanged.
+
+Three HTTP gate-mode cases and one real-channel gRPC case fail on the old
+runtime and pass after the change. The separate deployed-image probe also
+reproduces the old overlap with controlled native RPC rows. Full backend
+lint/typecheck/build and all 1,340 tests pass. Independent modified source
+copies pass 57 focused HTTP/gRPC tests before the rollback control.
+
+The test-only backend 3.1.1 tag remains recorded but was not deployed.
+It is superseded for this rollout by `backend-v3.1.2`, PR 240, commit
+`f57c8f9a1fe7240f5815d96c1b3d6c5fb00de865`. Its GPG-signed feature commit
+is `2e858fe`; local/origin dev and the release tag are synchronized. The
+initial root deployment PR is updated to this exact 3.1.2 commit before
+merging. Frontend PR 204 is still the 3.1.1 frontend patch release.
