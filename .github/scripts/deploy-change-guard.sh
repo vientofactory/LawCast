@@ -10,7 +10,7 @@
 #             into a deploy.
 #   record -> write the marker after a deploy passed its health check.
 #
-# The marker lives OUTSIDE the checkout (${REPO_ROOT}.deploy-state/), so the
+# The marker lives in the checkout's ignored _workspace/deploy-state/, so
 # workflows' `git clean -fd` cannot delete it, and it is per service so the
 # two deploy jobs that share the server checkout cannot contaminate each
 # other (the previous LOCAL==REMOTE check in deploy-backend.yml skipped the
@@ -27,7 +27,7 @@ ACTION="${1:?usage: deploy-change-guard.sh check|record <service>}"
 SERVICE="${2:?service argument required}"
 
 REPO_ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
-STATE_DIR="${REPO_ROOT}.deploy-state"
+STATE_DIR="$REPO_ROOT/_workspace/deploy-state"
 MARKER="$STATE_DIR/$SERVICE.sha"
 
 # Paths whose changes make a redeploy necessary for each service.

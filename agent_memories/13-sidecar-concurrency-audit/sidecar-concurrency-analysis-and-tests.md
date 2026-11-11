@@ -220,3 +220,104 @@ all happens outside the state lock or on dedicated threads; concurrency tests
 prove overlap (wall ≈ single-request time under an 8-client batch) both with
 the stub engine and the real KURE-v1 + FAISS engine behind the production
 uvicorn CMD.
+
+## FP32 MPS blocking and admission follow-up (2026-11-09)
+
+- Real Chrome trace IDs showed distinct waits on the request worker. For the
+  1,044 ms request, `psynch_cvwait` spanned 346.7 ms inside
+  `MTLCommandBuffer.waitUntilCompleted` on the MPS copy path and 265.8 ms in
+  `MPSEvent::synchronize`. In the 679 ms request, encode overlapped 156.9 ms of
+  file-backed page-ins and 98.9 ms of swap decompression. FAISS in both requests
+  included decompression and swap faults. These trace intervals can overlap and
+  must not be added as independent costs. Runnable time was under 4 ms per
+  request; the evidence is blocking, not sustained lack of CPU scheduling.
+- The HTTP MPS admission gate now waits on the event loop before borrowing an
+  AnyIO worker and releases the slot after embedding, before FAISS. The native
+  embedder's semaphore still protects direct synchronous callers. The setting
+  remains opt-in; the response contract and FP32 precision are unchanged.
+- Replaced latency-ratio concurrency assertions with explicit rendezvous and
+  worker-count checks. The real HTTP engine test compares both result tiers
+  against serial results rather than inferring a lock from the first finisher.
+- Local HTTP A/B (same 122,381 chunks, slot limit 1, two reversed-order sessions):
+  search p95 at concurrency 1/4/48 was 42.36/140.77/1443.88 ms before versus
+  39.66/129.97/1699.36 ms after. Health worst-case at concurrency 48 fell from
+  264.58 to 54.56 ms, but its p95 rose from 4.75 to 8.46 ms. Both result tiers
+  matched in all 288 pairs. This is worker isolation, not a fix for memory
+  pressure or Metal's blocking, and not a throughput win under saturation.
+
+## Separate embedding and ranking budgets under load (2026-11-09)
+
+- The optional HTTP path uses separate AnyIO capacity limiters for embedding
+  and FAISS/ranking/annotation, not permanently assigned OS threads. Each
+  limiter admits work before it borrows a worker. Ranking does not hold an
+  embedding token, and the default pool remains available for health requests.
+  Each request holds one index generation across both stages, including refresh.
+- Same BGE-m3-ko FP32 model and 122,381 indexed chunks, HTTP concurrency 48:
+  CPU with 4 embedding and 2 ranking slots cut health p95 from 206.72 to
+  6.64 ms and FAISS p95 from 87.46 to 19.31 ms. Search p50/p95 fell from
+  1940.58/2507.48 to 1315.61/2434.46 ms, but median time to drain a wave rose
+  from 2415.41 to 2484.02 ms. At concurrency 4, search p95 also rose from
+  198.89 to 227.27 ms. This is a contention and responsiveness improvement
+  under CPU saturation, not a throughput improvement. CPU was measured once.
+- On MPS, with embedding capped at 1 in both arms, the extra handoff did not
+  help in either run order. At concurrency 48, pooled search p95 rose from
+  1390.07 to 1456.13 ms and health p95 from 3.34 to 3.97 ms. More CPU workers
+  did not remove Metal completion waits. Keep the additional scheduling opt-in
+  (`LAWCAST_SEMANTIC_QUERY_RANK_WORKERS=0` by default).
+- The ordered chunk IDs in both result tiers matched in all 144 CPU and 288
+  MPS request pairs. The HTTP test holds ranking workers with an event and
+  verifies that embedding and health still make progress, the concurrency caps
+  are honored, and a refresh cannot mix index generations.
+
+## Production CPU OpenMP trial (2026-11-09)
+
+- The v3.0.0 production container was pinned to CPU, with four schedulable
+  CPUs from `os.sched_getaffinity(0)`, no CPU quota, and 121,067 indexed
+  chunks. The initial `nproc` output was 2 with `OMP_NUM_THREADS=2`; do
+  not infer process affinity from that output when the variable is set.
+- On the same image, index generation, FP32 model, and four queries
+  (`k=10`, 20 samples per concurrency and setting), lowering
+  `OMP_NUM_THREADS` from 2 to 1 moved HTTP p95 from 531/1050/1223 ms to
+  649/895/1119 ms at concurrency 1/2/4. At concurrency 4, model p95 was
+  957 ms and FAISS p95 was 275 ms before tuning, versus 899 and 125 ms.
+  This is a small live-host sample, not a capacity test.
+- The trial required at least 10% improvement at concurrency 4 and no
+  more than 15% p95 regression at concurrency 1 or 2. It failed both the
+  concurrency-4 and serial criteria. The original environment bytes
+  and CPU readiness were verified after reverting to 2. Keep the split
+  worker budgets at their prior defaults unless a higher-concurrency
+  experiment supports changing them.
+
+## Production two-embedding/one-ranking trial (2026-11-09)
+
+- On the same CPU FP32 v3.0.0 image with `OMP_NUM_THREADS=2` and index
+  generation, measured the same four queries at concurrency 1/2/4
+  (`k=10`, 20 measured requests per cell). Splitting into 2 embedding and
+  1 ranking slots changed HTTP p95 from 1425/1906/2390 ms to
+  1187/2551/4040 ms. Ordered result hashes for both relevance tiers matched.
+- At concurrency 4, FAISS p95 fell from 589 to 297 ms and model p95 changed
+  from 1918 to 1869 ms, but embedding elapsed time, which includes admission
+  in the split path, rose from 1978 to 3796 ms. This is consistent with
+  queueing at the embedding limit outweighing the FAISS improvement.
+- The live baseline varied across attempts. The first split trial was aborted
+  during warm-up by the five-second guard, and a restored cold search also
+  took over five seconds. The completed comparison excludes warm-up.
+  Restored the original environment bytes and effective settings, verified
+  CPU readiness and a successful search, and left the worker split disabled.
+
+## Production four-embedding/one-ranking trial (2026-11-09)
+
+- With CPU FP32 and `OMP_NUM_THREADS=2`, a fresh live baseline and
+  4-embedding/1-ranking trial used the same image and index generation,
+  four queries, `k=10`, and 20 measured requests per concurrency cell.
+  HTTP p95 changed from 479/624/1017 ms to 412/730/1373 ms at concurrency
+  1/2/4. Ordered result hashes for both relevance tiers matched.
+- All 120 response timings matched unique sidecar log duration triples.
+  Split embedding admission p95 was 0.6/2.3/4.1 ms, while rank-worker wait
+  was 0.3/73.7/199.4 ms. At concurrency 4, model p95 also rose from 747 to
+  1057 ms. The default path logs admission as zero; this does not quantify
+  waiting for the default AnyIO pool. Do not add marginal p95 values.
+- Restored the original environment bytes before recreating only the sidecar;
+  Compose reported it started. SSH disconnected before readiness could be
+  verified and the follow-up SSH connection timed out. Final HTTP readiness
+  was not observed during this run.

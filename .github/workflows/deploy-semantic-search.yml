@@ -208,6 +208,9 @@ jobs:
               exit 1
             fi
 
+            echo "--- Verifying the internal gRPC listener ---"
+            docker compose exec -T semantic-search python -c 'import grpc; from service import semantic_search_pb2 as pb; channel = grpc.insecure_channel("127.0.0.1:8301"); health = channel.unary_unary("/lawcast.semantic.v1.SemanticSearch/GetHealth", request_serializer=pb.HealthRequest.SerializeToString, response_deserializer=pb.HealthResponse.FromString)(pb.HealthRequest(), timeout=10); assert health.status == "ready", health; print("gRPC ready; maxK =", health.maxK); channel.close()' </dev/null
+
             echo "--- Capability release guard: comparing the deployed code ---"
             # Rebuild the chunk set from the DEPLOYED code (pure Python, seconds,
             # no embeddings) and diff its per-notice capabilities against the
