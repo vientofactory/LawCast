@@ -560,3 +560,7 @@ agent_memories/
 - [Release verification](83-idle-search-latency/release-verification.md): signed 3.1.1 release, mandatory CI/deployment gates, hosted-runner mirror corrections, retained rollback and paired production idle measurements.
 
 - [Warmup logging](83-idle-search-latency/warmup-logging.md): explicit development-only routine completion logs, unchanged native upkeep and production failure warnings, regression coverage and operational verification.
+
+## 86 — Statistics Timeout Bottlenecks
+
+- [Implementation invariants and release gates](86-stats-timeout-bottlenecks/release.md): ID-first backfill hydration, lifecycle/cursor preservation, cooperative paging, fork-free Linux browser enumeration, bounded cron-description caching, slow-stage correlation, and independent runtime telemetry. Raw verification evidence stays local in ignored workspace storage.

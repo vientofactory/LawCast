@@ -152,3 +152,6 @@
   stay aligned with `docker-compose.yml`. Repeated Ubuntu mirror DNS failures
   blocked the 3.1.1 sidecar release even after backend assertions passed; see
   [release correction](../83-idle-search-latency/release-verification.md#ci-infrastructure-correction).
+
+- **Bounded summary-backfill hydration uses ID-first lookup and explicit active-row filtering after hydration.** Keep `cursorCount` from the summary-state source, preserve missing/deleted/renumbered exclusions, and yield between continuing pages. A lifecycle SQL predicate on this tiny ID page can restore a full lifecycle-index scan. Real-schema plan/cursor tests are in `notice-archive-backfill-read.spec.ts`; see [release invariants](../86-stats-timeout-bottlenecks/release.md). Use `/api/stats?view=runtime` for dependency-free loop telemetry; slow-stage elapsed times overlap.
+- **Full audits stay in supervised children and both workers stay TypeScript build inputs.** Preserve readonly snapshots, bounded failures with full failure totals/checkpoints, cancellation/reaping and both compiler checks. Count rate-limit rejections separately when observing HTTP latency.
