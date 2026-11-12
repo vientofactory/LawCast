@@ -564,3 +564,4 @@ agent_memories/
 ## 86 — Statistics Timeout Bottlenecks
 
 - [Implementation invariants and release gates](86-stats-timeout-bottlenecks/release.md): ID-first backfill hydration, lifecycle/cursor preservation, cooperative paging, fork-free Linux browser enumeration, bounded cron-description caching, slow-stage correlation, and independent runtime telemetry. Raw verification evidence stays local in ignored workspace storage.
+- [NSM sighting write scheduling](86-stats-timeout-bottlenecks/crawl-followup-profile.md): synchronous metadata-write attribution, bounded batches with timer progress, and concurrent crawler/audit measurement requirements.
