@@ -2,6 +2,8 @@
 
 ## UI layout redesign proposal
 
+- [Hard-refresh border flash](65-ui-layout-redesign/hard-refresh-border-flash.md): initial-frame investigation, narrowed transitions, preserved brand/focus behavior and 3.1.3 release verification.
+
 - [Mobile pagination spacing](65-ui-layout-redesign/mobile-pagination-spacing.md): real-device spacing fix, 48px targets, four-digit SSR fixtures, touch/enlarged-text regressions and release verification.
 
 - [Common notifications](65-ui-layout-redesign/common-notifications.md): shared timed/dismissible stacks, modal scopes, transient-feedback migration and isolated cross-engine tests.
