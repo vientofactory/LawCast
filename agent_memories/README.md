@@ -561,6 +561,10 @@ agent_memories/
 
 - [Warmup logging](83-idle-search-latency/warmup-logging.md): explicit development-only routine completion logs, unchanged native upkeep and production failure warnings, regression coverage and operational verification.
 
+## 84 — Realtime SSR Isolation
+
+- [Release and verification](84-ssr-cache-strategy/release.md): discussion/count CSR reads, shared urgent-notice revalidation, unchanged Cloudflare cache rules, error-response storage prevention, background-refresh focus preservation and release gates.
+
 ## 86 — Statistics Timeout Bottlenecks
 
 - [Implementation invariants and release gates](86-stats-timeout-bottlenecks/release.md): ID-first backfill hydration, lifecycle/cursor preservation, cooperative paging, fork-free Linux browser enumeration, bounded cron-description caching, slow-stage correlation, and independent runtime telemetry. Raw verification evidence stays local in ignored workspace storage.
