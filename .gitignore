@@ -112,3 +112,13 @@ yarn.lock
 
 # Independent sibling repository (not a submodule of this repo)
 embedding-map/
+
+# Generated verification evidence stays local; retain concise project notes only.
+agent_memories/**/artifacts/
+agent_memories/**/*.json
+agent_memories/**/*.jsonl
+agent_memories/**/*.patch
+agent_memories/**/*.tar.gz
+agent_memories/**/*.zip
+agent_memories/**/*.cpuprofile
+verification-artifacts/
