@@ -112,7 +112,6 @@ Session folders follow this pattern:
 ```typescript
 // Code blocks for examples
 ```
-````
 
 | Table | For structured data |
 | ----- | ------------------- |
