@@ -2,6 +2,8 @@
 
 ## UI layout redesign proposal
 
+- [UI and fixed-copy consistency release](65-ui-layout-redesign/ui-and-copy-release.md): flat discussion/announcement/semantic lists, matching skeletons, scroll-arrival quote feedback, conservative Korean copy review, independent bug/security reviews and frontend 3.1.6 release verification.
+
 - [Hard-refresh border flash](65-ui-layout-redesign/hard-refresh-border-flash.md): initial-frame investigation, narrowed transitions, preserved brand/focus behavior and 3.1.3 release verification.
 
 - [Mobile pagination spacing](65-ui-layout-redesign/mobile-pagination-spacing.md): real-device spacing fix, 48px targets, four-digit SSR fixtures, touch/enlarged-text regressions and release verification.
@@ -566,8 +568,18 @@ agent_memories/
 ## 84 — Realtime SSR Isolation
 
 - [Release and verification](84-ssr-cache-strategy/release.md): discussion/count CSR reads, shared urgent-notice revalidation, unchanged Cloudflare cache rules, error-response storage prevention, background-refresh focus preservation and release gates.
+- [Production cache observation](84-ssr-cache-strategy/production-cache-observation.md): post-release hit ratios and response timings, real cf_clearance-induced bypass, sparse cache reuse, and read-only rule improvement priorities.
+- [Clearance Cookie rollout](84-ssr-cache-strategy/clearance-cookie-rollout.md): v45 public-HTML Cookie exception, unchanged TTL/private/error bypasses, platform/live regression checks and matched timing results.
 
 ## 86 — Statistics Timeout Bottlenecks
 
 - [Implementation invariants and release gates](86-stats-timeout-bottlenecks/release.md): ID-first backfill hydration, lifecycle/cursor preservation, cooperative paging, fork-free Linux browser enumeration, bounded cron-description caching, slow-stage correlation, and independent runtime telemetry. Raw verification evidence stays local in ignored workspace storage.
 - [NSM sighting write scheduling](86-stats-timeout-bottlenecks/crawl-followup-profile.md): synchronous metadata-write attribution, bounded batches with timer progress, and concurrent crawler/audit measurement requirements.
+
+## 87 — ONNX Offline Runtime Verification
+
+- [Local profiles and balanced comparison](87-onnx-offline-runtime/verification.md): actual unfused Attention versus fused BiasGelu, six fresh processes per arm comparing runtime optimization with serialized optimized ONNX, unchanged vectors/top-100, small session-only startup saving without overall latency/memory gain, native and official-tool ORT serialization failures, and independent bundle rollback. No production changes.
+
+## 88 — Transformer Attention Fusion
+
+- [Local fusion and search parity](88-transformer-attention-fusion/verification.md): stock Transformer optimizer executes all 24 Attention kernels without re-export, but six-process-per-arm CPU comparison shows no inference win and slower concurrent short-query tails; 104 real search replays preserve rankings/tiers with small FP32 differences, plus mask/shape controls, memory measurements and independent bundle rollback. Production unchanged.
