@@ -583,3 +583,16 @@ agent_memories/
 ## 88 — Transformer Attention Fusion
 
 - [Local fusion and search parity](88-transformer-attention-fusion/verification.md): stock Transformer optimizer executes all 24 Attention kernels without re-export, but six-process-per-arm CPU comparison shows no inference win and slower concurrent short-query tails; 104 real search replays preserve rankings/tiers with small FP32 differences, plus mask/shape controls, memory measurements and independent bundle rollback. Production unchanged.
+
+
+## 89 — Runtime Restart Downtime (2026-11-14)
+
+- [Incident diagnosis](89-runtime-restart-downtime/diagnosis.md): unattended libc updates, needrestart containerd/nginx transaction, Docker's nginx hard dependency, failed workload restoration, host versus monitoring downtime, recovery recreation and historical-state evidence limits. Production remained read-only.
+
+- [Runtime restart prevention](89-runtime-restart-downtime/prevention.md): explicitly approved weak nginx dependency and scoped needrestart deferrals, metadata-only reload, unchanged 14-container state, 30 passing external checks and independent-copy rollback.
+
+- [Live-restore activation](89-runtime-restart-downtime/live-restore.md): Linux SIGHUP-only activation, preserved user namespaces/log settings and 14 container identities, copy-only rollback and no disruptive crash test.
+
+- [Required container reconciliation](89-runtime-restart-downtime/reconciliation.md): fixed 14-container timer, confirmed start/create recovery, dependency/data/config gates, bounded retries, maintenance contract, isolated real fault tests and copy-only rollback.
+
+- [Deployment integration](89-runtime-restart-downtime/deployment-integration.md): project-scoped repair holds around complete deployments, timer continuity, validated inventory adoption, failure/SIGKILL isolation, actual APP_VERSION capture, Linux fault tests and production smoke.
