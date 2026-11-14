@@ -155,6 +155,9 @@ jobs:
       - name: Validate deployment bootstrap before main
         run: |
           python3 -m py_compile .github/scripts/measure-production-idle.py
+          python3 -m py_compile ops/container-reconcile/*.py
+          python3 -m unittest discover -s tests/ops -v
+          bash -n deploy.sh
           bash -n .github/scripts/install-wireguard.sh
           bash .github/scripts/install-wireguard.sh
           wg --version

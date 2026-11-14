@@ -97,7 +97,8 @@ jobs:
       - name: Deploy backend
         run: |
           echo "=== Fetching latest code on server ==="
-          ssh deploy-target bash -s <<'REMOTE_SCRIPT'
+          # Wrap the entire remote session, including post-deploy release gates.
+          ssh deploy-target /usr/local/sbin/container-deploy-guard.py --project lawcast -- bash -s <<'REMOTE_SCRIPT'
             set -euo pipefail
 
             cd ${{ env.REPO_PATH }}

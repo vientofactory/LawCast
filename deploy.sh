@@ -5,7 +5,22 @@ set -e
 # Usage: ./deploy.sh [service-name]
 # If no service name is provided, a full rolling update will be performed.
 
-SERVICE=$1
+SERVICE=${1:-}
+
+# Guard direct/manual deployment as well as CI without nesting transactions.
+# The host helper lives outside the checkout and survives git reset/clean.
+if [ "$SERVICE" != "list" ] && [ -f /etc/container-reconcile/inventory.json ]; then
+  GUARD=/usr/local/sbin/container-deploy-guard.py
+  if [ ! -x "$GUARD" ]; then
+    echo "[ERROR] Required deployment guard is missing" >&2
+    exit 1
+  fi
+  if [ -n "${CONTAINER_DEPLOY_GUARD_TOKEN:-}" ]; then
+    "$GUARD" --project lawcast --verify-nested
+  else
+    exec "$GUARD" --project lawcast -- /bin/bash "$0" "$@"
+  fi
+fi
 
 # Align the sidecar's writable mounts for the uid-1001 update tick BEFORE the
 # container starts (its first write is creating artifacts/.update.lock, which
