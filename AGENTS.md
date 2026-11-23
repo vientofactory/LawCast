@@ -378,9 +378,11 @@ as an explanation.
 
 When releasing changes across submodules, agents MUST follow these steps **in exact order**. Skipping steps causes broken deployments.
 
+> **On any deploy / release directive ("deploy", "release", "ship it", "merge and deploy"):** the `backend` and `semantic-search` deploys are triggered **only by a push to the root repo's `main` that advances the submodule pointers** — *not* by merging a submodule PR. Steps 1–4 (feature PR → version bump → GitHub Release) only *prepare* the release; **Step 6 (advance root pointers + push to main) is the step that actually ships it.** Always run Step 6 and watch the post-merge `push` run to green — a green PR does NOT mean production is updated. `frontend` is the exception: it ships on its own `main` push (see triggers below).
+
 **Deployment triggers — what actually ships each piece**
 - **Frontend: automatic via GitHub Actions on `main` push.** The frontend repository's `.github/workflows/deploy-pages.yml` checks and builds the app, then uploads to the existing Cloudflare Pages project with an explicit `main` branch and release SHA. The native Pages Git connection is disconnected so non-main pushes create no deployment records, including skipped entries. GitHub's `production` environment allows only `main`; its Pages Write token is stored as an environment Secret. Repository Variables provide `CLOUDFLARE_ACCOUNT_ID` and the existing public `PUBLIC_GTM_CONTAINER_ID`. Preserve encrypted Pages runtime bindings. There is no frontend Docker Compose service. Verify the Actions run and Pages deployment after the merge; merging alone does not confirm deployment success.
-- **Backend / semantic-search: root repository CI.** The Step 6 submodule-pointer push to the root `main` runs the `deploy-backend` / `deploy-semantic-search` workflow jobs, which rebuild the production containers.
+- **Backend / semantic-search: root repository CI — the push-to-main trigger.** In `ci.yml`, `deploy-backend` and `deploy-semantic-search` are gated `if: github.event_name == 'push' && github.ref == 'refs/heads/main'`, so they run **only when the root `main` advances** — never on a `pull_request`. The single action that ships them is **advancing the root repo's submodule pointers to the new main heads and pushing to root `main`** (Step 6). Merging a submodule PR does nothing to production. After Step 6's push, watch the resulting `push` run until those two jobs report `success`; on a PR they show as `skipping`/`skipped`, so a green PR is NOT proof of deployment.
 - **Mandatory index-capability guard (semantic-search).** Every semantic-search deploy runs an index capability comparison inside `deploy-semantic-search.yml`: it saves a capability baseline of the artifact set being served *before* the release, then, after the new image is up, rebuilds the chunk set with the deployed code and **fails the release** if any capability class (`indexed`, `title_text`, `section:<label>`, `derived:<field>`) was lost. Aggregate recall/MRR are blind to this class (a 405-notice `title_text` regression rode a metric improvement — `agent_memories/24-ai-summary-chunking` §4), so the guard is a hard gate; to ship an intentional loss, re-run the workflow manually with the `allow_capability_loss` break-glass input and record why. Commands and rationale: `semantic-search/README.md` → "릴리스 절차".
 - **Submodule checkout scope.** CI and both deploy workflows initialise only the three service submodules (`backend`, `frontend`, `semantic-search`) by explicit path. `embedding-map` is deliberately **not** a submodule: it is an independent sibling checkout at `embedding-map/`, listed in this repo's `.gitignore` and versioned in its own repository, so it has no CI or deploy role and is never synced by the deploy hosts' `git submodule update --recursive --remote`.
 - **Ordering warning**: because the frontend deploys the moment its `main` is pushed, any backend change a frontend release depends on must already be live in production (backend released, root pointer pushed, deploy job green) *before* merging the frontend PR.
@@ -469,30 +471,42 @@ git diff --stat package-lock.json  # if changed, commit and push
 - After the sync, run `npm install` to re-resolve the dependency tree (`git diff --stat package-lock.json`; if changed, commit and push to `dev`).
 - Fast-forwarding `package.json`/`package-lock.json` alone is NOT enough — the lockfile may reference dependency versions resolved in a different context.
 
-**Step 6 — Update root repo submodule reference to `dev`**
+**Step 6 — Advance root submodule pointers to the new main heads and push to main (THIS IS THE DEPLOY TRIGGER)**
+This step is what actually ships `backend` / `semantic-search`: pointing each changed submodule at its new main head and pushing to root `main` fires the `deploy-backend` / `deploy-semantic-search` jobs. Point at the **release commit** (the submodule's `main` HEAD after the Step 2–3 merge), **not** `dev`. Do it via a feature branch + PR, because root `main` is PR-gated:
 ```bash
-# From root repo — record the dev branch commit for each submodule
-git add backend frontend   # only changed submodules
-git commit -m "chore: update submodules to vX.Y.Z"
-git push
+# From the root repo. Only the submodules whose release landed this round.
+git fetch --all --prune
+git checkout -b chore/update-<submodule>-vX.Y.Z origin/main
+cd backend && git fetch origin main && git checkout <release-sha>     # e.g. ff176b3 = the merged main HEAD
+# cd frontend && git fetch origin main && git checkout <release-sha>  # only if frontend also changed
+cd ..
+git add backend                 # add ONLY the moved gitlink(s); leave unrelated WIP (other submodules, agent_memories/) unstaged
+git commit -S -m "chore: update backend submodule to backend-vX.Y.Z"  # commit.gpgsign=true, but pass -S explicitly
+git push -u origin chore/update-<submodule>-vX.Y.Z
+gh pr create --base main --head chore/update-<submodule>-vX.Y.Z \
+  --title "chore: update backend submodule to backend-vX.Y.Z" --body "Advances the backend pointer; triggers deploy-backend.yml on merge."
+gh pr merge <PR#> --squash
 ```
-**Critical**: The root repo records the exact commit each submodule points to. After step 5, `git add backend frontend` captures the `dev` branch HEAD commits. Verify with `git ls-tree HEAD backend frontend` that the recorded commits match `origin/dev`.
-- The recorded commit MUST be reachable from `origin/dev` (or `main`) and match the release tag. Never record a commit that exists only on a branch you are about to rewrite or delete — a fresh clone would then fail to check out the submodule.
-- If `origin/dev` was reset, re-run `git add backend frontend` so the pointer captures the new HEAD.
+**Critical**:
+- The recorded commit MUST be the submodule's **`main` HEAD / release commit** (reachable from `origin/main`, matching the release tag). Never record a commit that lives only on a short-lived branch you are about to delete — a fresh clone would then fail to check out the submodule.
+- Verify the pointer: `git ls-tree HEAD backend` (root) must print the release SHA.
+- **After the push to main, watch the resulting `push` run** — `gh run list --repo vientofactory/lawcast --branch main` — until `Deploy backend` (and `Deploy semantic-search`) report `success`. On the PR itself these jobs show `skipping`/`skipped` (PRs are `pull_request` events), so a green PR is NOT proof the containers rebuilt; only the post-merge `push` run proves it.
+- Commit only the moved submodule gitlink(s); leave unrelated working-tree changes out of the commit.
+- `dev` is a local workspace kept in sync by Step 5; it is **not** the deploy target. The root pointer tracks the release/main HEAD.
 
-**Step 7 — Verify final state**
+**Step 7 — Verify the deploy landed**
 ```bash
-# Submodule refs should show dev branch commits (no +/- prefix)
-git submodule status
+# Root pointer must point at the release commit (no +/- prefix means working tree matches it):
+git ls-tree HEAD backend frontend   # the printed SHA must equal the release SHA(s)
+git submodule status                # no '+'/'-' prefix on the changed submodules
 
-# Each submodule should be on dev branch, up to date (semantic-search: on main)
-cd backend && git log --oneline -1 && git branch --show-current
-cd ../frontend && git log --oneline -1 && git branch --show-current
-cd ../semantic-search && git log --oneline -1 && git branch --show-current
+# The deploy is only "done" when the post-merge push run is green:
+gh run list --repo vientofactory/lawcast --branch main --limit 3
+# open the top (push) run and confirm "Deploy backend" / "Deploy semantic-search" = success
 ```
-- `git submodule status` must show **no `+` or `-` prefix** (meaning working tree matches recorded commit)
-- Each submodule's current branch must be `dev` — except `semantic-search`, which has no `dev` and must sit on `main`, up to date with `origin/main`
-- `dev` must be up to date with `origin/dev`
+- `git ls-tree HEAD backend` (root) MUST print the release SHA; otherwise the deploy will pull the wrong commit.
+- A green **PR** is NOT sufficient — its deploy jobs are `skipped`. Only the **post-merge `push` run** proves production rebuilt.
+- Step 5's local `dev` sync is a workspace convenience only; it is **not** the deploy target and does not affect production.
 
 > **NEVER commit directly to `main` in submodules.**
 > **NEVER skip the root repo submodule update — production deploys pull from root `main`.**
