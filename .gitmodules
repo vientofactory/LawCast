@@ -7,3 +7,7 @@
 [submodule "semantic-search"]
 	path = semantic-search
 	url = https://github.com/vientofactory/semantic-search.git
+[submodule "frontend-mcp"]
+	path = frontend-mcp
+	url = https://github.com/vientofactory/lawcast-frontend-mcp.git
+	branch = main

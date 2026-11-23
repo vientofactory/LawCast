@@ -4,7 +4,7 @@
 
 LawCast는 국회 입법예고의 신규 법률안과 기존 법률안의 변동사항을 수집하고 투명하게 공개하는 플랫폼입니다.
 
-이 저장소는 백엔드/프론트엔드 서브모듈을 묶는 루트 오케스트레이션 레이어이며, 역할은 다음과 같습니다.
+이 저장소는 서비스와 개발 도구 서브모듈을 묶는 루트 오케스트레이션 레이어이며, 역할은 다음과 같습니다.
 
 - 서비스 전체 실행/배포 진입점 제공
 - 백엔드 + 프론트엔드 개발 동선 통합
@@ -17,6 +17,7 @@ LawCast는 국회 입법예고의 신규 법률안과 기존 법률안의 변동
 - 백엔드 아키텍처/크론/데이터 무결성 상세는 백엔드 문서에서 관리합니다.
 - UI 구조/페이지/필터 UX 상세는 프론트엔드 문서에서 관리합니다.
 - 의미 검색은 시맨틱 검색 엔진 문서에서 관리합니다.
+- AI 에이전트용 UI 디자인 체계와 검사 도구는 프론트엔드 MCP 문서에서 관리합니다.
 - 루트 문서는 시스템 관점(구성, 실행 순서, 운영 스크립트)에 집중합니다.
 
 ## 시스템 구성
@@ -37,6 +38,7 @@ flowchart LR
 - [backend](backend): NestJS API 서버 서브모듈
 - [frontend](frontend): SvelteKit 웹 앱 서브모듈
 - [semantic-search](semantic-search): 의미 검색 사이드카 (Python + FAISS) 서브모듈
+- [frontend-mcp](frontend-mcp): 프론트엔드 디자인 체계 조회·Svelte 코드 검사용 TypeScript MCP 서버 서브모듈 (개발 도구)
 - [docker-compose.yml](docker-compose.yml): 통합 컨테이너 오케스트레이션
 - [deploy.sh](deploy.sh): 서비스별/전체 롤링 업데이트 스크립트
 - [submodule_util.sh](submodule_util.sh): 서브모듈 동기화/업데이트 유틸리티
@@ -77,6 +79,20 @@ npm run dev
 
 - 기본 접속 주소: 프론트엔드 http://localhost:5173
 - API 기본 주소(개발): 백엔드 http://localhost:3001
+
+### AI 에이전트용 프론트엔드 MCP
+
+```bash
+cd frontend-mcp
+npx --yes npm@11.13.0 ci
+npm start
+```
+
+디자인 토큰·공통 컴포넌트·UX 규칙을 조회하고 변경한 Svelte 코드를 검사합니다.
+`npm start`는 HTTP 서비스가 아닌 stdio MCP 서버를 실행하며, MCP 클라이언트에서는
+체크아웃의 `frontend-mcp/src/server.js`를 `node`로 실행하도록 연결합니다.
+설정과 CLI 사용법은 [frontend-mcp/README.md](frontend-mcp/README.md)를 참고하세요.
+운영 컨테이너나 배포 대상에는 포함되지 않습니다. 실제 병합 차단은 별도 필수 CI 설정으로 적용합니다.
 
 ### 외부 프록시(ngrok 등) 사용 시
 
@@ -151,6 +167,7 @@ docker compose down
 
 - 백엔드 상세: [backend/README.md](backend/README.md)
 - 프론트엔드 상세: [frontend/README.md](frontend/README.md)
+- 프론트엔드 MCP 연결·검사: [frontend-mcp/README.md](frontend-mcp/README.md)
 - 코딩 에이전트 가이드라인: [AGENTS.md](AGENTS.md) — 모든 코딩 에이전트가 반드시 읽어야 하는 프로젝트 규칙 및 컨벤션
 - 에이전트 메모리: [agent_memories/README.md](agent_memories/README.md) — 탐색 기록, 버그 조사, 구현 계획 인덱스
 
