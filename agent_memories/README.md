@@ -596,3 +596,11 @@ agent_memories/
 - [Required container reconciliation](89-runtime-restart-downtime/reconciliation.md): fixed 14-container timer, confirmed start/create recovery, dependency/data/config gates, bounded retries, maintenance contract, isolated real fault tests and copy-only rollback.
 
 - [Deployment integration](89-runtime-restart-downtime/deployment-integration.md): project-scoped repair holds around complete deployments, timer continuity, validated inventory adoption, failure/SIGKILL isolation, actual APP_VERSION capture, Linux fault tests and production smoke.
+
+## 90 — Hashguard Adaptive Discussions (2026-11-16)
+
+- [Implementation and verification](90-hashguard-adaptive-discussions/implementation-and-verification.md): SDK 2.0.0 assessment-first worker/fallback flow, context/IP-bound single-use introspection, required discussion-write proofs, in-form security feedback, real local HTTP and browser regression coverage, and independent-copy rollback. Local changes only; deployment unchanged.
+
+## 91 — Frontend Design MCP
+
+- [Implementation and ownership](91-frontend-design-mcp/implementation.md): source-backed UI/UX patterns, semantic token/component references, AST guardrails, real MCP protocol tests, fail-closed CLI and independent demo rollback. Tooling only; frontend source and deployment are unchanged.
