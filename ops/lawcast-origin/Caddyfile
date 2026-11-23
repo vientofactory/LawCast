@@ -1,0 +1,31 @@
+{
+	admin unix//run/lawcast-origin/admin.sock
+	auto_https disable_redirects
+	log {
+		format filter {
+			wrap json
+			fields {
+				request>headers>X-Lawcast-Service-Token delete
+			}
+		}
+	}
+}
+
+lawcast-origin.viento.me {
+	tls {
+		issuer acme {
+			disable_http_challenge
+		}
+	}
+	route {
+		@unauthorized not header X-Lawcast-Service-Token {$LAWCAST_API_SERVICE_TOKEN}
+		header Cache-Control "no-store"
+		respond @unauthorized "Forbidden" 403
+		@api path /api/*
+		reverse_proxy @api 127.0.0.1:3001 {
+			header_up -X-Lawcast-Service-Token
+			header_up -CF-Connecting-IP
+		}
+		respond "Not found" 404
+	}
+}

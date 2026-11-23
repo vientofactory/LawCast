@@ -1,0 +1,32 @@
+[Unit]
+Description=Authenticated LawCast HTTPS service origin
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=notify
+DynamicUser=yes
+EnvironmentFile=/etc/lawcast-origin/service.env
+Environment=HOME=/var/lib/lawcast-origin
+Environment=XDG_DATA_HOME=/var/lib/lawcast-origin
+Environment=XDG_CONFIG_HOME=/var/lib/lawcast-origin
+StateDirectory=lawcast-origin
+StateDirectoryMode=0700
+RuntimeDirectory=lawcast-origin
+RuntimeDirectoryMode=0700
+ExecStartPre=/usr/bin/python3 /usr/local/libexec/lawcast-origin-check-env.py
+ExecStart=/usr/local/bin/lawcast-origin-caddy run --config /etc/lawcast-origin/Caddyfile --adapter caddyfile
+ExecReload=/usr/local/bin/lawcast-origin-caddy reload --address unix//run/lawcast-origin/admin.sock --config /etc/lawcast-origin/Caddyfile --adapter caddyfile
+Restart=on-failure
+RestartSec=5
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+CapabilityBoundingSet=CAP_NET_BIND_SERVICE
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+ProtectControlGroups=yes
+RestrictSUIDSGID=yes
+
+[Install]
+WantedBy=multi-user.target
