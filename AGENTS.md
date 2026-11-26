@@ -354,6 +354,14 @@ as an explanation.
 - **Exceptions:** Python/shell tests retain their native framework; generated JavaScript under build/dist and vendored upstream regression tests retain their required format. In particular, keep `vendor/deepmerge/security.test.cjs` and both supported backend Jest loading paths.
 - `python3 tools/check-agent-guidelines.py` enforces **T2** for first-party test source extensions, in addition to comment/test-title/emoji checks. When changing the checker, also run `node --test tools/check-agent-guidelines.spec.ts` from the repo root.
 
+### Frontend Playwright commit gate
+
+- Before any frontend-related commit, run `cd frontend && npm run test:e2e:all`. This runs the complete Playwright matrix, including every dedicated browser/fixture configuration, both PWA runtimes and real-backend integration. Selected files, `--grep`, project filters, static MCP approval and old CI output do not replace this gate.
+- A failed suite, missing prerequisite or source change after a passing run blocks the commit. Fix the cause, preserve assertions/discovery, and rerun the entire matrix from the beginning after the last edit. Do not add skips or weaken tests to hide a failure.
+- Activate the tracked frontend hook with `git -C frontend config core.hooksPath .githooks`; never use `--no-verify` or disable the hook to bypass validation. Stage the complete intended source first: the hook rejects unstaged/untracked files and source/index changes during its run.
+- Real-backend integration is part of the same gate. Set `PLAYWRIGHT_BACKEND_URL` to its API base, including `/api` (otherwise the local backend default is used). A missing or unavailable backend blocks the commit; record the target and result and never describe mock results as live integration coverage. The gate starts an isolated frontend rather than reusing a caller-supplied frontend URL.
+- MCP instructions, prompt and policy repeat this repair-and-rerun loop; README remains a usage guide rather than a policy copy.
+
 ### Git & CI
 
 - CI runs on push/PR to `main`: backend lint/typecheck/build/test, frontend typecheck/build
