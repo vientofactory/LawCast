@@ -1,0 +1,3 @@
+{"mode":"NO_LIMIT_FIXTURE","index":200,"chunks200":46,"chunks503":0,"firstFailedChunk":-1,"backendCalls":229,"backend429":0}
+{"mode":"REAL_30_PER_60_LIMIT","index":200,"chunks200":9,"chunks503":37,"firstFailedChunk":9,"backendCalls":87,"backend429":38}
+AFTER_61_SECONDS chunk=9 status=200
