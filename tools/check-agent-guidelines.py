@@ -15,6 +15,11 @@ Checks implemented (all machine-checkable from the repo root):
         UI string, DB value or fixture under test, e.g.
         `test('shows "기록 없음" when the engine has no recorded update times')`.
         A fully Korean title is a violation.
+  T2 -- Test source format (AGENTS.md section 6):
+        first-party JavaScript/TypeScript tests, helpers and fixtures use `.ts`
+        source under the owning package's existing module and test runner setup.
+        Standalone `.mjs`, `.mts`, `.js` and `.cjs` test sources are rejected.
+        Generated outputs and vendored upstream tests keep their original format.
   E1 -- No emojis in comments (AGENTS.md section 6):
         never use emojis in code comments, docstrings, commit messages,
         documentation or PR descriptions. Emoji code points inside comment
@@ -31,7 +36,7 @@ language; only the description/title above them is checked.
 Usage:
     python3 tools/check-agent-guidelines.py [paths...] [--all]
                                             --all also lists cited literals
-    python3 tools/check-agent-guidelines.py --only C1,T1,E1 backend frontend
+    python3 tools/check-agent-guidelines.py --only C1,T1,T2,E1 backend frontend
     Exit 1 when any violation is found, otherwise exit 0.
 """
 
@@ -46,7 +51,7 @@ SKIP_DIRS = {
     'node_modules', '.git', 'dist', 'build', '.svelte-kit', 'venv', '.venv',
     'coverage', '__pycache__', 'artifacts', '_workspace', 'embedding-map',
 }
-CODE_EXT = {'.ts', '.js', '.mjs', '.cjs', '.svelte', '.py', '.css', '.sh', '.yml', '.yaml'}
+CODE_EXT = {'.ts', '.js', '.mjs', '.cjs', '.svelte', '.py', '.css', '.sh', '.yml', '.yaml', '.mts', '.cts', '.tsx', '.jsx'}
 # Quoted spans may be delimited by quotes, backticks or CJK corner brackets.
 QUOTED = re.compile(
     r'"[^"\n]*"|\'[^\'\n]*\'|`[^`\n]*`|\u300c[^\u300d\n]*\u300d|\u300e[^\u300f\n]*\u300f'
@@ -210,6 +215,20 @@ def check_test_titles(path: str, text: str):
     return violations, messages
 
 
+def check_test_source_format(path: str):
+    """Check T2 without changing package module systems or vendor code."""
+    normalized = os.path.normpath(path)
+    parts = normalized.split(os.sep)
+    if any(part in SKIP_DIRS or part == 'vendor' for part in parts):
+        return 0, []
+    name, extension = os.path.splitext(os.path.basename(normalized))
+    is_test = any(part in {'test', 'tests', 'e2e', '__tests__'} for part in parts)
+    is_test = is_test or bool(re.search(r'(?:^|[._-])(?:test|spec)(?:[._-]|$)', name))
+    if is_test and extension in {'.js', '.jsx', '.mjs', '.cjs', '.mts', '.cts'}:
+        return 1, [f'T2 {path}:1: First-party test sources must use TypeScript `.ts`, not `{extension}`.']
+    return 0, []
+
+
 def check_emoji(path: str, text: str):
     """Check E1 over comment text only. Return (violations, messages)."""
     violations, messages = 0, []
@@ -247,6 +266,7 @@ def main() -> int:
         paths = ['.']
     run_c1 = not only or 'C1' in only
     run_t1 = not only or 'T1' in only
+    run_t2 = not only or 'T2' in only
     run_e1 = not only or 'E1' in only
 
     total_violations = 0
@@ -269,6 +289,11 @@ def main() -> int:
             t1_violations, t1_messages = check_test_titles(path, text)
             total_violations += t1_violations
             for message in t1_messages:
+                print(message)
+        if run_t2:
+            t2_violations, t2_messages = check_test_source_format(path)
+            total_violations += t2_violations
+            for message in t2_messages:
                 print(message)
         if run_e1 and os.path.splitext(path)[1] in CODE_EXT:
             e1_violations, e1_messages = check_emoji(path, text)

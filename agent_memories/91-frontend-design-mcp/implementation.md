@@ -47,3 +47,12 @@ MCP PR #1 merged at `798f8d021aa4e16d218da845e223f9f15e8b2e9a`; the root gitlink
 At the owner's request, the root README now lists the MCP development-tool submodule, links its detailed documentation, and includes npm installation and stdio startup/client guidance without adding it to production Compose or deployment. The root commit also includes existing memory index entries, sessions 90/91 and the previously staged submodule registration. Existing root deployment-trigger documentation is already tree-equivalent on origin/main and stays intact; the original local documentation commit remains on its original docs branch. No PR merge or production deployment is requested here.
 
 Root precommit checks pass frontend lint/check, backend lint/type/build and 105 suites/1,419 tests, semantic ruff and 421 tests, MCP type/format and 32 tests, and the repository guideline checker. The pre-existing unsigned, tree-equivalent documentation-only commit is not republished: the integration branch starts from origin/main and consolidates all pending root changes into a new signed commit, while docs/deploy-trigger-guidance retains that original commit.
+
+
+## Unified list and icon contract (2026-11-27, local changes)
+
+The owner requested neutral, unadorned list titles and one interaction treatment across all lists, superseding the earlier underlined/colored title pattern. Frontend destinations now share `lc-list-link`, `lc-list-title` and `lc-flat-list-row`; separate timeline/comparison/download actions remain independent anchors or buttons. Hover and focus highlight one neutral row surface without recoloring/underlining the title. Focus outlines and 44px link targets remain.
+
+The preceding FontAwesome backplate removal is included in the regenerated MCP snapshot. New `list-interaction` and `icon-backplate` rules reject title decoration/interaction overrides and icon-only plates without rejecting text status badges or button targets. Snapshots now include every Svelte route as well as shared components/CSS, so the change feed and semantic/announcement list examples are no longer absent. Source hashes are authoritative for local, uncommitted changes; a Git commit alone does not identify the working-source snapshot.
+
+Regression evidence is in `/private/tmp/lawcast-list-system/VERIFICATION.txt`; previous icon/change-navigation work remains uncommitted and untouched beyond the requested list-style consolidation. No deployment or release is part of this change.
