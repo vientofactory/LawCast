@@ -1,5 +1,15 @@
 # Agent Memories
 
+## Crawling legal notice
+
+- [Research and implementation](96-crawling-legal-notice/research-and-implementation.md): source-backed legal notice, bill/public-domain distinction, search fair-use limits and unverified operational claims.
+
+
+- [Search Console revalidation](92-sitemap-indexing-investigation/search-console-validation.md): all nine reasons reviewed; seven validations started for7,591 affected URLs;47 sitemap children processed successfully by Google, with22,748 discovered URLs and explicit sample/indexing limits.
+
+- [Sitemap fetch and indexing decline investigation](92-sitemap-indexing-investigation/findings.md): shared sitemap-bot quota failure, confirmed backend Bot Fight challenge, authenticated-origin deployment with protection retained, complete snapshot delivery, Workers redirect correction, successful Google live fetch / sitemap resubmission, and native retryable transport-failure reproduction/recovery with historical-attribution limits.
+
+
 ## UI layout redesign proposal
 
 - [UI and fixed-copy consistency release](65-ui-layout-redesign/ui-and-copy-release.md): flat discussion/announcement/semantic lists, matching skeletons, scroll-arrival quote feedback, conservative Korean copy review, independent bug/security reviews and frontend 3.1.6 release verification.
@@ -604,3 +614,24 @@ agent_memories/
 ## 91 — Frontend Design MCP
 
 - [Implementation and ownership](91-frontend-design-mcp/implementation.md): source-backed UI/UX patterns, semantic token/component references, AST guardrails, real MCP protocol tests, fail-closed CLI and independent demo rollback. Tooling only; frontend source and deployment are unchanged.
+
+
+## 93 — Semantic UI Configuration Regression (2026-11-24)
+
+- [Production diagnosis](93-semantic-ui-config-regression/diagnosis.md): healthy sidecar and working public semantic API, empty effective Pages feature flag, configuration-update audit trail and before/after production SSR evidence. Diagnosis only; no production changes.
+
+- [Runtime restoration](93-semantic-ui-config-regression/restoration.md): restored verified Pages bindings, retained current origin authentication, same-SHA production redeploy and real browser/search/sitemap verification.
+
+## 94 — Database Mirror Resource Optimization (2026-11-25)
+
+- [Investigation and verification](94-db-mirror-resource-optimization/investigation-and-verification.md): current host/DB measurements, historical-attribution limits, consistent allowlisted streaming instead of duplicate VACUUM rewrites, full-dataset parity, local time/RSS tradeoff, overlap protection, release and controlled production observation.
+
+## Notice consultation status
+
+- [Implementation and verification](95-notice-consultation-status/implementation-and-verification.md): shared pre-notice/open/ended/scheduled/unknown classification, SSR transfer evidence, consistent detail opinion action, and explicit metadata-free semantic results.
+
+## 97 — Backend SQL optimization
+
+- [Audit and verification](97-backend-sql-optimization/audit-and-verification.md): complete typed SQL-call inventory, event-first latest-value joins, lifecycle-aware partial indexes, bounded quote hydration, offset-filter repair, whole-corpus parity and reversible migration proof.
+
+- [3.2.9 release](97-backend-sql-optimization/release.md): isolated release gates, signed backend/root PRs, actual main-push deployment success, production version/health/filter checks and preserved WIP.

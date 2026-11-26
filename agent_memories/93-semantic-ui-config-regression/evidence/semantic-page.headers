@@ -1,0 +1,13 @@
+HTTP/2 303 
+date: Tue, 24 Nov 2026 14:10:14 GMT
+content-length: 0
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=MWD7XZjVjRaA4Ylga04l3q2AW8Xo6%2B6BE02P6wu9IbiPAenhYDC6s7aUwpuqFyeNcOmQ1bGcYPrwSWLQ0h9d8rBQADVBbVcx7DuG7oZ0u7uodgDx6WczRfVwGC73zEla"}]}
+location: /notices
+speculation-rules: "/cdn-cgi/speculation"
+server: cloudflare
+cf-cache-status: DYNAMIC
+strict-transport-security: max-age=7776000; includeSubDomains
+cf-ray: a5f8fef76cf35337-NRT
+alt-svc: h3=":443"; ma=86400
+

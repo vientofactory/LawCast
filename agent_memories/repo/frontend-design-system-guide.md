@@ -9,6 +9,18 @@ Companion notes: `repo/frontend-notes.md` (runes/e2e pitfalls),
 (architecture), `15-citizen-ux-feedback/citizen-ux-feedback.md` (UX gaps),
 `repo/code-comment-convention-notes.md` (comment/`lc-` rules).
 
+## Current list and icon contract (2026-11-27)
+
+This contract supersedes historical colored/underlined list-title and row-hover examples below. Navigable rows use `lc-flat-list-row`, titles use `lc-list-title` (18px/600), and native anchors use `lc-list-link`. Pointer hover is visually inert across rows, titles and metadata on every device: no row background, color, underline or movement changes. Independent secondary buttons retain their neutral hover background. Keyboard focus still highlights the shared row and preserves a visible outline and 44px target. There are no per-list variants. `lc-card-list-link` is retired. Ordinary prose links remain distinct; explicit secondary actions use `lc-result-action-secondary` with neutral text and no underline.
+
+The common result-row base selector must outrank legacy dark-theme card backgrounds, including `html[data-theme='dark'] .lc-notice-card-done`. Otherwise an ended notice retains an inset background after keyboard focus leaves while other list rows return to the page surface. Keep this override in the shared flat-row declaration, not a separate status-specific patch.
+
+Home previews, notice/semantic/weak-result lists, change feeds, announcement lists and both discussion views follow this same contract. A single-destination row may itself be an anchor; a row with downloads, timeline or comparison actions keeps those controls outside the title/information-region anchor. Preserve destinations, filter query parameters, keyboard navigation and modified clicks.
+
+FontAwesome glyphs have no icon-only background/chip, rounded backplate or padded tile. Preserve semantic glyph colors, actual control targets/focus, stateful switch thumbs, status badges containing text and the surrounding status/banner surfaces.
+
+`frontend-mcp/design/policy.json` documents this contract. Its `list-interaction` and `icon-backplate` AST rules, current route/component/CSS snapshot and browser tests keep the implementation and MCP guidance aligned. Snapshot hashes include working-tree changes; reconnect an already-running MCP server to load refreshed assets.
+
 ## 1. Page Skeleton
 
 Every route renders the same shell:

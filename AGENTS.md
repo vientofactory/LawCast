@@ -158,7 +158,7 @@ comments, and never leave an explanatory clause un-translated.** This covers `//
 YAML/shell comments in all three submodules. The rule is machine-checked from the repo root:
 
 ```bash
-python3 tools/check-agent-guidelines.py     # exit 1 on any C1/T1/E1 violation (comments, test titles, emojis)
+python3 tools/check-agent-guidelines.py     # exit 1 on any C1/T1/T2/E1 violation (comments, test titles, emojis)
 ```
 
 `tools/check-agent-guidelines.py` is the recommended checker: C1 covers this
@@ -322,7 +322,7 @@ as an explanation.
   write the comment itself in Korean. The single exception is a **quoted** literal copied from the
   code, the data or the UI (`` `제안이유` ``, `"안건정보가 없습니다"`), quoted precisely so a reviewer can
   tell data from prose. See §4 Comment Format for the full rule and examples, and run
-  `python3 tools/check-agent-guidelines.py` (exit 1 on any C1/T1/E1 violation) before committing —
+  `python3 tools/check-agent-guidelines.py` (exit 1 on any C1/T1/T2/E1 violation) before committing —
   the checker is part of the Step 0 verification block below.
 - **Test descriptions**: English ONLY for every `describe(...)` / `it(...)` / `test(...)` title
   across backend Jest specs, frontend Playwright specs, and semantic-search pytest docstrings.
@@ -335,6 +335,24 @@ as an explanation.
   docstrings, and test descriptions inside source files, not to prose documentation.
 - **Agent notes**: Technical docs in English; exploration notes may mix Korean
 - **No emojis**: Never use emojis in code, commit messages, documentation, or PR descriptions
+
+### README Scope and Writing Rules
+
+- Keep each project README focused on its purpose, prerequisites, installation, connection/configuration, common run/test commands and links needed to start using it. Root README links to the relevant project instead of repeating its manual.
+- Keep design-system rules, styling prescriptions, coding/test-authoring conventions and agent instructions in their owning policy, guide or `AGENTS.md`. README may link to that source; do not restate or paste its rules and examples.
+- Do not put PR required-check lists, branch-protection configuration, internal CI matrices, merge policies, historical run logs or task verification reports in README. Keep operator-facing deployment/recovery commands that are necessary to run the service, with detailed procedures linked separately.
+- Edit the relevant existing section instead of appending unrelated policy sections. Remove duplicated or superseded prose, keep commands/paths/values accurate, and preserve useful limitations without repeating generic warnings.
+- Use concise, natural prose in the README's existing language. Preserve technical names, code examples, environment variables, URLs and factual qualifiers when editing wording; do not translate an English README merely for consistency.
+- Before completion, check the README's purpose and section scope, command examples and local links. The MCP README has a TypeScript regression test to keep design/PR policy out of its usage guide.
+
+### Test Source Format and Runner Ownership
+
+- **Author first-party JavaScript/TypeScript tests, test helpers and executable fixtures in TypeScript `.ts` files.** Do not introduce standalone ESM test sources (`.mjs` or `.mts`) or handwritten `.js`/`.cjs` test wrappers. Do not merely rename an untyped test: include it in strict TypeScript checking.
+- Reuse the owning package's existing test runner and module system: backend Jest (`*.spec.ts`), frontend Playwright (`e2e/*.spec.ts`), frontend Node-only checks (`scripts/*.test.ts`, `node --test`) and MCP's compiled TypeScript `node:test` suites. TypeScript imports follow the package's existing module mode; this rule does not convert the frontend/MCP to CommonJS or change the backend runtime.
+- Frontend Node suites and executable `e2e/fixtures/*.ts` use Node's native TypeScript support on the declared Node versions and are checked by both TypeScript compilers through `npm run check:tests`. Run all pure suites with `npm run test:unit`. Update npm commands, CI, fixture launchers and references in the same change.
+- Preserve assertions, fault injection, discovery and CI failure propagation. Do not add a parallel runner, loader or compile wrapper just to execute a new test.
+- **Exceptions:** Python/shell tests retain their native framework; generated JavaScript under build/dist and vendored upstream regression tests retain their required format. In particular, keep `vendor/deepmerge/security.test.cjs` and both supported backend Jest loading paths.
+- `python3 tools/check-agent-guidelines.py` enforces **T2** for first-party test source extensions, in addition to comment/test-title/emoji checks. When changing the checker, also run `node --test tools/check-agent-guidelines.spec.ts` from the repo root.
 
 ### Git & CI
 
@@ -563,7 +581,7 @@ cd semantic-search && python3 -c "import tomllib;print(tomllib.load(open('pyproj
 cd semantic-search && git tag -l 'semantic-search-v*'                           # Released versions
 
 # Agent guidelines (English-only rules, see AGENTS.md §4/§5/§6)
-python3 tools/check-agent-guidelines.py                                          # Exit 1 on any C1/T1/E1 violation
+python3 tools/check-agent-guidelines.py                                          # Exit 1 on any C1/T1/T2/E1 violation
 python3 tools/check-agent-guidelines.py --all                                    # List cited Korean literals too
 python3 tools/check-agent-guidelines.py --only=C1,T1                            # Subset of checks
 python3 tools/check-comment-language.py                                          # Legacy comment-only checker (C1 subset)
